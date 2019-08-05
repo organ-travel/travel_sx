@@ -17,7 +17,7 @@
               <input type="text" class="form-control">
             </div>
             <div class="input-group" data-before="留言：">
-              <textarea name="" id="" cols="30" rows="8" class="form-control"></textarea>
+              <textarea id="" name="" cols="30" rows="8" class="form-control"></textarea>
             </div>
             <div class="btn-group">
               <button class="btn-submit">提交</button>
@@ -39,9 +39,9 @@
 </template>
 
 <script>
-  export default {
-    name: 'aside'
-  }
+export default {
+  name: 'Aside'
+}
 </script>
 
 <style lang="stylus" scoped>
