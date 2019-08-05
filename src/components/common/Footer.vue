@@ -12,13 +12,13 @@
         </div>
         <div class="qrcode-wrapper">
           <div class="qrcode-mobile" data-after="手机微官网">
-            <img src="" alt="二维码" class="img">
+            <img src="../../assets/img/common/weiguan.jpg" alt="二维码" class="img">
           </div>
           <div class="qrcode-wechat" data-after="微信公众号">
-            <img src="" alt="二维码" class="img">
+            <img src="../../assets/img/common/weixin.jpg" alt="二维码" class="img">
           </div>
           <div class="qrcode-weibo" data-after="微博">
-            <img src="" alt="二维码" class="img">
+            <img src="../../assets/img/common/weibo.jpg" alt="二维码" class="img">
           </div>
         </div>
       </div>

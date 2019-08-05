@@ -6,6 +6,7 @@ import mixin from '@/mixin/index.js'
 import ElementUI from 'element-ui'
 
 import 'element-ui/lib/theme-chalk/index.css'
+import 'font-awesome/css/font-awesome.min.css'
 import '@/assets/style/base.css'
 import 'swiper/dist/css/swiper.css'
 

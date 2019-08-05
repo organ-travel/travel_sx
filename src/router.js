@@ -10,9 +10,9 @@ export default new Router({
       name: 'home',
       component: r => require(['./views/home.vue'], r)
     }, {
-      path: '/introduction',
-      name: 'introduction',
-      component: r => require(['./views/introduction.vue'], r)
+      path: '/wonder',
+      name: 'wonder',
+      component: r => require(['./views/wonder.vue'], r)
     }, {
       path: '/survey',
       name: 'survey',

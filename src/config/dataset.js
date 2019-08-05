@@ -45,7 +45,7 @@ export default {
     }]
   }, {
     name: '壶口奇观',
-    route: '#/',
+    route: '#/wonder',
     sub: [{
       name: '古渡口小镇',
       route: '#/'
