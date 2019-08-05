@@ -15,6 +15,7 @@ export default {
     width 100%
     height 90px
     background rgba(0, 0, 0, .6)
+    z-index 999
     .m-nav {
       margin 0 auto
       width 1199px
