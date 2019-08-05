@@ -1,0 +1,219 @@
+<template>
+  <!--footer-section start-->
+  <section class="footer-wrapper">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="contact-wrapper">
+          <ul>
+            <li><span class="txt txt-company">陕西黄河壶口文化旅游发展有限责任公司</span></li>
+            <li><span class="txt txt-address">陕西省延安市宜川县壶口乡</span></li>
+            <li><span class="txt txt-telephone">0911-4838030</span></li>
+          </ul>
+        </div>
+        <div class="qrcode-wrapper">
+          <div class="qrcode-mobile" data-after="手机微官网">
+            <img src="" alt="二维码" class="img">
+          </div>
+          <div class="qrcode-wechat" data-after="微信公众号">
+            <img src="" alt="二维码" class="img">
+          </div>
+          <div class="qrcode-weibo" data-after="微博">
+            <img src="" alt="二维码" class="img">
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+
+        <div class="link-in-wrapper">
+          <a href="javascript:;" class="txt">首页</a>
+          <a href="javascript:;" class="txt">壶口概况</a>
+          <a href="javascript:;" class="txt">壶口资讯</a>
+          <a href="javascript:;" class="txt">壶口奇观</a>
+          <a href="javascript:;" class="txt">壶口攻略</a>
+          <a href="javascript:;" class="txt">壶口风情</a>
+        </div>
+        <div class="link-out-wrapper" data-before="友情链接：">
+          <a href="javascript:;" class="txt">携程网</a>
+          <a href="javascript:;" class="txt">美团网</a>
+          <a href="javascript:;" class="txt">骏途旅游网</a>
+        </div>
+        <div class="copyright-wrapper">
+          <p class="txt">Copyright©2019 陕西黄河壶口文化旅游发展有限责任公司</p>
+        </div>
+      </div>
+    </div>
+    <div class="manage-entry" data-before="后台管理系统入口:">
+      <a href="javascript:;" class="txt">网站后台</a>
+      <a href="javascript:;" class="txt">公众号后台</a>
+      <a href="javascript:;" class="txt">微博后台</a>
+    </div>
+  </section>
+  <!--footer-section end-->
+</template>
+
+<script>
+  export default {}
+</script>
+
+<style lang="stylus" scoped>
+  .footer-wrapper {
+    background-color: #333;
+    color: #fff;
+    position: relative
+    .footer-container {
+      width: 1200px;
+      margin: 0 auto;
+      padding: 50px 0;
+      .footer-top {
+        position: relative;
+        padding-left:200px
+        padding-bottom: 28px
+        border-bottom:1px solid #fff
+        &:before {
+          content ''
+          position: absolute
+          width:170px
+          height:66px
+          background: url("../../assets/img/logo.png") no-repeat
+          left:0
+          top:10px
+        }
+        &:after {
+          content ''
+          clear both
+          display: table
+          width:100%
+        }
+        .contact-wrapper {
+          float: left;
+          width: 530px;
+          overflow: hidden;
+          ul {
+            li {
+              .txt {
+                font-size:14px;
+                color:#fff;
+                display: block;
+                margin-bottom: 10px;
+                position: relative
+                &:before {
+                  content ''
+                  position: absolute
+                  width:20px
+                  height:20px
+                }
+                &.txt-company {
+
+                }
+                &.txt-address {
+
+                }
+                &.txt-telephone {
+
+                }
+              }
+            }
+          }
+        }
+
+        .qrcode-wrapper {
+          font-size 0
+          .qrcode-mobile,
+          .qrcode-wechat,
+          .qrcode-weibo {
+            display: inline-block
+            vertical-align: middle
+            margin:0 28px
+            &:after {
+              display: block
+              text-align: center
+              content attr(data-after)
+              font-size:14px;
+              color:#fff;
+              margin-top: 10px;
+            }
+            .img {
+              width:100px
+              height:102px
+              display: block
+              background-color: #fff
+            }
+          }
+        }
+      }
+      .footer-bottom {
+        overflow: hidden;
+        padding: 15px 0;
+        .link-in-wrapper, .link-out-wrapper, .copyright-wrapper {
+          text-align: center
+          margin-bottom:10px
+          .txt {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 14px;
+            color: #fff;
+          }
+        }
+        .link-in-wrapper {
+          .txt {
+            border-left 1px solid #fff
+            padding:0 12px
+            &:first-child {
+              border-left:none
+            }
+          }
+        }
+        .link-out-wrapper {
+          &:before {
+            content attr(data-before)
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 14px;
+            color: #fff;
+          }
+          .txt {
+            padding-right: 20px
+          }
+        }
+        .copyright-wrapper {
+          .txt {
+
+          }
+        }
+      }
+    }
+    .manage-entry {
+      position: absolute
+      background-color: #4d4d4d
+      padding:10px 24px
+      right:0
+      bottom 40px
+      border-radius 20px 0 0 20px
+      &:before {
+        content attr(data-before)
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 14px;
+        color: #fff;
+        margin-right:10px
+      }
+      &:after {
+        content ''
+        position: absolute
+        right: 0
+        border 10px solid transparent
+        border-right-color #fff
+      }
+      .txt {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 14px;
+        margin-right: 10px
+        color: #fff;
+        &:hover {
+          color: #ec5a02
+        }
+      }
+    }
+  }
+</style>
