@@ -51,14 +51,12 @@ export default {
     position relative
     display inline-block
     padding-left 11px
-    padding-right 30px
-    margin-right 46px
+    padding-right 76px
     color #ffffff
     font-size 18px
     vertical-align top
     &:last-child {
       padding-right 0
-      margin-right 0
     }
     &:hover, &.active {
       color #ec5a02
@@ -67,7 +65,7 @@ export default {
       &:after {
         position absolute
         top 50%
-        right 0
+        right 46px
         transform translateY(-50%)
         content ''
         width 0
@@ -95,12 +93,14 @@ export default {
         display block
         height 45px
         line-height 45px
-        border-bottom 1px solid #ffffff
         text-align left
         color #ffffff
         &:hover {
           color #ec5a02
         }
+      }
+      .u-drop-list + .u-drop-list {
+        border-top 1px solid #999999
       }
     }
   }

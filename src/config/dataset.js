@@ -28,19 +28,19 @@ export default {
     name: '壶口资讯',
     route: '#/test',
     sub: [{
-      name: '景区活动',
-      route: '#/'
-    }, {
       name: '景区新闻',
-      route: '#/'
-    }, {
-      name: '文件下载',
       route: '#/'
     }, {
       name: '文旅动态',
       route: '#/'
     }, {
+      name: '景区活动',
+      route: '#/'
+    }, {
       name: '招贤纳士',
+      route: '#/'
+    }, {
+      name: '文件下载',
       route: '#/'
     }]
   }, {
@@ -50,45 +50,54 @@ export default {
       name: '古渡口小镇',
       route: '#/'
     }, {
-      name: '观龙台',
-      route: '#/'
-    }, {
-      name: '壶口八景',
+      name: '4D影院',
       route: '#/'
     }, {
       name: '黄河大合唱',
       route: '#/'
     }, {
-      name: '望龙台',
+      name: '观龙台',
+      route: '#/'
+    }, {
+      name: '壶口八景',
       route: '#/'
     }]
   }, {
     name: '壶口攻略',
     route: '#/',
     sub: [{
-      name: '购物',
-      route: '#/'
-    }, {
-      name: '路线',
-      route: '#/'
-    }, {
       name: '美食',
+      route: '#/'
+    }, {
+      name: '住宿',
+      route: '#/'
+    }, {
+      name: '线路',
       route: '#/'
     }, {
       name: '游记',
       route: '#/'
     }, {
-      name: '娱乐',
+      name: '购物',
       route: '#/'
     }, {
-      name: '住宿',
+      name: '娱乐',
       route: '#/'
     }]
   }, {
     name: '壶口风情',
     route: '#/',
     sub: [{
+      name: '剪纸',
+      route: '#/'
+    }, {
       name: '斗鼓',
+      route: '#/'
+    }, {
+      name: '摄影',
+      route: '#/'
+    }, {
+      name: '壶口图集',
       route: '#/'
     }, {
       name: '壶口影集',

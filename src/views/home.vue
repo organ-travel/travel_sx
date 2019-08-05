@@ -6,6 +6,7 @@
           <img class="img" :src="el.imgUrl">
         </div>
       </div>
+      <div class="swiper-pagination"></div>
     </div>
     <type :type-arr="typeArr"></type>
     <survey :survey-arr="surveyArr"></survey>
@@ -52,19 +53,6 @@ export default {
       wonderArr: dataset.wonderArr,
       strategyArr: dataset.strategyArr,
       arrItem: [],
-      // arrItem: [{
-      //   name: 'swiperSlide5',
-      //   imgUrl: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg'
-      // }, {
-      //   name: 'swiperSlide1',
-      //   imgUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg'
-      // }, {
-      //   name: 'swiperSlide51',
-      //   imgUrl: 'https://c-ssl.duitang.com/uploads/item/201805/21/20180521133102_gnvii.jpg'
-      // }, {
-      //   name: 'swiperSlide1111115',
-      //   imgUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605090433_snnuy.jpg'
-      // }],
       datas: [],
       infoArr: [],
       activeIndex: 0
@@ -156,14 +144,10 @@ export default {
     }])
     /* eslint-disable */
     new Swiper ('.m-swiper', {
-      loop: true
-      // 如果需要分页器
-      // pagination: '.swiper-pagination',
-      // 如果需要前进后退按钮
-      // nextButton: '.swiper-button-next',
-      // prevButton: '.swiper-button-prev',
-      // 如果需要滚动条
-      // scrollbar: '.swiper-scrollbar',
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+      }
     }) 
   },
   methods: {
@@ -191,6 +175,25 @@ export default {
   .img {
     width 100%
     height 1015px
+  }
+  >>> .swiper-pagination-bullets {
+    bottom 0
+    height 63px
+    line-height 63px
+    background rgba(0, 0, 0, .3)
+    .swiper-pagination-bullet {
+      margin 0 8px
+      width 12px
+      height 12px
+      background #ffffff
+      opacity 1
+      vertical-align middle
+      &.swiper-pagination-bullet-active {
+        width 20px
+        height 20px
+        background url('~@/assets/img/bullet.png') no-repeat center
+      }
+    }
   }
 }
 </style>
