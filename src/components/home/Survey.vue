@@ -1,7 +1,7 @@
 <template>
   <wrap class="m-survey" title-text="壶口概况">
     <a href="#/" class="m-img">
-      <img src="../../assets/img/video.jpg" class="u-img"/>
+      <img src="../../assets/img/home/video.jpg" class="u-img"/>
     </a>
     <div class="m-content">
       <a href="#/" class="m-brief">
@@ -34,7 +34,7 @@ export default {
 </script>
 <style lang="stylus" scoped>
 .m-survey {
-  background url('~@/assets/img/survey.jpg') no-repeat center
+  background url('~@/assets/img/home/survey.jpg') no-repeat center
   background-size cover
   >>> .m-com {
     padding 55px 0 60px
@@ -84,7 +84,7 @@ export default {
             margin-bottom 19px
             width 81px
             height 81px
-            background url('~@/assets/img/circle.png') no-repeat center
+            background url('~@/assets/img/home/circle.png') no-repeat center
             &::after {
               content ''
               position absolute
@@ -95,27 +95,27 @@ export default {
             &.u-history::after {
               width 36px
               height 42px
-              background url('~@/assets/img/history.png') no-repeat center
+              background url('~@/assets/img/home/history.png') no-repeat center
             }
             &.u-culture::after {
               width 30px
               height 34px
-              background url('~@/assets/img/culture.png') no-repeat center
+              background url('~@/assets/img/home/culture.png') no-repeat center
             }
             &.u-geo::after {
               width 29px
               height 36px
-              background url('~@/assets/img/geo.png') no-repeat center
+              background url('~@/assets/img/home/geo.png') no-repeat center
             }
             &.u-source::after {
               width 38px
               height 32px
-              background url('~@/assets/img/source.png') no-repeat center
+              background url('~@/assets/img/home/source.png') no-repeat center
             }
             &.u-letters::after {
               width 27px
               height 34px
-              background url('~@/assets/img/letters.png') no-repeat center
+              background url('~@/assets/img/home/letters.png') no-repeat center
             }
           }
           .text {

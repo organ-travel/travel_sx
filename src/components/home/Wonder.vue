@@ -45,23 +45,23 @@ export default {
         .u-gdk {
           width 455px
           height 573px
-          background url('~@/assets/img/gdk.jpg') no-repeat center
+          background url('~@/assets/img/home/gdk.jpg') no-repeat center
         }
         .u-4d, .u-hh, .u-glt, .u-hkbj {
           width 353px
           height 277px
         }
         .u-4d {
-          background url('~@/assets/img/4d.jpg') no-repeat center
+          background url('~@/assets/img/home/4d.jpg') no-repeat center
         }
         .u-hh {
-          background url('~@/assets/img/hh.jpg') no-repeat center
+          background url('~@/assets/img/home/hh.jpg') no-repeat center
         }
         .u-glt {
-          background url('~@/assets/img/glt.jpg') no-repeat center
+          background url('~@/assets/img/home/glt.jpg') no-repeat center
         }
         .u-hkbj {
-          background url('~@/assets/img/hkbj.jpg') no-repeat center
+          background url('~@/assets/img/home/hkbj.jpg') no-repeat center
         }
         .title {
           position absolute

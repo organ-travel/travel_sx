@@ -46,39 +46,39 @@ export default {
           vertical-align top
         }
         &.u-eat {
-          background url('~@/assets/img/eat.jpg') no-repeat center
+          background url('~@/assets/img/home/eat.jpg') no-repeat center
           .icon {
-            background url('~@/assets/img/icon-eat.png') no-repeat center
+            background url('~@/assets/img/home/icon-eat.png') no-repeat center
           }
         }
         &.u-live {
-          background url('~@/assets/img/live.jpg') no-repeat center
+          background url('~@/assets/img/home/live.jpg') no-repeat center
           .icon {
-            background url('~@/assets/img/icon-live.png') no-repeat center
+            background url('~@/assets/img/home/icon-live.png') no-repeat center
           }
         }
         &.u-xing {
-          background url('~@/assets/img/xing.jpg') no-repeat center
+          background url('~@/assets/img/home/xing.jpg') no-repeat center
           .icon {
-            background url('~@/assets/img/icon-x.png') no-repeat center
+            background url('~@/assets/img/home/icon-x.png') no-repeat center
           }
         }
         &.u-you {
-          background url('~@/assets/img/you.jpg') no-repeat center
+          background url('~@/assets/img/home/you.jpg') no-repeat center
           .icon {
-            background url('~@/assets/img/icon-you.png') no-repeat center
+            background url('~@/assets/img/home/icon-you.png') no-repeat center
           }
         }
         &.u-play {
-          background url('~@/assets/img/play.jpg') no-repeat center
+          background url('~@/assets/img/home/play.jpg') no-repeat center
           .icon {
-            background url('~@/assets/img/icon-play.png') no-repeat center
+            background url('~@/assets/img/home/icon-play.png') no-repeat center
           }
         }
         &.u-buy {
-          background url('~@/assets/img/buy.jpg') no-repeat center
+          background url('~@/assets/img/home/buy.jpg') no-repeat center
           .icon {
-            background url('~@/assets/img/icon-buy.png') no-repeat center
+            background url('~@/assets/img/home/icon-buy.png') no-repeat center
           }
         }
         .icon-com {

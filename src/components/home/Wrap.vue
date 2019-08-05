@@ -40,10 +40,10 @@ export default {
         vertical-align top
       }
       &::before {
-        background url('~@/assets/img/left.png') no-repeat left center
+        background url('~@/assets/img/home/left.png') no-repeat left center
       }
       &::after {
-        background url('~@/assets/img/right.png') no-repeat right center
+        background url('~@/assets/img/home/right.png') no-repeat right center
       }
     }
   }

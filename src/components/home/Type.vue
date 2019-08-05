@@ -26,7 +26,7 @@ export default {
 </script>
 <style lang="stylus" scoped>
 .m-type {
-  background url('~@/assets/img/type.jpg') no-repeat center
+  background url('~@/assets/img/home/type.jpg') no-repeat center
   background-size cover
   >>> .m-com {
     padding 78px 0 80px
@@ -57,40 +57,40 @@ export default {
             height 44px
           }
           .u-notice{
-            background url('~@/assets/img/notice.png') no-repeat center
+            background url('~@/assets/img/home/notice.png') no-repeat center
           }
           .u-price {
-            background url('~@/assets/img/price.png') no-repeat center
+            background url('~@/assets/img/home/price.png') no-repeat center
           }
           .u-perchase {
             width 48px
             height 44px
-            background url('~@/assets/img/perchase.png') no-repeat center
+            background url('~@/assets/img/home/perchase.png') no-repeat center
           }
           .u-scenery {
             width 51px
             height 42px
-            background url('~@/assets/img/scenery.png') no-repeat center
+            background url('~@/assets/img/home/scenery.png') no-repeat center
           }
           .u-film {
             width 45px
             height 45px
-            background url('~@/assets/img/film.png') no-repeat center
+            background url('~@/assets/img/home/film.png') no-repeat center
           }
           .u-gudukou {
             width 40px
             height 44px
-            background url('~@/assets/img/gudukou.png') no-repeat center
+            background url('~@/assets/img/home/gudukou.png') no-repeat center
           }
           .u-sing {
             width 39px
             height 45px
-            background url('~@/assets/img/sing.png') no-repeat center
+            background url('~@/assets/img/home/sing.png') no-repeat center
           }
           .u-wlt {
             width 46px
             height 41px
-            background url('~@/assets/img/wlt.png') no-repeat center
+            background url('~@/assets/img/home/wlt.png') no-repeat center
           }
         }
       }
@@ -98,7 +98,7 @@ export default {
         float right
         width 244px
         height 324px
-        background url('~@/assets/img/follow.jpg') no-repeat center
+        background url('~@/assets/img/home/follow.jpg') no-repeat center
       }
     }
   }

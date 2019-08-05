@@ -14,6 +14,14 @@ export default new Router({
       name: 'introduction',
       component: r => require(['./views/introduction.vue'], r)
     }, {
+      path: '/survey',
+      name: 'survey',
+      component: r => require(['./views/survey.vue'], r)
+    }, {
+      path: '/letters',
+      name: 'letters',
+      component: r => require(['./views/survey.vue'], r)
+    }, {
       path: '/test',
       name: 'test',
       component: r => require(['./views/test.vue'], r)

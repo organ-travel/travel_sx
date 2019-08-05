@@ -51,7 +51,7 @@ export default {
 </script>
 <style lang="stylus" scoped>
 .m-style {
-  background url('~@/assets/img/style.jpg') no-repeat center
+  background url('~@/assets/img/home/style.jpg') no-repeat center
   background-size cover
   >>> .m-com {
     padding 60px 0 47px

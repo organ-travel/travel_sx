@@ -30,7 +30,7 @@ export default {
 </script>
 <style lang="stylus" scoped>
 .m-info {
-  background url('~@/assets/img/type.jpg') no-repeat center
+  background url('~@/assets/img/home/type.jpg') no-repeat center
   background-size cover
   >>> .m-com {
     padding 61px 0 13px

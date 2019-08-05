@@ -37,9 +37,9 @@ export default {
       this.SET_ACTIVE_INDEX(this.oldIndex)
     },
     clickMenu (index, hasSub) {
-      if (hasSub) {
-        return false
-      }
+      // if (hasSub) {
+      //   return false
+      // }
       this.oldIndex = index
       this.SET_ACTIVE_INDEX(index)
     },

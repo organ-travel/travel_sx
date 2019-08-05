@@ -252,11 +252,11 @@ export default {
 .m-map {
   width 100%
   height 622px
-  background url('~@/assets/img/map.jpg') no-repeat center
+  background url('~@/assets/img/home/map.jpg') no-repeat center
   background-size cover
 }
 .m-merge {
-  background url('~@/assets/img/wonder.jpg') no-repeat center
+  background url('~@/assets/img/home/wonder.jpg') no-repeat center
   background-size cover
 }
 .swiper-container {
@@ -281,7 +281,7 @@ export default {
       &.swiper-pagination-bullet-active {
         width 20px
         height 20px
-        background url('~@/assets/img/bullet.png') no-repeat center
+        background url('~@/assets/img/home/bullet.png') no-repeat center
       }
     }
   }
