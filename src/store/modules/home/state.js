@@ -1,4 +1,4 @@
 export default {
   // for example
-  info: '举个例子'
+  information: '举个例子'
 }

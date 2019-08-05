@@ -1,11 +1,11 @@
 // import Server from '@/config/server'
 
-export const queryInfo = (store, payload) => {
+export const queryInformation = (store, payload) => {
   // return Server({
   //   data: payload,
   //   action: ''
   // })
 }
-export const setInfo = (store, payload) => {
-  store.commit('SET_INFO')
+export const setInformation = (store, payload) => {
+  store.commit('SET_INFORMATION')
 }

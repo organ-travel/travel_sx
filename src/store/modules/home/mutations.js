@@ -1,2 +1,2 @@
-export const SET_INFO = (state, payload) => {
+export const SET_INFORMATION = (state, payload) => {
 }

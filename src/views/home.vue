@@ -17,13 +17,13 @@
       <wonder :wonder-arr="wonderArr"></wonder>
       <strategy :strategy-arr="strategyArr"></strategy>
     </div>
-    <custom></custom>
+    <custom :custom-arr="customArr" :active-label="activeLabel" :custom-nav="customNav" @changeCustom="changeCustom"></custom>
     <div class="m-map m-wrap"></div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 import Type from '@/components/home/Type.vue'
 import Survey from '@/components/home/Survey.vue'
 import Info from '@/components/home/Info.vue'
@@ -53,107 +53,197 @@ export default {
       wonderArr: dataset.wonderArr,
       strategyArr: dataset.strategyArr,
       arrItem: [],
+      // 壶口资讯
       datas: [],
       infoArr: [],
-      activeIndex: 0
+      activeIndex: 0,
+      // 壶口风情
+      customDatas: {},
+      customArr: [],
+      customNav: [],
+      activeLabel: '',
+      customSwiper: null
     }
   },
   computed: {
-    ...mapGetters('Home', ['getInfo'])
+    // ...mapGetters('Home', ['getInformation'])
   },
   async mounted () {
-    const dynamics = [{
-      date: '6-20',
-      year: '2019',
-      title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
-      brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
-    }, {
-      date: '6-20',
-      year: '2019',
-      title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
-      brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
-    }, {
-      date: '6-20',
-      year: '2019',
-      title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
-      brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
-    }, {
-      date: '6-20',
-      year: '2019',
-      title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
-      brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
-    }, {
-      date: '6-20',
-      year: '2019',
-      title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
-      brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
-    }, {
-      date: '6-20',
-      year: '2019',
-      title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
-      brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
-    }]
-    const travel = [{
-      date: '6-19',
-      year: '2019',
-      title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
-      brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
-    }, {
-      date: '6-20',
-      year: '2019',
-      title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
-      brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
-    }, {
-      date: '6-20',
-      year: '2019',
-      title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
-      brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
-    }]
-    const activities = [{
-      date: '6-19',
-      year: '2019',
-      title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
-      brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
-    }, {
-      date: '6-20',
-      year: '2019',
-      title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
-      brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
-    }, {
-      date: '6-20',
-      year: '2019',
-      title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
-      brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
-    }]
-    this.datas.push(dynamics)
-    this.datas.push(travel)
-    this.datas.push(activities)
-    this.infoArr = this.datas[this.activeIndex]
-    await (this.arrItem = [{
-      name: 'swiperSlide5',
-      imgUrl: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg'
-    }, {
-      name: 'swiperSlide1',
-      imgUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg'
-    }, {
-      name: 'swiperSlide51',
-      imgUrl: 'https://c-ssl.duitang.com/uploads/item/201805/21/20180521133102_gnvii.jpg'
-    }, {
-      name: 'swiperSlide1111115',
-      imgUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605090433_snnuy.jpg'
-    }])
+    // 头图swiper
+    await this.getSwiper()
     /* eslint-disable */
     new Swiper ('.m-swiper', {
       loop: true,
       pagination: {
         el: '.swiper-pagination',
       }
-    }) 
+    })
+    // 壶口资讯
+    await this.getInfo()
+    // 壶口风情
+    await this.getCustom()
+    this.customSwiper = new Swiper ('.custom-swiper', {
+      loop: true
+    })
   },
   methods: {
     changeInfo (index) {
       this.activeIndex = index
       this.infoArr = this.datas[index]
+    },
+    async changeCustom (name) {
+      this.activeLabel = name || '',
+      this.customArr = this.customDatas[name] || []
+      await this.customSwiper.destroy()
+      this.customSwiper = new Swiper ('.custom-swiper', {
+        loop: true
+      })
+    },
+    // 获取头图
+    getSwiper () {
+      this.arrItem = [{
+        name: 'swiperSlide5',
+        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg'
+      }, {
+        name: 'swiperSlide1',
+        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg'
+      }, {
+        name: 'swiperSlide51',
+        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201805/21/20180521133102_gnvii.jpg'
+      }, {
+        name: 'swiperSlide1111115',
+        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605090433_snnuy.jpg'
+      }]
+    },
+    // 壶口资讯的数据
+    getInfo () {
+      const dynamics = [{
+        date: '6-20',
+        year: '2019',
+        title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
+        brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
+      }, {
+        date: '6-20',
+        year: '2019',
+        title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
+        brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
+      }, {
+        date: '6-20',
+        year: '2019',
+        title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
+        brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
+      }, {
+        date: '6-20',
+        year: '2019',
+        title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
+        brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
+      }, {
+        date: '6-20',
+        year: '2019',
+        title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
+        brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
+      }, {
+        date: '6-20',
+        year: '2019',
+        title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
+        brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
+      }]
+      const travel = [{
+        date: '6-19',
+        year: '2019',
+        title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
+        brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
+      }, {
+        date: '6-20',
+        year: '2019',
+        title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
+        brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
+      }, {
+        date: '6-20',
+        year: '2019',
+        title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
+        brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
+      }]
+      const activities = [{
+        date: '6-19',
+        year: '2019',
+        title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
+        brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
+      }, {
+        date: '6-20',
+        year: '2019',
+        title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
+        brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
+      }, {
+        date: '6-20',
+        year: '2019',
+        title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
+        brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
+      }]
+      this.datas.push(dynamics)
+      this.datas.push(travel)
+      this.datas.push(activities)
+      this.infoArr = this.datas[this.activeIndex]
+    },
+    // 获取壶口风情的数据
+    getCustom () {
+      const drum = [{
+        text: '斗鼓是一种民俗文化',
+        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg'
+      }, {
+        text: '斗鼓是一种民俗文化',
+        imgUrl: 'http://pic.58pic.com/58pic/13/60/16/64b58PICXEK_1024.jpg'
+      }]
+      if (drum.length) {
+        this.customDatas = Object.assign({}, this.customDatas, { drum })
+        this.customNav.push({name: 'drum', text: '斗鼓'})
+      }
+      const paperCut = [{
+        text: '剪纸',
+        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg'
+      }, {
+        text: '剪纸',
+        imgUrl: 'http://image.qmango.com/hotelimg/dl1210/109490/109.jpeg'
+      }]
+      if (paperCut.length) {
+        this.customDatas = Object.assign({}, this.customDatas, { paperCut })
+        this.customNav.push({name: 'paperCut', text: '剪纸'})
+      }
+      const shoot = [{
+        text: '摄影',
+        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201805/21/20180521133102_gnvii.jpg'
+      }, {
+        text: '摄影',
+        imgUrl: 'http://image.qmango.com/hotelimg/dl1210/125708/181.jpeg'
+      }]
+      if (shoot.length) {
+        this.customDatas = Object.assign({}, this.customDatas, { shoot })
+        this.customNav.push({name: 'shoot', text: '摄影'})
+      }
+      const picArr = [{
+        text: '壶口图集',
+        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605090433_snnuy.jpg'
+      }, {
+        text: '壶口图集',
+        imgUrl: 'http://image.qmango.com/hotelimg/dl1210/119297/793.jpeg'
+      }]
+      if (picArr.length) {
+        this.customDatas = Object.assign({}, this.customDatas, { picArr })
+        this.customNav.push({name: 'picArr', text: '壶口图集'})
+      }
+      const filmArr = [{
+        text: '壶口影集',
+        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201808/09/20180809201018_R8Xfu.jpeg'
+      }, {
+        text: '壶口影集',
+        imgUrl: 'http://image.qmango.com/hotelimg/dl1210/109490/109.jpeg'
+      }]
+      if (filmArr.length) {
+        this.customDatas = Object.assign({}, this.customDatas, { filmArr })
+        this.customNav.push({name: 'filmArr', text: '壶口影集'})
+      }
+      this.activeLabel = this.customNav[0].name
+      this.customArr = this.customDatas[this.activeLabel]
     }
   }
 }
