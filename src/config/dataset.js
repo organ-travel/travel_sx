@@ -105,5 +105,131 @@ export default {
     'home': 0,
     'introduction': 1,
     'test': 2
-  }
+  },
+  // 首页
+  typeArr: [{
+    className: 'm-module',
+    iconClass: 'u-notice',
+    route: '#/',
+    text: '重要通知'
+  }, {
+    className: 'm-module m-orange',
+    iconClass: 'u-price',
+    route: '#/',
+    text: '票价信息'
+  }, {
+    className: 'm-module',
+    iconClass: 'u-perchase',
+    route: '#/',
+    text: '在线购票'
+  }, {
+    className: 'm-module m-orange',
+    iconClass: 'u-scenery',
+    route: '#/',
+    text: '壶口八景'
+  }, {
+    className: 'm-module m-orange',
+    iconClass: 'u-film',
+    route: '#/',
+    text: '4D影院'
+  }, {
+    className: 'm-module',
+    iconClass: 'u-gudukou',
+    route: '#/',
+    text: '古渡口小镇'
+  }, {
+    className: 'm-module m-orange',
+    iconClass: 'u-sing',
+    route: '#/',
+    text: '黄河大合唱'
+  }, {
+    className: 'm-module',
+    iconClass: 'u-wlt',
+    route: '#/',
+    text: '望龙台'
+  }],
+  surveyArr: [{
+    className: 'm-column',
+    iconClass: 'icon u-history',
+    route: '#/',
+    text: '历史'
+  }, {
+    className: 'm-column',
+    iconClass: 'icon u-culture',
+    route: '#/',
+    text: '文化'
+  }, {
+    className: 'm-column',
+    iconClass: 'icon u-geo',
+    route: '#/',
+    text: '地理'
+  }, {
+    className: 'm-column',
+    iconClass: 'icon u-source',
+    route: '#/',
+    text: '资源'
+  }, {
+    className: 'm-column',
+    iconClass: 'icon u-letters',
+    route: '#/',
+    text: '美文'
+  }],
+  infoNav: [{
+    text: '景区动态'
+  }, {
+    text: '文旅动态'
+  }, {
+    text: '景区活动'
+  }],
+  wonderArr: [{
+    img: './static/gdk.jpg',
+    iconClass: 'u-img u-gdk',
+    route: '#/',
+    text: '古渡口小镇'
+  }, {
+    img: '../../assets/img/4d.jpg',
+    iconClass: 'u-img u-4d',
+    route: '#/',
+    text: '4D影院'
+  }, {
+    img: '../../assets/img/hh.jpg',
+    iconClass: 'u-img u-hh',
+    route: '#/',
+    text: '黄河大合唱'
+  }, {
+    img: '../../assets/img/glt.jpg',
+    iconClass: 'u-img u-glt',
+    route: '#/',
+    text: '观龙台'
+  }, {
+    img: '../../assets/img/hkbj.jpg',
+    iconClass: 'u-img u-hkbj',
+    route: '#/',
+    text: '壶口八景'
+  }],
+  strategyArr: [{
+    iconClass: 'pic-com u-eat',
+    route: '#/',
+    text: '吃'
+  }, {
+    iconClass: 'pic-com u-live',
+    route: '#/',
+    text: '住'
+  }, {
+    iconClass: 'pic-com u-xing',
+    route: '#/',
+    text: '行'
+  }, {
+    iconClass: 'pic-com u-you',
+    route: '#/',
+    text: '游'
+  }, {
+    iconClass: 'pic-com u-play',
+    route: '#/',
+    text: '娱'
+  }, {
+    iconClass: 'pic-com u-buy',
+    route: '#/',
+    text: '购'
+  }]
 }
