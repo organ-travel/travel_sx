@@ -51,20 +51,20 @@ export default {
       infoNav: dataset.infoNav,
       wonderArr: dataset.wonderArr,
       strategyArr: dataset.strategyArr,
-      arrItem: [],
-      // arrItem: [{
-      //   name: 'swiperSlide5',
-      //   imgUrl: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg'
-      // }, {
-      //   name: 'swiperSlide1',
-      //   imgUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg'
-      // }, {
-      //   name: 'swiperSlide51',
-      //   imgUrl: 'https://c-ssl.duitang.com/uploads/item/201805/21/20180521133102_gnvii.jpg'
-      // }, {
-      //   name: 'swiperSlide1111115',
-      //   imgUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605090433_snnuy.jpg'
-      // }],
+      // arrItem: [],
+      arrItem: [{
+        name: 'swiperSlide5',
+        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg'
+      }, {
+        name: 'swiperSlide1',
+        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg'
+      }, {
+        name: 'swiperSlide51',
+        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201805/21/20180521133102_gnvii.jpg'
+      }, {
+        name: 'swiperSlide1111115',
+        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605090433_snnuy.jpg'
+      }],
       datas: [],
       infoArr: [],
       activeIndex: 0
