@@ -86,7 +86,7 @@
 </template>
 <script>
 export default {
-  name: 'wonder'
+  name: 'Wonder'
 }
 </script>
 
