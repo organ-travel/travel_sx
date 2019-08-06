@@ -11,7 +11,7 @@
     <type :type-arr="typeArr"></type>
     <survey :survey-arr="surveyArr"></survey>
     <info>
-      <tab slot="tab" :nav="infoNav" :arr="infoArr" :active-index="activeIndex" @changeInfo="changeInfo"></tab>
+      <tab slot="tab" :nav="infoNav" :arr="infoArr" :act-index="actIndex" @changeInfo="changeInfo"></tab>
     </info>
     <div class="m-merge">
       <wonder :wonder-arr="wonderArr"></wonder>
@@ -56,7 +56,7 @@ export default {
       // 壶口资讯
       datas: [],
       infoArr: [],
-      activeIndex: 0,
+      actIndex: 0,
       // 壶口风情
       customDatas: {},
       customArr: [],
@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     changeInfo (index) {
-      this.activeIndex = index
+      this.actIndex = index
       this.infoArr = this.datas[index]
     },
     async changeCustom (name) {
@@ -183,7 +183,7 @@ export default {
       this.datas.push(dynamics)
       this.datas.push(travel)
       this.datas.push(activities)
-      this.infoArr = this.datas[this.activeIndex]
+      this.infoArr = this.datas[this.actIndex]
     },
     // 获取壶口风情的数据
     getCustom () {

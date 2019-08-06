@@ -28,9 +28,10 @@ export default {
       search: ''
     }
   },
+  mounted () {
+  },
   methods: {
     handleSearch () {
-      console.log(this.search)
     }
   }
 }

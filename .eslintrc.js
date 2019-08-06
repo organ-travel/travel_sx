@@ -38,7 +38,7 @@ module.exports = {
     'no-useless-return': 2, // 禁止多余的 return 语句
     'require-await': 2, // 禁止使用不带 await 表达式的 async 函数
     'no-undef-init': 2, // 禁止将变量初始化为 undefined
-    'consistent-this': [2, 'self'], // 要求一致的 This
+    // 'consistent-this': [2, 'self'], // 要求一致的 This
     'wrap-regex': 2, // 要求正则表达式被包裹起来
     'no-useless-rename': 2, // 禁止在 import 和 export 和解构赋值时将引用重命名为相同的名字
     'object-shorthand': 2, // 要求或禁止对象字面量中方法和属性使用简写语法

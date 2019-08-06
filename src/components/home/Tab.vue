@@ -1,7 +1,7 @@
 <template>
   <div class="m-tab">
     <nav class="m-nav">
-      <a v-for="(item, index) in nav" :key="index" href="javascript:void(0)" :class="{'nav-com': true, 'active': activeIndex === index}" @click="handleClick(index)"><span class="text">{{ item.text }}</span></a>
+      <a v-for="(item, index) in nav" :key="index" href="javascript:void(0)" :class="{'nav-com': true, 'active': actIndex === index}" @click="handleClick(index)"><span class="text">{{ item.text }}</span></a>
     </nav>
     <ul v-if="arr.length" class="m-content">
       <li v-for="(item, index) in arr" :key="index" class="m-list">
@@ -35,7 +35,7 @@ export default {
         return []
       }
     },
-    activeIndex: {
+    actIndex: {
       type: Number,
       default: 0
     }

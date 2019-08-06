@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <com-header></com-header>
+    <com-header ref="header"></com-header>
     <com-content>
       <router-view/>
     </com-content>
@@ -9,7 +9,14 @@
   </div>
 </template>
 <script>
+import { mapMutations } from 'vuex'
 export default {
+  mounted () {
+    this.SET_HEADER_HEIGHT((this.$refs['header'] && this.$refs['header'].$el.clientHeight) || 118)
+  },
+  methods: {
+    ...mapMutations(['SET_HEADER_HEIGHT'])
+  }
 }
 </script>
 <style lang="stylus">

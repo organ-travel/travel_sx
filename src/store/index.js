@@ -11,6 +11,9 @@ if (debug) {
   Vue.use(Vuex)
 }
 const state = {
+  // header的高度
+  headerHeight: 118,
+  // 整站导航的索引
   activeIndex: -1,
   MetaData
 }

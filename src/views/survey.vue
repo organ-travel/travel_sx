@@ -91,6 +91,8 @@
 import dataset from '@/config/dataset'
 import List from '@/components/survey/List.vue'
 import Anchor from '@/components/survey/Anchor.vue'
+import { mapGetters } from 'vuex'
+// import { setTimeout } from 'timers';
 export default {
   components: {
     List,
@@ -100,19 +102,77 @@ export default {
     return {
       surveyContent: dataset.surveyContent,
       surveyAnchor: dataset.surveyAnchor,
-      activeId: dataset.surveyAnchor[0].id
+      activeId: dataset.surveyAnchor[0].id,
+      // 点击导航页面滚动
+      isClick: false,
+      timer: null,
+      scrollTop: 0
     }
   },
+  computed: {
+    ...mapGetters(['getHeaderHeight'])
+  },
   mounted () {
-    // window.addEventListener('scroll', this.handleScroll, true)
+    console.log('page', this.getHeaderHeight)
+    window.addEventListener('scroll', this.handleScroll, true)
   },
   methods: {
-    changeAnchor (id) {
+    async changeAnchor (id) {
+      this.timer && await clearTimeout(this.timer)
       this.activeId = id
-      this.scrollTop = this.$refs['lists'].$refs[id][0].getBoundingClientRect().top
+      this.isClick = true
+      const _that = this
+      const top = this.$refs['lists'].$refs[id][0].offsetTop + this.getHeaderHeight || 118
+      this.scrollTop = document.documentElement.scrollTop + document.body.scrollTop
+      let distance = 0
+      if (top > this.scrollTop) {
+        // down
+        distance = (top - this.scrollTop) / 10
+        moveDown()
+      } else {
+        // up
+        distance = (this.scrollTop - top) / 10
+        moveUp()
+      }
+      function moveDown () {
+        if (_that.scrollTop < top) {
+          _that.scrollTop += distance
+          document.body.scrollTop ? (document.body.scrollTop = _that.scrollTop) : (document.documentElement.scrollTop = _that.scrollTop)
+          _that.timer = setTimeout(moveDown, 50)
+        } else {
+          _that.scrollTop = top
+          _that.isClick = false
+          _that.timer = null
+          // _that.timer && await clearTimeout(_that.timer)
+        }
+      }
+      function moveUp () {
+        if (_that.scrollTop > top) {
+          _that.scrollTop -= distance
+          document.body.scrollTop ? (document.body.scrollTop = _that.scrollTop) : (document.documentElement.scrollTop = _that.scrollTop)
+          _that.timer = setTimeout(moveUp, 50)
+        } else {
+          _that.scrollTop = top
+          _that.isClick = false
+          _that.timer = null
+          // _that.timer && await clearTimeout(_that.timer)
+        }
+      }
     },
     handleScroll () {
-      console.log(this.$refs['lists'].$refs['history'])
+      if (this.isClick) {
+        return
+      }
+      const items = document.querySelectorAll('.m-list-survey')
+      items.forEach((item, index) => {
+        const top = item.offsetTop + this.getHeaderHeight || 118
+        const max = item.clientHeight + top
+        const scrollTop = document.documentElement.scrollTop + document.body.scrollTop
+        const rectTop = item.getBoundingClientRect().top
+        if (scrollTop <= max && rectTop <= 0) {
+          this.activeId = item.id
+        }
+      })
     }
   }
 }
@@ -145,6 +205,9 @@ export default {
           }
           .content {
             line-height 30px
+            .para{
+              padding-bottom 20px
+            }
           }
         }
       }
