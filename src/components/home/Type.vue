@@ -48,6 +48,12 @@ export default {
           background-color #fff
           vertical-align top
           color #ec5a02
+          &:hover span {
+            transform scale(1.2)
+          }
+          span {
+            transition all .2s ease
+          }
           &.m-orange {
             color #fff
             background-color #ec5a02

@@ -42,6 +42,10 @@ export default {
         position relative
         width 187px
         height 477px
+        overflow hidden
+        &:hover .icon-com {
+          transform scale(1.2)
+        }
         .u-img {
           vertical-align top
         }
@@ -89,6 +93,7 @@ export default {
           align-items center
           justify-content space-between
           width 100%
+          transition all .2s ease
           .icon {
             width 102px
             height 102px

@@ -38,9 +38,14 @@ export default {
       .pic-com {
         position relative
         float left
+        overflow hidden
         .u-img {
           display inline-block
           vertical-align top
+          transition all .2s ease
+          &:hover {
+            transform scale(1.1)
+          }
         }
         .u-gdk {
           width 455px
