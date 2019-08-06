@@ -86,7 +86,7 @@ export default {
     }]
   }, {
     name: '壶口风情',
-    route: '#/',
+    route: '#/custom',
     sub: [{
       name: '剪纸',
       route: '#/'
@@ -114,7 +114,9 @@ export default {
     'home': 0,
     'survey': 1,
     'introduction': 1,
-    'test': 2
+    'test': 2,
+    'wonder': 3,
+    'custom': 5
   },
   // 首页
   typeArr: [{

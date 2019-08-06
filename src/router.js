@@ -22,6 +22,10 @@ export default new Router({
       name: 'letters',
       component: r => require(['./views/survey.vue'], r)
     }, {
+      path: '/custom',
+      name: 'custom',
+      component: r => require(['./views/custom.vue'], r)
+    }, {
       path: '/test',
       name: 'test',
       component: r => require(['./views/test.vue'], r)

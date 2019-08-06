@@ -94,6 +94,7 @@ import Anchor from '@/components/survey/Anchor.vue'
 import { mapGetters } from 'vuex'
 // import { setTimeout } from 'timers';
 export default {
+  name: 'Survey',
   components: {
     List,
     Anchor
