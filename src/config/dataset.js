@@ -262,6 +262,23 @@ export default {
     name: 'film',
     text: '壶口影集'
   }],
+  // 壶口奇观导航
+  wonderNav: [{
+    name: 'town',
+    text: '古渡口小镇'
+  }, {
+    name: 'cinema',
+    text: '4D影院'
+  }, {
+    name: 'single',
+    text: '黄河大合唱'
+  }, {
+    name: 'platform',
+    text: '望龙台'
+  }, {
+    name: 'sight',
+    text: '壶口八景'
+  }],
   // 壶口风情导航
   infoPageNav: [{
     name: 'news',
