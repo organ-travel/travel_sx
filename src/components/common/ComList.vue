@@ -3,7 +3,7 @@
     <a v-for="(item, index) in listArr" :key="index" :href="item.route" class="m-com-img">
       <img v-if="isImg" :src="item.addr" :class="['u-com-img', imgClass]" alt="" title=""/>
       <span v-else :class="['u-com-img', item.iconClass]"></span>
-      <span class="title">{{ item.text }}</span>
+      <span class="title">{{ item.text || item.name }}</span>
     </a>
   </div>
 </template>
@@ -62,6 +62,13 @@ export default {
       height 30px
       line-height 30px
       background rgba(0, 0, 0, .5)
+    }
+    .u-com-code {
+      position absolute
+      width 100%
+      height 100%
+      left 0
+      top 0
     }
   }
 }

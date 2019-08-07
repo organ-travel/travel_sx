@@ -30,6 +30,10 @@ export default new Router({
       name: 'info',
       component: r => require(['./views/info.vue'], r)
     }, {
+      path: '/maker',
+      name: 'maker',
+      component: r => require(['./views/maker.vue'], r)
+    }, {
       path: '/test',
       name: 'test',
       component: r => require(['./views/test.vue'], r)

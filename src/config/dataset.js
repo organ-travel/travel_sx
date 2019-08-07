@@ -105,7 +105,7 @@ export default {
     }]
   }, {
     name: '壶口创客',
-    route: '#/'
+    route: '#/maker'
   }, {
     name: '联系我们',
     route: '#/'
@@ -116,7 +116,8 @@ export default {
     'introduction': 1,
     'info': 2,
     'wonder': 3,
-    'custom': 5
+    'custom': 5,
+    'maker': 6
   },
   // 首页
   typeArr: [{
