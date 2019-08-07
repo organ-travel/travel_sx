@@ -26,6 +26,10 @@ export default new Router({
       name: 'custom',
       component: r => require(['./views/custom.vue'], r)
     }, {
+      path: '/info',
+      name: 'info',
+      component: r => require(['./views/info.vue'], r)
+    }, {
       path: '/test',
       name: 'test',
       component: r => require(['./views/test.vue'], r)

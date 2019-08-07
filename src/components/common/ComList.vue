@@ -1,7 +1,8 @@
 <template>
   <div class="m-com-list">
     <a v-for="(item, index) in listArr" :key="index" :href="item.route" class="m-com-img">
-      <img :src="item.addr" :class="['u-com-img', imgClass]" alt="" title=""/>
+      <img v-if="isImg" :src="item.addr" :class="['u-com-img', imgClass]" alt="" title=""/>
+      <span v-else :class="['u-com-img', item.iconClass]"></span>
       <span class="title">{{ item.text }}</span>
     </a>
   </div>
@@ -11,11 +12,19 @@ export default {
   props: {
     listArr: {
       type: Array,
-      default() {
+      default () {
         return []
       }
     },
     imgClass: {
+      type: String,
+      default: ''
+    },
+    isImg: {
+      type: Boolean,
+      default: true
+    },
+    iconClass: {
       type: String,
       default: ''
     }

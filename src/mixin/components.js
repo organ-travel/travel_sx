@@ -7,6 +7,9 @@ import ComFooter from '@/components/common/Footer'
 import ComAside from '@/components/common/Aside'
 import ComWrap from '@/components/common/ComWrap'
 import ComList from '@/components/common/ComList'
+import ComTab from '@/components/common/ComTab'
+import ComTransition from '@/components/common/ComTransition'
+import ComArticle from '@/components/common/ComArticle'
 export default {
   ComHeader,
   ComContent,
@@ -15,5 +18,8 @@ export default {
   ComFooter,
   ComAside,
   ComWrap,
-  ComList
+  ComList,
+  ComTab,
+  ComTransition,
+  ComArticle
 }

@@ -26,7 +26,7 @@ export default {
     }]
   }, {
     name: '壶口资讯',
-    route: '#/test',
+    route: '#/info',
     sub: [{
       name: '景区新闻',
       route: '#/'
@@ -114,7 +114,7 @@ export default {
     'home': 0,
     'survey': 1,
     'introduction': 1,
-    'test': 2,
+    'info': 2,
     'wonder': 3,
     'custom': 5
   },
@@ -243,6 +243,40 @@ export default {
     iconClass: 'pic-com u-buy',
     route: '#/',
     text: '购'
+  }],
+  // 壶口风情导航
+  customNav: [{
+    name: 'drum',
+    text: '斗鼓'
+  }, {
+    name: 'paperCut',
+    text: '剪纸'
+  }, {
+    name: 'shoot',
+    text: '摄影'
+  }, {
+    name: 'picture',
+    text: '壶口图集'
+  }, {
+    name: 'film',
+    text: '壶口影集'
+  }],
+  // 壶口风情导航
+  infoPageNav: [{
+    name: 'news',
+    text: '景区新闻'
+  }, {
+    name: 'dynamic',
+    text: '文旅动态'
+  }, {
+    name: 'activity',
+    text: '景区活动'
+  }, {
+    name: 'recuit',
+    text: '招贤纳士'
+  }, {
+    name: 'download',
+    text: '文件下载'
   }],
   surveyContent: [{
     id: 'history',

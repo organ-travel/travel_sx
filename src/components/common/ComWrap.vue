@@ -31,8 +31,14 @@ export default {
       margin 0 auto
       .m-com-center {
         position relative
-        padding 230px 0 155px
         overflow hidden
+        .u-com-title {
+          display block
+        }
+        .m-com-content {
+          background rgba(255, 255, 255, .8)
+          border-radius 16px
+        }
       }
     }
   }
