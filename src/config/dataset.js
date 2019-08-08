@@ -108,7 +108,7 @@ export default {
     route: '#/maker'
   }, {
     name: '联系我们',
-    route: '#/'
+    route: '#/contact'
   }],
   menuRelations: {
     'home': 0,
@@ -118,7 +118,8 @@ export default {
     'wonder': 3,
     'strategy': 4,
     'custom': 5,
-    'maker': 6
+    'maker': 6,
+    'contact': 7
   },
   // 首页
   typeArr: [{

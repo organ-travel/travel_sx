@@ -15,7 +15,7 @@
 <script>
 // import dataset from '@/config/dataset'
 export default {
-  name: 'Info',
+  name: 'Maker',
   components: {
   },
   data () {

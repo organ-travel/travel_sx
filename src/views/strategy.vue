@@ -1,5 +1,5 @@
 <template>
-  <com-wrap class="m-custom-page">
+  <com-wrap class="m-strategy-page">
     <com-tab :act-index="actIndex" :nav-arr="strategyNav" @changeNav="changeNav"></com-tab>
     <!-- 美食 -->
     <com-transition>
@@ -61,7 +61,7 @@
 <script>
 import dataset from '@/config/dataset'
 export default {
-  name: 'Custom',
+  name: 'Strategy',
   components: {
   },
   data () {
@@ -275,7 +275,7 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
-.m-custom-page {
+.m-strategy-page {
   background url("~@/assets/img/strategy_hk/bg-strategy.jpg") center no-repeat
   background-size cover
   >>> .m-com-container {

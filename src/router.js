@@ -22,13 +22,13 @@ export default new Router({
       name: 'letters',
       component: r => require(['./views/survey.vue'], r)
     }, {
-      path: '/custom',
-      name: 'custom',
-      component: r => require(['./views/custom.vue'], r)
-    }, {
       path: '/info',
       name: 'info',
       component: r => require(['./views/info.vue'], r)
+    }, {
+      path: '/custom',
+      name: 'custom',
+      component: r => require(['./views/custom.vue'], r)
     }, {
       path: '/maker',
       name: 'maker',
@@ -37,6 +37,10 @@ export default new Router({
       path: '/strategy',
       name: 'strategy',
       component: r => require(['./views/strategy.vue'], r)
+    }, {
+      path: '/contact',
+      name: 'contact',
+      component: r => require(['./views/contact.vue'], r)
     }, {
       path: '/test',
       name: 'test',
