@@ -10,6 +10,8 @@ import ComList from '@/components/common/ComList'
 import ComTab from '@/components/common/ComTab'
 import ComTransition from '@/components/common/ComTransition'
 import ComArticle from '@/components/common/ComArticle'
+import ComSepList from '@/components/common/ComSepList'
+import ComDesc from '@/components/common/ComDesc'
 export default {
   ComHeader,
   ComContent,
@@ -21,5 +23,7 @@ export default {
   ComList,
   ComTab,
   ComTransition,
-  ComArticle
+  ComArticle,
+  ComSepList,
+  ComDesc
 }

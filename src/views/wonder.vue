@@ -3,7 +3,7 @@
     <com-tab :act-index="actIndex" :nav-arr="wonderNav" @changeNav="changeNav"></com-tab>
     <!--古渡口小镇-->
     <com-transition>
-      <div class="tabs-content_town">
+      <div v-if="wonderNav[actIndex].name == 'town'" class="tabs-content_town">
         <div class="intro-wrapper">
           <div class="intro-left">
             <a href="javascript:;"><img :src=" wonder.town.intro.src " alt=""></a>
@@ -19,7 +19,7 @@
     </com-transition>
     <!--4D影院-->
     <com-transition>
-      <div class="tabs-content_cinema">
+      <div v-if="wonderNav[actIndex].name == 'cinema'" class="tabs-content_cinema">
         <div class="intro-wrapper">
           <div class="intro-left">
             <a href="javascript:;"><img :src=" wonder.cinema.intro.src " alt=""></a>

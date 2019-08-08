@@ -5,13 +5,13 @@
   </wrap>
 </template>
 <script>
-// import List from '@/components/home/List.vue'
-// import Wrap from '@/components/home/Wrap.vue'
+import List from '@/components/home/List.vue'
+import Wrap from '@/components/home/Wrap.vue'
 export default {
-  // components: {
-  //   List,
-  //   Wrap
-  // },
+  components: {
+    List,
+    Wrap
+  },
   props: {
     typeArr: {
       type: Array,

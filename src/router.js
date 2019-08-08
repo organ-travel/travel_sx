@@ -34,6 +34,10 @@ export default new Router({
       name: 'maker',
       component: r => require(['./views/maker.vue'], r)
     }, {
+      path: '/strategy',
+      name: 'strategy',
+      component: r => require(['./views/strategy.vue'], r)
+    }, {
       path: '/test',
       name: 'test',
       component: r => require(['./views/test.vue'], r)

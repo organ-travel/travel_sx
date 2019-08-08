@@ -64,7 +64,7 @@ export default {
     }]
   }, {
     name: '壶口攻略',
-    route: '#/',
+    route: '#/strategy',
     sub: [{
       name: '美食',
       route: '#/'
@@ -116,6 +116,7 @@ export default {
     'introduction': 1,
     'info': 2,
     'wonder': 3,
+    'strategy': 4,
     'custom': 5,
     'maker': 6
   },
@@ -295,6 +296,25 @@ export default {
   }, {
     name: 'download',
     text: '文件下载'
+  }],
+  strategyNav: [{
+    name: 'eat',
+    text: '美食'
+  }, {
+    name: 'live',
+    text: '住宿'
+  }, {
+    name: 'xing',
+    text: '路线'
+  }, {
+    name: 'you',
+    text: '游记'
+  }, {
+    name: 'buy',
+    text: '购物'
+  }, {
+    name: 'play',
+    text: '娱乐'
   }],
   surveyContent: [{
     id: 'history',

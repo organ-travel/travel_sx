@@ -94,6 +94,7 @@ export default {
           justify-content space-between
           width 100%
           transition all .2s ease
+          text-align left
           .icon {
             width 102px
             height 102px

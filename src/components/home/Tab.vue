@@ -9,13 +9,14 @@
           <span>{{ item.date }}</span>
           <span class="year">{{ item.year }}</span>
         </div>
-        <div class="m-article">
+        <com-desc :title="item.title" :brief="item.brief" class="m-article"></com-desc>
+        <!-- <div class="m-article">
           <h3 class="u-title">{{ item.title }}</h3>
           <div class="m-con">
             <span class="brief">{{ item.brief }}</span>
             <span class="detail">【详情】 </span>
           </div>
-        </div>
+        </div> -->
       </li>
     </ul>
   </div>
@@ -99,18 +100,10 @@ export default {
       }
       .m-article {
         width 440px
-        text-align left
-        .u-title {
-          overflow hidden
-          text-overflow ellipsis
-          white-space nowrap
-          font-size 18px
+        >>> .u-title {
           color #333333
         }
-        .m-con {
-          padding-top 19px
-          line-height 28px
-          font-size 14px
+        >>> .m-con {
           .brief {
             color #99999
           }
