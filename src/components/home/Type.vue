@@ -39,15 +39,16 @@ export default {
         text-align left
         .m-module {
           display inline-flex
-          flex-direction column
-          align-items center
-          justify-content space-between
           padding 40px 0 32px
           width 237px
           height 90px
           background-color #fff
           vertical-align top
           color #ec5a02
+          .m-com-column {
+            width 100%
+            justify-content space-between
+          }
           &:hover span {
             transform scale(1.2)
           }

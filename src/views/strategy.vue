@@ -25,7 +25,7 @@
       <div v-if="strategyNav[actIndex].name == 'xing'" class="m-xing m-common">
         <!-- 壶口攻略.psd上的路线 -->
         <!-- <com-list :list-arr="xingArr" :has-title="false" :has-mask="true" :is-article="true"></com-list> -->
-        <com-desc v-for="(item, index) in lineArr" :key="index" :title="item.title" :brief="item.brief" class="m-article"></com-desc>
+        <com-desc v-for="(item, index) in lineArr" :key="index" :title="item.title" :brief="item.brief" class="m-article m-other-article"></com-desc>
         <span class="u-more">查看更多 -></span>
         <div v-if="serviceArr.length" class="m-strategy-list">
           <h3 class="title">游客服务中心</h3>
@@ -52,8 +52,7 @@
     <!-- 娱乐 -->
     <com-transition>
       <div v-if="strategyNav[actIndex].name == 'play'" class="m-play">
-        <com-list :list-arr="filmArr" :is-img="false"></com-list>
-        <p class="u-more">点击更多视频 >></p>
+        娱乐
       </div>
     </com-transition>
   </com-wrap>
@@ -69,7 +68,7 @@ export default {
       actIndex: 0,
       strategyNav: dataset.strategyNav,
       eatArr: [],
-      xingArr: [],
+      // xingArr: [],
       lineArr: [],
       serviceArr: [],
       carArr: []
@@ -368,27 +367,43 @@ export default {
         }
       }
       &.m-xing {
-        // padding 25px 35px 0
+        // width 1230px
         width 1170px
         margin 50px auto 0
         text-align center
-        .m-article + .m-article {
-          margin-top 35px
-        }
-        .m-article {
-          padding 0 15px
-          .u-title {
-            color #ec5a02
-            font-size 20px
-          }
-          .m-con {
-            padding-top 25px
-            line-height 26px
-            font-size 16px
-            .detail {
+        .m-com-desc {
+          // padding 0 55px
+          // height 100%
+          // display flex
+          // flex-direction column
+          // justify-content center
+          // &.m-article {
+          //   .u-title {
+          //     font-size 18px
+          //   }
+          //   .m-con {
+          //     padding-top 30px
+          //     line-height 26px
+          //     font-size 14px
+          //   }
+          // }
+          &.m-other-article {
+            .u-title {
               color #ec5a02
+              font-size 20px
+            }
+            .m-con {
+              padding-top 25px
+              line-height 26px
+              font-size 16px
+              .detail {
+                color #ec5a02
+              }
             }
           }
+        }
+        .m-other-article + .m-other-article {
+          margin-top 35px
         }
         > .u-more {
           padding 11px 23px
@@ -398,6 +413,13 @@ export default {
           font-size 20px
           color #ec5a02
         }
+        // .m-com-list {
+        //   .m-com-img {
+        //     margin 15px
+        //     width 380px
+        //     height 285px
+        //   }
+        // }
         .m-strategy-list {
           padding-top 35px
           > .title {

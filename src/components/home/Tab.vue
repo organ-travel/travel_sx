@@ -10,13 +10,6 @@
           <span class="year">{{ item.year }}</span>
         </div>
         <com-desc :title="item.title" :brief="item.brief" class="m-article"></com-desc>
-        <!-- <div class="m-article">
-          <h3 class="u-title">{{ item.title }}</h3>
-          <div class="m-con">
-            <span class="brief">{{ item.brief }}</span>
-            <span class="detail">【详情】 </span>
-          </div>
-        </div> -->
       </li>
     </ul>
   </div>

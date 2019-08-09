@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="m-home-page">
     <div v-if="arrItem && arrItem.length" class="m-swiper m-wrap swiper-container">
       <div class="swiper-wrapper">
         <div v-for='(el, index) in arrItem' :key="index" class="swiper-slide">
@@ -10,8 +10,9 @@
     </div>
     <type :type-arr="typeArr"></type>
     <survey :survey-arr="surveyArr"></survey>
-    <info>
-      <tab slot="tab" :nav="infoNav" :arr="infoArr" :act-index="actIndex" @changeInfo="changeInfo"></tab>
+    <info :act-index="actIndex" :info-arr="datas">
+      <com-tab slot="nav" :act-index="actIndex" :nav-arr="infoNav" fun-name="changeInfos" :is-border="true" @changeInfos="changeInfos"></com-tab>
+      <!-- <tab slot="tab" :nav="infoNav" :arr="infoArr" :act-index="actIndex" @changeInfo="changeInfo"></tab> -->
     </info>
     <div class="m-merge">
       <wonder :wonder-arr="wonderArr"></wonder>
@@ -27,7 +28,7 @@
 import Type from '@/components/home/Type.vue'
 import Survey from '@/components/home/Survey.vue'
 import Info from '@/components/home/Info.vue'
-import Tab from '@/components/home/Tab.vue'
+// import Tab from '@/components/home/Tab.vue'
 import Wonder from '@/components/home/Wonder.vue'
 import Strategy from '@/components/home/Strategy.vue'
 import Custom from '@/components/home/Custom.vue'
@@ -39,7 +40,7 @@ export default {
   components: {
     Type,
     Survey,
-    Tab,
+    // Tab,
     Info,
     Wonder,
     Strategy,
@@ -57,6 +58,9 @@ export default {
       datas: [],
       infoArr: [],
       actIndex: 0,
+      dynamics: [],
+      travel: [],
+      activities: [],
       // 壶口风情
       customDatas: {},
       customArr: [],
@@ -91,6 +95,9 @@ export default {
       this.actIndex = index
       this.infoArr = this.datas[index]
     },
+    changeInfos (index) {
+      this.actIndex = index
+    },
     async changeCustom (name) {
       this.activeLabel = name || '',
       this.customArr = this.customDatas[name] || []
@@ -117,7 +124,7 @@ export default {
     },
     // 壶口资讯的数据
     getInfo () {
-      const dynamics = [{
+      this.dynamics = [{
         date: '6-20',
         year: '2019',
         title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
@@ -148,7 +155,7 @@ export default {
         title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
         brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
       }]
-      const travel = [{
+      this.travel = [{
         date: '6-19',
         year: '2019',
         title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
@@ -164,7 +171,7 @@ export default {
         title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
         brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
       }]
-      const activities = [{
+      this.activities = [{
         date: '6-19',
         year: '2019',
         title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
@@ -180,9 +187,10 @@ export default {
         title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
         brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
       }]
-      this.datas.push(dynamics)
-      this.datas.push(travel)
-      this.datas.push(activities)
+      this.datas.push(this.dynamics)
+      this.datas.push(this.travel)
+      this.datas.push(this.activities)
+      console.log(this.datas)
       this.infoArr = this.datas[this.actIndex]
     },
     // 获取壶口风情的数据
@@ -249,39 +257,63 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
-.m-map {
-  width 100%
-  height 622px
-  background url('~@/assets/img/home/map.jpg') no-repeat center
-  background-size cover
-}
-.m-merge {
-  background url('~@/assets/img/home/wonder.jpg') no-repeat center
-  background-size cover
-}
-.swiper-container {
-  width 100%
-  height 1015px
-  .img {
+.m-home-page {
+  .m-map {
+    width 100%
+    height 622px
+    background url('~@/assets/img/home/map.jpg') no-repeat center
+    background-size cover
+  }
+  .m-merge {
+    background url('~@/assets/img/home/wonder.jpg') no-repeat center
+    background-size cover
+  }
+  .swiper-container {
     width 100%
     height 1015px
+    .img {
+      width 100%
+      height 1015px
+    }
+    >>> .swiper-pagination-bullets {
+      bottom 0
+      height 63px
+      line-height 63px
+      background rgba(0, 0, 0, .3)
+      .swiper-pagination-bullet {
+        margin 0 8px
+        width 12px
+        height 12px
+        background #ffffff
+        opacity 1
+        vertical-align middle
+        &.swiper-pagination-bullet-active {
+          width 20px
+          height 20px
+          background url('~@/assets/img/home/bullet.png') no-repeat center
+        }
+      }
+    }
   }
-  >>> .swiper-pagination-bullets {
-    bottom 0
-    height 63px
-    line-height 63px
-    background rgba(0, 0, 0, .3)
-    .swiper-pagination-bullet {
-      margin 0 8px
-      width 12px
-      height 12px
-      background #ffffff
-      opacity 1
-      vertical-align middle
-      &.swiper-pagination-bullet-active {
-        width 20px
-        height 20px
-        background url('~@/assets/img/home/bullet.png') no-repeat center
+  >>> .m-com-tab {
+    .m-com-nav {
+      padding 0 15px
+      font-size 24px
+      color #666666
+      transition all .2s ease
+      .u-com-text {
+        display inline-block
+        padding-bottom 10px
+        // border-bottom-width 1px
+        // border-bottom-style solid
+        // border-bottom-color rgba(236, 90, 2, 0)
+        // border-bottom 1px solid rgba(236, 90, 2, 0)
+      }
+      &.active, &:hover {
+        .u-com-text {
+          // border-bottom-color rgba(236, 90, 2, 1)
+          border-bottom 1px solid rgba(236, 90, 2, 1)
+        }
       }
     }
   }
