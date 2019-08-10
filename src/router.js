@@ -46,6 +46,10 @@ export default new Router({
       name: 'pictures',
       component: r => require(['./views/pictures.vue'], r)
     }, {
+      path: '/video',
+      name: 'video',
+      component: r => require(['./views/video.vue'], r)
+    }, {
       path: '/test',
       name: 'test',
       component: r => require(['./views/test.vue'], r)

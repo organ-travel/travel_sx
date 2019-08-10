@@ -1,29 +1,34 @@
 <template>
-  <section class="m-pictures-page">
-    <div class="m-pictures-banner"></div>
-    <div class="m-pictures-list">
-      <com-list :list-arr="imgs"></com-list>
+  <section class="m-video-page">
+    <div class="m-video-banner"></div>
+    <div class="m-video-content">
+      <el-breadcrumb separator-class="el-icon-arrow-right">
+        <el-breadcrumb-item :to="{ path: '#/' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item>魅力壶口</el-breadcrumb-item>
+        <el-breadcrumb-item>壶口视频</el-breadcrumb-item>
+      </el-breadcrumb>
+      <com-list :list-arr="videoArr"></com-list>
     </div>
   </section>
 </template>
 <script>
 export default {
-  name: 'Pictures',
+  name: 'Video',
   components: {
   },
   data () {
     return {
-      imgs: []
+      videoArr: []
     }
   },
   computed: {
   },
   mounted () {
-    this.getImg()
+    this.getVideo()
   },
   methods: {
-    getImg () {
-      this.imgs = [{
+    getVideo() {
+      this.videoArr = [{
         addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
         route: '#/',
         text: '西安-延安壶口瀑布景区线路',
@@ -65,19 +70,25 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
-.m-pictures-page {
+.m-video-page {
   position relative
-  .m-pictures-banner {
+  .m-video-banner {
     width 100%
     height 648px
     background url('~@/assets/img/contact_hk/banner-contact.jpg') no-repeat center
   }
-  >>> .m-pictures-list {
-    margin 0 auto 102px
+  >>> .m-video-content {
+    margin 40px auto 102px
     width 1199px
     overflow hidden
+    .el-breadcrumb__inner a, .el-breadcrumb__inner.is-link, .el-breadcrumb__inner, .el-breadcrumb__separator {
+      // line-height 28px
+      font-size 14px
+      font-weight normal
+      color #050505
+    }
     .m-com-list {
-      padding 62px 0 78px
+      padding 12px 0 80px
       width 1231px
       margin-left -16px
       .m-com-img {
