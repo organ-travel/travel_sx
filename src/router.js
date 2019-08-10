@@ -54,6 +54,10 @@ export default new Router({
       name: 'showPic',
       component: r => require(['./views/showPic.vue'], r)
     }, {
+      path: '/infoDetail',
+      name: 'infoDetail',
+      component: r => require(['./views/infoDetail.vue'], r)
+    }, {
       path: '/test',
       name: 'test',
       component: r => require(['./views/test.vue'], r)

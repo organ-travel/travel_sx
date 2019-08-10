@@ -94,12 +94,6 @@ export default {
     margin 40px auto 102px
     width 1199px
     overflow hidden
-    .el-breadcrumb__inner a, .el-breadcrumb__inner.is-link, .el-breadcrumb__inner, .el-breadcrumb__separator {
-      // line-height 28px
-      font-size 14px
-      font-weight normal
-      color #050505
-    }
     .showpic-content {
       padding-top 65px
       line-height 28px
