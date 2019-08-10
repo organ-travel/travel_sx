@@ -50,6 +50,10 @@ export default new Router({
       name: 'video',
       component: r => require(['./views/video.vue'], r)
     }, {
+      path: '/showPic',
+      name: 'showPic',
+      component: r => require(['./views/showPic.vue'], r)
+    }, {
       path: '/test',
       name: 'test',
       component: r => require(['./views/test.vue'], r)
