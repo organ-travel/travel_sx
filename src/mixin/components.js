@@ -13,6 +13,7 @@ import ComArticle from '@/components/common/ComArticle'
 import ComSepList from '@/components/common/ComSepList'
 import ComDesc from '@/components/common/ComDesc'
 import ComColumn from '@/components/common/ComColumn'
+import ComBread from '@/components/common/ComBread'
 export default {
   ComHeader,
   ComContent,
@@ -27,5 +28,6 @@ export default {
   ComArticle,
   ComSepList,
   ComDesc,
-  ComColumn
+  ComColumn,
+  ComBread
 }

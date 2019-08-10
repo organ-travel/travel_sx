@@ -2,11 +2,7 @@
   <section class="m-showpic-page">
     <div class="m-showpic-banner"></div>
     <div class="m-showpic-content">
-      <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item :to="{ path: '#/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item>魅力壶口</el-breadcrumb-item>
-        <el-breadcrumb-item>斗鼓</el-breadcrumb-item>
-      </el-breadcrumb>
+      <com-bread :list-arr="breadArr"></com-bread>
       <div class="showpic-content">
         <p>壶口斗鼓是陕西陕北地区传统民间传统鼓舞艺术中独特的一种艺术形式，源于气势磅礴的壶口瀑布旁，流传于陕西省宜川县黄河沿岸的壶口乡、高柏乡一带。"涌来万岛排空势，卷作千雷震地声"，这是对壶口瀑布的描写，也正是壶口斗鼓的写照。壶口斗鼓融舞蹈、武术、打击乐为一体，具有高亢昂扬，粗犷豪放，剽悍威武，威猛刚烈等特点。表现了黄河儿女征服困难的豪情，融合了黄土高原人乐观奔放、坚韧不拔的性格。</p>
       </div>
@@ -21,15 +17,29 @@ export default {
   },
   data () {
     return {
-      imgArr: []
+      imgArr: [],
+      breadArr: []
     }
   },
   computed: {
   },
   mounted () {
+    this.getBread()
     this.getImg()
   },
   methods: {
+    getBread () {
+      this.breadArr = [{
+        path: '/',
+        text: '首页'
+      }, {
+        path: '/',
+        text: '魅力壶口'
+      }, {
+        path: '',
+        text: '斗鼓'
+      }]
+    },
     getImg() {
       this.imgArr = [{
         addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
