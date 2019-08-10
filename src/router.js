@@ -42,6 +42,10 @@ export default new Router({
       name: 'contact',
       component: r => require(['./views/contact.vue'], r)
     }, {
+      path: '/pictures',
+      name: 'pictures',
+      component: r => require(['./views/pictures.vue'], r)
+    }, {
       path: '/test',
       name: 'test',
       component: r => require(['./views/test.vue'], r)

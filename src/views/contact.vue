@@ -35,7 +35,7 @@ export default {
   .m-contact-banner {
     width 100%
     height 648px
-    background url('~@/assets/img/contact_hk/banner-contact.jpg') no-repeat center -118px
+    background url('~@/assets/img/contact_hk/banner-contact.jpg') no-repeat center
   }
   .m-contact-wrap {
     margin 0 auto
