@@ -7,7 +7,7 @@
         <el-breadcrumb-item>魅力壶口</el-breadcrumb-item>
         <el-breadcrumb-item>壶口视频</el-breadcrumb-item>
       </el-breadcrumb>
-      <com-list :list-arr="videoArr"></com-list>
+      <com-list :list-arr="videoArr" :is-video="true"></com-list>
     </div>
   </section>
 </template>

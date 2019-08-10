@@ -3,6 +3,7 @@
     <a v-for="(item, index) in listArr" :key="index" :href="item.route" class="m-com-img">
       <img v-if="isImg" :src="item.addr" :class="['u-com-img', imgClass]" alt="" title=""/>
       <span v-else :class="['u-com-img', item.iconClass]"></span>
+      <span v-if="isVideo" class="u-com-video"></span>
       <span v-if="hasTitle" class="title">{{ item.text || item.name }}</span>
       <div v-if="hasMask" class="m-com-mask">
         <com-desc v-if="isArticle" :title="item.title" :brief="item.brief" class="m-article"></com-desc>
@@ -23,6 +24,10 @@ export default {
     imgClass: {
       type: String,
       default: ''
+    },
+    isVideo: {
+      type: Boolean,
+      default: false
     },
     isImg: {
       type: Boolean,
@@ -76,6 +81,15 @@ export default {
       height 100%
       vertical-align top
       transition all .2s ease
+    }
+    .u-com-video {
+      position absolute
+      top 50%
+      left 50%
+      transform translate(-50%, -50%)
+      width 46px
+      height 46px
+      background url('~@/assets/img/common/icon-video.png') no-repeat center
     }
     .title {
       position absolute
