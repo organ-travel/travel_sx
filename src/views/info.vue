@@ -230,6 +230,7 @@ export default {
     > .m-com-article {
       .m-article-list {
         padding 40px 0
+        min-height 84px
         border-bottom 1px dashed #999999
         .u-img {
           width 146px

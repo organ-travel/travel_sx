@@ -49,6 +49,7 @@ export default {
     right: 0
     top: 50%
     margin-top:-102px
+    z-index 1111
     .alide-item {
       position: relative
       margin-bottom: 2px
