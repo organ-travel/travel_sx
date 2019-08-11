@@ -2,7 +2,7 @@
   <nav class="m-com-tab">
     <a v-for="(item, index) in navArr" :key="index" href="javascript:void(0)" :class="{'m-com-nav': true, 'active': actIndex === index}" @click="handleClick(index)">
       <span class="u-com-text">{{ item.text }}</span>
-      <span v-if="borderClass" :class="['u-com-border', borderClass]"></span>
+      <span v-if="isBorder" :class="['u-com-border', borderClass]"></span>
     </a>
   </nav>
 </template>
@@ -15,6 +15,10 @@ export default {
         return []
       }
     },
+    isBorder: {
+      type: Boolean,
+      default: false
+    },
     borderClass: {
       type: String,
       default: ''
@@ -22,13 +26,17 @@ export default {
     actIndex: {
       type: Number,
       default: 0
+    },
+    funName: {
+      type: String,
+      default: 'changeNav'
     }
   },
   mounted () {
   },
   methods: {
     handleClick (index) {
-      this.$emit('changeNav', index)
+      this.$emit(this.funName, index)
     }
   }
 }

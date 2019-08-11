@@ -2,33 +2,15 @@
   <section class="m-contact-page">
     <div class="m-contact-banner"></div>
     <div class="m-contact-list m-contact-wrap">
-      <div class="contact-list">
-        <span class="icon icon-tel"></span>
-        <span class="text">0911-4838030</span>
-      </div>
-      <div class="contact-list">
-        <span class="icon icon-addr"></span>
-        <span class="text">陕西省延安市宜川县壶口乡</span>
-      </div>
-      <div class="contact-list">
-        <span class="icon icon-email"></span>
-        <span class="text">1067072211@qq.com</span>
-      </div>
+      <com-column icon-class="icon-tel" content="0911-4838030"></com-column>
+      <com-column icon-class="icon-addr" content="陕西省延安市宜川县壶口乡"></com-column>
+      <com-column icon-class="icon-email" content="1067072211@qq.com"></com-column>
     </div>
     <div class="m-contact-map m-contact-wrap"></div>
     <div class="m-contact-code m-contact-wrap">
-      <div class="contact-list">
-        <img src="" class="u-img"/>
-        <span class="text">公共号二维码</span>
-      </div>
-      <div class="contact-list">
-        <img src="" class="u-img"/>
-        <span class="text">公共号二维码</span>
-      </div>
-      <div class="contact-list">
-        <img src="" class="u-img"/>
-        <span class="text">公共号二维码</span>
-      </div>
+      <com-column content="公共号二维码" img-url="aaa"></com-column>
+      <com-column content="公共号二维码" img-url="aaa"></com-column>
+      <com-column content="公共号二维码" img-url="aaa"></com-column>
     </div>
   </section>
 </template>
@@ -51,7 +33,6 @@ export default {
 .m-contact-page {
   position relative
   .m-contact-banner {
-    margin-top -118px
     width 100%
     height 648px
     background url('~@/assets/img/contact_hk/banner-contact.jpg') no-repeat center
@@ -63,15 +44,11 @@ export default {
       padding 55px 0
       display flex
       justify-content center
-      .contact-list + .contact-list {
+      .m-com-column + .m-com-column {
         margin-left 155px
       }
-      .contact-list {
+      >>> .m-com-column {
         padding 0 13px
-        display flex
-        flex-direction column
-        justify-content center
-        align-items center
         width 138px
         height 164px
         border-radius 50%
@@ -111,14 +88,10 @@ export default {
     width 100%
     height 215px
     background #f2f2f2
-    .contact-list {
-      display flex
-      flex-direction column
-      justify-content center
-      align-items center
+    >>> .m-com-column {
       width 270px
       text-align center
-      .u-img {
+      .img {
         width 110px
         height 110px
       }

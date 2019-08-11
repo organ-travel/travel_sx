@@ -2,10 +2,7 @@
   <wrap class="m-strategy" title-text="壶口攻略">
     <div class="m-content">
       <a v-for="(item, index) in strategyArr" :key="index" :href="item.route" :class="item.iconClass">
-        <div class="icon-com">
-          <span class="icon"></span>
-          <span class="title">{{ item.text }}</span>
-        </div>
+        <com-column :content="item.text"></com-column>
       </a>
     </div>
   </wrap>
@@ -43,7 +40,7 @@ export default {
         width 187px
         height 477px
         overflow hidden
-        &:hover .icon-com {
+        &:hover .m-com-column {
           transform scale(1.2)
         }
         .u-img {
@@ -85,13 +82,9 @@ export default {
             background url('~@/assets/img/home/icon-buy.png') no-repeat center
           }
         }
-        .icon-com {
+        .m-com-column {
           position absolute
           bottom 74px
-          display flex
-          flex-direction column
-          align-items center
-          justify-content space-between
           width 100%
           transition all .2s ease
           text-align left
@@ -100,7 +93,7 @@ export default {
             height 102px
             margin-bottom 32px
           }
-          .title {
+          .text {
             font-size 30px
             color #ffffff
           }
