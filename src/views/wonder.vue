@@ -15,6 +15,7 @@
           </div>
         </div>
         <com-list :list-arr="wonder.town.imgList"></com-list>
+        <com-pagition :pageList="wonder.town.imgList" @getList="getTownList"></com-pagition>
       </div>
     </com-transition>
     <!--4D影院-->
@@ -77,6 +78,7 @@
 import dataset from '@/config/dataset'
 import ComWrap from '@/components/common/ComWrap.vue'
 import ComList from '@/components/common/ComList.vue'
+import ComPagition from '@/components/common/ComPagition.vue'
 import Single from '@/components/wonder/Single.vue'
 import Sight from '@/components/wonder/Sight.vue'
 import imgTownVideo from '@/assets/img/hkqg/img-video.jpg'
@@ -92,7 +94,7 @@ import imgPlatform from '@/assets/img/hkqg/img-platform.jpg'
 export default {
   name: 'Wonder',
   components: {
-    ComWrap, ComList, Single, Sight
+    ComWrap, ComList, ComPagition, Single, Sight
   },
   data() {
     return {
