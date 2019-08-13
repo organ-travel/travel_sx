@@ -15,7 +15,7 @@
           </div>
         </div>
         <com-list :list-arr="wonder.town.imgList"></com-list>
-        <com-pagition :pageList="wonder.town.imgList" @getList="getTownList"></com-pagition>
+        <com-pagition :page-list="wonder.town.imgList" @getList="getTownList"></com-pagition>
       </div>
     </com-transition>
     <!--4D影院-->

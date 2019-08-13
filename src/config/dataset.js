@@ -281,6 +281,17 @@ export default {
     name: 'sight',
     text: '壶口八景'
   }],
+  //
+  noticeNav: [{
+    name: 'notice',
+    text: '重要通知'
+  }, {
+    name: 'price',
+    text: '票价信息'
+  }, {
+    name: 'ticket',
+    text: '在线购票'
+  }],
   // 壶口风情导航
   infoPageNav: [{
     name: 'news',

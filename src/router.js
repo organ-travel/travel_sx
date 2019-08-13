@@ -58,6 +58,14 @@ export default new Router({
       name: 'infoDetail',
       component: r => require(['./views/infoDetail.vue'], r)
     }, {
+      path: '/videoShow',
+      name: 'videoShow',
+      component: r => require(['./views/videoShow.vue'], r)
+    }, {
+      path: '/notice',
+      name: 'notice',
+      component: r => require(['./views/notice.vue'], r)
+    }, {
       path: '/test',
       name: 'test',
       component: r => require(['./views/test.vue'], r)
