@@ -125,43 +125,43 @@ export default {
   typeArr: [{
     className: 'm-module',
     iconClass: 'u-notice',
-    route: '#/',
+    route: '#/notice?name=notice',
     text: '重要通知'
   }, {
     className: 'm-module m-orange',
     iconClass: 'u-price',
-    route: '#/',
+    route: '#/notice?name=price',
     text: '票价信息'
   }, {
     className: 'm-module',
     iconClass: 'u-perchase',
-    route: '#/',
+    route: '#/notice?name=perchase',
     text: '在线购票'
-  }, {
-    className: 'm-module m-orange',
-    iconClass: 'u-scenery',
-    route: '#/',
-    text: '壶口八景'
-  }, {
-    className: 'm-module m-orange',
-    iconClass: 'u-film',
-    route: '#/',
-    text: '4D影院'
   }, {
     className: 'm-module',
     iconClass: 'u-gudukou',
-    route: '#/',
+    route: '#/wonder?name=gudukou',
     text: '古渡口小镇'
   }, {
     className: 'm-module m-orange',
+    iconClass: 'u-film',
+    route: '#/wonder?name=film',
+    text: '4D影院'
+  }, {
+    className: 'm-module m-orange',
     iconClass: 'u-sing',
-    route: '#/',
+    route: '#/wonder?name=sing',
     text: '黄河大合唱'
   }, {
     className: 'm-module',
     iconClass: 'u-wlt',
-    route: '#/',
+    route: '#/wonder?name=wlt',
     text: '望龙台'
+  }, {
+    className: 'm-module m-orange',
+    iconClass: 'u-scenery',
+    route: '#/wonder?name=scenery',
+    text: '壶口八景'
   }],
   surveyArr: [{
     className: 'm-column',
@@ -266,19 +266,19 @@ export default {
   }],
   // 壶口奇观导航
   wonderNav: [{
-    name: 'town',
+    name: 'gudukou',
     text: '古渡口小镇'
   }, {
-    name: 'cinema',
+    name: 'film',
     text: '4D影院'
   }, {
-    name: 'single',
+    name: 'sing',
     text: '黄河大合唱'
   }, {
-    name: 'platform',
+    name: 'wlt',
     text: '望龙台'
   }, {
-    name: 'sight',
+    name: 'scenery',
     text: '壶口八景'
   }],
   //
@@ -289,7 +289,7 @@ export default {
     name: 'price',
     text: '票价信息'
   }, {
-    name: 'ticket',
+    name: 'perchase',
     text: '在线购票'
   }],
   // 壶口风情导航

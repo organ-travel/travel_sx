@@ -1,7 +1,7 @@
 <template>
   <div class="sight-wrapper">
     <ul>
-      <li v-for="(item, index) in wonder.sight.imgList" :key="index">
+      <li v-for="(item, index) in wonder.imgList" :key="index">
         <div v-if="index === 0  || index === 1" class="left">
           <div class="img-wrapper"><a href="javascript:;"><img :src="imgvideo" alt=""></a></div>
           <div class="txt-wrapper">
@@ -48,8 +48,10 @@ import imgTownVideo from '@/assets/img/hkqg/img-video.jpg'
 export default {
   props: {
     wonder: {
-      type: Object,
-      required: true
+      type: Array,
+      default () {
+        return []
+      }
     }
   },
   data() {

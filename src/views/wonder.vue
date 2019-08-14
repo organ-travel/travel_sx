@@ -3,84 +3,35 @@
     <com-tab :act-index="actIndex" :nav-arr="wonderNav" @changeNav="changeNav"></com-tab>
     <!--古渡口小镇-->
     <com-transition>
-      <div v-if="wonderNav[actIndex].name == 'town'" class="tabs-content_town">
-        <div class="intro-wrapper">
-          <div class="intro-left">
-            <a href="javascript:;"><img :src=" wonder.town.intro.src " alt=""></a>
-          </div>
-          <div class="intro-right">
-            <div class="content">
-              <p class="txt">{{ wonder.town.intro.txt }}</p>
-            </div>
-          </div>
-        </div>
-        <com-list :list-arr="wonder.town.imgList"></com-list>
-        <com-pagition :page-list="wonder.town.imgList" @getList="getTownList"></com-pagition>
-      </div>
+      <gu-du-kou v-if="wonderNav[actIndex].name === 'gudukou'" :wonder="wonder.gudukou"></gu-du-kou>
     </com-transition>
     <!--4D影院-->
     <com-transition>
-      <div v-if="wonderNav[actIndex].name == 'cinema'" class="tabs-content_cinema">
-        <div class="intro-wrapper">
-          <div class="intro-left">
-            <a href="javascript:;"><img :src=" wonder.cinema.intro.src " alt=""></a>
-          </div>
-          <div class="intro-right">
-            <div class="content">
-              <p class="txt">{{ wonder.cinema.intro.txt }}</p>
-            </div>
-          </div>
-        </div>
-        <com-list :list-arr="wonder.cinema.imgList"></com-list>
-      </div>
+      <film v-if="wonderNav[actIndex].name === 'film'" :wonder="wonder.film"></film>
     </com-transition>
     <!--黄河大合唱-->
     <com-transition>
-      <div v-if="wonderNav[actIndex].name == 'single'" class="tabs-content_single">
-        <div class="intro-wrapper">
-          <div class="intro-left">
-            <a href="javascript:;"><img :src=" wonder.single.intro.src " alt=""></a>
-          </div>
-          <div class="intro-right">
-            <div class="content">
-              <p class="txt">{{ wonder.single.intro.txt }}</p>
-            </div>
-          </div>
-        </div>
-        <single :wonder="wonder" @getSingleList="getSingleList"></single>
-      </div>
+      <sing v-if="wonderNav[actIndex].name === 'sing'" :wonder="wonder.sing"></sing>
     </com-transition>
     <!--望龙台-->
     <com-transition>
-      <div v-if="wonderNav[actIndex].name == 'platform'" class="tabs-content_platform">
-        <div class="intro-wrapper">
-          <div class="intro-left">
-            <a href="javascript:;"><img :src=" wonder.platform.intro.src " alt=""></a>
-          </div>
-          <div class="intro-right">
-            <div class="content">
-              <p class="txt">{{ wonder.platform.intro.txt }}</p>
-            </div>
-          </div>
-        </div>
-        <com-list :list-arr="wonder.platform.imgList"></com-list>
-      </div>
+      <wang-long-tai v-if="wonderNav[actIndex].name === 'wlt'" :wonder="wonder.wlt"></wang-long-tai>
     </com-transition>
     <!--壶口八景-->
     <com-transition>
-      <div v-if="wonderNav[actIndex].name == 'sight'" class="tabs-content_sight">
-        <sight :wonder="wonder" @getSightList="getSightList"></sight>
-      </div>
+      <scenery v-if="wonderNav[actIndex].name === 'scenery'" :wonder="wonder.scenery"></scenery>
     </com-transition>
   </com-wrap>
 </template>
 <script>
 import dataset from '@/config/dataset'
 import ComWrap from '@/components/common/ComWrap.vue'
-import ComList from '@/components/common/ComList.vue'
-import ComPagition from '@/components/common/ComPagition.vue'
-import Single from '@/components/wonder/Single.vue'
-import Sight from '@/components/wonder/Sight.vue'
+import GuDuKou from '@/components/wonder/Gudukou.vue'
+import Film from '@/components/wonder/Film.vue'
+import Sing from '@/components/wonder/Sing.vue'
+import WangLongTai from '@/components/wonder/Wanglongtai.vue'
+import Scenery from '@/components/wonder/Scenery.vue'
+
 import imgTownVideo from '@/assets/img/hkqg/img-video.jpg'
 import imgTown01 from '@/assets/img/hkqg/img-01.jpg'
 import imgTown02 from '@/assets/img/hkqg/img-02.jpg'
@@ -94,60 +45,48 @@ import imgPlatform from '@/assets/img/hkqg/img-platform.jpg'
 export default {
   name: 'Wonder',
   components: {
-    ComWrap, ComList, ComPagition, Single, Sight
+    ComWrap, GuDuKou, Film, Sing, WangLongTai, Scenery
   },
   data() {
     return {
       actIndex: 0,
       wonderNav: dataset.wonderNav,
       wonder: {
-        town: {
-          intro: {
-            src: '../../assets/img/hkqg/img-video.jpg',
-            txt: '黄河古渡口小镇，又名圪针滩古渡口，古称采桑津，位于陕西黄河壶口瀑布南侧6.9公里处，在明清时期古渡小镇繁荣兴盛，曾是黄河两岸繁华的商业码头，店铺林立，艄公聚居，商贾云集，当时有钱庄、当铺、皮店、染房、盐店等商号60余家，与壶口瀑布上游的龙王辿码头同是壶口河船商贸集散地，清人贾遇时曾描述其：“客船星集，如鱼贯之相连，店铺林设，似雁形之不绝。地虽偏小，胜得泾阳三原，形似弹丸，赛过长安八水”。其繁华程度可想而知。\n'
-          },
+        gudukou: {
+          intro: {},
           imgList: []
         },
-        cinema: {
-          intro: {
-            src: '../../assets/img/hkqg/img-video.jpg',
-            txt: '4D影院，又名圪针滩古渡口，古称采桑津，位于陕西黄河壶口瀑布南侧6.9公里处，在明清时期古渡小镇繁荣兴盛，曾是黄河两岸繁华的商业码头，店铺林立，艄公聚居，商贾云集，当时有钱庄、当铺、皮店、染房、盐店等商号60余家，与壶口瀑布上游的龙王辿码头同是壶口河船商贸集散地，清人贾遇时曾描述其：“客船星集，如鱼贯之相连，店铺林设，似雁形之不绝。地虽偏小，胜得泾阳三原，形似弹丸，赛过长安八水”。其繁华程度可想而知。\n'
-          },
+        film: {
+          intro: {},
           imgList: []
         },
-        single: {
-          intro: {
-            src: '../../assets/img/hkqg/img-video.jpg',
-            txt: '4D影院，又名圪针滩古渡口，古称采桑津，位于陕西黄河壶口瀑布南侧6.9公里处，在明清时期古渡小镇繁荣兴盛，曾是黄河两岸繁华的商业码头，店铺林立，艄公聚居，商贾云集，当时有钱庄、当铺、皮店、染房、盐店等商号60余家，与壶口瀑布上游的龙王辿码头同是壶口河船商贸集散地，清人贾遇时曾描述其：“客船星集，如鱼贯之相连，店铺林设，似雁形之不绝。地虽偏小，胜得泾阳三原，形似弹丸，赛过长安八水”。其繁华程度可想而知。\n'
-          },
+        sing: {
+          intro: {},
           imgList: []
         },
-        platform: {
-          intro: {
-            src: '../../assets/img/hkqg/img-video.jpg',
-            txt: '4D影院，又名圪针滩古渡口，古称采桑津，位于陕西黄河壶口瀑布南侧6.9公里处，在明清时期古渡小镇繁荣兴盛，曾是黄河两岸繁华的商业码头，店铺林立，艄公聚居，商贾云集，当时有钱庄、当铺、皮店、染房、盐店等商号60余家，与壶口瀑布上游的龙王辿码头同是壶口河船商贸集散地，清人贾遇时曾描述其：“客船星集，如鱼贯之相连，店铺林设，似雁形之不绝。地虽偏小，胜得泾阳三原，形似弹丸，赛过长安八水”。其繁华程度可想而知。\n'
-          },
+        wlt: {
+          intro: {},
           imgList: []
         },
-        sight: {
+        scenery: {
           imgList: []
         }
       }
     }
   },
   created() {
-    this.getTownList()
-    this.getCinemaList()
-    this.getSingleList()
-    this.getPlatformList()
-    this.getSightList()
+    this.getGudukouList()
+    this.getFilmList()
+    this.getSingList()
+    this.getWltList()
+    this.getSceneryList()
   },
   methods: {
     changeNav (index) {
       this.actIndex = index
     },
-    getTownList() {
-      this.wonder.town = {
+    getGudukouList() {
+      this.wonder.gudukou = {
         intro: {
           src: imgTownVideo,
           txt: '黄河古渡口小镇，又名圪针滩古渡口，古称采桑津，位于陕西黄河壶口瀑布南侧6.9公里处，在明清时期古渡小镇繁荣兴盛，曾是黄河两岸繁华的商业码头，店铺林立，艄公聚居，商贾云集，当时有钱庄、当铺、皮店、染房、盐店等商号60余家，与壶口瀑布上游的龙王辿码头同是壶口河船商贸集散地，清人贾遇时曾描述其：“客船星集，如鱼贯之相连，店铺林设，似雁形之不绝。地虽偏小，胜得泾阳三原，形似弹丸，赛过长安八水”。其繁华程度可想而知。\n'
@@ -179,8 +118,8 @@ export default {
         }]
       }
     },
-    getCinemaList() {
-      this.wonder.cinema = {
+    getFilmList() {
+      this.wonder.film = {
         intro: {
           src: imgTownVideo,
           txt: '4D影院，又名圪针滩古渡口，古称采桑津，位于陕西黄河壶口瀑布南侧6.9公里处，在明清时期古渡小镇繁荣兴盛，曾是黄河两岸繁华的商业码头，店铺林立，艄公聚居，商贾云集，当时有钱庄、当铺、皮店、染房、盐店等商号60余家，与壶口瀑布上游的龙王辿码头同是壶口河船商贸集散地，清人贾遇时曾描述其：“客船星集，如鱼贯之相连，店铺林设，似雁形之不绝。地虽偏小，胜得泾阳三原，形似弹丸，赛过长安八水”。其繁华程度可想而知。\n'
@@ -212,11 +151,12 @@ export default {
         }]
       }
     },
-    getPlatformList() {
-      this.wonder.platform = {
+    getWltList() {
+      this.wonder.wlt = {
         intro: {
           src: imgTownVideo,
-          txt: '望龙台，又名圪针滩古渡口，古称采桑津，位于陕西黄河壶口瀑布南侧6.9公里处，在明清时期古渡小镇繁荣兴盛，曾是黄河两岸繁华的商业码头，店铺林立，艄公聚居，商贾云集，当时有钱庄、当铺、皮店、染房、盐店等商号60余家，与壶口瀑布上游的龙王辿码头同是壶口河船商贸集散地，清人贾遇时曾描述其：“客船星集，如鱼贯之相连，店铺林设，似雁形之不绝。地虽偏小，胜得泾阳三原，形似弹丸，赛过长安八水”。其繁华程度可想而知。\n'
+          txt: '黄河古渡口小镇，又名圪针滩古渡口，古称采桑津，位于陕西黄河壶口瀑布南侧6.9公里处，在明清时期古渡小镇繁荣兴盛，曾是黄河两岸繁华的商业码头，店铺林立，艄公聚居，商贾云集，当时有钱庄、当铺、皮店、染房、盐店等商号60余家，与壶口瀑布上游的龙王辿码头同是壶口河船商贸集散地，清人贾遇时曾描述其：“客船星集，如鱼贯之相连，店铺林设，似雁形之不绝。地虽偏小，胜得泾阳三原，形似弹丸，赛过长安八水”。其繁华程度可想而知。\n' +
+          '我们现在看到的黄河古渡口小镇是壶口文旅公司2017年在原圪针滩古渡口基础上恢复修葺而成的，古镇以陕北特色窑洞建筑高低错落布局，总占地面积70亩，窑洞建筑面积1.4万平米。其中一期占地面积37亩，窑洞建筑面积6800平米，打造了156孔陕北台地窑洞群风格为主体的小镇物理商业文化体验空间，汇聚了陕西本土特色餐饮、精品民宿、特色纪念品、民俗体验等服务。吸引了众多游客前来光顾体验，已成为壶口景区的重要游览景点，同时可为广大游客提供当地特色餐饮、陕北小吃、网红摔碗酒、精品民宿、特色纪念品、民俗体验等服务。\n'
         },
         imgList: [{
           addr: imgPlatform,
@@ -239,8 +179,8 @@ export default {
         }]
       }
     },
-    getSingleList() {
-      this.wonder.single = {
+    getSingList() {
+      this.wonder.sing = {
         intro: {
           src: imgTownVideo,
           txt: '4D影院，又名圪针滩古渡口，古称采桑津，位于陕西黄河壶口瀑布南侧6.9公里处，在明清时期古渡小镇繁荣兴盛，曾是黄河两岸繁华的商业码头，店铺林立，艄公聚居，商贾云集，当时有钱庄、当铺、皮店、染房、盐店等商号60余家，与壶口瀑布上游的龙王辿码头同是壶口河船商贸集散地，清人贾遇时曾描述其：“客船星集，如鱼贯之相连，店铺林设，似雁形之不绝。地虽偏小，胜得泾阳三原，形似弹丸，赛过长安八水”。其繁华程度可想而知。\n'
@@ -272,8 +212,8 @@ export default {
         }]
       }
     },
-    getSightList() {
-      this.wonder.sight = {
+    getSceneryList() {
+      this.wonder.scenery = {
         imgList: [{
           addr: imgTown01,
           title: '第一幕《朔方》',
@@ -309,6 +249,30 @@ export default {
         }]
       }
     }
+  },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      if (to.query.name) {
+        const routerName = to.query.name
+        switch (routerName) {
+        case 'gudukou':
+          vm.actIndex = 0
+          break
+        case 'film':
+          vm.actIndex = 1
+          break
+        case 'sing':
+          vm.actIndex = 2
+          break
+        case 'wlt':
+          vm.actIndex = 3
+          break
+        case 'scenery':
+          vm.actIndex = 4
+          break
+        }
+      }
+    })
   }
 }
 </script>

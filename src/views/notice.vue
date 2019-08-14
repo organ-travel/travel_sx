@@ -1,14 +1,17 @@
 <template>
   <com-wrap class="m-notice-page">
+    <div class="banner-wrapper">
+      <img :src="banner" alt="">
+    </div>
     <com-tab :act-index="actIndex" :nav-arr="noticeNav" @changeNav="changeNav"></com-tab>
     <com-transition>
-      <notice-item></notice-item>
+      <notice-item v-if="noticeNav[actIndex].name == 'notice'" :arr="noticeList"></notice-item>
     </com-transition>
     <com-transition>
-      <price-item></price-item>
+      <price-item v-if="noticeNav[actIndex].name == 'price'"></price-item>
     </com-transition>
     <com-transition>
-      <ticket-item></ticket-item>
+      <perchase-item v-if="noticeNav[actIndex].name == 'perchase'" :arr="perchaseList"></perchase-item>
     </com-transition>
   </com-wrap>
 </template>
@@ -17,33 +20,114 @@
 import dataset from '@/config/dataset'
 import NoticeItem from '@/components/notice/notice.vue'
 import PriceItem from '@/components/notice/price.vue'
-import TicketItem from '@/components/notice/ticket.vue'
+import PerchaseItem from '@/components/notice/perchase.vue'
+import imgBanner from '@/assets/img/notice_hk/banner.jpg'
+import imgSight from '@/assets/img/notice_hk/img-sight.jpg'
+import imgQrcode from '@/assets/img/notice_hk/img-qrcode.jpg'
 export default {
   name: 'Notice',
   components: {
     NoticeItem,
     PriceItem,
-    TicketItem
+    PerchaseItem
   },
   data() {
     return {
       actIndex: 0,
       noticeNav: dataset.noticeNav,
+      banner: imgBanner,
+      noticeList: [],
+      priceList: [],
+      perchaseList: []
     }
+  },
+  mounted() {
+    this.getNoticeList()
+    this.getPriceInfo()
+    this.getPerchaseList()
   },
   methods: {
     changeNav (index) {
       this.actIndex = index
+    },
+    getNoticeList() {
+      this.noticeList = [{
+        label: '【文旅动态】',
+        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！',
+        time: '2019-08-20'
+      }, {
+        label: '【文旅动态】',
+        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！',
+        time: '2019-08-20'
+      }, {
+        label: '【文旅动态】',
+        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！',
+        time: '2019-08-20'
+      }, {
+        label: '【文旅动态】',
+        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！',
+        time: '2019-08-20'
+      }, {
+        label: '【文旅动态】',
+        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！',
+        time: '2019-08-20'
+      }]
+    },
+    getPriceInfo() {
+      this.priceList = []
+    },
+    getPerchaseList() {
+      this.perchaseList = [{
+        site: '美团预定',
+        picUrl: imgSight,
+        title: '宜川壶口瀑布',
+        subTitle: 'AAAAA景区',
+        summary: '黄河上唯一的大瀑布，世界罕见金黄色大瀑布',
+        address: '陕西省延安市宜川县',
+        time: '8:00-19:00',
+        qrcodeUrl: imgQrcode
+      }, {
+        site: '携程网预定',
+        picUrl: imgSight,
+        title: '宜川壶口瀑布',
+        subTitle: 'AAAAA景区',
+        summary: '黄河上唯一的大瀑布，世界罕见金黄色大瀑布',
+        address: '陕西省延安市宜川县',
+        time: '8:00-19:00',
+        qrcodeUrl: imgQrcode
+      }]
     }
+  },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      if (to.query.name) {
+        const routerName = to.query.name
+        switch (routerName) {
+        case 'notice':
+          vm.actIndex = 0
+          break
+        case 'price':
+          vm.actIndex = 1
+          break
+        case 'perchase':
+          vm.actIndex = 2
+          break
+        }
+      }
+    })
   }
 }
 </script>
 
 <style lang="stylus" scoped>
 .m-notice-page {
-  padding:100px 0
+  .banner-wrapper {
+    img {
+      max-width 100%
+    }
+  }
   >>> .m-com-tab {
-    margin-bottom 25px
+    margin: 25px 0
     height 50px
     .m-com-nav {
       padding 15px 26px
@@ -63,16 +147,21 @@ export default {
     }
   }
   >>> .m-com-transition {
-    .notice-wrapper {
+    .notice-wrapper, .price-wrapper, .perchase-wrapper {
       width 1200px
       margin 0 auto
-      display: none
+      min-height 400px
+    }
+    .notice-wrapper {
       ul {
         li {
           position: relative
-          border-bottom:1px dashed #999
+          border-top:1px dashed #999
           padding:25px 0
           overflow: hidden
+          &:first-child {
+            border-top:none
+          }
           &:before {
             content attr(data-before)
             color: #ec5a02
@@ -90,9 +179,6 @@ export default {
       }
     }
     .price-wrapper {
-      width 1200px
-      margin 0 auto
-      display: none
       .txt-wrapper {
         margin-bottom:40px
         &:before {
@@ -108,9 +194,7 @@ export default {
         }
       }
     }
-    .ticket-wrapper {
-      width 1200px
-      margin 0 auto
+    .perchase-wrapper {
       ul {
         li {
           display: flex
@@ -126,7 +210,8 @@ export default {
             top:20px
           }
           .img-wrapper {
-            flex 0 0 100px
+            flex 0 0 227px
+            padding-right: 30px
             overflow: hidden
             img {
               max-width 100%
@@ -187,11 +272,12 @@ export default {
             }
           }
           .buy-wrapper {
-            flex 100px 0 0
+            flex 104px 0 0
             img {
-              width:100px
-              height:100px
-              margin:0 auto
+              max-width 100%
+              padding:3px
+              border 1px solid #ec5a02
+              margin-bottom:18px
             }
             .btn-buy {
               border 1px solid #ec5a02
@@ -201,6 +287,8 @@ export default {
               display: inline-block
               vertical-align: middle
               padding:6px 20px
+              width: 73px
+              text-align: center
               border-radius 4px
               -webkit-transition: all .2 ease .1s
               -moz-transition: all .2 ease .1s
