@@ -1,4 +1,11 @@
 export default {
+  initMenu: [{
+    name: '网站首页',
+    type: '#/'
+  }],
+  initMenuRelations: {
+    'home': 0
+  },
   menuData: [{
     name: '网站首页',
     route: '#/'
@@ -138,15 +145,20 @@ export default {
     route: '#/notice?name=perchase',
     text: '在线购票'
   }, {
-    className: 'm-module',
-    iconClass: 'u-gudukou',
-    route: '#/wonder?name=gudukou',
-    text: '古渡口小镇'
+    className: 'm-module m-orange',
+    iconClass: 'u-scenery',
+    route: '#/wonder?name=scenery',
+    text: '壶口八景'
   }, {
     className: 'm-module m-orange',
     iconClass: 'u-film',
     route: '#/wonder?name=film',
     text: '4D影院'
+  }, {
+    className: 'm-module',
+    iconClass: 'u-gudukou',
+    route: '#/wonder?name=gudukou',
+    text: '古渡口小镇'
   }, {
     className: 'm-module m-orange',
     iconClass: 'u-sing',
@@ -157,11 +169,6 @@ export default {
     iconClass: 'u-wlt',
     route: '#/wonder?name=wlt',
     text: '望龙台'
-  }, {
-    className: 'm-module m-orange',
-    iconClass: 'u-scenery',
-    route: '#/wonder?name=scenery',
-    text: '壶口八景'
   }],
   surveyArr: [{
     className: 'm-column',

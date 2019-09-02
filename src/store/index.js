@@ -15,6 +15,9 @@ const state = {
   headerHeight: 118,
   // 整站导航的索引
   activeIndex: -1,
+  // 整站导航的数据
+  menuData: [],
+  menuRelations: {},
   MetaData
 }
 export default new Vuex.Store({

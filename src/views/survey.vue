@@ -114,7 +114,6 @@ export default {
     ...mapGetters(['getHeaderHeight'])
   },
   mounted () {
-    console.log('page', this.getHeaderHeight)
     window.addEventListener('scroll', this.handleScroll, true)
   },
   methods: {

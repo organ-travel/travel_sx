@@ -47,7 +47,6 @@ export default {
       this.actIndex = index
     },
     handleDownload () {
-      console.log('下载')
     },
     getNews () {
       this.newsArr = [{
@@ -190,7 +189,8 @@ export default {
 </script>
 <style lang="stylus" scoped>
 .m-info-page {
-  background url("~@/assets/img/info_hk/bg-info.jpg") no-repeat center -118px
+  background url("~@/assets/img/info_hk/bg-info.jpg") center no-repeat
+  background-size cover
   >>> .m-com-container {
     width 1320px
     .m-com-center {

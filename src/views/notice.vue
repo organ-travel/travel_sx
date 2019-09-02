@@ -18,9 +18,9 @@
 
 <script>
 import dataset from '@/config/dataset'
-import NoticeItem from '@/components/notice/notice.vue'
-import PriceItem from '@/components/notice/price.vue'
-import PerchaseItem from '@/components/notice/perchase.vue'
+import NoticeItem from '@/components/notice/Notice.vue'
+import PriceItem from '@/components/notice/Price.vue'
+import PerchaseItem from '@/components/notice/Perchase.vue'
 import imgBanner from '@/assets/img/notice_hk/banner.jpg'
 import imgSight from '@/assets/img/notice_hk/img-sight.jpg'
 import imgQrcode from '@/assets/img/notice_hk/img-qrcode.jpg'

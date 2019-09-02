@@ -190,7 +190,6 @@ export default {
       this.datas.push(this.dynamics)
       this.datas.push(this.travel)
       this.datas.push(this.activities)
-      console.log(this.datas)
       this.infoArr = this.datas[this.actIndex]
     },
     // 获取壶口风情的数据

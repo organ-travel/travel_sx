@@ -1,22 +1,22 @@
 <template>
-  <section>
+  <section class="m-menu-item">
     <a
       v-for="(item, index) in menuData"
-      :key="index" :href="item.route"
-      :class="{'m-com': true, 'active': activeIndex === index, 'm-has-sub': item.sub}"
+      :key="index" :href="item.type"
+      :class="{'m-com': true, 'active': getActiveIndex === index, 'm-has-sub': item.children && item.children.length}"
       @mouseenter="handleMouseEnter(index)"
       @mouseleave="handleMouseLeave"
-      @click="handleMenu(index, item.sub)">
+      @click="handleMenu(index, item.children)">
       <span>{{ item.name }}</span>
       <div
-        v-show=" item.sub && activeIndex === index && isShow"
+        v-show=" item.children && item.children.length && getActiveIndex === index && isShow"
         class="m-drop-list">
         <a
-          v-for="(arr, ind) in item.sub"
+          v-for="(arr, ind) in item.children"
           :key="ind"
-          :href="arr.route"
+          :href="arr.type"
           class="u-drop-list"
-          @click="handleClick(index, ind)">
+          @click.stop="handleClick(index, ind)">
           {{ arr.name }}
         </a>
       </div>
@@ -25,10 +25,13 @@
 </template>
 <script>
 export default {
+  com: 'MenuItem',
   props: {
     menuData: Array,
-    activeIndex: Number,
     isShow: Boolean
+  },
+  mounted () {
+    console.log('MenuItem mounted')
   },
   methods: {
     handleMouseEnter (index) {
@@ -47,6 +50,8 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
+.m-menu-item {
+  width 1272px
   .m-com {
     position relative
     display inline-block
@@ -55,9 +60,9 @@ export default {
     color #ffffff
     font-size 18px
     vertical-align top
-    &:last-child {
-      padding-right 0
-    }
+    // &:last-child {
+    //   padding-right 0
+    // }
     &:hover, &.active {
       color #ec5a02
     }
@@ -104,4 +109,5 @@ export default {
       }
     }
   }
+}
 </style>

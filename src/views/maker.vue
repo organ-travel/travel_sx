@@ -46,7 +46,7 @@ export default {
 </script>
 <style lang="stylus" scoped>
 .m-maker-page {
-  background url("~@/assets/img/info_hk/bg-info.jpg") no-repeat
+  background url("~@/assets/img/info_hk/bg-info.jpg") center no-repeat
   background-size cover
   >>> .m-com-container {
     width 1320px

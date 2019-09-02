@@ -11,11 +11,20 @@
 <script>
 import { mapMutations } from 'vuex'
 export default {
+  computed: {
+    // ...mapGetters(['getMenuData']),
+  },
+  created () {
+    console.log('app页面---》created')
+  },
   mounted () {
+    window.$alert = (tip) => {
+      return this.$alert(tip, '提示')
+    }
     this.SET_HEADER_HEIGHT((this.$refs['header'] && this.$refs['header'].$el.clientHeight) || 118)
   },
   methods: {
-    ...mapMutations(['SET_HEADER_HEIGHT'])
+    ...mapMutations(['SET_HEADER_HEIGHT']),
   }
 }
 </script>

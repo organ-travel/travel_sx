@@ -9,13 +9,10 @@ const Server = data => {
     url = data.url || `${config.host}${data.action}`
   }
   return new Promise((resolve, reject) => {
-    axios.post(url, data.data || {}, {
-      headers: data.otherHeaders ? data.headers : config.headers,
-      withCredentials: !data.hasOwnProperty('withCredentials'),
-    })
+    axios.get(url, data.params || {})
       .then(async (response) => {
-        if (response.data.errcode === 0) {
-          resolve(response.data)
+        if (response.data.errcode == 0) {
+          resolve(response.data.data)
         } else {
           await window.$alert(response.data.errdesc || 'error')
         }

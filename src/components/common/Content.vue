@@ -1,37 +1,39 @@
 <template>
   <section class="m-content">
     <com-menu>
-      <com-menu-item :menu-data="menuData" :active-index="activeIndex" :is-show="isShow" @enter="handleMouseEnter" @leave="handleMouseLeave" @clickSub="handleClick" @clickMenu="clickMenu"></com-menu-item>
+      <com-menu-item :menu-data="getMenuData" :is-show="isShow" @enter="handleMouseEnter" @leave="handleMouseLeave" @clickSub="handleClick" @clickMenu="clickMenu"></com-menu-item>
     </com-menu>
     <slot></slot>
   </section>
 </template>
 <script>
-import dataset from '@/config/dataset'
-import { mapGetters } from 'vuex'
+// import dataset from '@/config/dataset'
+// import { mapGetters } from 'vuex'
 export default {
+  com: 'MenuItem',
   data() {
     return {
       oldIndex: -1,
       isShow: false,
-      menuData: JSON.parse(JSON.stringify(dataset.menuData))
     }
   },
   computed: {
-    ...mapGetters({ activeIndex: 'getActiveIndex' })
+  },
+  mounted () {
+    console.log('contenet组件---》 mounted')
   },
   methods: {
     handleMouseEnter (index) {
       this.isShow = true
-      this.oldIndex = this.activeIndex
-      if (this.activeIndex === index) {
+      this.oldIndex = this.getActiveIndex
+      if (this.getActiveIndex === index) {
         return
       }
       this.SET_ACTIVE_INDEX(index)
     },
     handleMouseLeave () {
       this.isShow = false
-      if (this.activeIndex === this.oldIndex) {
+      if (this.getActiveIndex === this.oldIndex) {
         return
       }
       this.SET_ACTIVE_INDEX(this.oldIndex)
@@ -47,6 +49,7 @@ export default {
       this.isShow = false
       this.oldIndex = index
       this.SET_ACTIVE_INDEX(index)
+      console.log('content设置活动index', this.getActiveIndex)
     }
   }
 }

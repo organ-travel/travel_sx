@@ -8,9 +8,9 @@
 </template>
 
 <script>
-    export default {
-        name: "videoShow"
-    }
+export default {
+  name: 'VideoShow'
+}
 </script>
 
 <style lang="stylus" scoped>

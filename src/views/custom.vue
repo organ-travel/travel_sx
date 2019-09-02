@@ -97,7 +97,8 @@ export default {
 </script>
 <style lang="stylus" scoped>
 .m-custom-page {
-  background url("~@/assets/img/custom_hk/bg-custom.jpg") center -118px no-repeat
+  background url("~@/assets/img/custom_hk/bg-custom.jpg") center no-repeat
+  background-size cover
   >>> .m-com-container {
     width 1260px
     .m-com-center {
