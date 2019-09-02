@@ -10,8 +10,7 @@ const Server = data => {
   }
   return new Promise((resolve, reject) => {
     axios.post(url, data.data || {}, {
-      headers: data.otherHeaders ? data.headers : config.headers,
-      withCredentials: !data.hasOwnProperty('withCredentials'),
+      headers: data.otherHeaders ? data.headers : config.headers
     })
       .then(async (response) => {
         if (response.data.errcode === 0) {

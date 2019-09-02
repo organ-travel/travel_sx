@@ -18,6 +18,8 @@ const state = {
   // 整站导航的数据
   menuData: [],
   menuRelations: {},
+  // 文章数据
+  articleData: [],
   MetaData
 }
 export default new Vuex.Store({

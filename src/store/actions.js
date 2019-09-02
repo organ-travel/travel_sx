@@ -1,4 +1,5 @@
 import getServer from '@/config/getServer'
+import postServer from '@/config/server'
 
 export const getCategoryList = async (store, payload) => {
   const res = await getServer({
@@ -11,4 +12,12 @@ export const getCategoryList = async (store, payload) => {
     temp[item.type.split('/')[1]] = index + 1
   })
   store.commit('SET_MENU_RELATIONS', temp)
+}
+
+export const getArticleList = async (store, payload) => {
+  const res = await postServer({
+    data: payload,
+    action: 'articles/getArticleList'
+  })
+  store.commit('SET_ARTICLE_DATA', res)
 }

@@ -6,7 +6,7 @@
       :class="{'m-com': true, 'active': getActiveIndex === index, 'm-has-sub': item.children && item.children.length}"
       @mouseenter="handleMouseEnter(index)"
       @mouseleave="handleMouseLeave"
-      @click="handleMenu(index, item.children)">
+      @click="handleMenu(index, item.id, item.children)">
       <span>{{ item.name }}</span>
       <div
         v-show=" item.children && item.children.length && getActiveIndex === index && isShow"
@@ -24,11 +24,15 @@
   </section>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   com: 'MenuItem',
   props: {
     menuData: Array,
     isShow: Boolean
+  },
+  computed: {
+    ...mapGetters(['getArticleData'])
   },
   mounted () {
     console.log('MenuItem mounted')
@@ -40,8 +44,15 @@ export default {
     handleMouseLeave () {
       this.$emit('leave')
     },
-    handleMenu (index, hasSub) {
+    handleMenu (index, catId, hasSub) {
       this.$emit('clickMenu', index, hasSub)
+      const data = {
+        cat_id: catId,
+        start: 0,
+        limit: 10,
+        is_top: 0
+      }
+      this.$store.dispatch('getArticleList', data)
     },
     handleClick (index, ind) {
       this.$emit('clickSub', index, ind)
