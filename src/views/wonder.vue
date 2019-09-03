@@ -1,6 +1,10 @@
 <template>
   <com-wrap class="m-custom-page">
     <com-tab :act-index="actIndex" :nav-arr="wonderNav" @changeNav="changeNav"></com-tab>
+    <!--<com-transition v-for="(item, index) in infoPageNav" :key="item.id">-->
+      <!--<com-article v-if="actIndex === index" :arr="articleArr[index]"></com-article>-->
+    <!--</com-transition>-->
+
     <!--古渡口小镇-->
     <com-transition>
       <gu-du-kou v-if="wonderNav[actIndex].name === 'gudukou'" :wonder="wonder.gudukou"></gu-du-kou>
@@ -50,6 +54,7 @@ export default {
   data() {
     return {
       actIndex: 0,
+      queryOption: [],
       wonderNav: dataset.wonderNav,
       wonder: {
         gudukou: {
@@ -73,6 +78,19 @@ export default {
         }
       }
     }
+  },
+  async mounted () {
+    await this.setMenu()
+    this.setCurCategory()
+    this.setActiveIndex()
+    this.infoPageNav = this.getCurCategory.children || []
+    this.getCurCategory.children.forEach(async (item, index) => {
+      this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
+      const res = (await this.queryArticleList(this.queryOption[index])).data
+      this.$set(this.wonder, index, res)
+      this.queryOption[index].total = res.articleCount || 0
+      this.queryOption[index].start++
+    })
   },
   created() {
     this.getGudukouList()

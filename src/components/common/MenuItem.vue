@@ -46,13 +46,6 @@ export default {
     },
     handleMenu (index, catId, hasSub) {
       this.$emit('clickMenu', index, hasSub)
-      // const data = {
-      //   cat_id: catId,
-      //   start: 0,
-      //   limit: 10,
-      //   is_top: 0
-      // }
-      // this.$store.dispatch('queryArticleList', data)
     },
     handleClick (index, ind) {
       this.$emit('clickSub', index, ind)
