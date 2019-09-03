@@ -1,20 +1,8 @@
 <template>
   <com-wrap class="m-info-page">
     <com-tab :act-index="actIndex" :nav-arr="infoPageNav" @changeNav="changeNav"></com-tab>
-    <com-transition>
-      <com-article v-if="infoPageNav[actIndex].name == 'news'" :arr="newsArr" class="m-news"></com-article>
-    </com-transition>
-    <com-transition>
-      <com-article v-if="infoPageNav[actIndex].name == 'dynamic'" :arr="dynamicArr" class="m-dynamic"></com-article>
-    </com-transition>
-    <com-transition>
-      <com-article v-if="infoPageNav[actIndex].name == 'activity'" :arr="activityArr" class="m-activity"></com-article>
-    </com-transition>
-    <com-transition>
-      <com-article v-if="infoPageNav[actIndex].name == 'recuit'" :arr="recuitArr" :has-detail="false" class="m-recuit"></com-article>
-    </com-transition>
-    <com-transition>
-      <com-article v-if="infoPageNav[actIndex].name == 'download'" :arr="downloadArr" :has-detail="false" :has-download="true" class="m-download" @handleDownload="handleDownload"></com-article>
+    <com-transition v-for="(item, index) in infoPageNav" :key="item.id">
+      <com-article v-if="actIndex  == index" :arr="articleArr[index]" :has-detail="!(infoPageNav[actIndex] && (infoPageNav[actIndex].name == '招贤纳士' || infoPageNav[actIndex].name == '文件下载'))" :has-download="infoPageNav[actIndex] && infoPageNav[actIndex].name == '文件下载'"  @handleDownload="handleDownload"></com-article>
     </com-transition>
   </com-wrap>
 </template>
@@ -27,162 +15,31 @@ export default {
   data () {
     return {
       actIndex: 0,
-      infoPageNav: dataset.infoPageNav,
-      newsArr: [],
-      dynamicArr: [],
-      activityArr: [],
-      recuitArr: [],
-      downloadArr: []
+      infoPageNav: [],
+      articleArr: [],
+      queryOption: []
     }
   },
-  mounted () {
-    this.getNews()
-    this.getDynamic()
-    this.getActivity()
-    this.getRecuit()
-    this.getDownload()
+  async mounted () {
+    await this.setMenu()
+    this.setCurCategory()
+    this.setActiveIndex()
+    this.infoPageNav = this.getCurCategory.children || []
+    this.getCurCategory.children.forEach(async (item, index) => {
+      this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
+      // this.queryOption[item.type] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
+      const res = (await this.queryArticleList(this.queryOption[index])).data
+      this.$set(this.articleArr, index, res.articleList)
+      this.queryOption[index].total = res.articleCount || 0
+      this.queryOption[index].start++
+      console.log(item, item.id, item.type, this.queryOption[index], this.articleArr)
+    })
   },
   methods: {
     changeNav (index) {
       this.actIndex = index
     },
     handleDownload () {
-    },
-    getNews () {
-      this.newsArr = [{
-        id: '',
-        date: '2019-08-07',
-        text: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一。壶口河段上下落差大，因而形成气势磅礴的瀑布。壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布的瀑布壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }, {
-        id: '',
-        date: '2019-08-07',
-        text: '壶口斗鼓',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }, {
-        id: '',
-        date: '2019-08-07',
-        text: '壶口斗鼓',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }, {
-        id: '',
-        date: '2019-08-07',
-        text: '壶口斗鼓',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }]
-    },
-    getDynamic () {
-      this.dynamicArr = [{
-        id: '',
-        date: '2019-08-07',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }, {
-        id: '',
-        date: '2019-08-07',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }, {
-        id: '',
-        date: '2019-08-07',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }, {
-        id: '',
-        date: '2019-08-07',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }, {
-        id: '',
-        date: '2019-08-07',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }, {
-        id: '',
-        date: '2019-08-07',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }, {
-        id: '',
-        date: '2019-08-07',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }]
-    },
-    getActivity () {
-      this.activityArr = [{
-        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        id: '',
-        date: '2019-08-07',
-        text: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一。壶口河段上下落差大，因而形成气势磅礴的瀑布。壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布的瀑布壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }, {
-        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        id: '',
-        date: '2019-08-07',
-        text: '壶口斗鼓',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }, {
-        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        id: '',
-        date: '2019-08-07',
-        text: '壶口斗鼓',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }, {
-        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        id: '',
-        date: '2019-08-07',
-        text: '壶口斗鼓',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }]
-    },
-    getRecuit () {
-      this.recuitArr = [{
-        id: '',
-        date: '2019-08-07',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }, {
-        id: '',
-        date: '2019-08-07',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }, {
-        id: '',
-        date: '2019-08-07',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }, {
-        id: '',
-        date: '2019-08-07',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }, {
-        id: '',
-        date: '2019-08-07',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }, {
-        id: '',
-        date: '2019-08-07',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }, {
-        id: '',
-        date: '2019-08-07',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }]
-    },
-    getDownload () {
-      this.downloadArr = [{
-        id: '',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }, {
-        id: '',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }, {
-        id: '',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }, {
-        id: '',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }, {
-        id: '',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }, {
-        id: '',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }, {
-        id: '',
-        title: '壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！'
-      }]
     }
   }
 }

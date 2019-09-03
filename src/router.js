@@ -7,7 +7,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: '',
       component: r => require(['./views/home.vue'], r)
     }, {
       path: '/wonder',
@@ -62,7 +62,7 @@ export default new Router({
       name: 'videoShow',
       component: r => require(['./views/videoShow.vue'], r)
     }, {
-      path: '/notice',
+      path: '/notice/',
       name: 'notice',
       component: r => require(['./views/notice.vue'], r)
     }, {

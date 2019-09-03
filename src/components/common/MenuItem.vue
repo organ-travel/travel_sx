@@ -24,7 +24,7 @@
   </section>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 export default {
   com: 'MenuItem',
   props: {
@@ -32,7 +32,7 @@ export default {
     isShow: Boolean
   },
   computed: {
-    ...mapGetters(['getArticleData'])
+    // ...mapGetters(['getArticleData'])
   },
   mounted () {
     console.log('MenuItem mounted')
@@ -46,13 +46,13 @@ export default {
     },
     handleMenu (index, catId, hasSub) {
       this.$emit('clickMenu', index, hasSub)
-      const data = {
-        cat_id: catId,
-        start: 0,
-        limit: 10,
-        is_top: 0
-      }
-      this.$store.dispatch('getArticleList', data)
+      // const data = {
+      //   cat_id: catId,
+      //   start: 0,
+      //   limit: 10,
+      //   is_top: 0
+      // }
+      // this.$store.dispatch('queryArticleList', data)
     },
     handleClick (index, ind) {
       this.$emit('clickSub', index, ind)

@@ -9,6 +9,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import 'font-awesome/css/font-awesome.min.css'
 import '@/assets/style/base.css'
 import 'swiper/dist/css/swiper.css'
+import '@/assets/js/prototype-extend'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)

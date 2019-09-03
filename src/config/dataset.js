@@ -1,10 +1,20 @@
 export default {
+  // 获取文章信息的初始化分页参数
+  queryOption: {
+    cat_id: -1,
+    start: 0,
+    limit: 10,
+    is_top: 0,
+    total: 0
+  },
   initMenu: [{
     name: '网站首页',
-    type: '#/'
+    type: '#/',
+    children: []
   }],
   initMenuRelations: {
-    'home': 0
+    'home': 0,
+    '': 0
   },
   menuData: [{
     name: '网站首页',
@@ -197,11 +207,11 @@ export default {
     text: '美文'
   }],
   infoNav: [{
-    text: '景区动态'
+    name: '景区动态'
   }, {
-    text: '文旅动态'
+    name: '文旅动态'
   }, {
-    text: '景区活动'
+    name: '景区活动'
   }],
   wonderArr: [{
     img: './static/gdk.jpg',
@@ -299,6 +309,23 @@ export default {
     name: 'perchase',
     text: '在线购票'
   }],
+  // 壶口风情导航
+  // infoPageNav: [{
+  //   type: 'news',
+  //   name: '景区新闻'
+  // }, {
+  //   type: 'dynamic',
+  //   name: '文旅动态'
+  // }, {
+  //   type: 'activity',
+  //   name: '景区活动'
+  // }, {
+  //   type: 'recuit',
+  //   name: '招贤纳士'
+  // }, {
+  //   type: 'download',
+  //   name: '文件下载'
+  // }],
   // 壶口风情导航
   infoPageNav: [{
     name: 'news',

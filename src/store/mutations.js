@@ -11,6 +11,10 @@ export const SET_MENU_DATA = (state, payload) => {
 export const SET_MENU_RELATIONS = (state, payload) => {
   state.menuRelations = Object.assign({}, JSON.parse(JSON.stringify(dataset.initMenuRelations)), payload)
 }
+export const SET_CUR_CATEGORY = (state, payload) => {
+  state.curCategory = JSON.parse(JSON.stringify(payload))
+  console.log('state.curCategory', state.curCategory)
+}
 export const SET_ARTICLE_DATA = (state, payload) => {
   state.articleData = payload
 }

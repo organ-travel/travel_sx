@@ -29,7 +29,11 @@ export default {
     if (!value) return ''
     return (new Date(parseInt(value))).Format(format || 'yyyy-MM-dd')
   },
-
+  transformDate (value, format) {
+    if (!value) return ''
+    console.log(new Date(Date.parse(value.replace(/-/g, '/'))))
+    return (new Date(Date.parse(value.replace(/-/g, '/')))).Format(format || 'yyyy-MM-dd')
+  },
   /**
    * 时间格式化，只显示年月
    */

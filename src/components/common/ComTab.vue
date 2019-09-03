@@ -1,7 +1,7 @@
 <template>
   <nav class="m-com-tab">
     <a v-for="(item, index) in navArr" :key="index" href="javascript:void(0)" :class="{'m-com-nav': true, 'active': actIndex === index}" @click="handleClick(index)">
-      <span class="u-com-text">{{ item.text }}</span>
+      <span class="u-com-text">{{ item.name }}</span>
       <span v-if="isBorder" :class="['u-com-border', borderClass]"></span>
     </a>
   </nav>

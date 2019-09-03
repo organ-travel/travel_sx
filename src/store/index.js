@@ -17,6 +17,8 @@ const state = {
   activeIndex: -1,
   // 整站导航的数据
   menuData: [],
+  // 当前所在栏目的数据
+  curCategory: {},
   menuRelations: {},
   // 文章数据
   articleData: [],

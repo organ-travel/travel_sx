@@ -11,13 +11,8 @@
 <script>
 import { mapMutations } from 'vuex'
 export default {
-  computed: {
-    // ...mapGetters(['getMenuData']),
-  },
-  created () {
-    console.log('app页面---》created')
-  },
   mounted () {
+    console.log('app页面---mounted')
     window.$alert = (tip) => {
       return this.$alert(tip, '提示')
     }

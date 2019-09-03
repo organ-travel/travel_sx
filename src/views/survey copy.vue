@@ -92,6 +92,7 @@ import dataset from '@/config/dataset'
 import List from '@/components/survey/List.vue'
 import Anchor from '@/components/survey/Anchor.vue'
 import { mapGetters } from 'vuex'
+// import { setTimeout } from 'timers';
 export default {
   name: 'Survey',
   components: {
@@ -112,11 +113,8 @@ export default {
   computed: {
     ...mapGetters(['getHeaderHeight'])
   },
-  async mounted () {
+  mounted () {
     window.addEventListener('scroll', this.handleScroll, true)
-    await this.setMenu()
-    this.setCurCategory()
-    this.setActiveIndex()
   },
   methods: {
     async changeAnchor (id) {

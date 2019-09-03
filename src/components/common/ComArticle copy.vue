@@ -5,12 +5,12 @@
         <img v-if="item.imgUrl" :src="item.imgUrl" class="u-img"/>
         <div class="m-article-con">
           <h3 class="u-title">{{ item.title }}</h3>
-          <div v-if="item.description" class="m-con">
-            {{ item.description }}
+          <div v-if="item.text" class="m-con">
+            {{ item.text }}
           </div>
         </div>
       </a>
-      <span v-if="item.create_time && !hasDownload" class="u-date">{{ item.create_time | transformDate }}</span>
+      <span v-if="item.date" class="u-date">{{ item.date }}</span>
       <a v-if="hasDetail" class="u-detail" href="javascript:void(0)">查看详情</a>
       <a v-if="hasDownload" class="u-download" href="javascript:void(0)" @click="handleDownload">下载</a>
     </div>
@@ -35,7 +35,6 @@ export default {
     }
   },
   mounted () {
-    console.log('com article', this.arr)
   },
   methods: {
     handleDownload () {
