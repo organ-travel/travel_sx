@@ -11,6 +11,6 @@ const host = 'http://39.100.140.37/hukouN/index.php/'
 // }
 
 export default {
-  host,
+  host
   // debug
 }

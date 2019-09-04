@@ -29,7 +29,7 @@ export default {
       this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
       // this.queryOption[item.type] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
       const res = (await this.queryArticleList(this.queryOption[index])).data
-      this.$set(this.articleArr, index, res.articleList)
+      this.$set(this.articleArr, index, res.articleList || [])
       this.queryOption[index].total = res.articleCount || 0
       this.queryOption[index].start++
       console.log(item, item.id, item.type, this.queryOption[index], this.articleArr)

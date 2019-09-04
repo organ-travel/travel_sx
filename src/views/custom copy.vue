@@ -1,57 +1,38 @@
 <template>
   <com-wrap class="m-custom-page">
     <com-tab :act-index="actIndex" :nav-arr="customNav" @changeNav="changeNav"></com-tab>
-    <com-transition v-for="(item, index) in customNav" :key="item.id">
-      <div v-if="actIndex == index && customNav[actIndex] && customNav[actIndex].type == 'drum'" :class="`m-${customNav[actIndex].type}`">
-        <div class="u-desc">我们现在看到的黄河古渡口小镇是壶口文旅公司2017年在原圪针滩古渡口基础上恢复修葺而成的，古镇以陕北特色窑洞建筑高低错落布局，总占地面积70亩，窑洞建筑面积1.4万平米。其中一期占地面积37亩，窑洞建筑面积6800平米，打造了156孔陕北台地窑洞群风格为主体的小镇物理商业文化体验打造了156孔陕北台地窑洞群风格为主体的小镇物理商业文化体验</div>
-        <com-list :list-arr="drumArr"></com-list>
-      </div>
-      <div v-if="actIndex == index && customNav[actIndex] && customNav[actIndex].type == 'paperCut'" :class="`m-${customNav[actIndex].type}`">
-        剪纸
-      </div>
-      <div v-if="actIndex == index && customNav[actIndex] && customNav[actIndex].type == 'shoot'" :class="`m-${customNav[actIndex].type}`">
-        摄影
-      </div>
-      <div v-if="actIndex == index && customNav[actIndex] && customNav[actIndex].type == 'picture'" :class="`m-${customNav[actIndex].type}`">
-        壶口图集
-      </div>
-      <div v-if="actIndex == index && customNav[actIndex] && customNav[actIndex].type == 'film'" :class="`m-${customNav[actIndex].type}`">
-        <com-list :list-arr="filmArr" :is-img="false"></com-list>
-        <p class="u-more">点击更多视频 >></p>
-      </div>
-    </com-transition>
     <!-- 斗鼓 -->
-    <!-- <com-transition>
+    <com-transition>
       <div v-if="customNav[actIndex].name == 'drum'" class="m-drum">
         <div class="u-desc">我们现在看到的黄河古渡口小镇是壶口文旅公司2017年在原圪针滩古渡口基础上恢复修葺而成的，古镇以陕北特色窑洞建筑高低错落布局，总占地面积70亩，窑洞建筑面积1.4万平米。其中一期占地面积37亩，窑洞建筑面积6800平米，打造了156孔陕北台地窑洞群风格为主体的小镇物理商业文化体验打造了156孔陕北台地窑洞群风格为主体的小镇物理商业文化体验</div>
         <com-list :list-arr="drumArr"></com-list>
       </div>
-    </com-transition> -->
+    </com-transition>
     <!-- 剪纸 -->
-    <!-- <com-transition>
+    <com-transition>
       <div v-if="customNav[actIndex].name == 'paperCut'" class="m-paperCut">
         剪纸
       </div>
-    </com-transition> -->
+    </com-transition>
     <!-- 摄影 -->
-    <!-- <com-transition>
+    <com-transition>
       <div v-if="customNav[actIndex].name == 'shoot'" class="m-shoot">
         摄影
       </div>
-    </com-transition> -->
+    </com-transition>
     <!-- 壶口图集 -->
-    <!-- <com-transition>
+    <com-transition>
       <div v-if="customNav[actIndex].name == 'picture'" class="m-picture">
         壶口图集
       </div>
-    </com-transition> -->
+    </com-transition>
     <!-- 壶口影集 -->
-    <!-- <com-transition>
+    <com-transition>
       <div v-if="customNav[actIndex].name == 'film'" class="m-film">
         <com-list :list-arr="filmArr" :is-img="false"></com-list>
         <p class="u-more">点击更多视频 >></p>
       </div>
-    </com-transition> -->
+    </com-transition>
   </com-wrap>
 </template>
 <script>
@@ -63,27 +44,12 @@ export default {
   data () {
     return {
       actIndex: 0,
-      // customNav: dataset.customNav,
-      customNav: [],
-      articleObj: {},
-      queryOption: [],
+      customNav: dataset.customNav,
       drumArr: [],
       filmArr: []
     }
   },
-  async mounted () {
-    await this.setMenu()
-    this.setCurCategory()
-    this.setActiveIndex()
-    this.customNav = this.getCurCategory.children || []
-    this.customNav.forEach(async (item, index) => {
-      this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
-      const res = (await this.queryArticleList(this.queryOption[index])).data
-      this.$set(this.articleObj, item.type, res.articleList || [])
-      this.queryOption[index].total = res.articleCount || 0
-      this.queryOption[index].start++
-      console.log(item, item.id, item.type, this.queryOption[index], this.articleObj)
-    })
+  mounted () {
     this.getDrum()
     this.getFilm()
   },

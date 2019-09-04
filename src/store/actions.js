@@ -12,9 +12,6 @@ export const queryCategoryList = async (store, payload) => {
   console.log('res ------> ', res)
   res.forEach((item, index) => {
     temp[item.type.split('/')[1]] = index + 1
-    // if (item.type === `#/${payload.curName}`) {
-    //   commit('SET_CUR_CATEGORY', item)
-    // }
   })
   store.commit('SET_MENU_RELATIONS', temp)
 }

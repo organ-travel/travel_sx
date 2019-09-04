@@ -1,55 +1,15 @@
 <template>
   <com-wrap class="m-strategy-page">
     <com-tab :act-index="actIndex" :nav-arr="strategyNav" @changeNav="changeNav"></com-tab>
-    <com-transition v-for="(item, index) in strategyNav" :key="item.id">
-      <div v-if="actIndex == index" :class="[`m-${strategyNav[actIndex].type}`, 'm-common']">
-        <!-- 美食 -->
-        <com-list v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'eat'" :list-arr="eatArr"></com-list>
-        <!-- 住宿 -->
-        <div v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'live'">
-          <div v-for="(item, index) in liveArr" :key="index" class="m-strategy-list">
-            <com-desc :title="item.title" :brief="item.brief" class="m-article"></com-desc>
-            <div class="m-strategy-img clearfix">
-              <div v-for="(item, index) in item.images" :key="index" class="m-wrap-img">
-                <img :src="item" class="img"/>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- 路线 -->
-        <div v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'xing'">
-          <com-desc v-for="(item, index) in lineArr" :key="index" :title="item.title" :brief="item.brief" class="m-article m-other-article"></com-desc>
-          <span class="u-more">查看更多 -></span>
-          <div v-if="serviceArr.length" class="m-strategy-list">
-            <h3 class="title">游客服务中心</h3>
-            <com-list :list-arr="serviceArr"></com-list>
-          </div>
-          <div v-if="carArr.length" class="m-strategy-list">
-            <h3 class="title">观光车</h3>
-            <com-list :list-arr="carArr"></com-list>
-          </div>
-        </div>
-        <!-- 游记 -->
-        <div v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'you'">
-          游记
-        </div>
-        <!-- 购物 -->
-        <com-list v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'buy'" :list-arr="buyArr" :has-title="false" :has-mask="true" :is-code="true"></com-list>
-        <!-- 娱乐 -->
-        <div v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'play'">
-          娱乐
-        </div>
-      </div>
-    </com-transition>
     <!-- 美食 -->
-    <!-- <com-transition>
-      <div v-if="strategyNav[actIndex] && strategyNav[actIndex].name == 'eat'" class="m-eat m-common">
+    <com-transition>
+      <div v-if="strategyNav[actIndex].name == 'eat'" class="m-eat m-common">
         <com-list :list-arr="eatArr"></com-list>
       </div>
-    </com-transition> -->
+    </com-transition>
     <!-- 住宿 -->
-    <!-- <com-transition>
-      <div v-if="strategyNav[actIndex] && strategyNav[actIndex].name == 'live'" class="m-live m-common">
+    <com-transition>
+      <div v-if="strategyNav[actIndex].name == 'live'" class="m-live m-common">
         <div v-for="(item, index) in liveArr" :key="index" class="m-strategy-list">
           <com-desc :title="item.title" :brief="item.brief" class="m-article"></com-desc>
           <div class="m-strategy-img clearfix">
@@ -59,13 +19,13 @@
           </div>
         </div>
       </div>
-    </com-transition> -->
+    </com-transition>
     <!-- 路线 -->
-    <!-- <com-transition>
-      <div v-if="strategyNav[actIndex] && strategyNav[actIndex].name == 'xing'" class="m-xing m-common"> -->
+    <com-transition>
+      <div v-if="strategyNav[actIndex].name == 'xing'" class="m-xing m-common">
         <!-- 壶口攻略.psd上的路线 -->
         <!-- <com-list :list-arr="xingArr" :has-title="false" :has-mask="true" :is-article="true"></com-list> -->
-        <!-- <com-desc v-for="(item, index) in lineArr" :key="index" :title="item.title" :brief="item.brief" class="m-article m-other-article"></com-desc>
+        <com-desc v-for="(item, index) in lineArr" :key="index" :title="item.title" :brief="item.brief" class="m-article m-other-article"></com-desc>
         <span class="u-more">查看更多 -></span>
         <div v-if="serviceArr.length" class="m-strategy-list">
           <h3 class="title">游客服务中心</h3>
@@ -76,25 +36,25 @@
           <com-list :list-arr="carArr"></com-list>
         </div>
       </div>
-    </com-transition> -->
+    </com-transition>
     <!-- 游记 -->
-    <!-- <com-transition>
-      <div v-if="strategyNav[actIndex] && strategyNav[actIndex].name == 'you'" class="m-you">
+    <com-transition>
+      <div v-if="strategyNav[actIndex].name == 'you'" class="m-you">
         游记
       </div>
-    </com-transition> -->
+    </com-transition>
     <!-- 购物 -->
-    <!-- <com-transition>
-      <div v-if="strategyNav[actIndex] && strategyNav[actIndex].name == 'buy'" class="m-buy m-common">
+    <com-transition>
+      <div v-if="strategyNav[actIndex].name == 'buy'" class="m-buy m-common">
         <com-list :list-arr="buyArr" :has-title="false" :has-mask="true" :is-code="true"></com-list>
       </div>
-    </com-transition> -->
+    </com-transition>
     <!-- 娱乐 -->
-    <!-- <com-transition>
-      <div v-if="strategyNav[actIndex] && strategyNav[actIndex].name == 'play'" class="m-play">
+    <com-transition>
+      <div v-if="strategyNav[actIndex].name == 'play'" class="m-play">
         娱乐
       </div>
-    </com-transition> -->
+    </com-transition>
   </com-wrap>
 </template>
 <script>
@@ -106,10 +66,7 @@ export default {
   data () {
     return {
       actIndex: 0,
-      // strategyNav: dataset.strategyNav,
-      strategyNav: [],
-      articleObj: {},
-      queryOption: [],
+      strategyNav: dataset.strategyNav,
       eatArr: [],
       // xingArr: [],
       lineArr: [],
@@ -117,19 +74,7 @@ export default {
       carArr: []
     }
   },
-  async mounted () {
-    await this.setMenu()
-    this.setCurCategory()
-    this.setActiveIndex()
-    this.strategyNav = this.getCurCategory.children || []
-    this.strategyNav.forEach(async (item, index) => {
-      this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
-      const res = (await this.queryArticleList(this.queryOption[index])).data
-      this.$set(this.articleObj, item.type, res.articleList || [])
-      this.queryOption[index].total = res.articleCount || 0
-      this.queryOption[index].start++
-      console.log(item, item.id, item.type, this.queryOption[index], this.articleObj)
-    })
+  mounted () {
     this.getEat()
     this.getLive()
     this.getXing()
@@ -381,96 +326,114 @@ export default {
       &.m-live {
         width 1095px
         margin 0 auto 80px
-        > div {
-          .m-strategy-list {
-            margin-top 23px
-            .m-article {
-              padding 47px 10px 0
-              color #000000
-              .u-title {
-                font-size 20px
-              }
-              .m-con {
-                padding-top 25px
-                line-height 28px
-                font-size 16px
-                .detail {
-                  color #ec5a02
-                }
+        .m-strategy-list {
+          margin-top 23px
+          .m-article {
+            padding 47px 10px 0
+            color #000000
+            .u-title {
+              font-size 20px
+            }
+            .m-con {
+              padding-top 25px
+              line-height 28px
+              font-size 16px
+              .detail {
               }
             }
-            .m-strategy-img {
-              padding-top 15px
-              .m-wrap-img {
-                float left
-                margin 10px
-                width 345px
-                height 260px
-                overflow hidden
-                .img {
-                  width 100%
-                  height 100%
-                  transition all .2s ease
-                }
-                &:first-child {
-                  width 710px
-                  height 540px
-                }
-                &:hover .img {
-                  transform scale(1.1)
-                }
+          }
+          .m-strategy-img {
+            padding-top 15px
+            .m-wrap-img {
+              float left
+              margin 10px
+              width 345px
+              height 260px
+              overflow hidden
+              .img {
+                width 100%
+                height 100%
+                transition all .2s ease
+              }
+              &:first-child {
+                width 710px
+                height 540px
+              }
+              &:hover .img {
+                transform scale(1.1)
               }
             }
           }
         }
       }
       &.m-xing {
+        // width 1230px
         width 1170px
         margin 50px auto 0
         text-align center
-        > div {
-          .m-com-desc {
-            &.m-other-article {
-              .u-title {
+        .m-com-desc {
+          // padding 0 55px
+          // height 100%
+          // display flex
+          // flex-direction column
+          // justify-content center
+          // &.m-article {
+          //   .u-title {
+          //     font-size 18px
+          //   }
+          //   .m-con {
+          //     padding-top 30px
+          //     line-height 26px
+          //     font-size 14px
+          //   }
+          // }
+          &.m-other-article {
+            .u-title {
+              color #ec5a02
+              font-size 20px
+            }
+            .m-con {
+              padding-top 25px
+              line-height 26px
+              font-size 16px
+              .detail {
                 color #ec5a02
-                font-size 20px
-              }
-              .m-con {
-                padding-top 25px
-                line-height 26px
-                font-size 16px
-                .detail {
-                  color #ec5a02
-                }
               }
             }
           }
-          .m-other-article + .m-other-article {
-            margin-top 35px
-          }
-          > .u-more {
-            padding 11px 23px
-            margin 45px auto 30px
-            display inline-block
-            border 1px solid #ec5a02
+        }
+        .m-other-article + .m-other-article {
+          margin-top 35px
+        }
+        > .u-more {
+          padding 11px 23px
+          margin 45px auto 30px
+          display inline-block
+          border 1px solid #ec5a02
+          font-size 20px
+          color #ec5a02
+        }
+        // .m-com-list {
+        //   .m-com-img {
+        //     margin 15px
+        //     width 380px
+        //     height 285px
+        //   }
+        // }
+        .m-strategy-list {
+          padding-top 35px
+          > .title {
+            padding 0 0 15px 15px
             font-size 20px
+            text-align left
             color #ec5a02
           }
-          .m-strategy-list {
-            padding-top 35px
-            > .title {
-              padding 0 0 15px 15px
-              font-size 20px
-              text-align left
-              color #ec5a02
-            }
-            .m-com-list {
-              .m-com-img {
-                margin 15px
-                width 360px
-                height 270px
-                .u-com-img {
-                }
+          .m-com-list {
+            .m-com-img {
+              margin 15px
+              width 360px
+              height 270px
+              .u-com-img {
               }
             }
           }
