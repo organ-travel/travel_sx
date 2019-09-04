@@ -121,7 +121,7 @@ export default {
     this.surveyAnchor = this.getCurCategory.children || []
     this.activeId = this.getCurCategory.children[0] ? this.getCurCategory.children[0].type : ''
     this.handleScroll()
-    window.addEventListener('scroll', this.handleScroll, true)
+    window.addEventListener('scroll', this.handleScroll, false)
     this.surveyAnchor.forEach(async (item, index) => {
       this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
       const res = (await this.queryArticleList(this.queryOption[index])).data
@@ -140,6 +140,7 @@ export default {
       const top = this.$refs['lists'].$refs[id][0].offsetTop + this.getHeaderHeight || 118
       this.scrollTop = document.documentElement.scrollTop + document.body.scrollTop
       let distance = 0
+      console.log(this.scrollTop, this.getHeaderHeight, top, id)
       if (top > this.scrollTop) {
         // down
         distance = (top - this.scrollTop) / 10
@@ -170,6 +171,7 @@ export default {
           _that.scrollTop = top
           _that.isClick = false
           _that.timer = null
+          console.log(_that.scrollTop, top)
           // _that.timer && await clearTimeout(_that.timer)
         }
       }
@@ -183,9 +185,14 @@ export default {
         const top = item.offsetTop + this.getHeaderHeight || 118
         const max = item.clientHeight + top
         const scrollTop = document.documentElement.scrollTop + document.body.scrollTop
+        // const rectTop = item.getBoundingClientRect().top
+        // if (scrollTop <= max && rectTop <= 0) {
+        //   console.log(scrollTop, this.getHeaderHeight, top, item.id, max, rectTop)
+        //   this.activeId = item.id
+        // }
         const rectTop = item.getBoundingClientRect().top
-        if (scrollTop <= max && rectTop <= 0) {
-          console.log(this.activeId, item, item.id)
+        if (scrollTop < max && scrollTop >= top) {
+          console.log(scrollTop, this.getHeaderHeight, top, item.id, max, rectTop)
           this.activeId = item.id
         }
       })
