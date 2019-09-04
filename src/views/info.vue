@@ -25,7 +25,7 @@ export default {
     this.setCurCategory()
     this.setActiveIndex()
     this.infoPageNav = this.getCurCategory.children || []
-    this.getCurCategory.children.forEach(async (item, index) => {
+    this.infoPageNav.forEach(async (item, index) => {
       this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
       // this.queryOption[item.type] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
       const res = (await this.queryArticleList(this.queryOption[index])).data

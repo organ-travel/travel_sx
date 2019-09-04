@@ -101,8 +101,10 @@ export default {
   data () {
     return {
       surveyContent: dataset.surveyContent,
-      surveyAnchor: dataset.surveyAnchor,
-      activeId: dataset.surveyAnchor[0].id,
+      articleArr: [],
+      surveyAnchor: [],
+      queryOption: [],
+      activeId: '',
       // 点击导航页面滚动
       isClick: false,
       timer: null,
@@ -113,13 +115,24 @@ export default {
     ...mapGetters(['getHeaderHeight'])
   },
   async mounted () {
-    window.addEventListener('scroll', this.handleScroll, true)
     await this.setMenu()
     this.setCurCategory()
     this.setActiveIndex()
+    this.surveyAnchor = this.getCurCategory.children || []
+    this.activeId = this.getCurCategory.children[0] ? this.getCurCategory.children[0].type : ''
+    this.handleScroll()
+    window.addEventListener('scroll', this.handleScroll, true)
+    this.surveyAnchor.forEach(async (item, index) => {
+      this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
+      const res = (await this.queryArticleList(this.queryOption[index])).data
+      this.$set(this.articleArr, index, res.articleList)
+      this.queryOption[index].total = res.articleCount || 0
+      this.queryOption[index].start++
+    })
   },
   methods: {
     async changeAnchor (id) {
+      console.log(11111111111)
       this.timer && await clearTimeout(this.timer)
       this.activeId = id
       this.isClick = true
@@ -172,6 +185,7 @@ export default {
         const scrollTop = document.documentElement.scrollTop + document.body.scrollTop
         const rectTop = item.getBoundingClientRect().top
         if (scrollTop <= max && rectTop <= 0) {
+          console.log(this.activeId, item, item.id)
           this.activeId = item.id
         }
       })
