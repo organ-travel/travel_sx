@@ -53,6 +53,8 @@ export default {
       infoNav: dataset.infoNav,
       wonderArr: dataset.wonderArr,
       strategyArr: dataset.strategyArr,
+      infoPageNav: [],
+      queryOption: [],
       arrItem: [],
       // 壶口资讯
       datas: [],
@@ -73,7 +75,19 @@ export default {
   },
   async mounted () {
     await this.setMenu()
+    this.setCurCategory()
     this.setActiveIndex()
+    // this.getMenuData.forEach(async (item, index) => {
+    //   this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
+    //   const res = (await this.queryArticleList(this.queryOption[index])).data
+    //   this.$set(this.typeArr, 0, res.articleList[0])
+    //   this.$set(this.surveyArr, 1, res.articleList[1])
+    //   this.$set(this.infoNav, 2, res.articleList[2])
+    //   this.$set(this.wonderArr, 3, res.articleList[3])
+    //   this.$set(this.strategyArr, 4, res.articleList[4])
+    //   this.queryOption[index].total = res.articleCount || 0
+    //   this.queryOption[index].start++
+    // })
     // 头图swiper
     await this.getSwiper()
     /* eslint-disable */
