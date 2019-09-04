@@ -1,5 +1,6 @@
 import axios from 'axios'
 import config from '@/config'
+import qs from 'qs'
 
 const Server = data => {
   let url = ''
@@ -9,7 +10,7 @@ const Server = data => {
     url = data.url || `${config.host}${data.action}`
   }
   return new Promise((resolve, reject) => {
-    axios.post(url, data.data || {}, {
+    axios.post(url, qs.stringify(data.data) || {}, {
       headers: data.otherHeaders ? data.headers : config.headers
     })
       .then(async (response) => {
