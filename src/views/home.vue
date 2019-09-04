@@ -53,8 +53,6 @@ export default {
       infoNav: dataset.infoNav,
       wonderArr: dataset.wonderArr,
       strategyArr: dataset.strategyArr,
-      infoPageNav: [],
-      queryOption: [],
       arrItem: [],
       // 壶口资讯
       datas: [],
@@ -75,7 +73,6 @@ export default {
   },
   async mounted () {
     await this.setMenu()
-    this.setCurCategory()
     this.setActiveIndex()
     // this.getMenuData.forEach(async (item, index) => {
     //   this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
