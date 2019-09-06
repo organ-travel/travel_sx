@@ -138,7 +138,7 @@ export default {
       this.isClick = true
       const _that = this
       const top = this.$refs['lists'].$refs[id][0].offsetTop + this.getHeaderHeight || 118
-      this.scrollTop = document.documentElement.scrollTop + document.body.scrollTop
+      this.scrollTop = document.documentElement.scrollTop || document.body.scrollTop
       let distance = 0
       console.log(this.scrollTop, this.getHeaderHeight, top, id)
       if (top > this.scrollTop) {
@@ -151,7 +151,8 @@ export default {
         moveUp()
       }
       function moveDown () {
-        if (_that.scrollTop < top) {
+        console.log('down begin', _that.scrollTop, top)
+        if (Math.ceil(_that.scrollTop) < top) {
           _that.scrollTop += distance
           document.body.scrollTop ? (document.body.scrollTop = _that.scrollTop) : (document.documentElement.scrollTop = _that.scrollTop)
           _that.timer = setTimeout(moveDown, 50)
@@ -160,10 +161,12 @@ export default {
           _that.isClick = false
           _that.timer = null
           // _that.timer && await clearTimeout(_that.timer)
+          console.log('down end', _that.scrollTop, top)
         }
       }
       function moveUp () {
-        if (_that.scrollTop > top) {
+        console.log('up begin', _that.scrollTop, top)
+        if (Math.floor(_that.scrollTop) > top) {
           _that.scrollTop -= distance
           document.body.scrollTop ? (document.body.scrollTop = _that.scrollTop) : (document.documentElement.scrollTop = _that.scrollTop)
           _that.timer = setTimeout(moveUp, 50)
@@ -171,7 +174,7 @@ export default {
           _that.scrollTop = top
           _that.isClick = false
           _that.timer = null
-          console.log(_that.scrollTop, top)
+          console.log('up end', _that.scrollTop, top)
           // _that.timer && await clearTimeout(_that.timer)
         }
       }
@@ -184,15 +187,14 @@ export default {
       items.forEach((item, index) => {
         const top = item.offsetTop + this.getHeaderHeight || 118
         const max = item.clientHeight + top
-        const scrollTop = document.documentElement.scrollTop + document.body.scrollTop
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
         // const rectTop = item.getBoundingClientRect().top
-        // if (scrollTop <= max && rectTop <= 0) {
+        // if (Math.ceil(scrollTop) <= max && rectTop <= 0) {
         //   console.log(scrollTop, this.getHeaderHeight, top, item.id, max, rectTop)
         //   this.activeId = item.id
         // }
-        const rectTop = item.getBoundingClientRect().top
-        if (scrollTop < max && scrollTop >= top) {
-          console.log(scrollTop, this.getHeaderHeight, top, item.id, max, rectTop)
+        if (Math.ceil(scrollTop) < max && Math.ceil(scrollTop) >= top) {
+          console.log(scrollTop, this.getHeaderHeight, top, item.id, max)
           this.activeId = item.id
         }
       })
