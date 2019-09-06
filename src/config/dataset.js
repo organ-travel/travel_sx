@@ -142,70 +142,70 @@ export default {
   typeArr: [{
     className: 'm-module',
     iconClass: 'u-notice',
-    route: '#/notice?name=notice',
-    text: '重要通知'
+    type: 'notice',
+    name: '重要通知'
   }, {
     className: 'm-module m-orange',
     iconClass: 'u-price',
-    route: '#/notice?name=price',
-    text: '票价信息'
+    type: 'price',
+    name: '票价信息'
   }, {
     className: 'm-module',
     iconClass: 'u-perchase',
-    route: '#/notice?name=perchase',
-    text: '在线购票'
+    type: 'perchase',
+    name: '在线购票'
   }, {
     className: 'm-module m-orange',
     iconClass: 'u-scenery',
-    route: '#/wonder?name=scenery',
-    text: '壶口八景'
+    type: 'scenery',
+    name: '壶口八景'
   }, {
     className: 'm-module m-orange',
     iconClass: 'u-film',
-    route: '#/wonder?name=film',
-    text: '4D影院'
+    type: 'film',
+    name: '4D影院'
   }, {
     className: 'm-module',
     iconClass: 'u-gudukou',
-    route: '#/wonder?name=gudukou',
-    text: '古渡口小镇'
+    type: 'gudukou',
+    name: '古渡口小镇'
   }, {
     className: 'm-module m-orange',
     iconClass: 'u-sing',
-    route: '#/wonder?name=sing',
-    text: '黄河大合唱'
+    type: 'sing',
+    name: '黄河大合唱'
   }, {
     className: 'm-module',
     iconClass: 'u-wlt',
-    route: '#/wonder?name=wlt',
-    text: '望龙台'
+    type: 'wlt',
+    name: '望龙台'
   }],
-  surveyArr: [{
-    className: 'm-column',
-    iconClass: 'icon u-history',
-    route: '#/',
-    text: '历史'
-  }, {
-    className: 'm-column',
-    iconClass: 'icon u-culture',
-    route: '#/',
-    text: '文化'
-  }, {
-    className: 'm-column',
-    iconClass: 'icon u-geo',
-    route: '#/',
-    text: '地理'
-  }, {
-    className: 'm-column',
-    iconClass: 'icon u-source',
-    route: '#/',
-    text: '资源'
-  }, {
-    className: 'm-column',
-    iconClass: 'icon u-letters',
-    route: '#/',
-    text: '美文'
-  }],
+  // surveyNav: [{
+  //   className: 'm-column',
+  //   iconClass: 'icon u-history',
+  //   route: '#/',
+  //   text: '历史'
+  // }, {
+  //   className: 'm-column',
+  //   iconClass: 'icon u-culture',
+  //   route: '#/',
+  //   text: '文化'
+  // }, {
+  //   className: 'm-column',
+  //   iconClass: 'icon u-geo',
+  //   route: '#/',
+  //   text: '地理'
+  // }, {
+  //   className: 'm-column',
+  //   iconClass: 'icon u-source',
+  //   route: '#/',
+  //   text: '资源'
+  // }, {
+  //   className: 'm-column',
+  //   iconClass: 'icon u-letters',
+  //   route: '#/',
+  //   text: '美文'
+  // }],
   infoNav: [{
     name: '景区动态'
   }, {

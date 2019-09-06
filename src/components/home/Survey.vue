@@ -1,15 +1,17 @@
 <template>
   <wrap class="m-survey" title-text="壶口概况">
-    <a href="#/" class="m-img">
-      <img src="../../assets/img/home/video.jpg" class="u-img"/>
-    </a>
-    <div class="m-content">
-      <a href="#/" class="m-brief">
-        <span class="text">壶口瀑布，国家级风景名胜区，国家AAAA级旅游景区，国家地质公园。 东濒山西省临汾市吉县壶口镇，西临陕西省延安市宜川县壶口乡，为两省共有旅游景区。北距山西太原387千米;南距陕西西安350千米。壶口瀑布是中国第二大瀑布，世界上最大的黄色瀑布。在水量大的夏季壶口瀑布是中国第二大瀑布，世界上最大的黄色瀑布。在水量大的夏季... </span>
-        <span class="detail">&nbsp;[详情]</span>
+    <div v-for="(item, index) in surveyArr" :key="index">
+      <a href="#/" class="m-img">
+        <img :src="item.imgUrl" class="u-img"/>
       </a>
-      <list class="m-columns" :type-arr="surveyArr" text-class="text"></list>
+      <div class="m-content">
+        <a href="#/" class="m-brief">
+          <span class="text">{{ item.text }} </span>
+          <span class="detail">&nbsp;[详情]</span>
+        </a>
+      </div>
     </div>
+    <list class="m-columns" :type-arr="surveyNav" @changeShow="changeSurvey"></list>
   </wrap>
 </template>
 <script>
@@ -26,9 +28,18 @@ export default {
       default () {
         return []
       }
+    },
+    surveyNav: {
+      type: Array,
+      default () {
+        return []
+      }
     }
   },
   methods: {
+    changeSurvey (type) {
+      this.$emit('changeSurvey', type)
+    }
   }
 }
 </script>
@@ -41,37 +52,41 @@ export default {
     .u-title {
       margin 0 auto 42px
     }
-    .m-img {
-      float left
-      padding-top 7px
-      .u-img{
-        width 585px
-        height 329px
-        vertical-align top
-      }
-    }
-    .m-content {
+    .m-wrap-content {
       position relative
-      float right
-      width 564px
-      height 336px
-      .m-brief {
-        display block
-        margin-top -4px
-        line-height 36px
-        font-size 14px
-        text-align left
-        color #000
-        .text {
+      .m-img {
+        float left
+        padding-top 7px
+        .u-img{
+          width 585px
+          height 329px
           vertical-align top
         }
-        .detail {
-          vertical-align top
-          color #ec5a02
+      }
+      .m-content {
+        position relative
+        float right
+        width 564px
+        height 336px
+        .m-brief {
+          display block
+          margin-top -4px
+          line-height 36px
+          font-size 14px
+          text-align left
+          color #000
+          .text {
+            vertical-align top
+          }
+          .detail {
+            vertical-align top
+            color #ec5a02
+          }
         }
       }
       .m-columns {
         position absolute
+        right 0
         bottom 0
         display flex
         justify-content space-between

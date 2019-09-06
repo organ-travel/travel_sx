@@ -11,7 +11,7 @@
         <!-- <div class="swiper-pagination"></div> -->
       </div>
       <nav class="m-list">
-        <span v-for="item in customNav" :key="item.name" :class="['u-list', activeLabel === item.name ? 'active' : '']" @click="handleClick(item.name)">{{ item.text }}</span>
+        <span v-for="item in customNav" :key="item.name" :class="['u-list', activeLabel === item.type ? 'active' : '']" @click="handleClick(item.type)">{{ item.name }}</span>
       </nav>
     </div>
   </wrap>
@@ -43,8 +43,8 @@ export default {
   mounted () {
   },
   methods: {
-    handleClick (name) {
-      this.$emit('changeCustom', name)
+    handleClick (type) {
+      this.$emit('changeCustom', type)
     }
   }
 }

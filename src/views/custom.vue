@@ -20,38 +20,6 @@
         <p class="u-more">点击更多视频 >></p>
       </div>
     </com-transition>
-    <!-- 斗鼓 -->
-    <!-- <com-transition>
-      <div v-if="customNav[actIndex].name == 'drum'" class="m-drum">
-        <div class="u-desc">我们现在看到的黄河古渡口小镇是壶口文旅公司2017年在原圪针滩古渡口基础上恢复修葺而成的，古镇以陕北特色窑洞建筑高低错落布局，总占地面积70亩，窑洞建筑面积1.4万平米。其中一期占地面积37亩，窑洞建筑面积6800平米，打造了156孔陕北台地窑洞群风格为主体的小镇物理商业文化体验打造了156孔陕北台地窑洞群风格为主体的小镇物理商业文化体验</div>
-        <com-list :list-arr="drumArr"></com-list>
-      </div>
-    </com-transition> -->
-    <!-- 剪纸 -->
-    <!-- <com-transition>
-      <div v-if="customNav[actIndex].name == 'paperCut'" class="m-paperCut">
-        剪纸
-      </div>
-    </com-transition> -->
-    <!-- 摄影 -->
-    <!-- <com-transition>
-      <div v-if="customNav[actIndex].name == 'shoot'" class="m-shoot">
-        摄影
-      </div>
-    </com-transition> -->
-    <!-- 壶口图集 -->
-    <!-- <com-transition>
-      <div v-if="customNav[actIndex].name == 'picture'" class="m-picture">
-        壶口图集
-      </div>
-    </com-transition> -->
-    <!-- 壶口影集 -->
-    <!-- <com-transition>
-      <div v-if="customNav[actIndex].name == 'film'" class="m-film">
-        <com-list :list-arr="filmArr" :is-img="false"></com-list>
-        <p class="u-more">点击更多视频 >></p>
-      </div>
-    </com-transition> -->
   </com-wrap>
 </template>
 <script>
