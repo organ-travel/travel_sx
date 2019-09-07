@@ -1,5 +1,5 @@
 <template>
-  <wrap class="m-survey" title-text="壶口概况" v-if="surveyArr && surveyArr.length">
+  <wrap v-if="surveyArr && surveyArr.length" class="m-survey" title-text="壶口概况">
     <div v-for="(item, index) in surveyArr" :key="index">
       <a :href="'#/infoDetail?id=' + item.id" class="m-img">
         <img :src="item.picture_url" class="u-img"/>
