@@ -5,6 +5,7 @@ export default {
     start: 0,
     limit: 10,
     is_top: 0,
+    tag: 'common',
     total: 0
   },
   initMenu: [{
