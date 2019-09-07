@@ -31,13 +31,13 @@
         </div>
         <!-- 游记 -->
         <div v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'you'">
-          游记
+          <com-list v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'you'" :list-arr="youArr"></com-list>
         </div>
         <!-- 购物 -->
         <com-list v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'buy'" :list-arr="buyArr" :has-title="false" :has-mask="true" :is-code="true"></com-list>
         <!-- 娱乐 -->
         <div v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'play'">
-          娱乐
+          <com-list v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'play'" :list-arr="playArr"></com-list>
         </div>
       </div>
     </com-transition>
@@ -114,7 +114,9 @@ export default {
       // xingArr: [],
       lineArr: [],
       serviceArr: [],
-      carArr: []
+      carArr: [],
+      youArr: [],
+      playArr: []
     }
   },
   // watch: {
@@ -138,12 +140,14 @@ export default {
       if (item.type === 'eat') this.eatArr = this.articleObj.eat
       if (item.type === 'live') this.liveArr = this.articleObj.live
       if (item.type === 'buy') this.buyArr = this.articleObj.buy
+      if (item.type === 'you') this.youArr = this.articleObj.you
+      if (item.type === 'play') this.playArr = this.articleObj.play
       // if (item.type === 'yule') this.buyArr = this.articleObj.yule
     })
     // this.getEat()
-    this.getLive()
+    // this.getLive()
     this.getXing()
-    this.getBuy()
+    // this.getBuy()
   },
   methods: {
     changeNav (index) {
