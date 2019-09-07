@@ -1,90 +1,7 @@
 <template>
   <section class="m-survey-page">
     <list ref="lists" :survey-content="surveyContent"></list>
-    <!-- <div id="history" class="m-com m-history">
-      <div class="m-wrap">
-        <div style="height: 90px;"></div>
-        <div class="m-wrap-content">
-          <div class="m-content">
-            <div class="icon"></div>
-            <div class="content">
-              抗日战争时期诗人光未然在此创作出了《黄河大合唱》的歌词。主要景观有：水底冒烟、旱地行船、霓虹戏水、晴空洒雨、旱天鸣雷、冰峰倒挂、山飞海立、十里龙槽、石窝宝镜、孟门夜月、女娇望夫、明清码头等20多个。1988年黄河壶口被国务院确定为国家重点风景名胜区，1992年被评为“中国旅游胜地四十佳”之一，2002年被国土资源部评为国家地质公园及地质遗迹保护区，2008年被评为国家4A级旅游景区。1999年6月18日，江泽民同志视察黄河时，面对百丈飞瀑，挥笔写下“黄河壶口瀑布”六个大字。相继还有李鹏、朱镕基、李瑞环、吴邦国、温家宝等党和国家领导人亲临壶口瀑布，对壶口景区给予了高度的评价和赞誉！“源出昆仑衍大流，玉关九转一壶收”，雄伟壮观的壶口瀑布目前已成为“两黄两圣”和陕北红色旅游线路的重要组成部分，是亿万华夏儿女心之所归、梦之所盼的人文圣地，为世界所瞩目。
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="culture" class="m-com m-culture">
-      <div class="m-wrap">
-        <div class="m-wrap-content">
-          <div class="m-content">
-            <div class="icon"></div>
-            <div class="content">
-              抗日战争时期诗人光未然在此创作出了《黄河大合唱》的歌词。主要景观有：水底冒烟、旱地行船、霓虹戏水、晴空洒雨、旱天鸣雷、冰峰倒挂、山飞海立、十里龙槽、石窝宝镜、孟门夜月、女娇望夫、明清码头等20多个。1988年黄河壶口被国务院确定为国家重点风景名胜区，1992年被评为“中国旅游胜地四十佳”之一，2002年被国土资源部评为国家地质公园及地质遗迹保护区，2008年被评为国家4A级旅游景区。1999年6月18日，江泽民同志视察黄河时，面对百丈飞瀑，挥笔写下“黄河壶口瀑布”六个大字。相继还有李鹏、朱镕基、李瑞环、吴邦国、温家宝等党和国家领导人亲临壶口瀑布，对壶口景区给予了高度的评价和赞誉！“源出昆仑衍大流，玉关九转一壶收”，雄伟壮观的壶口瀑布目前已成为“两黄两圣”和陕北红色旅游线路的重要组成部分，是亿万华夏儿女心之所归、梦之所盼的人文圣地，为世界所瞩目。
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="geo" class="m-com m-geo">
-      <div class="m-wrap">
-        <div class="m-wrap-content">
-          <div class="m-content">
-            <div class="icon"></div>
-            <div class="content">
-              抗日战争时期诗人光未然在此创作出了《黄河大合唱》的歌词。主要景观有：水底冒烟、旱地行船、霓虹戏水、晴空洒雨、旱天鸣雷、冰峰倒挂、山飞海立、十里龙槽、石窝宝镜、孟门夜月、女娇望夫、明清码头等20多个。1988年黄河壶口被国务院确定为国家重点风景名胜区，1992年被评为“中国旅游胜地四十佳”之一，2002年被国土资源部评为国家地质公园及地质遗迹保护区，2008年被评为国家4A级旅游景区。1999年6月18日，江泽民同志视察黄河时，面对百丈飞瀑，挥笔写下“黄河壶口瀑布”六个大字。相继还有李鹏、朱镕基、李瑞环、吴邦国、温家宝等党和国家领导人亲临壶口瀑布，对壶口景区给予了高度的评价和赞誉！“源出昆仑衍大流，玉关九转一壶收”，雄伟壮观的壶口瀑布目前已成为“两黄两圣”和陕北红色旅游线路的重要组成部分，是亿万华夏儿女心之所归、梦之所盼的人文圣地，为世界所瞩目。
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="source" class="m-com m-source">
-      <div class="m-wrap">
-        <div class="m-wrap-content">
-          <div class="m-content">
-            <div class="icon"></div>
-            <div class="content">
-              抗日战争时期诗人光未然在此创作出了《黄河大合唱》的歌词。主要景观有：水底冒烟、旱地行船、霓虹戏水、晴空洒雨、旱天鸣雷、冰峰倒挂、山飞海立、十里龙槽、石窝宝镜、孟门夜月、女娇望夫、明清码头等20多个。1988年黄河壶口被国务院确定为国家重点风景名胜区，1992年被评为“中国旅游胜地四十佳”之一，2002年被国土资源部评为国家地质公园及地质遗迹保护区，2008年被评为国家4A级旅游景区。1999年6月18日，江泽民同志视察黄河时，面对百丈飞瀑，挥笔写下“黄河壶口瀑布”六个大字。相继还有李鹏、朱镕基、李瑞环、吴邦国、温家宝等党和国家领导人亲临壶口瀑布，对壶口景区给予了高度的评价和赞誉！“源出昆仑衍大流，玉关九转一壶收”，雄伟壮观的壶口瀑布目前已成为“两黄两圣”和陕北红色旅游线路的重要组成部分，是亿万华夏儿女心之所归、梦之所盼的人文圣地，为世界所瞩目。
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="letters" class="m-com m-letters">
-      <div class="m-wrap">
-        <div class="m-wrap-content">
-          <div class="m-content">
-            <div class="icon"></div>
-            <div class="content">
-              抗日战争时期诗人光未然在此创作出了《黄河大合唱》的歌词。主要景观有：水底冒烟、旱地行船、霓虹戏水、晴空洒雨、旱天鸣雷、冰峰倒挂、山飞海立、十里龙槽、石窝宝镜、孟门夜月、女娇望夫、明清码头等20多个。1988年黄河壶口被国务院确定为国家重点风景名胜区，1992年被评为“中国旅游胜地四十佳”之一，2002年被国土资源部评为国家地质公园及地质遗迹保护区，2008年被评为国家4A级旅游景区。1999年6月18日，江泽民同志视察黄河时，面对百丈飞瀑，挥笔写下“黄河壶口瀑布”六个大字。相继还有李鹏、朱镕基、李瑞环、吴邦国、温家宝等党和国家领导人亲临壶口瀑布，对壶口景区给予了高度的评价和赞誉！“源出昆仑衍大流，玉关九转一壶收”，雄伟壮观的壶口瀑布目前已成为“两黄两圣”和陕北红色旅游线路的重要组成部分，是亿万华夏儿女心之所归、梦之所盼的人文圣地，为世界所瞩目。
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
     <anchor ref="anchor" :survey-anchor="surveyAnchor" :active-id="activeId" @changeAnchor="changeAnchor"></anchor>
-    <!-- <div class="m-anchor-list">
-      <a href="#history" class="m-anchor active" @click="handleClick">
-        <span class="u-anchor"></span>
-        <span class="text">历史</span>
-      </a>
-      <a href="#culture" class="m-anchor">
-        <span class="u-anchor"></span>
-        <span class="text">文化</span>
-      </a>
-      <a href="#geo" class="m-anchor">
-        <span class="u-anchor"></span>
-        <span class="text">地理</span>
-      </a>
-      <a href="#source" class="m-anchor">
-        <span class="u-anchor"></span>
-        <span class="text">资源</span>
-      </a>
-      <a href="#letters" class="m-anchor">
-        <span class="u-anchor"></span>
-        <span class="text">美文</span>
-      </a>
-    </div> -->
   </section>
 </template>
 <script>
@@ -105,6 +22,7 @@ export default {
       surveyAnchor: [],
       queryOption: [],
       activeId: '',
+      // actIndex: 0,
       // 点击导航页面滚动
       isClick: false,
       timer: null,
@@ -115,12 +33,15 @@ export default {
     ...mapGetters(['getHeaderHeight'])
   },
   async mounted () {
+    console.log(this.$route.params.actIndex)
     await this.setMenu()
     this.setCurCategory()
     this.setActiveIndex()
     this.surveyAnchor = this.getCurCategory.children || []
+    // this.actIndex = this.$route.query.actIndex || this.actIndex
+    // this.activeId = this.getCurCategory.children[this.actIndex] ? this.getCurCategory.children[this.actIndex].type : ''
     this.activeId = this.getCurCategory.children[0] ? this.getCurCategory.children[0].type : ''
-    this.handleScroll()
+    this.handleScroll('isFirst')
     window.addEventListener('scroll', this.handleScroll, false)
     this.surveyAnchor.forEach(async (item, index) => {
       this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
@@ -132,7 +53,6 @@ export default {
   },
   methods: {
     async changeAnchor (id) {
-      console.log(11111111111)
       this.timer && await clearTimeout(this.timer)
       this.activeId = id
       this.isClick = true
@@ -179,27 +99,36 @@ export default {
         }
       }
     },
-    handleScroll () {
+    handleScroll (isFirst) {
       if (this.isClick) {
         return
       }
       const items = document.querySelectorAll('.m-list-survey')
+      // if (isFirst === 'isFirst') {
+      //   console.log(typeof this.$route.query.actIndex != 'undefined')
+      //   const height = items[this.actIndex].offsetTop + this.getHeaderHeight || 118
+      //   document.body.scrollTop ? (document.body.scrollTop = height) : (document.documentElement.scrollTop = height)
+      //   return
+      // }
       items.forEach((item, index) => {
         const top = item.offsetTop + this.getHeaderHeight || 118
         const max = item.clientHeight + top
         const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-        // const rectTop = item.getBoundingClientRect().top
-        // if (Math.ceil(scrollTop) <= max && rectTop <= 0) {
-        //   console.log(scrollTop, this.getHeaderHeight, top, item.id, max, rectTop)
-        //   this.activeId = item.id
-        // }
         if (Math.ceil(scrollTop) < max && Math.ceil(scrollTop) >= top) {
           console.log(scrollTop, this.getHeaderHeight, top, item.id, max)
           this.activeId = item.id
         }
       })
     }
-  }
+  },
+  // beforeRouteEnter (to, from, next) {
+  //   next(vm => {
+  //     if (from.name != 'survey') console.log(1111111)
+  //     else {
+  //       console.log(222222)
+  //     }
+  //   })
+  // }
 }
 </script>
 <style lang="stylus" scoped>

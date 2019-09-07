@@ -14,9 +14,9 @@
         <a
           v-for="(arr, ind) in item.children"
           :key="ind"
-          :href="arr.type"
+          href="javascript:void(0)"
           class="u-drop-list"
-          @click.stop="handleClick(index, ind)">
+          @click.stop="handleClick(index, ind, item.type)">
           {{ arr.name }}
         </a>
       </div>
@@ -47,8 +47,8 @@ export default {
     handleMenu (index, catId, hasSub) {
       this.$emit('clickMenu', index, hasSub)
     },
-    handleClick (index, ind) {
-      this.$emit('clickSub', index, ind)
+    handleClick (index, ind, type) {
+      this.$emit('clickSub', index, ind, type)
     }
   }
 }

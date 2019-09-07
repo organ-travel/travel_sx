@@ -45,11 +45,17 @@ export default {
       this.oldIndex = index
       this.SET_ACTIVE_INDEX(index)
     },
-    handleClick (index, ind) {
+    handleClick (index, ind, type) {
       this.isShow = false
       this.oldIndex = index
       this.SET_ACTIVE_INDEX(index)
-      console.log('content设置活动index', this.getActiveIndex)
+      console.log('content设置活动index', this.getActiveIndex, type)
+      // this.$router.push({
+      //   name: type.split('/')[1],
+      //   query: {
+      //     actIndex: ind
+      //   }
+      // })
     }
   }
 }

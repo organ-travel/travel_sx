@@ -122,6 +122,7 @@ export default {
     this.setCurCategory()
     this.setActiveIndex()
     this.strategyNav = this.getCurCategory.children || []
+    // this.actIndex = this.$route.query.actIndex || this.actIndex
     this.strategyNav.forEach(async (item, index) => {
       this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
       const res = (await this.queryArticleList(this.queryOption[index])).data

@@ -16,128 +16,128 @@ export default {
     'home': 0,
     '': 0
   },
-  menuData: [{
-    name: '网站首页',
-    route: '#/'
-  }, {
-    name: '壶口概况',
-    route: '#/survey',
-    sub: [{
-      name: '简介',
-      route: '#/introduction'
-    }, {
-      name: '历史',
-      route: '#/'
-    }, {
-      name: '文化',
-      route: '#/'
-    }, {
-      name: '地理',
-      route: '#/'
-    }, {
-      name: '资源',
-      route: '#/'
-    }, {
-      name: '美文',
-      route: '#/letters'
-    }]
-  }, {
-    name: '壶口资讯',
-    route: '#/info',
-    sub: [{
-      name: '景区新闻',
-      route: '#/'
-    }, {
-      name: '文旅动态',
-      route: '#/'
-    }, {
-      name: '景区活动',
-      route: '#/'
-    }, {
-      name: '招贤纳士',
-      route: '#/'
-    }, {
-      name: '文件下载',
-      route: '#/'
-    }]
-  }, {
-    name: '壶口奇观',
-    route: '#/wonder',
-    sub: [{
-      name: '古渡口小镇',
-      route: '#/'
-    }, {
-      name: '4D影院',
-      route: '#/'
-    }, {
-      name: '黄河大合唱',
-      route: '#/'
-    }, {
-      name: '观龙台',
-      route: '#/'
-    }, {
-      name: '壶口八景',
-      route: '#/'
-    }]
-  }, {
-    name: '壶口攻略',
-    route: '#/strategy',
-    sub: [{
-      name: '美食',
-      route: '#/'
-    }, {
-      name: '住宿',
-      route: '#/'
-    }, {
-      name: '线路',
-      route: '#/'
-    }, {
-      name: '游记',
-      route: '#/'
-    }, {
-      name: '购物',
-      route: '#/'
-    }, {
-      name: '娱乐',
-      route: '#/'
-    }]
-  }, {
-    name: '壶口风情',
-    route: '#/custom',
-    sub: [{
-      name: '剪纸',
-      route: '#/'
-    }, {
-      name: '斗鼓',
-      route: '#/'
-    }, {
-      name: '摄影',
-      route: '#/'
-    }, {
-      name: '壶口图集',
-      route: '#/'
-    }, {
-      name: '壶口影集',
-      route: '#/'
-    }]
-  }, {
-    name: '壶口创客',
-    route: '#/maker'
-  }, {
-    name: '联系我们',
-    route: '#/contact'
-  }],
-  menuRelations: {
-    'home': 0,
-    'survey': 1,
-    'introduction': 1,
-    'info': 2,
-    'wonder': 3,
-    'strategy': 4,
-    'custom': 5,
-    'maker': 6,
-    'contact': 7
-  },
+  // menuData: [{
+  //   name: '网站首页',
+  //   route: '#/'
+  // }, {
+  //   name: '壶口概况',
+  //   route: '#/survey',
+  //   sub: [{
+  //     name: '简介',
+  //     route: '#/introduction'
+  //   }, {
+  //     name: '历史',
+  //     route: '#/'
+  //   }, {
+  //     name: '文化',
+  //     route: '#/'
+  //   }, {
+  //     name: '地理',
+  //     route: '#/'
+  //   }, {
+  //     name: '资源',
+  //     route: '#/'
+  //   }, {
+  //     name: '美文',
+  //     route: '#/letters'
+  //   }]
+  // }, {
+  //   name: '壶口资讯',
+  //   route: '#/info',
+  //   sub: [{
+  //     name: '景区新闻',
+  //     route: '#/'
+  //   }, {
+  //     name: '文旅动态',
+  //     route: '#/'
+  //   }, {
+  //     name: '景区活动',
+  //     route: '#/'
+  //   }, {
+  //     name: '招贤纳士',
+  //     route: '#/'
+  //   }, {
+  //     name: '文件下载',
+  //     route: '#/'
+  //   }]
+  // }, {
+  //   name: '壶口奇观',
+  //   route: '#/wonder',
+  //   sub: [{
+  //     name: '古渡口小镇',
+  //     route: '#/'
+  //   }, {
+  //     name: '4D影院',
+  //     route: '#/'
+  //   }, {
+  //     name: '黄河大合唱',
+  //     route: '#/'
+  //   }, {
+  //     name: '观龙台',
+  //     route: '#/'
+  //   }, {
+  //     name: '壶口八景',
+  //     route: '#/'
+  //   }]
+  // }, {
+  //   name: '壶口攻略',
+  //   route: '#/strategy',
+  //   sub: [{
+  //     name: '美食',
+  //     route: '#/'
+  //   }, {
+  //     name: '住宿',
+  //     route: '#/'
+  //   }, {
+  //     name: '线路',
+  //     route: '#/'
+  //   }, {
+  //     name: '游记',
+  //     route: '#/'
+  //   }, {
+  //     name: '购物',
+  //     route: '#/'
+  //   }, {
+  //     name: '娱乐',
+  //     route: '#/'
+  //   }]
+  // }, {
+  //   name: '壶口风情',
+  //   route: '#/custom',
+  //   sub: [{
+  //     name: '剪纸',
+  //     route: '#/'
+  //   }, {
+  //     name: '斗鼓',
+  //     route: '#/'
+  //   }, {
+  //     name: '摄影',
+  //     route: '#/'
+  //   }, {
+  //     name: '壶口图集',
+  //     route: '#/'
+  //   }, {
+  //     name: '壶口影集',
+  //     route: '#/'
+  //   }]
+  // }, {
+  //   name: '壶口创客',
+  //   route: '#/maker'
+  // }, {
+  //   name: '联系我们',
+  //   route: '#/contact'
+  // }],
+  // menuRelations: {
+  //   'home': 0,
+  //   'survey': 1,
+  //   'introduction': 1,
+  //   'info': 2,
+  //   'wonder': 3,
+  //   'strategy': 4,
+  //   'custom': 5,
+  //   'maker': 6,
+  //   'contact': 7
+  // },
   // 首页
   typeArr: [{
     className: 'm-module',
@@ -216,71 +216,71 @@ export default {
   wonderArr: [{
     img: './static/gdk.jpg',
     iconClass: 'u-img u-gdk',
-    route: '#/',
-    text: '古渡口小镇'
+    type: '#/',
+    name: '古渡口小镇'
   }, {
     img: '../../assets/img/4d.jpg',
     iconClass: 'u-img u-4d',
-    route: '#/',
-    text: '4D影院'
+    type: '#/',
+    name: '4D影院'
   }, {
     img: '../../assets/img/hh.jpg',
     iconClass: 'u-img u-hh',
-    route: '#/',
-    text: '黄河大合唱'
+    type: '#/',
+    name: '黄河大合唱'
   }, {
     img: '../../assets/img/glt.jpg',
     iconClass: 'u-img u-glt',
-    route: '#/',
-    text: '观龙台'
+    type: '#/',
+    name: '观龙台'
   }, {
     img: '../../assets/img/hkbj.jpg',
     iconClass: 'u-img u-hkbj',
-    route: '#/',
-    text: '壶口八景'
+    type: '#/',
+    name: '壶口八景'
   }],
   strategyArr: [{
     iconClass: 'pic-com u-eat',
-    route: '#/',
-    text: '吃'
+    type: 'eat',
+    name: '吃'
   }, {
     iconClass: 'pic-com u-live',
-    route: '#/',
-    text: '住'
+    type: 'live',
+    name: '住'
   }, {
     iconClass: 'pic-com u-xing',
-    route: '#/',
-    text: '行'
+    type: 'xing',
+    name: '行'
   }, {
     iconClass: 'pic-com u-you',
-    route: '#/',
-    text: '游'
+    type: 'you',
+    name: '游'
   }, {
     iconClass: 'pic-com u-play',
-    route: '#/',
-    text: '娱'
+    type: 'play',
+    name: '娱'
   }, {
     iconClass: 'pic-com u-buy',
-    route: '#/',
-    text: '购'
+    type: 'buy',
+    name: '购'
   }],
   // 壶口风情导航
-  customNav: [{
-    name: 'drum',
-    text: '斗鼓'
-  }, {
-    name: 'paperCut',
-    text: '剪纸'
-  }, {
-    name: 'shoot',
-    text: '摄影'
-  }, {
-    name: 'picture',
-    text: '壶口图集'
-  }, {
-    name: 'film',
-    text: '壶口影集'
-  }],
+  // customNav: [{
+  //   name: 'drum',
+  //   text: '斗鼓'
+  // }, {
+  //   name: 'paperCut',
+  //   text: '剪纸'
+  // }, {
+  //   name: 'shoot',
+  //   text: '摄影'
+  // }, {
+  //   name: 'picture',
+  //   text: '壶口图集'
+  // }, {
+  //   name: 'film',
+  //   text: '壶口影集'
+  // }],
   // 壶口奇观导航
   wonderNav: [{
     name: 'gudukou',
@@ -327,41 +327,41 @@ export default {
   //   name: '文件下载'
   // }],
   // 壶口风情导航
-  infoPageNav: [{
-    name: 'news',
-    text: '景区新闻'
-  }, {
-    name: 'dynamic',
-    text: '文旅动态'
-  }, {
-    name: 'activity',
-    text: '景区活动'
-  }, {
-    name: 'recuit',
-    text: '招贤纳士'
-  }, {
-    name: 'download',
-    text: '文件下载'
-  }],
-  strategyNav: [{
-    name: 'eat',
-    text: '美食'
-  }, {
-    name: 'live',
-    text: '住宿'
-  }, {
-    name: 'xing',
-    text: '路线'
-  }, {
-    name: 'you',
-    text: '游记'
-  }, {
-    name: 'buy',
-    text: '购物'
-  }, {
-    name: 'play',
-    text: '娱乐'
-  }],
+  // infoPageNav: [{
+  //   name: 'news',
+  //   text: '景区新闻'
+  // }, {
+  //   name: 'dynamic',
+  //   text: '文旅动态'
+  // }, {
+  //   name: 'activity',
+  //   text: '景区活动'
+  // }, {
+  //   name: 'recuit',
+  //   text: '招贤纳士'
+  // }, {
+  //   name: 'download',
+  //   text: '文件下载'
+  // }],
+  // strategyNav: [{
+  //   name: 'eat',
+  //   text: '美食'
+  // }, {
+  //   name: 'live',
+  //   text: '住宿'
+  // }, {
+  //   name: 'xing',
+  //   text: '路线'
+  // }, {
+  //   name: 'you',
+  //   text: '游记'
+  // }, {
+  //   name: 'buy',
+  //   text: '购物'
+  // }, {
+  //   name: 'play',
+  //   text: '娱乐'
+  // }],
   surveyContent: [{
     id: 'history',
     content: '抗日战争时期诗人光未然在此创作出了《黄河大合唱》的歌词。主要景观有：水底冒烟、旱地行船、霓虹戏水、晴空洒雨、旱天鸣雷、冰峰倒挂、山飞海立、十里龙槽、石窝宝镜、孟门夜月、女娇望夫、明清码头等20多个。1988年黄河壶口被国务院确定为国家重点风景名胜区，1992年被评为“中国旅游胜地四十佳”之一，2002年被国土资源部评为国家地质公园及地质遗迹保护区，2008年被评为国家4A级旅游景区。1999年6月18日，江泽民同志视察黄河时，面对百丈飞瀑，挥笔写下“黄河壶口瀑布”六个大字。相继还有李鹏、朱镕基、李瑞环、吴邦国、温家宝等党和国家领导人亲临壶口瀑布，对壶口景区给予了高度的评价和赞誉！“源出昆仑衍大流，玉关九转一壶收”，雄伟壮观的壶口瀑布目前已成为“两黄两圣”和陕北红色旅游线路的重要组成部分，是亿万华夏儿女心之所归、梦之所盼的人文圣地，为世界所瞩目。'
@@ -378,20 +378,20 @@ export default {
     id: 'letters',
     content: '景区地质资源丰富，2002年被国家国土资源部确定为国家地质公园及地质遗迹保护区，公园以气势磅礴的壶口瀑布群为主要地质遗迹，包括主瀑布、侧瀑布、十里龙槽、孟门离堆岛、窝穴、侧蚀洞穴、漏斗、棋盘格式节理和河流侵蚀形成的河谷地貌等地质遗迹。这些地质研究对于研究秦晋峡谷的形成、黄河的发育、水动力特征等具有重要意义。黄河壶口瀑布为我国大型瀑布之一，是黄河河道上第一大瀑布，其水流落差有枯水期、平水期、洪水期多种变化。枯水期一般落差为十几米，洪水季节可达40m以上。长期以来，由于黄土、黄河、黄肤色引发的古老话题，使得人们对古老文明尤其是黄河古文化倍感亲切。稀有的自然属性、较高的美学观赏价值，具有一定规模和分布范围的地质遗迹景观为主体，并融合其它自然景观与人文景观而构成的一种独特的自然区域，具有科研科普和观赏游览的双重功能，每年来景区进行研学、地质科普研究、观光旅游究人的学生、专家很多。'
   }],
-  surveyAnchor: [{
-    id: 'history',
-    text: '历史'
-  }, {
-    id: 'culture',
-    text: '文化'
-  }, {
-    id: 'geo',
-    text: '地理'
-  }, {
-    id: 'source',
-    text: '资源'
-  }, {
-    id: 'letters',
-    text: '美文'
-  }]
+  // surveyAnchor: [{
+  //   id: 'history',
+  //   text: '历史'
+  // }, {
+  //   id: 'culture',
+  //   text: '文化'
+  // }, {
+  //   id: 'geo',
+  //   text: '地理'
+  // }, {
+  //   id: 'source',
+  //   text: '资源'
+  // }, {
+  //   id: 'letters',
+  //   text: '美文'
+  // }]
 }

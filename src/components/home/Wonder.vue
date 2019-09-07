@@ -1,10 +1,10 @@
 <template>
   <wrap class="m-wonder" title-text="壶口奇观">
     <div class="m-content clearfix">
-      <a v-for="(item, index) in wonderArr" :key="index" :href="item.route" class="pic-com">
+      <a v-for="(item, index) in wonderArr" :key="index" :href="item.type" class="pic-com">
         <span :class="item.iconClass"></span>
         <!-- <img :src="item.img" :class="item.iconClass"/> -->
-        <span class="title">{{ item.text }}</span>
+        <span class="title">{{ item.name }}</span>
       </a>
     </div>
   </wrap>
