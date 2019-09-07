@@ -10,7 +10,6 @@
     </div>
     <type :type-arr="typeArr"></type>
     <survey :survey-arr="surveyArr" :survey-nav="surveyNav" @changeSurvey="changeSurvey"></survey>
-    {{datas}}
     <info :act-index="actIndex" :info-arr="datas">
       <com-tab slot="nav" :act-index="actIndex" :nav-arr="infoNav" fun-name="changeInfos" :is-border="true" @changeInfos="changeInfos"></com-tab>
       <!-- <tab slot="tab" :nav="infoNav" :arr="infoArr" :act-index="actIndex" @changeInfo="changeInfo"></tab> -->
@@ -25,7 +24,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import Type from '@/components/home/Type.vue'
 import Survey from '@/components/home/Survey.vue'
 import Info from '@/components/home/Info.vue'
@@ -146,7 +144,7 @@ export default {
       arr.forEach(async (item, index) => {
         this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
         const res = (await this.queryArticleList(this.queryOption[index])).data
-        this.$set(this.datas, item.type, res.articleList || [])
+        this.$set(this.datas, index, res.articleList || [])
         if (this.actIndex === index) {
           this.infoArr = this.datas[index]
         }
