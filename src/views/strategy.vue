@@ -135,8 +135,12 @@ export default {
       this.queryOption[index].total = res.articleCount || 0
       this.queryOption[index].start++
       console.log(item, item.id, item.type, this.queryOption[index], this.articleObj)
+      if (item.type === 'eat') this.eatArr = this.articleObj.eat
+      if (item.type === 'live') this.liveArr = this.articleObj.live
+      if (item.type === 'buy') this.buyArr = this.articleObj.buy
+      // if (item.type === 'yule') this.buyArr = this.articleObj.yule
     })
-    this.getEat()
+    // this.getEat()
     this.getLive()
     this.getXing()
     this.getBuy()
