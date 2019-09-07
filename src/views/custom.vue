@@ -39,10 +39,16 @@ export default {
       filmArr: []
     }
   },
+  // watch: {
+  //   '$route.query.actIndex' (n, o) {
+  //     this.changeNav(n || 0)
+  //   }
+  // },
   async mounted () {
     await this.setMenu()
-    this.setCurCategory()
-    this.setActiveIndex()
+    // this.setActiveIndex()
+    // this.setCurCategory()
+    this.actIndex = parseInt(this.$route.query.actIndex) || this.actIndex
     this.customNav = this.getCurCategory.children || []
     this.customNav.forEach(async (item, index) => {
       this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })

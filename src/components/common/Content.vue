@@ -7,8 +7,6 @@
   </section>
 </template>
 <script>
-// import dataset from '@/config/dataset'
-// import { mapGetters } from 'vuex'
 export default {
   com: 'MenuItem',
   data() {
@@ -49,13 +47,13 @@ export default {
       this.isShow = false
       this.oldIndex = index
       this.SET_ACTIVE_INDEX(index)
-      console.log('content设置活动index', this.getActiveIndex, type)
-      // this.$router.push({
-      //   name: type.split('/')[1],
-      //   query: {
-      //     actIndex: ind
-      //   }
-      // })
+      console.log('content设置活动index', this.getActiveIndex, type, this.$route)
+      this.$router.push({
+        name: type.split('/')[1],
+        query: {
+          actIndex: ind
+        }
+      })
     }
   }
 }

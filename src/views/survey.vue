@@ -22,7 +22,7 @@ export default {
       surveyAnchor: [],
       queryOption: [],
       activeId: '',
-      // actIndex: 0,
+      actIndex: 0,
       // 点击导航页面滚动
       isClick: false,
       timer: null,
@@ -32,15 +32,19 @@ export default {
   computed: {
     ...mapGetters(['getHeaderHeight'])
   },
+  // watch: {
+  //   '$route.query.actIndex' (n, o) {
+  //     this.activeId = this.getCurCategory.children[n || 0] ? this.getCurCategory.children[n || 0].type : ''
+  //     this.changeAnchor(this.activeId)
+  //   }
+  // },
   async mounted () {
-    console.log(this.$route.params.actIndex)
     await this.setMenu()
-    this.setCurCategory()
-    this.setActiveIndex()
+    // this.setActiveIndex()
+    // this.setCurCategory()
+    this.actIndex = parseInt(this.$route.query.actIndex) || this.actIndex
+    this.activeId = this.getCurCategory.children[this.actIndex] ? this.getCurCategory.children[this.actIndex].type : ''
     this.surveyAnchor = this.getCurCategory.children || []
-    // this.actIndex = this.$route.query.actIndex || this.actIndex
-    // this.activeId = this.getCurCategory.children[this.actIndex] ? this.getCurCategory.children[this.actIndex].type : ''
-    this.activeId = this.getCurCategory.children[0] ? this.getCurCategory.children[0].type : ''
     this.handleScroll('isFirst')
     window.addEventListener('scroll', this.handleScroll, false)
     this.surveyAnchor.forEach(async (item, index) => {
@@ -60,7 +64,6 @@ export default {
       const top = this.$refs['lists'].$refs[id][0].offsetTop + this.getHeaderHeight || 118
       this.scrollTop = document.documentElement.scrollTop || document.body.scrollTop
       let distance = 0
-      console.log(this.scrollTop, this.getHeaderHeight, top, id)
       if (top > this.scrollTop) {
         // down
         distance = (top - this.scrollTop) / 10
@@ -71,7 +74,6 @@ export default {
         moveUp()
       }
       function moveDown () {
-        console.log('down begin', _that.scrollTop, top)
         if (Math.ceil(_that.scrollTop) < top) {
           _that.scrollTop += distance
           document.body.scrollTop ? (document.body.scrollTop = _that.scrollTop) : (document.documentElement.scrollTop = _that.scrollTop)
@@ -80,12 +82,9 @@ export default {
           _that.scrollTop = top
           _that.isClick = false
           _that.timer = null
-          // _that.timer && await clearTimeout(_that.timer)
-          console.log('down end', _that.scrollTop, top)
         }
       }
       function moveUp () {
-        console.log('up begin', _that.scrollTop, top)
         if (Math.floor(_that.scrollTop) > top) {
           _that.scrollTop -= distance
           document.body.scrollTop ? (document.body.scrollTop = _that.scrollTop) : (document.documentElement.scrollTop = _that.scrollTop)
@@ -94,8 +93,6 @@ export default {
           _that.scrollTop = top
           _that.isClick = false
           _that.timer = null
-          console.log('up end', _that.scrollTop, top)
-          // _that.timer && await clearTimeout(_that.timer)
         }
       }
     },
@@ -104,31 +101,21 @@ export default {
         return
       }
       const items = document.querySelectorAll('.m-list-survey')
-      // if (isFirst === 'isFirst') {
-      //   console.log(typeof this.$route.query.actIndex != 'undefined')
-      //   const height = items[this.actIndex].offsetTop + this.getHeaderHeight || 118
-      //   document.body.scrollTop ? (document.body.scrollTop = height) : (document.documentElement.scrollTop = height)
-      //   return
-      // }
+      if (isFirst === 'isFirst') {
+        const height = items[this.actIndex].offsetTop + this.getHeaderHeight || 118
+        document.body.scrollTop ? (document.body.scrollTop = height) : (document.documentElement.scrollTop = height)
+        return
+      }
       items.forEach((item, index) => {
         const top = item.offsetTop + this.getHeaderHeight || 118
         const max = item.clientHeight + top
         const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
         if (Math.ceil(scrollTop) < max && Math.ceil(scrollTop) >= top) {
-          console.log(scrollTop, this.getHeaderHeight, top, item.id, max)
           this.activeId = item.id
         }
       })
     }
-  },
-  // beforeRouteEnter (to, from, next) {
-  //   next(vm => {
-  //     if (from.name != 'survey') console.log(1111111)
-  //     else {
-  //       console.log(222222)
-  //     }
-  //   })
-  // }
+  }
 }
 </script>
 <style lang="stylus" scoped>

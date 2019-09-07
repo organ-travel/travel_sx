@@ -117,12 +117,17 @@ export default {
       carArr: []
     }
   },
+  // watch: {
+  //   '$route.query.actIndex' (n, o) {
+  //     this.changeNav(n || 0)
+  //   }
+  // },
   async mounted () {
     await this.setMenu()
-    this.setCurCategory()
-    this.setActiveIndex()
+    // this.setActiveIndex()
+    // this.setCurCategory()
+    this.actIndex = parseInt(this.$route.query.actIndex) || this.actIndex
     this.strategyNav = this.getCurCategory.children || []
-    // this.actIndex = this.$route.query.actIndex || this.actIndex
     this.strategyNav.forEach(async (item, index) => {
       this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
       const res = (await this.queryArticleList(this.queryOption[index])).data

@@ -81,8 +81,8 @@ export default {
   },
   async mounted () {
     await this.setMenu()
-    this.setCurCategory()
-    this.setActiveIndex()
+    // this.setCurCategory()
+    // this.setActiveIndex()
     this.infoPageNav = this.getCurCategory.children || []
     this.getCurCategory.children.forEach(async (item, index) => {
       this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })

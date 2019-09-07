@@ -20,14 +20,19 @@ export default {
       queryOption: []
     }
   },
+  // watch: {
+  //   '$route.query.actIndex' (n, o) {
+  //     this.changeNav(n || 0)
+  //   }
+  // },
   async mounted () {
     await this.setMenu()
-    this.setCurCategory()
-    this.setActiveIndex()
+    // this.setActiveIndex()
+    // this.setCurCategory()
+    this.actIndex = parseInt(this.$route.query.actIndex) || this.actIndex
     this.infoPageNav = this.getCurCategory.children || []
     this.infoPageNav.forEach(async (item, index) => {
       this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
-      // this.queryOption[item.type] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
       const res = (await this.queryArticleList(this.queryOption[index])).data
       this.$set(this.articleArr, index, res.articleList || [])
       this.queryOption[index].total = res.articleCount || 0

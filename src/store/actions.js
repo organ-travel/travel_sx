@@ -9,7 +9,6 @@ export const queryCategoryList = async (store, payload) => {
   store.commit('SET_MENU_DATA', res)
   const temp = {}
   // 当前导航
-  console.log('res ------> ', res)
   res.forEach((item, index) => {
     temp[item.type.split('/')[1]] = index + 1
   })

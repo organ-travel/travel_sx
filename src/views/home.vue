@@ -77,8 +77,9 @@ export default {
   computed: {
   },
   async mounted () {
+    console.log('home mounted------>')
     await this.setMenu()
-    this.setActiveIndex()
+    // this.setActiveIndex()
     // 头图swiper
     await this.getSwiper()
     /* eslint-disable */

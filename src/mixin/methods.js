@@ -8,20 +8,30 @@ export default {
     if (!this.getMenuData.length) {
       await this.queryCategoryList()
     }
-  },
-  setCurCategory () {
     const curName = this.$route.name
-    this.getMenuData.forEach(item => {
-      if (item.type === `#/${curName}`) {
-        this.SET_CUR_CATEGORY(item)
-      }
-    })
-  },
-  setActiveIndex () {
-    const name = this.$route.name
-    if (Object.keys(this.getMenuRelations).includes(name)) {
-      this.SET_ACTIVE_INDEX(this.getMenuRelations[name])
-      console.log(this.getMenuRelations[name])
+    if (Object.keys(this.getMenuRelations).includes(curName)) {
+      this.SET_ACTIVE_INDEX(this.getMenuRelations[curName])
     }
-  }
+    if (curName) {
+      this.getMenuData.forEach(item => {
+        if (item.type === `#/${curName}`) {
+          this.SET_CUR_CATEGORY(item)
+        }
+      })
+    }
+  },
+  // setCurCategory () {
+  //   const curName = this.$route.name
+  //   this.getMenuData.forEach(item => {
+  //     if (item.type === `#/${curName}`) {
+  //       this.SET_CUR_CATEGORY(item)
+  //     }
+  //   })
+  // },
+  // setActiveIndex () {
+  //   const curName = this.$route.name
+  //   if (Object.keys(this.getMenuRelations).includes(curName)) {
+  //     this.SET_ACTIVE_INDEX(this.getMenuRelations[curName])
+  //   }
+  // }
 }
