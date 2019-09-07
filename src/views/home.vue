@@ -10,6 +10,7 @@
     </div>
     <type :type-arr="typeArr"></type>
     <survey :survey-arr="surveyArr" :survey-nav="surveyNav" @changeSurvey="changeSurvey"></survey>
+    {{datas}}
     <info :act-index="actIndex" :info-arr="datas">
       <com-tab slot="nav" :act-index="actIndex" :nav-arr="infoNav" fun-name="changeInfos" :is-border="true" @changeInfos="changeInfos"></com-tab>
       <!-- <tab slot="tab" :nav="infoNav" :arr="infoArr" :act-index="actIndex" @changeInfo="changeInfo"></tab> -->
@@ -24,7 +25,7 @@
 </template>
 
 <script>
-// import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 import Type from '@/components/home/Type.vue'
 import Survey from '@/components/home/Survey.vue'
 import Info from '@/components/home/Info.vue'
@@ -50,8 +51,7 @@ export default {
     return {
       typeArr: [],
       // surveyNav: dataset.surveyNav,
-      // infoNav: dataset.infoNav,
-      infoNav: [],
+      infoNav: dataset.infoNav,
       wonderArr: dataset.wonderArr,
       strategyArr: dataset.strategyArr,
       arrItem: [],
@@ -74,7 +74,7 @@ export default {
       surveyArr: [],
       surveyNav: [],
       surveyLabel: '',
-      queryOption: ''
+      queryOption: []
     }
   },
   computed: {
@@ -86,17 +86,6 @@ export default {
 
     // 头图swiper
     await this.getSwiper()
-
-    // this.datas = this.getMenuData || []
-    // this.datas.forEach(async (item, index) => {
-    //   this.queryOption[index] = Object.assign({}, { cat_id: item.id })
-    //   const res = (await this.queryArticleList(this.queryOption[index])).data
-    //   console.log(res)
-    //   this.$set(this.articleArr, index, res.articleList || [])
-    //   this.queryOption[index].total = res.articleCount || 0
-    //   this.queryOption[index].start++
-    //   console.log(item, item.id, item.type, this.queryOption[index], this.articleArr)
-    // })
 
     /* eslint-disable */
     new Swiper ('.m-swiper', {
@@ -140,180 +129,168 @@ export default {
     async getSwiper () {
       this.arrItem = (await this.getBannerList())
     },
-    // 获取壶口风情的数据
+    // 获取壶口概况的数据
     getSurvey () {
-      const history = [{
-        text: '历史',
-        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg'
-      }]
-      if (history.length) {
-        this.surveyDatas = Object.assign({}, this.surveyDatas, { history })
-        this.surveyNav.push({className: 'm-column', iconClass: 'icon u-history', type: 'history', name: '历史'})
-      }
-      const culture = [{
-        text: '文化',
-        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg'
-      }]
-      if (culture.length) {
-        this.surveyDatas = Object.assign({}, this.surveyDatas, { culture })
-        this.surveyNav.push({className: 'm-column', iconClass: 'icon u-culture', type: 'culture', name: '文化'})
-      }
-      const geo = [{
-        text: '地理',
-        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201805/21/20180521133102_gnvii.jpg'
-      }]
-      if (geo.length) {
-        this.surveyDatas = Object.assign({}, this.surveyDatas, { geo })
-        this.surveyNav.push({className: 'm-column', iconClass: 'icon u-geo', type: 'geo', name: '地理'})
-      }
-      const source = [{
-        text: 'source',
-        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605090433_snnuy.jpg'
-      }]
-      if (source.length) {
-        this.surveyDatas = Object.assign({}, this.surveyDatas, { source })
-        this.surveyNav.push({className: 'm-column', iconClass: 'icon u-source', type: 'source', name: '资源'})
-      }
-      const letters = [{
-        text: '美文',
-        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201808/09/20180809201018_R8Xfu.jpeg'
-      }]
-      if (letters.length) {
-        this.surveyDatas = Object.assign({}, this.surveyDatas, { letters })
-        this.surveyNav.push({className: 'm-column', iconClass: 'icon u-letters', type: 'letters', name: '美文'})
-      }
-      this.surveyLabel = this.surveyNav[0].type
-      this.surveyArr = this.surveyDatas[this.surveyLabel]
+      // const menuData = [].concat(this.getMenuData) || []
+      // const arr = menuData[6].children || []
+      // arr.forEach(async (item, index) => {
+      //   this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
+      //   const res = (await this.queryArticleList(this.queryOption[index])).data
+      //   this.$set(this.surveyArr, item.type, res.articleList || [])
+      // })
     },
     // 壶口资讯的数据
     getInfo () {
-      this.dynamics = [{
-        date: '6-20',
-        year: '2019',
-        title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
-        brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
-      }, {
-        date: '6-20',
-        year: '2019',
-        title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
-        brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
-      }, {
-        date: '6-20',
-        year: '2019',
-        title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
-        brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
-      }, {
-        date: '6-20',
-        year: '2019',
-        title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
-        brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
-      }, {
-        date: '6-20',
-        year: '2019',
-        title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
-        brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
-      }, {
-        date: '6-20',
-        year: '2019',
-        title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
-        brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
-      }]
-      this.travel = [{
-        date: '6-19',
-        year: '2019',
-        title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
-        brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
-      }, {
-        date: '6-20',
-        year: '2019',
-        title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
-        brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
-      }, {
-        date: '6-20',
-        year: '2019',
-        title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
-        brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
-      }]
-      this.activities = [{
-        date: '6-19',
-        year: '2019',
-        title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
-        brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
-      }, {
-        date: '6-20',
-        year: '2019',
-        title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
-        brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
-      }, {
-        date: '6-20',
-        year: '2019',
-        title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
-        brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
-      }]
-      this.datas.push(this.dynamics)
-      this.datas.push(this.travel)
-      this.datas.push(this.activities)
-      this.infoArr = this.datas[this.actIndex]
+      const menuData = [].concat(this.getMenuData) || []
+      const arr = menuData[1].children || []
+      arr.forEach(async (item, index) => {
+        this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
+        const res = (await this.queryArticleList(this.queryOption[index])).data
+        this.$set(this.datas, item.type, res.articleList || [])
+        if (this.actIndex === index) {
+          this.infoArr = this.datas[index]
+        }
+      })
+      console.log(this.datas)
+      console.log(this.infoArr)
+      // this.dynamics = [{
+      //   date: '6-20',
+      //   year: '2019',
+      //   title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
+      //   brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
+      // }, {
+      //   date: '6-20',
+      //   year: '2019',
+      //   title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
+      //   brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
+      // }, {
+      //   date: '6-20',
+      //   year: '2019',
+      //   title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
+      //   brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
+      // }, {
+      //   date: '6-20',
+      //   year: '2019',
+      //   title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
+      //   brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
+      // }, {
+      //   date: '6-20',
+      //   year: '2019',
+      //   title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
+      //   brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
+      // }, {
+      //   date: '6-20',
+      //   year: '2019',
+      //   title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
+      //   brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
+      // }]
+      // this.travel = [{
+      //   date: '6-19',
+      //   year: '2019',
+      //   title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
+      //   brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
+      // }, {
+      //   date: '6-20',
+      //   year: '2019',
+      //   title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
+      //   brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
+      // }, {
+      //   date: '6-20',
+      //   year: '2019',
+      //   title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
+      //   brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
+      // }]
+      // this.activities = [{
+      //   date: '6-19',
+      //   year: '2019',
+      //   title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
+      //   brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
+      // }, {
+      //   date: '6-20',
+      //   year: '2019',
+      //   title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
+      //   brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
+      // }, {
+      //   date: '6-20',
+      //   year: '2019',
+      //   title: '壶口瀑布惊现彩虹美景!如鹊桥横跨秦晋两省,网友壶口瀑布惊现彩虹',
+      //   brief: '壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一...'
+      // }]
+      // this.datas.push(this.dynamics)
+      // this.datas.push(this.travel)
+      // this.datas.push(this.activities)
+      // console.log(this.datas)
+      // this.infoArr = this.datas[this.actIndex]
+      // console.log(this.infoArr)
     },
     // 获取壶口风情的数据
     getCustom () {
-      const drum = [{
-        text: '斗鼓是一种民俗文化',
-        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg'
-      }, {
-        text: '斗鼓是一种民俗文化',
-        imgUrl: 'http://pic.58pic.com/58pic/13/60/16/64b58PICXEK_1024.jpg'
-      }]
-      if (drum.length) {
-        this.customDatas = Object.assign({}, this.customDatas, { drum })
-        this.customNav.push({type: 'drum', name: '斗鼓'})
-      }
-      const paperCut = [{
-        text: '剪纸',
-        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg'
-      }, {
-        text: '剪纸',
-        imgUrl: 'http://image.qmango.com/hotelimg/dl1210/109490/109.jpeg'
-      }]
-      if (paperCut.length) {
-        this.customDatas = Object.assign({}, this.customDatas, { paperCut })
-        this.customNav.push({type: 'paperCut', name: '剪纸'})
-      }
-      const shoot = [{
-        text: '摄影',
-        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201805/21/20180521133102_gnvii.jpg'
-      }, {
-        text: '摄影',
-        imgUrl: 'http://image.qmango.com/hotelimg/dl1210/125708/181.jpeg'
-      }]
-      if (shoot.length) {
-        this.customDatas = Object.assign({}, this.customDatas, { shoot })
-        this.customNav.push({type: 'shoot', name: '摄影'})
-      }
-      const picture = [{
-        text: '壶口图集',
-        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605090433_snnuy.jpg'
-      }, {
-        text: '壶口图集',
-        imgUrl: 'http://image.qmango.com/hotelimg/dl1210/119297/793.jpeg'
-      }]
-      if (picture.length) {
-        this.customDatas = Object.assign({}, this.customDatas, { picture })
-        this.customNav.push({type: 'picture', name: '壶口图集'})
-      }
-      const film = [{
-        text: '壶口影集',
-        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201808/09/20180809201018_R8Xfu.jpeg'
-      }, {
-        text: '壶口影集',
-        imgUrl: 'http://image.qmango.com/hotelimg/dl1210/109490/109.jpeg'
-      }]
-      if (film.length) {
-        this.customDatas = Object.assign({}, this.customDatas, { film })
-        this.customNav.push({type: 'film', name: '壶口影集'})
-      }
-      this.activeLabel = this.customNav[0].type
-      this.customArr = this.customDatas[this.activeLabel]
+      const menuData = [].concat(this.getMenuData) || []
+      const arr = menuData[4].children || []
+      arr.forEach(async (item, index) => {
+        this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
+        const res = (await this.queryArticleList(this.queryOption[index])).data
+        this.$set(this.customArr, item.type, res.articleList || [])
+      })
+      console.log(this.customArr)
+
+      // const drum = [{
+      //   text: '斗鼓是一种民俗文化',
+      //   imgUrl: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg'
+      // }, {
+      //   text: '斗鼓是一种民俗文化',
+      //   imgUrl: 'http://pic.58pic.com/58pic/13/60/16/64b58PICXEK_1024.jpg'
+      // }]
+      // if (drum.length) {
+      //   this.customDatas = Object.assign({}, this.customDatas, { drum })
+      //   this.customNav.push({type: 'drum', name: '斗鼓'})
+      // }
+      // const paperCut = [{
+      //   text: '剪纸',
+      //   imgUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg'
+      // }, {
+      //   text: '剪纸',
+      //   imgUrl: 'http://image.qmango.com/hotelimg/dl1210/109490/109.jpeg'
+      // }]
+      // if (paperCut.length) {
+      //   this.customDatas = Object.assign({}, this.customDatas, { paperCut })
+      //   this.customNav.push({type: 'paperCut', name: '剪纸'})
+      // }
+      // const shoot = [{
+      //   text: '摄影',
+      //   imgUrl: 'https://c-ssl.duitang.com/uploads/item/201805/21/20180521133102_gnvii.jpg'
+      // }, {
+      //   text: '摄影',
+      //   imgUrl: 'http://image.qmango.com/hotelimg/dl1210/125708/181.jpeg'
+      // }]
+      // if (shoot.length) {
+      //   this.customDatas = Object.assign({}, this.customDatas, { shoot })
+      //   this.customNav.push({type: 'shoot', name: '摄影'})
+      // }
+      // const picture = [{
+      //   text: '壶口图集',
+      //   imgUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605090433_snnuy.jpg'
+      // }, {
+      //   text: '壶口图集',
+      //   imgUrl: 'http://image.qmango.com/hotelimg/dl1210/119297/793.jpeg'
+      // }]
+      // if (picture.length) {
+      //   this.customDatas = Object.assign({}, this.customDatas, { picture })
+      //   this.customNav.push({type: 'picture', name: '壶口图集'})
+      // }
+      // const film = [{
+      //   text: '壶口影集',
+      //   imgUrl: 'https://c-ssl.duitang.com/uploads/item/201808/09/20180809201018_R8Xfu.jpeg'
+      // }, {
+      //   text: '壶口影集',
+      //   imgUrl: 'http://image.qmango.com/hotelimg/dl1210/109490/109.jpeg'
+      // }]
+      // if (film.length) {
+      //   this.customDatas = Object.assign({}, this.customDatas, { film })
+      //   this.customNav.push({type: 'film', name: '壶口影集'})
+      // }
+      // this.activeLabel = this.customNav[0].type
+      // this.customArr = this.customDatas[this.activeLabel]
     }
   }
 }

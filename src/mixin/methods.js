@@ -2,8 +2,8 @@
 import { mapMutations, mapActions } from 'vuex'
 
 export default {
-  ...mapActions(['queryCategoryList', 'queryArticleList', 'getHomeTopCategoryList', 'getBannerList']),
-  ...mapMutations(['SET_ACTIVE_INDEX', 'SET_CUR_CATEGORY']),
+  ...mapActions(['queryCategoryList', 'queryArticleList', 'getHomeTopCategoryList', 'getBannerList', 'getArticleDetail']),
+  ...mapMutations(['SET_ACTIVE_INDEX', 'SET_MENU_DATA', 'SET_CUR_CATEGORY']),
   async setMenu () {
     if (!this.getMenuData.length) {
       await this.queryCategoryList()

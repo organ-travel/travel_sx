@@ -1,13 +1,13 @@
 <template>
-  <wrap class="m-survey" title-text="壶口概况">
+  <wrap class="m-survey" title-text="壶口概况" v-if="surveyArr && surveyArr.length">
     <div v-for="(item, index) in surveyArr" :key="index">
-      <a href="#/" class="m-img">
-        <img :src="item.imgUrl" class="u-img"/>
+      <a :href="'#/infoDetail?id=' + item.id" class="m-img">
+        <img :src="item.picture_url" class="u-img"/>
       </a>
       <div class="m-content">
-        <a href="#/" class="m-brief">
-          <span class="text">{{ item.text }} </span>
-          <span class="detail">&nbsp;[详情]</span>
+        <a href="javascript:;" class="m-brief">
+          <span class="text">{{ item.description }} </span>
+          <a :href="'#/infoDetail?id=' + item.id" class="detail">&nbsp;[详情]</a>
         </a>
       </div>
     </div>
