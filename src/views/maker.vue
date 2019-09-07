@@ -20,7 +20,7 @@ export default {
     // this.setCurCategory()
     this.queryOption = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: this.getCurCategory.id })
     const res = (await this.queryArticleList(this.queryOption)).data
-    // this.makerArr = res.articleList || []
+    this.makerArr = res.articleList || []
     console.log(res)
     this.getData()
   },

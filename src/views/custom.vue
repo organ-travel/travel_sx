@@ -3,19 +3,19 @@
     <com-tab :act-index="actIndex" :nav-arr="customNav" @changeNav="changeNav"></com-tab>
     <com-transition v-for="(item, index) in customNav" :key="item.id">
       <div v-if="actIndex == index && customNav[actIndex] && customNav[actIndex].type == 'drum'" :class="`m-${customNav[actIndex].type}`">
-        <div class="u-desc">我们现在看到的黄河古渡口小镇是壶口文旅公司2017年在原圪针滩古渡口基础上恢复修葺而成的，古镇以陕北特色窑洞建筑高低错落布局，总占地面积70亩，窑洞建筑面积1.4万平米。其中一期占地面积37亩，窑洞建筑面积6800平米，打造了156孔陕北台地窑洞群风格为主体的小镇物理商业文化体验打造了156孔陕北台地窑洞群风格为主体的小镇物理商业文化体验</div>
+        <div class="u-desc">{{ item.description }}</div>
         <com-list :list-arr="drumArr"></com-list>
       </div>
       <div v-if="actIndex == index && customNav[actIndex] && customNav[actIndex].type == 'paperCut'" :class="`m-${customNav[actIndex].type}`">
-        剪纸
+        <com-list :list-arr="paperCutArr"></com-list>
       </div>
       <div v-if="actIndex == index && customNav[actIndex] && customNav[actIndex].type == 'shoot'" :class="`m-${customNav[actIndex].type}`">
-        摄影
+        <com-list :list-arr="shootArr"></com-list>
       </div>
       <div v-if="actIndex == index && customNav[actIndex] && customNav[actIndex].type == 'picture'" :class="`m-${customNav[actIndex].type}`">
-        壶口图集
+        <com-list :list-arr="pictureArr"></com-list>
       </div>
-      <div v-if="actIndex == index && customNav[actIndex] && customNav[actIndex].type == 'film'" :class="`m-${customNav[actIndex].type}`">
+      <div v-if="actIndex == index && customNav[actIndex] && customNav[actIndex].type == 'film_video'" :class="`m-${customNav[actIndex].type}`">
         <com-list :list-arr="filmArr" :is-img="false"></com-list>
         <p class="u-more">点击更多视频 >></p>
       </div>
@@ -36,6 +36,9 @@ export default {
       articleObj: {},
       queryOption: [],
       drumArr: [],
+      paperCutArr: [],
+      shootArr: [],
+      pictureArr: [],
       filmArr: []
     }
   },
@@ -57,9 +60,14 @@ export default {
       this.queryOption[index].total = res.articleCount || 0
       this.queryOption[index].start++
       console.log(item, item.id, item.type, this.queryOption[index], this.articleObj)
+      if (item.type === 'paperCut') this.paperCutArr = this.articleObj.paperCut
+      if (item.type === 'drum') this.drumArr = this.articleObj.drum
+      if (item.type === 'picture') this.pictureArr = this.articleObj.picture
+      if (item.type === 'shoot') this.shootArr = this.articleObj.shoot
+      if (item.type === 'film_video') this.filmArr = this.articleObj.film_video
     })
-    this.getDrum()
-    this.getFilm()
+    // this.getDrum()
+    // this.getFilm()
   },
   methods: {
     changeNav (index) {
