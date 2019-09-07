@@ -49,9 +49,12 @@ export default {
     return {
       typeArr: [],
       // surveyNav: dataset.surveyNav,
+      surveyNav: [],
       infoNav: dataset.infoNav,
-      wonderArr: dataset.wonderArr,
-      strategyArr: dataset.strategyArr,
+      wonderArr: [],
+      // wonderArr: dataset.wonderArr,
+      // strategyArr: dataset.strategyArr,
+      strategyArr: [],
       arrItem: [],
       // 壶口资讯
       infoObj: {},
@@ -70,7 +73,6 @@ export default {
       // 壶口概况
       surveyDatas: {},
       surveyArr: [],
-      surveyNav: [],
       surveyLabel: '',
       queryOption: []
     }
@@ -97,6 +99,8 @@ export default {
     await this.getInfo()
     // 壶口奇观
     await this.getWonder()
+    // 壶口攻略
+    await this.getStrategy()
     // 壶口风情
     await this.getCustom()
     this.customSwiper = new Swiper ('.custom-swiper', {
@@ -133,11 +137,33 @@ export default {
     getSurvey () {
       const menuData = [].concat(this.getMenuData) || []
       const arr = menuData[6].children || []
-      arr.forEach(async (item, index) => {
-        this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
-        const res = (await this.queryArticleList(this.queryOption[index])).data
-        this.$set(this.surveyArr, index, res.articleList || [])
-      })
+      const history = [].concat(arr[0])
+      if (history.length) {
+        this.surveyDatas = Object.assign({}, this.surveyDatas, { history })
+        this.surveyNav.push({class_name: 'm-column', class_name: 'icon u-history', type: 'history', name: '历史'})
+      }
+      const culture = [].concat(arr[1])
+      if (culture.length) {
+        this.surveyDatas = Object.assign({}, this.surveyDatas, { culture })
+        this.surveyNav.push({class_name: 'm-column', class_name: 'icon u-culture', type: 'culture', name: '文化'})
+      }
+      const geo = [].concat(arr[2])
+      if (geo.length) {
+        this.surveyDatas = Object.assign({}, this.surveyDatas, { geo })
+        this.surveyNav.push({class_name: 'm-column', class_name: 'icon u-geo', type: 'geo', name: '地理'})
+      }
+      const source = [].concat(arr[3])
+      if (source.length) {
+        this.surveyDatas = Object.assign({}, this.surveyDatas, { source })
+        this.surveyNav.push({class_name: 'm-column', class_name: 'icon u-source', type: 'source', name: '资源'})
+      }
+      const letters = [].concat(arr[4])
+      if (letters.length) {
+        this.surveyDatas = Object.assign({}, this.surveyDatas, { letters })
+        this.surveyNav.push({class_name: 'm-column', class_name: 'icon u-letters', type: 'letters', name: '美文'})
+      }
+      this.surveyLabel = this.surveyNav[0].type
+      this.surveyArr = this.surveyDatas[this.surveyLabel]
     },
     // 壶口资讯的数据
     getInfo () {
@@ -155,23 +181,17 @@ export default {
     // 壶口奇观的数据
     getWonder () {
       const menuData = [].concat(this.getMenuData) || []
-      const arr = menuData[2].children || []
-      arr.forEach(async (item, index) => {
-        this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
-        const res = (await this.queryArticleList(this.queryOption[index])).data
-        this.$set(this.wonderArr, index, res.articleList || [])
-      })
+      this.wonderArr = menuData[2].children || []
+    },
+    // 壶口攻略的数据
+    getStrategy () {
+      const menuData = [].concat(this.getMenuData) || []
+      this.strategyArr = menuData[3].children || []
     },
     // 获取壶口风情的数据
     getCustom () {
       const menuData = [].concat(this.getMenuData) || []
-      const arr = menuData[4].children || []
-      arr.forEach(async (item, index) => {
-        this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
-        const res = (await this.queryArticleList(this.queryOption[index])).data
-        // this.$set(this.customArr, index, res.articleList || [])
-      })
-      // console.log(this.customArr)
+      this.customArr = menuData[4].children || []
     }
   }
 }

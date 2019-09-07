@@ -3,7 +3,7 @@
     <div class="m-content clearfix">
       <a v-for="(item, index) in wonderArr" :key="index" :href="item.type" class="pic-com">
         <span :class="item.iconClass"></span>
-        <!-- <img :src="item.img" :class="item.iconClass"/> -->
+         <img :src="item.picture_url" :class="item.iconClass"/>
         <span class="title">{{ item.name }}</span>
       </a>
     </div>
