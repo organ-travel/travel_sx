@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import Type from '@/components/home/Type.vue'
 import Survey from '@/components/home/Survey.vue'
 import Info from '@/components/home/Info.vue'

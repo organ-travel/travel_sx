@@ -37,16 +37,6 @@ import Sing from '@/components/wonder/Sing.vue'
 import WangLongTai from '@/components/wonder/Wanglongtai.vue'
 import Scenery from '@/components/wonder/Scenery.vue'
 
-import imgTownVideo from '@/assets/img/hkqg/img-video.jpg'
-import imgTown01 from '@/assets/img/hkqg/img-01.jpg'
-import imgTown02 from '@/assets/img/hkqg/img-02.jpg'
-import imgTown03 from '@/assets/img/hkqg/img-03.jpg'
-import imgTown04 from '@/assets/img/hkqg/img-04.jpg'
-import imgTown05 from '@/assets/img/hkqg/img-05.jpg'
-import imgTown06 from '@/assets/img/hkqg/img-06.jpg'
-import imgTown07 from '@/assets/img/hkqg/img-07.jpg'
-import imgTown08 from '@/assets/img/hkqg/img-08.jpg'
-import imgPlatform from '@/assets/img/hkqg/img-platform.jpg'
 export default {
   name: 'Wonder',
   components: {

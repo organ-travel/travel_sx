@@ -18,7 +18,7 @@
         </div>
         <!-- 路线 -->
         <div v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'xing'">
-          <com-desc v-for="(item, index) in lineArr" :key="index" :title="item.title" :brief="item.brief" class="m-article m-other-article"></com-desc>
+          <com-desc v-for="(item, index) in lineArr" :key="index" :title="item.title" :brief="item.description" class="m-article m-other-article"></com-desc>
           <span class="u-more">查看更多 -></span>
           <div v-if="serviceArr.length" class="m-strategy-list">
             <h3 class="title">游客服务中心</h3>
@@ -110,6 +110,7 @@ export default {
       strategyNav: [],
       articleObj: {},
       queryOption: [],
+      queryTagOption: [],
       eatArr: [],
       // xingArr: [],
       lineArr: [],
@@ -134,19 +135,30 @@ export default {
       this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
       const res = (await this.queryArticleList(this.queryOption[index])).data
       this.$set(this.articleObj, item.type, res.articleList || [])
-      this.queryOption[index].total = res.articleCount || 0
-      this.queryOption[index].start++
+
       console.log(item, item.id, item.type, this.queryOption[index], this.articleObj)
+      if (item.type === 'xing') this.lineArr = this.articleObj.xing
       if (item.type === 'eat') this.eatArr = this.articleObj.eat
       if (item.type === 'live') this.liveArr = this.articleObj.live
       if (item.type === 'buy') this.buyArr = this.articleObj.buy
       if (item.type === 'you') this.youArr = this.articleObj.you
       if (item.type === 'play') this.playArr = this.articleObj.play
+      if (item.type === 'xing') {
+        this.queryTagOption[0] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { tag: 'service', cat_id: item.id })
+        const resTag = (await this.queryArticleList(this.queryTagOption[0])).data
+        this.serviceArr = resTag.articleList || []
+
+        this.queryTagOption[1] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { tag: 'bus', cat_id: item.id })
+        const resTag1 = (await this.queryArticleList(this.queryTagOption[1])).data
+        this.carArr = resTag1.articleList || []
+      }
+      this.queryOption[index].total = res.articleCount || 0
+      this.queryOption[index].start++
       // if (item.type === 'yule') this.buyArr = this.articleObj.yule
     })
     // this.getEat()
     // this.getLive()
-    this.getXing()
+    // this.getXing()
     // this.getBuy()
   },
   methods: {
