@@ -2,10 +2,11 @@
   <wrap class="m-style" title-text="壶口风情">
     <div class="m-content">
       <div v-if="customArr && customArr.length" class="swiper-container custom-swiper">
+        {{customArr}}
         <div class="swiper-wrapper">
           <div v-for='(el, index) in customArr' :key="index" class="swiper-slide">
-            <img class="img" :src="el.imgUrl">
-            <span class="text">{{ el.text }}</span>
+            <img class="img" :src="el.picture_url">
+            <span class="text">{{ el.title }}</span>
           </div>
         </div>
         <!-- <div class="swiper-pagination"></div> -->
