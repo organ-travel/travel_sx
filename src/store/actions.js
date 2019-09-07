@@ -15,6 +15,13 @@ export const queryCategoryList = async (store, payload) => {
   store.commit('SET_MENU_RELATIONS', temp)
 }
 
+export const getHomeTopCategoryList = (store, payload) => {
+  return getServer({
+    data: payload,
+    action: 'categorys/getHomeTopCategoryList'
+  })
+}
+
 export const queryArticleList = (store, payload) => {
   return postServer({
     data: payload || {},
@@ -22,10 +29,9 @@ export const queryArticleList = (store, payload) => {
   })
 }
 
-export const getArticleList = async (store, payload) => {
-  const res = await postServer({
+export const getBannerList = (store, payload) => {
+  return getServer({
     data: payload,
-    action: 'articles/getArticleList'
+    action: 'articles/getBannerList'
   })
-  store.commit('SET_ARTICLE_DATA', res)
 }

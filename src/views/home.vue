@@ -3,7 +3,7 @@
     <div v-if="arrItem && arrItem.length" class="m-swiper m-wrap swiper-container">
       <div class="swiper-wrapper">
         <div v-for='(el, index) in arrItem' :key="index" class="swiper-slide">
-          <img class="img" :src="el.imgUrl">
+          <img class="img" :src="el.picture_url">
         </div>
       </div>
       <div class="swiper-pagination"></div>
@@ -48,13 +48,15 @@ export default {
   },
   data () {
     return {
-      typeArr: dataset.typeArr,
+      typeArr: [],
       // surveyNav: dataset.surveyNav,
-      infoNav: dataset.infoNav,
+      // infoNav: dataset.infoNav,
+      infoNav: [],
       wonderArr: dataset.wonderArr,
       strategyArr: dataset.strategyArr,
       arrItem: [],
       // 壶口资讯
+      infoObj: {},
       datas: [],
       infoArr: [],
       actIndex: 0,
@@ -71,7 +73,8 @@ export default {
       surveyDatas: {},
       surveyArr: [],
       surveyNav: [],
-      surveyLabel: ''
+      surveyLabel: '',
+      queryOption: ''
     }
   },
   computed: {
@@ -79,9 +82,22 @@ export default {
   async mounted () {
     console.log('home mounted------>')
     await this.setMenu()
-    // this.setActiveIndex()
+    this.typeArr = await this.getHomeTopCategoryList()
+
     // 头图swiper
     await this.getSwiper()
+
+    // this.datas = this.getMenuData || []
+    // this.datas.forEach(async (item, index) => {
+    //   this.queryOption[index] = Object.assign({}, { cat_id: item.id })
+    //   const res = (await this.queryArticleList(this.queryOption[index])).data
+    //   console.log(res)
+    //   this.$set(this.articleArr, index, res.articleList || [])
+    //   this.queryOption[index].total = res.articleCount || 0
+    //   this.queryOption[index].start++
+    //   console.log(item, item.id, item.type, this.queryOption[index], this.articleArr)
+    // })
+
     /* eslint-disable */
     new Swiper ('.m-swiper', {
       loop: true,
@@ -117,25 +133,12 @@ export default {
       })
     },
     changeSurvey (type) {
-      console.log(type)
       this.surveyLabel = type || '',
       this.surveyArr = this.surveyDatas[type] || []
     },
     // 获取头图
-    getSwiper () {
-      this.arrItem = [{
-        name: 'swiperSlide5',
-        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg'
-      }, {
-        name: 'swiperSlide1',
-        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg'
-      }, {
-        name: 'swiperSlide51',
-        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201805/21/20180521133102_gnvii.jpg'
-      }, {
-        name: 'swiperSlide1111115',
-        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605090433_snnuy.jpg'
-      }]
+    async getSwiper () {
+      this.arrItem = (await this.getBannerList())
     },
     // 获取壶口风情的数据
     getSurvey () {

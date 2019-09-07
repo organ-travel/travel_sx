@@ -1,7 +1,7 @@
 <template>
   <div>
-    <a v-for="(item, index) in typeArr" :key="index" href="javascript:void(0)" :class="item.className" @click="changeShow(item.type)">
-      <com-column :icon-class="item.iconClass" :content="item.name" :text-class="textClass"></com-column>
+    <a v-for="(item, index) in typeArr" :key="index" href="javascript:void(0)" :class="item.class_name" @click="changeShow(item.type)">
+      <com-column :icon-class="item.icon_class" :content="item.name" :text-class="textClass"></com-column>
     </a>
   </div>
 </template>

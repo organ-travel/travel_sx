@@ -32,7 +32,6 @@ export default {
     isShow: Boolean
   },
   computed: {
-    // ...mapGetters(['getArticleData'])
   },
   mounted () {
     console.log('MenuItem mounted')
