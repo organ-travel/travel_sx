@@ -11,8 +11,9 @@
         </div>
       </a>
       <span v-if="item.create_time && !hasDownload" class="u-date">{{ item.create_time | transformDate }}</span>
-      <a v-if="hasDetail" class="u-detail" href="javascript:void(0)">查看详情</a>
-      <a v-if="hasDownload" class="u-download" href="javascript:void(0)" @click="handleDownload">下载</a>
+      <a v-if="hasDetail" class="u-detail" :href="'#/infoDetail?id=' + item.id">查看详情</a>
+      <a v-if="hasDownload" class="u-download" :href="'#/infoDetail?id=' + item.id">下载</a>
+      <!--<a v-if="hasDownload" class="u-download" href="javascript:void(0)" @click="handleDownload">下载</a>-->
     </div>
   </div>
 </template>

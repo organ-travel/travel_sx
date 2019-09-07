@@ -4,9 +4,12 @@
     <div class="m-detail-content">
       <com-bread :list-arr="breadArr"></com-bread>
       <div class="detail-content">
-        <h3 class="u-title">壶口瀑布惊现彩虹美景！如鹊桥横跨秦晋两省，网友：这景绝了！</h3>
-        <img src="https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg" class="u-img"/>
-        <p class="u-param">    壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一。壶口河段上下落差大，因而形成气势磅礴的瀑布。近日壶口瀑布惊现彩虹美景，那七彩之虹就像是一座横跨秦晋两省的鹊桥。许多游客驻足观看，拍下了这难得的美景。壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一。壶口河段上下落差大，因而形成气势磅礴的瀑布。近日壶口瀑布惊现彩虹美景，那七彩之虹就像是一座横跨秦晋两省的鹊桥。许多游客驻足观看，拍下了这难得的美景。壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一。壶口河段上下落差大，因而形成气势磅礴的瀑布。近日壶口瀑布惊现彩虹美景，那七彩之虹就像是一座横跨秦晋两省的鹊桥。许多游客驻足观看，拍下了这难得的美景。壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一。壶口河段上下落差大，因而形成气势磅礴的瀑布。近日壶口瀑布惊现彩虹美景，那七彩之虹就像是一座横跨秦晋两省的鹊桥。许多游客驻足观看，拍下了这难得的美景。壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布，位于山西省和陕西省的交界处，是黄河流域重要的旅游景点之一。壶口河段上下落差大，因而形成气势磅礴的瀑布。近日壶口瀑布惊现彩虹美景，那七彩之虹就像是一座横跨秦晋两省的鹊桥。许多游客驻足观看，拍下了这难得的美景。壶口瀑布是仅次于黄果树瀑布的中国第二大瀑布</p>
+        <h3 class="u-title">{{ detailObj.title }}</h3>
+        <!--<div v-if="detailObj.pcitures && detailObj.pcitures.length" class="picture-wrapper">-->
+          <!--<img v-for="(picture, index) in detailObj.pcitures" :key="index" :src="picture" alt=""  >-->
+        <!--</div>-->
+        <img :src="detailObj.picture_url" class="u-img"/>
+        <p class="u-param">{{ detailObj.description }}</p>
       </div>
     </div>
   </section>
@@ -18,15 +21,24 @@ export default {
   },
   data () {
     return {
-      detailArr: [],
+      detailObj: {},
       breadArr: []
     }
   },
   computed: {
   },
-  mounted () {
+  beforeRouteEnter (to, from, next) {
+    console.log(to)
+    console.log(from)
+    next(vm => {
+    })
+  },
+  async mounted () {
+    await this.setMenu()
+    const id = this.$router.history.current.query.id
+    this.detailObj = await this.getArticleDetail(id)
+
     this.getBread()
-    this.getDetail()
   },
   methods: {
     getBread () {
@@ -39,45 +51,6 @@ export default {
       }, {
         path: '',
         text: '景区活动'
-      }]
-    },
-    getDetail() {
-      this.detailArr = [{
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
       }]
     }
   }

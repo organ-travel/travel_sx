@@ -35,3 +35,9 @@ export const getBannerList = (store, payload) => {
     action: 'articles/getBannerList'
   })
 }
+
+export const getArticleDetail = (store, payload) => {
+  return getServer({
+    action: 'articles/getArticleDetail/' + payload
+  })
+}

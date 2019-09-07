@@ -1,6 +1,7 @@
 <template>
   <wrap class="m-info" title-text="壶口资讯">
     <slot name="nav"></slot>
+    {{infoArr}}
     <com-transition v-for="(arr, idx) in infoArr" :key="idx">
       <ul v-if="actIndex == idx" class="m-content">
         <li v-for="(item, index) in arr" :key="index" class="m-list">
@@ -8,7 +9,7 @@
             <span>{{ item.date }}</span>
             <span class="year">{{ item.year }}</span>
           </div>
-          <com-desc :title="item.title" :brief="item.brief" class="m-article"></com-desc>
+          <com-desc :title="item.title" :brief="item.description" class="m-article"></com-desc>
         </li>
       </ul>
     </com-transition>
