@@ -1,8 +1,8 @@
 <template>
   <wrap class="m-strategy" title-text="壶口攻略">
     <div class="m-content">
-      <a v-for="(item, index) in strategyArr" :key="index" :href="item.type" :class="item.iconClass">
-        <com-column :content="item.name"></com-column>
+      <a v-for="(item, index) in strategyArr" :key="index" :href="item.type" :class="item.icon_class_new">
+        <com-column :content="item.nickname"></com-column>
       </a>
     </div>
   </wrap>
