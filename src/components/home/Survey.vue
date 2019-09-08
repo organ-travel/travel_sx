@@ -7,7 +7,7 @@
       <div class="m-content">
         <a href="javascript:;" class="m-brief">
           <span class="text">{{ item.description }} </span>
-          <a :href="'#/infoDetail?id=' + item.id" class="detail">&nbsp;[详情]</a>
+          <a :href="'#/infoDetail?id=' + item.id" class="detail" target="_blank">&nbsp;[详情]</a>
         </a>
       </div>
     </div>
@@ -107,30 +107,65 @@ export default {
               left 50%
               transform translate(-50%, -50%)
             }
-            &.u-history::after {
-              width 36px
-              height 42px
-              background url('~@/assets/img/home/history.png') no-repeat center
+            &.u-history {
+              &:after {
+                width 36px
+                height 42px
+                background url('~@/assets/img/home/icon-history.png') no-repeat center
+              }
+              &:hover, &.active {
+                &:after {
+                  background url('~@/assets/img/home/icon-history-active.png') no-repeat center
+                }
+              }
             }
-            &.u-culture::after {
-              width 30px
-              height 34px
-              background url('~@/assets/img/home/culture.png') no-repeat center
+            &.u-culture {
+              &:after {
+                width 30px
+                height 34px
+                background url('~@/assets/img/home/icon-culture.png') no-repeat center
+              }
+              &:hover, &.active {
+                &:after {
+                  background url('~@/assets/img/home/icon-culture-active.png') no-repeat center
+                }
+              }
             }
-            &.u-geo::after {
-              width 29px
-              height 36px
-              background url('~@/assets/img/home/geo.png') no-repeat center
+            &.u-geo {
+              &:after {
+                width 29px
+                height 36px
+                background url('~@/assets/img/home/icon-geo.png') no-repeat center
+              }
+              &:hover, &.active {
+                &:after {
+                  background url('~@/assets/img/home/icon-geo-active.png') no-repeat center
+                }
+              }
             }
-            &.u-source::after {
-              width 38px
-              height 32px
-              background url('~@/assets/img/home/source.png') no-repeat center
+            &.u-source {
+              &:after {
+                width 38px
+                height 32px
+                background url('~@/assets/img/home/icon-source.png') no-repeat center
+              }
+              &:hover, &.active {
+                &:after {
+                  background url('~@/assets/img/home/icon-source-active.png') no-repeat center
+                }
+              }
             }
-            &.u-letters::after {
-              width 27px
-              height 34px
-              background url('~@/assets/img/home/letters.png') no-repeat center
+            &.u-letters {
+              &:after {
+                width 27px
+                height 34px
+                background url('~@/assets/img/home/icon-letters.png') no-repeat center
+              }
+              &:hover {
+                &:after, &.active {
+                  background url('~@/assets/img/home/icon-letters-active.png') no-repeat center
+                }
+              }
             }
           }
           .text {

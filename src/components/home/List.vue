@@ -1,7 +1,7 @@
 <template>
   <div>
-    <a v-for="(item, index) in typeArr" :key="index" href="javascript:void(0)" :class="item.class_name" @click="changeShow(item.type)">
-      <com-column :icon-class="item.icon_class" :content="item.name" :text-class="textClass"></com-column>
+    <a v-for="(item, index) in typeArr" :key="index" href="javascript:;" :class="item.class_name" @click="changeShow(item.type)">
+      <com-column :icon-class="item.icon_class" :content="item.name" :text-class="text_class"></com-column>
     </a>
   </div>
 </template>
@@ -14,7 +14,7 @@ export default {
         return []
       }
     },
-    textClass: {
+    text_class: {
       type: String,
       default: ''
     }

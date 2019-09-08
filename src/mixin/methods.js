@@ -2,7 +2,7 @@
 import { mapMutations, mapActions } from 'vuex'
 
 export default {
-  ...mapActions(['queryCategoryList', 'queryArticleList', 'getHomeTopCategoryList', 'getBannerList', 'getArticleDetail']),
+  ...mapActions(['queryCategoryList', 'queryArticleList', 'getHomeTopCategoryList', 'getBannerList', 'getArticleDetail', 'addConsult', 'getTicketsList']),
   ...mapMutations(['SET_ACTIVE_INDEX', 'SET_MENU_DATA', 'SET_CUR_CATEGORY']),
   async setMenu () {
     if (!this.getMenuData.length) {

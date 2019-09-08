@@ -41,3 +41,17 @@ export const getArticleDetail = (store, payload) => {
     action: 'articles/getArticleDetail/' + payload
   })
 }
+
+export const getTicketsList = (store, payload) => {
+  return postServer({
+    data: payload || {},
+    action: 'tickets/getTicketsList'
+  })
+}
+
+export const addConsult = (store, payload) => {
+  return postServer({
+    data: payload || {},
+    action: 'consult/addConsult'
+  })
+}

@@ -8,7 +8,7 @@
             <span>{{ item.date }}</span>
             <span class="year">{{ item.year }}</span>
           </div>
-          <com-desc :title="item.title" :brief="item.description" class="m-article"></com-desc>
+          <com-desc :id="item.id" :title="item.title" :brief="item.description" class="m-article"></com-desc>
         </li>
       </ul>
     </com-transition>

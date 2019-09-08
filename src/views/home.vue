@@ -140,27 +140,27 @@ export default {
       const history = [].concat(arr[0])
       if (history.length) {
         this.surveyDatas = Object.assign({}, this.surveyDatas, { history })
-        this.surveyNav.push({class_name: 'm-column', class_name: 'icon u-history', type: 'history', name: '历史'})
+        this.surveyNav.push({class_name: 'm-column', icon_class: 'u-history', type: 'history', name: '历史'})
       }
       const culture = [].concat(arr[1])
       if (culture.length) {
         this.surveyDatas = Object.assign({}, this.surveyDatas, { culture })
-        this.surveyNav.push({class_name: 'm-column', class_name: 'icon u-culture', type: 'culture', name: '文化'})
+        this.surveyNav.push({class_name: 'm-column', icon_class: 'u-culture', type: 'culture', name: '文化'})
       }
       const geo = [].concat(arr[2])
       if (geo.length) {
         this.surveyDatas = Object.assign({}, this.surveyDatas, { geo })
-        this.surveyNav.push({class_name: 'm-column', class_name: 'icon u-geo', type: 'geo', name: '地理'})
+        this.surveyNav.push({class_name: 'm-column', icon_class: 'u-geo', type: 'geo', name: '地理'})
       }
       const source = [].concat(arr[3])
       if (source.length) {
         this.surveyDatas = Object.assign({}, this.surveyDatas, { source })
-        this.surveyNav.push({class_name: 'm-column', class_name: 'icon u-source', type: 'source', name: '资源'})
+        this.surveyNav.push({class_name: 'm-column', icon_class: 'u-source', type: 'source', name: '资源'})
       }
       const letters = [].concat(arr[4])
       if (letters.length) {
         this.surveyDatas = Object.assign({}, this.surveyDatas, { letters })
-        this.surveyNav.push({class_name: 'm-column', class_name: 'icon u-letters', type: 'letters', name: '美文'})
+        this.surveyNav.push({class_name: 'm-column', icon_class: 'u-letters', type: 'letters', name: '美文'})
       }
       this.surveyLabel = this.surveyNav[0].type
       this.surveyArr = this.surveyDatas[this.surveyLabel]
@@ -172,6 +172,9 @@ export default {
       arr.forEach(async (item, index) => {
         this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
         const res = (await this.queryArticleList(this.queryOption[index])).data
+        res.articleList.forEach(item1 => {
+          item1.description = item1.description.length > 60 ? item1.description.substr(0, 60) + '...' : item1.description.substr(0, 60)
+        })
         this.$set(this.datas, index, res.articleList || [])
         if (this.actIndex === index) {
           this.infoArr = this.datas[index]

@@ -7,20 +7,20 @@
         </div>
       </div>
       <div class="alide-item comment-wrapper">
-        <a href="javascript:;" class="txt"><i class="fa fa-commenting-o"></i></a>
-        <div class="form-wrapper" data-before="留言咨询">
-          <form action="">
+        <a href="javascript:;" class="txt" @click.self="handleShowForm"><i class="fa fa-commenting-o"></i></a>
+        <div v-show="showForm" class="form-wrapper" data-before="留言咨询">
+          <form @submit.prevent="handleAddConsult">
             <div class="input-group" data-before="姓名：">
-              <input type="text" class="form-control">
+              <input v-model="form.name" type="text" class="form-control">
             </div>
             <div class="input-group" data-before="电话：">
-              <input type="text" class="form-control">
+              <input v-model="form.mobile" type="text" class="form-control" maxLength="11">
             </div>
             <div class="input-group" data-before="留言：">
-              <textarea id="" name="" cols="30" rows="8" class="form-control"></textarea>
+              <textarea v-model="form.body" cols="30" rows="8" class="form-control"></textarea>
             </div>
             <div class="btn-group">
-              <button class="btn-submit">提交</button>
+              <button type="submit" class="btn-submit">提交</button>
             </div>
           </form>
         </div>
@@ -33,13 +33,81 @@
         </div>
       </div>
       <div class="alide-item backtop-wrapper">
-        <a href="javascript:;" class="txt"><i class="fa fa-arrow-up"></i></a>
+        <a href="javascript:;" class="txt" @click="handleGoTop"><i class="fa fa-arrow-up"></i></a>
       </div>
     </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      form: {
+        name: '',
+        mobile: '',
+        body: ''
+      },
+      showForm: false
+    }
+  },
+  created() {
+    // 空白处点击关闭弹窗
+    document.addEventListener('click', e => {
+      if (e.target.className === 'fa fa-commenting-o') {
+        this.showForm = true
+      } else if (!this.$el.contains(e.target)) {
+        this.showForm = false
+      }
+    })
+  },
+  methods: {
+    handleShowForm() {
+      this.showForm = !this.showForm
+    },
+    handleAddConsult() {
+      const params = this.form
+      if (params.name === '') {
+        window.$alert('用户名不能为空！')
+        return false
+      } else if (params.mobile === '') {
+        window.$alert('手机号不能为空！')
+        return false
+      } else if (params.mobile.length < 11) {
+        window.$alert('请输入正确的11号手机号！')
+        return false
+      } else if (params.body === '') {
+        window.$alert('留言信息不能为空！')
+        return false
+      }
+      this.addConsult(params).then(res => {
+        console.log(res)
+        // this.handleReset()
+      }).catch(error => {
+        this.handleReset()
+        console.log(error)
+      })
+    },
+    handleReset() {
+      this.form = {
+        name: '',
+        mobile: '',
+        body: ''
+      }
+    },
+    handleGoTop() {
+      // document.body.scrollIntoView()
+      let distance = document.documentElement.scrollTop || document.body.scrollTop // 获得当前高度
+      const step = distance / 20 // 每步的距离
+      function jump() {
+        if (distance > 0) {
+          distance -= step
+          window.scrollTo(0, distance)
+          setTimeout(jump, 10)
+        }
+      }
+      jump()
+    }
+  }
 }
 </script>
 
@@ -68,10 +136,12 @@ export default {
         }
       }
       .img-wrapper, .form-wrapper, .contact-wrapper {
-        display: none
         position: absolute
         top: 0
         right: 52px
+      }
+      .img-wrapper, .contact-wrapper {
+        display: none
       }
       .img-wrapper {
         &:before {
@@ -185,11 +255,6 @@ export default {
                 outline none
               }
             }
-          }
-        }
-        &:hover {
-          .form-wrapper {
-            display: block
           }
         }
       }

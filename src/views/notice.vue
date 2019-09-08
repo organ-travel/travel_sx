@@ -38,14 +38,23 @@ export default {
       banner: imgBanner,
       noticeList: [],
       priceList: [],
-      perchaseList: []
+      perchaseList: [],
+      queryOption: []
     }
   },
-  mounted() {
-    this.getNoticeList()
-    this.getPriceInfo()
-    this.getPerchaseList()
+  async mounted () {
+    await this.setMenu()
+
+    this.queryOption = Object.assign({}, { start: 0, limit: 10 })
+    this.perchaseList = (await this.getTicketsList(this.queryOption)).data
+    console.log(this.perchaseList)
   },
+  // mounted() {
+  //   // getTicketsList
+  //   this.getNoticeList()
+  //   this.getPriceInfo()
+  //   this.getPerchaseList()
+  // },
   methods: {
     changeNav (index) {
       this.actIndex = index
