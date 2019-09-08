@@ -8,7 +8,11 @@
         <!--<div v-if="detailObj.pcitures && detailObj.pcitures.length" class="picture-wrapper">-->
           <!--<img v-for="(picture, index) in detailObj.pcitures" :key="index" :src="picture" alt=""  >-->
         <!--</div>-->
+<<<<<<< Updated upstream
         <!--<img :src="detailObj.picture_url" class="u-img"/>-->
+=======
+        <img :src="detailObj.picture_url" class="u-img"/>
+>>>>>>> Stashed changes
         <p class="u-param" v-html="detailObj.body"></p>
       </div>
     </div>
@@ -72,6 +76,12 @@ export default {
       padding-top 76px
       text-align center
       color #333333
+      width 800px
+      margin 0 auto
+      overflow: hidden
+      img {
+        max-width 100%
+      }
       .u-title {
         text-align center
         font-weight bold

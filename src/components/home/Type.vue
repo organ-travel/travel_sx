@@ -18,6 +18,10 @@ export default {
       default () {
         return []
       }
+    },
+    actIndex: {
+      type: Number,
+      default: 0
     }
   },
   methods: {
