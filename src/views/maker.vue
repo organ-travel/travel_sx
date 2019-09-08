@@ -22,7 +22,7 @@ export default {
     const res = (await this.queryArticleList(this.queryOption)).data
     this.makerArr = res.articleList || []
     console.log(res)
-    this.getData()
+    // this.getData()
   },
   methods: {
     getData () {

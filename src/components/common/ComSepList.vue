@@ -2,8 +2,8 @@
   <ul class="com-sep-lists clearfix">
     <li v-for="(item, index) in listArr" :key="index" class="com-sep-list">
       <a href="" class="com-sep-pic">
-        <img :src="item.addr" class="u-img"/>
-        <p class="u-title">{{ item.name }}</p>
+        <img :src="item.picture_url" class="u-img"/>
+        <p class="u-title">{{ item.title }}</p>
       </a>
       <!-- 二维码 -->
       <div v-if="item.codeUrl" class="m-com-mask">
