@@ -14,6 +14,7 @@ import ComSepList from '@/components/common/ComSepList'
 import ComDesc from '@/components/common/ComDesc'
 import ComColumn from '@/components/common/ComColumn'
 import ComBread from '@/components/common/ComBread'
+import ComPagition from '@/components/common/ComPagition'
 export default {
   ComHeader,
   ComContent,
@@ -29,5 +30,6 @@ export default {
   ComSepList,
   ComDesc,
   ComColumn,
-  ComBread
+  ComBread,
+  ComPagition
 }

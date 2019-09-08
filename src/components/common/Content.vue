@@ -18,7 +18,6 @@ export default {
   computed: {
   },
   mounted () {
-    console.log('contenet组件---》 mounted')
   },
   methods: {
     handleMouseEnter (index) {

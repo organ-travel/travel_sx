@@ -11,10 +11,14 @@
         </div>
       </a>
       <span v-if="item.create_time && !hasDownload" class="u-date">{{ item.create_time | transformDate }}</span>
-      <a v-if="hasDetail" class="u-detail" :href="'#/infoDetail?id=' + item.id">查看详情</a>
-      <a v-if="hasDownload" class="u-download" :href="'#/infoDetail?id=' + item.id">下载</a>
-      <!--<a v-if="hasDownload" class="u-download" href="javascript:void(0)" @click="handleDownload">下载</a>-->
+      <a v-if="hasDetail" class="u-detail" :href="'#/infoDetail?id=' + item.id" target="_blank">查看详情</a>
+      <a v-if="hasDownload" class="u-download" :href="'#/infoDetail?id=' + item.id" target="_blank">下载</a>
     </div>
+    <el-pagination
+      layout="prev, pager, next"
+      :total="arr.length"
+      @current-change="handleCurrentChange">
+    </el-pagination>
   </div>
 </template>
 <script>
@@ -35,8 +39,14 @@ export default {
       default: false
     }
   },
+  data() {
+    return {
+      pageSet: {
+        totalRow: this.pageSet
+      }
+    }
+  },
   mounted () {
-    console.log('com article', this.arr)
   },
   methods: {
     handleDownload () {
@@ -44,6 +54,9 @@ export default {
         return
       }
       this.$emit('handleDownload')
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`)
     }
   }
 }

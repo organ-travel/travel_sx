@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a v-for="(item, index) in typeArr" :key="index" href="javascript:;" :class="item.class_name" target="_blank" @click="changeShow(item.type)">
+    <a v-for="(item, index) in typeArr" :key="index" href="javascript:;" :class="item.class_name" @click="changeShow(item.type)">
       <com-column :icon-class="item.icon_class" :content="item.name" :text-class="text_class"></com-column>
     </a>
   </div>

@@ -34,7 +34,6 @@ export default {
   computed: {
   },
   mounted () {
-    console.log('MenuItem mounted')
   },
   methods: {
     handleMouseEnter (index) {

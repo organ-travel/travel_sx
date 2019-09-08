@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "serve": "cross-env CODE_ENV=dev vue-cli-service serve",
-    "build": "cross-env CODE_ENV=production vue-cli-service build",
+    "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -14,7 +14,6 @@
     "babel-polyfill": "^6.26.0",
     "core-js": "^2.6.5",
     "crypto-js": "^3.1.9-1",
-    "element-ui": "^2.10.1",
     "js-cookie": "^2.2.0",
     "lodash": "^4.17.14",
     "moment": "^2.24.0",
@@ -31,12 +30,14 @@
     "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.0.1",
     "cross-env": "^5.2.0",
+    "element-ui": "^2.12.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "font-awesome": "^4.7.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "swiper": "^4.5.0",
+    "v-page": "^2.0.8",
     "vue-template-compiler": "^2.6.10"
   }
 }

@@ -4,19 +4,19 @@
     <com-transition v-for="(item, index) in customNav" :key="item.id">
       <div v-if="actIndex == index && customNav[actIndex] && customNav[actIndex].type == 'drum'" :class="`m-${customNav[actIndex].type}`">
         <div class="u-desc">{{ item.description }}</div>
-        <com-list :list-arr="drumArr"></com-list>
+        <com-list :list-arr="articleObj.drum"></com-list>
       </div>
       <div v-if="actIndex == index && customNav[actIndex] && customNav[actIndex].type == 'paperCut'" :class="`m-${customNav[actIndex].type}`">
-        <com-list :list-arr="paperCutArr"></com-list>
+        <com-list :list-arr="articleObj.paperCut"></com-list>
       </div>
       <div v-if="actIndex == index && customNav[actIndex] && customNav[actIndex].type == 'shoot'" :class="`m-${customNav[actIndex].type}`">
-        <com-list :list-arr="shootArr"></com-list>
+        <com-list :list-arr="articleObj.shoot"></com-list>
       </div>
       <div v-if="actIndex == index && customNav[actIndex] && customNav[actIndex].type == 'picture'" :class="`m-${customNav[actIndex].type}`">
-        <com-list :list-arr="pictureArr"></com-list>
+        <com-list :list-arr="articleObj.picture"></com-list>
       </div>
       <div v-if="actIndex == index && customNav[actIndex] && customNav[actIndex].type == 'film_video'" :class="`m-${customNav[actIndex].type}`">
-        <com-list :list-arr="filmArr" :is-img="false"></com-list>
+        <com-list :list-arr="articleObj.film_video" :is-img="false"></com-list>
         <p class="u-more">点击更多视频 >></p>
       </div>
     </com-transition>
@@ -31,15 +31,9 @@ export default {
   data () {
     return {
       actIndex: 0,
-      // customNav: dataset.customNav,
       customNav: [],
       articleObj: {},
-      queryOption: [],
-      drumArr: [],
-      paperCutArr: [],
-      shootArr: [],
-      pictureArr: [],
-      filmArr: []
+      queryOption: []
     }
   },
   // watch: {
@@ -49,8 +43,6 @@ export default {
   // },
   async mounted () {
     await this.setMenu()
-    // this.setActiveIndex()
-    // this.setCurCategory()
     this.actIndex = parseInt(this.$route.query.actIndex) || this.actIndex
     this.customNav = this.getCurCategory.children || []
     this.customNav.forEach(async (item, index) => {
@@ -59,54 +51,11 @@ export default {
       this.$set(this.articleObj, item.type, res.articleList || [])
       this.queryOption[index].total = res.articleCount || 0
       this.queryOption[index].start++
-      console.log(item, item.id, item.type, this.queryOption[index], this.articleObj)
-      if (item.type === 'paperCut') this.paperCutArr = this.articleObj.paperCut
-      if (item.type === 'drum') this.drumArr = this.articleObj.drum
-      if (item.type === 'picture') this.pictureArr = this.articleObj.picture
-      if (item.type === 'shoot') this.shootArr = this.articleObj.shoot
-      if (item.type === 'film_video') this.filmArr = this.articleObj.film_video
     })
-    // this.getDrum()
-    // this.getFilm()
   },
   methods: {
     changeNav (index) {
       this.actIndex = index
-    },
-    getDrum () {
-      this.drumArr = [{
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '壶口斗鼓'
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '壶口斗鼓'
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '壶口斗鼓'
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '壶口斗鼓'
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '壶口斗鼓'
-      }]
-    },
-    getFilm () {
-      // this.filmArr = [{
-      //   addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-      //   route: '#/',
-      //   text: '壶口视频'
-      // }]
-      this.filmArr = [{
-        iconClass: 'u-film-bg',
-        route: '#/',
-        text: '壶口视频'
-      }]
     }
   }
 }

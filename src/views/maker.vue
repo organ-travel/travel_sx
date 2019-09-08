@@ -16,38 +16,11 @@ export default {
   },
   async mounted () {
     await this.setMenu()
-    // this.setActiveIndex()
-    // this.setCurCategory()
     this.queryOption = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: this.getCurCategory.id })
     const res = (await this.queryArticleList(this.queryOption)).data
     this.makerArr = res.articleList || []
-    console.log(res)
-    // this.getData()
   },
   methods: {
-    getData () {
-      this.makerArr = [{
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        name: '壶口斗鼓',
-        codeUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg'
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        name: '壶口斗鼓',
-        codeUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg'
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        name: '壶口斗鼓',
-        codeUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg'
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        name: '产品名称',
-        codeUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg'
-      }]
-    }
   }
 }
 </script>

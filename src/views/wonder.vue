@@ -5,26 +5,26 @@
       <!--<com-article v-if="actIndex  == index" :arr="articleArr[index]" :has-detail="!(infoPageNav[actIndex] && (infoPageNav[actIndex].name == '招贤纳士' || infoPageNav[actIndex].name == '文件下载'))" :has-download="infoPageNav[actIndex] && infoPageNav[actIndex].name == '文件下载'"  @handleDownload="handleDownload"></com-article>-->
     <!--</com-transition>-->
 
-    <com-tab :act-index="actIndex" :nav-arr="infoPageNav" @changeNav="changeNav"></com-tab>
+    <com-tab :act-index="actIndex" :nav-arr="wonderNav" @changeNav="changeNav"></com-tab>
     <!--古渡口小镇-->
     <com-transition>
-      <gu-du-kou v-if="wonderNav[actIndex].name === 'gudukou'" :wonder="wonder.gudukou"></gu-du-kou>
+      <gu-du-kou v-if="wonderNav[actIndex] && wonderNav[actIndex].type === 'gudukou'" :intro="wonderNav[actIndex].article" :list="wonderObj.gudukou"></gu-du-kou>
     </com-transition>
     <!--4D影院-->
     <com-transition>
-      <film v-if="wonderNav[actIndex].name === 'film'" :wonder="wonder.film"></film>
+      <film v-if="wonderNav[actIndex] && wonderNav[actIndex].type === 'film'" :intro="wonderNav[actIndex].article" :list="wonderObj.film"></film>
     </com-transition>
     <!--黄河大合唱-->
     <com-transition>
-      <sing v-if="wonderNav[actIndex].name === 'sing'" :wonder="wonder.sing"></sing>
+      <sing v-if="wonderNav[actIndex] && wonderNav[actIndex].type === 'sing'" :intro="wonderNav[actIndex].article" :list="wonderObj.sing"></sing>
     </com-transition>
     <!--望龙台-->
     <com-transition>
-      <wang-long-tai v-if="wonderNav[actIndex].name === 'wlt'" :wonder="wonder.wlt"></wang-long-tai>
+      <wang-long-tai v-if="wonderNav[actIndex] && wonderNav[actIndex].type === 'wlt'" :intro="wonderNav[actIndex].article" :list="wonderObj.wlt"></wang-long-tai>
     </com-transition>
     <!--壶口八景-->
     <com-transition>
-      <scenery v-if="wonderNav[actIndex].name === 'scenery'" :wonder="wonder.scenery"></scenery>
+      <scenery v-if="wonderNav[actIndex] && wonderNav[actIndex].type === 'scenery'" :intro="wonderNav[actIndex].article" :list="wonderObj.scenery"></scenery>
     </com-transition>
   </com-wrap>
 </template>
@@ -46,234 +46,26 @@ export default {
     return {
       actIndex: 0,
       queryOption: [],
-      wonderNav: dataset.wonderNav,
-      infoPageNav: [],
-      wonder: {
-        gudukou: {
-          intro: {},
-          imgList: []
-        },
-        film: {
-          intro: {},
-          imgList: []
-        },
-        sing: {
-          intro: {},
-          imgList: []
-        },
-        wlt: {
-          intro: {},
-          imgList: []
-        },
-        scenery: {
-          imgList: []
-        }
-      }
+      wonderNav: [],
+      wonderObj: {}
     }
   },
   async mounted () {
     await this.setMenu()
-    this.infoPageNav = this.getCurCategory.children || []
-    this.getCurCategory.children.forEach(async (item, index) => {
+    this.wonderNav = this.getCurCategory.children || []
+    this.wonderNav.forEach(async (item, index) => {
       this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
       const res = (await this.queryArticleList(this.queryOption[index])).data
-      if (item.type) {
-        switch (item.type) {
-        case 'gudukou':
-          this.wonder.gudukou.imgList = res.articleList || []
-          break
-        case 'film':
-          this.wonder.film.imgList = res.articleList || []
-          break
-        case 'sing':
-          this.wonder.sing.imgList = res.articleList || []
-          break
-        case 'wlt':
-          this.wonder.wlt.imgList = res.articleList || []
-          break
-        case 'scenery':
-          this.wonder.scenery.imgList = res.articleList || []
-          break
-        }
-      }
+      this.$set(this.wonderObj, item.type, res.articleList || [])
       this.queryOption[index].total = res.articleCount || 0
       this.queryOption[index].start++
     })
   },
   created() {
-    // this.getGudukouList()
-    // this.getFilmList()
-    // this.getSingList()
-    // this.getWltList()
-    // this.getSceneryList()
   },
   methods: {
     changeNav (index) {
       this.actIndex = index
-    },
-    getGudukouList() {
-      // this.wonder.gudukou = {
-      //   intro: {
-      //     src: imgTownVideo,
-      //     txt: '黄河古渡口小镇，又名圪针滩古渡口，古称采桑津，位于陕西黄河壶口瀑布南侧6.9公里处，在明清时期古渡小镇繁荣兴盛，曾是黄河两岸繁华的商业码头，店铺林立，艄公聚居，商贾云集，当时有钱庄、当铺、皮店、染房、盐店等商号60余家，与壶口瀑布上游的龙王辿码头同是壶口河船商贸集散地，清人贾遇时曾描述其：“客船星集，如鱼贯之相连，店铺林设，似雁形之不绝。地虽偏小，胜得泾阳三原，形似弹丸，赛过长安八水”。其繁华程度可想而知。\n'
-      //   },
-      //   imgList: [{
-      //     addr: imgTown01,
-      //     text: '古渡口小镇'
-      //   }, {
-      //     addr: imgTown02,
-      //     text: '古渡口小镇'
-      //   }, {
-      //     addr: imgTown03,
-      //     text: '古渡口小镇'
-      //   }, {
-      //     addr: imgTown04,
-      //     text: '古渡口小镇'
-      //   }, {
-      //     addr: imgTown05,
-      //     text: '古渡口小镇'
-      //   }, {
-      //     addr: imgTown06,
-      //     text: '古渡口小镇'
-      //   }, {
-      //     addr: imgTown07,
-      //     text: '古渡口小镇'
-      //   }, {
-      //     addr: imgTown08,
-      //     text: '古渡口小镇'
-      //   }]
-      // }
-    },
-    getFilmList() {
-      // this.wonder.film = {
-      //   intro: {
-      //     src: imgTownVideo,
-      //     txt: '4D影院，又名圪针滩古渡口，古称采桑津，位于陕西黄河壶口瀑布南侧6.9公里处，在明清时期古渡小镇繁荣兴盛，曾是黄河两岸繁华的商业码头，店铺林立，艄公聚居，商贾云集，当时有钱庄、当铺、皮店、染房、盐店等商号60余家，与壶口瀑布上游的龙王辿码头同是壶口河船商贸集散地，清人贾遇时曾描述其：“客船星集，如鱼贯之相连，店铺林设，似雁形之不绝。地虽偏小，胜得泾阳三原，形似弹丸，赛过长安八水”。其繁华程度可想而知。\n'
-      //   },
-      //   imgList: [{
-      //     addr: imgTown01,
-      //     text: '4D影院'
-      //   }, {
-      //     addr: imgTown02,
-      //     text: '4D影院'
-      //   }, {
-      //     addr: imgTown03,
-      //     text: '4D影院'
-      //   }, {
-      //     addr: imgTown04,
-      //     text: '4D影院'
-      //   }, {
-      //     addr: imgTown05,
-      //     text: '4D影院'
-      //   }, {
-      //     addr: imgTown06,
-      //     text: '4D影院'
-      //   }, {
-      //     addr: imgTown07,
-      //     text: '4D影院'
-      //   }, {
-      //     addr: imgTown08,
-      //     text: '4D影院'
-      //   }]
-      // }
-    },
-    getWltList() {
-      // this.wonder.wlt = {
-      //   intro: {
-      //     src: imgTownVideo,
-      //     txt: '黄河古渡口小镇，又名圪针滩古渡口，古称采桑津，位于陕西黄河壶口瀑布南侧6.9公里处，在明清时期古渡小镇繁荣兴盛，曾是黄河两岸繁华的商业码头，店铺林立，艄公聚居，商贾云集，当时有钱庄、当铺、皮店、染房、盐店等商号60余家，与壶口瀑布上游的龙王辿码头同是壶口河船商贸集散地，清人贾遇时曾描述其：“客船星集，如鱼贯之相连，店铺林设，似雁形之不绝。地虽偏小，胜得泾阳三原，形似弹丸，赛过长安八水”。其繁华程度可想而知。\n' +
-      //     '我们现在看到的黄河古渡口小镇是壶口文旅公司2017年在原圪针滩古渡口基础上恢复修葺而成的，古镇以陕北特色窑洞建筑高低错落布局，总占地面积70亩，窑洞建筑面积1.4万平米。其中一期占地面积37亩，窑洞建筑面积6800平米，打造了156孔陕北台地窑洞群风格为主体的小镇物理商业文化体验空间，汇聚了陕西本土特色餐饮、精品民宿、特色纪念品、民俗体验等服务。吸引了众多游客前来光顾体验，已成为壶口景区的重要游览景点，同时可为广大游客提供当地特色餐饮、陕北小吃、网红摔碗酒、精品民宿、特色纪念品、民俗体验等服务。\n'
-      //   },
-      //   imgList: [{
-      //     addr: imgPlatform,
-      //     text: '望龙台'
-      //   }, {
-      //     addr: imgPlatform,
-      //     text: '望龙台'
-      //   }, {
-      //     addr: imgPlatform,
-      //     text: '望龙台'
-      //   }, {
-      //     addr: imgPlatform,
-      //     text: '望龙台'
-      //   }, {
-      //     addr: imgPlatform,
-      //     text: '望龙台'
-      //   }, {
-      //     addr: imgPlatform,
-      //     text: '望龙台'
-      //   }]
-      // }
-    },
-    getSingList() {
-      // this.wonder.sing = {
-      //   intro: {
-      //     src: imgTownVideo,
-      //     txt: '4D影院，又名圪针滩古渡口，古称采桑津，位于陕西黄河壶口瀑布南侧6.9公里处，在明清时期古渡小镇繁荣兴盛，曾是黄河两岸繁华的商业码头，店铺林立，艄公聚居，商贾云集，当时有钱庄、当铺、皮店、染房、盐店等商号60余家，与壶口瀑布上游的龙王辿码头同是壶口河船商贸集散地，清人贾遇时曾描述其：“客船星集，如鱼贯之相连，店铺林设，似雁形之不绝。地虽偏小，胜得泾阳三原，形似弹丸，赛过长安八水”。其繁华程度可想而知。\n'
-      //   },
-      //   imgList: [{
-      //     addr: imgTown01,
-      //     title: '第一幕《朔方》',
-      //     content: '演员游客融为一体， 以民俗情景表演唢呐快闪的形式演绎东方红， 使游客身临其境， 同唱响经典名曲《东方红》...'
-      //   }, {
-      //     addr: imgTown01,
-      //     title: '第一幕《朔方》',
-      //     content: '演员游客融为一体， 以民俗情景表演唢呐快闪的形式演绎东方红， 使游客身临其境， 同唱响经典名曲《东方红》...'
-      //   }, {
-      //     addr: imgTown01,
-      //     title: '第一幕《朔方》',
-      //     content: '演员游客融为一体， 以民俗情景表演唢呐快闪的形式演绎东方红， 使游客身临其境， 同唱响经典名曲《东方红》...'
-      //   }, {
-      //     addr: imgTown01,
-      //     title: '第一幕《朔方》',
-      //     content: '演员游客融为一体， 以民俗情景表演唢呐快闪的形式演绎东方红， 使游客身临其境， 同唱响经典名曲《东方红》...'
-      //   }, {
-      //     addr: imgTown01,
-      //     title: '第一幕《朔方》',
-      //     content: '演员游客融为一体， 以民俗情景表演唢呐快闪的形式演绎东方红， 使游客身临其境， 同唱响经典名曲《东方红》...'
-      //   }, {
-      //     addr: imgTown01,
-      //     title: '第一幕《朔方》',
-      //     content: '演员游客融为一体， 以民俗情景表演唢呐快闪的形式演绎东方红， 使游客身临其境， 同唱响经典名曲《东方红》...'
-      //   }]
-      // }
-    },
-    getSceneryList() {
-      // this.wonder.scenery = {
-      //   imgList: [{
-      //     addr: imgTown01,
-      //     title: '第一幕《朔方》',
-      //     content: '演员游客融为一体， 以民俗情景表演唢呐快闪的形式演绎东方红， 使游客身临其境， 同唱响经典名曲《东方红》...'
-      //   }, {
-      //     addr: imgTown01,
-      //     title: '第一幕《朔方》',
-      //     content: '演员游客融为一体， 以民俗情景表演唢呐快闪的形式演绎东方红， 使游客身临其境， 同唱响经典名曲《东方红》...'
-      //   }, {
-      //     addr: imgTown01,
-      //     title: '第一幕《朔方》',
-      //     content: '演员游客融为一体， 以民俗情景表演唢呐快闪的形式演绎东方红， 使游客身临其境， 同唱响经典名曲《东方红》...'
-      //   }, {
-      //     addr: imgTown01,
-      //     title: '第一幕《朔方》',
-      //     content: '演员游客融为一体， 以民俗情景表演唢呐快闪的形式演绎东方红， 使游客身临其境， 同唱响经典名曲《东方红》...'
-      //   }, {
-      //     addr: imgTown01,
-      //     title: '第一幕《朔方》',
-      //     content: '演员游客融为一体， 以民俗情景表演唢呐快闪的形式演绎东方红， 使游客身临其境， 同唱响经典名曲《东方红》...'
-      //   }, {
-      //     addr: imgTown01,
-      //     title: '第一幕《朔方》',
-      //     content: '演员游客融为一体， 以民俗情景表演唢呐快闪的形式演绎东方红， 使游客身临其境， 同唱响经典名曲《东方红》...'
-      //   }, {
-      //     addr: imgTown01,
-      //     title: '第一幕《朔方》',
-      //     content: '演员游客融为一体， 以民俗情景表演唢呐快闪的形式演绎东方红， 使游客身临其境， 同唱响经典名曲《东方红》...'
-      //   }, {
-      //     addr: imgTown01,
-      //     title: '第一幕《朔方》',
-      //     content: '演员游客融为一体， 以民俗情景表演唢呐快闪的形式演绎东方红， 使游客身临其境， 同唱响经典名曲《东方红》...'
-      //   }]
-      // }
     }
   },
   beforeRouteEnter(to, from, next) {
@@ -361,6 +153,19 @@ export default {
           left: 430px
           top: 0
           .content {
+            .txt {
+              font-size 14px
+              color: #000
+              line-height: 24px
+            }
+          }
+        }
+      }
+    }
+    .tabs-content_town {
+      .intro-wrapper {
+        .intro-right {
+          .content {
             &:before {
               content ''
               display: block
@@ -368,11 +173,6 @@ export default {
               height: 45px
               margin-bottom: 15px
               background: url("../assets/img/hkqg/icon-hkqg-small.png") no-repeat
-            }
-            .txt {
-              font-size 14px
-              color: #000
-              line-height: 24px
             }
           }
         }
@@ -497,14 +297,6 @@ export default {
           left: 430px
           top: 0
           .content {
-            &:before {
-              content ''
-              display: block
-              width: 210px
-              height: 45px
-              margin-bottom: 15px
-              background: url("../assets/img/hkqg/icon-hkqg-small.png") no-repeat
-            }
             .txt {
               font-size 14px
               color: #000

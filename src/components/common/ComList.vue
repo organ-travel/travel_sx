@@ -1,15 +1,22 @@
 <template>
-  <div class="m-com-list">
-    <a v-for="(item, index) in listArr" :key="index" :href="item.route" class="m-com-img">
-      <img v-if="isImg" :src="item.picture_url" :class="['u-com-img', imgClass]" alt="" title=""/>
-      <span v-else :class="['u-com-img', item.iconClass]"></span>
-      <span v-if="isVideo" class="u-com-video"></span>
-      <span v-if="hasTitle" class="title">{{ item.title || item.name }}</span>
-      <div v-if="hasMask" class="m-com-mask">
-        <com-desc v-if="isArticle" :title="item.title" :brief="item.brief" class="m-article"></com-desc>
-        <com-column v-if="isCode" :img-url="item.codeUrl" :content="item.name" class="m-code"></com-column>
-      </div>
-    </a>
+  <div>
+    <div class="m-com-list">
+      <a v-for="(item, index) in listArr" :key="index" :href="'#/infoDetail?id=' + item.id" target="_blank" class="m-com-img">
+        <img v-if="isImg" :src="item.picture_url" :class="['u-com-img', imgClass]" alt="" title=""/>
+        <span v-else :class="['u-com-img', item.iconClass]"></span>
+        <a v-if="item.is_video === 1" :href="'#/infoDetail?id=' + item.id" target="_blank" class="u-com-video"></a>
+        <span v-if="hasTitle" class="title">{{ item.title || item.name }}</span>
+        <div v-if="hasMask" class="m-com-mask">
+          <com-desc v-if="isArticle" :title="item.title" :brief="item.brief" class="m-article"></com-desc>
+          <com-column v-if="isCode" :img-url="item.codeUrl" :content="item.name" class="m-code"></com-column>
+        </div>
+      </a>
+    </div>
+    <el-pagination
+      layout="prev, pager, next"
+      :total="listArr.length"
+      @current-change="handleCurrentChange">
+    </el-pagination>
   </div>
 </template>
 <script>
@@ -57,6 +64,9 @@ export default {
   mounted () {
   },
   methods: {
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`)
+    }
   }
 }
 </script>

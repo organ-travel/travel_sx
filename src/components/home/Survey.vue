@@ -3,6 +3,7 @@
     <div v-for="(item, index) in surveyArr" :key="index">
       <a :href="'#/infoDetail?id=' + item.id" class="m-img">
         <img :src="item.article.picture_url" class="u-img"/>
+        <span v-if="item.is_video === 1" class="icon-video-play"></span>
       </a>
       <div class="m-content">
         <a href="javascript:;" class="m-brief">
@@ -57,6 +58,16 @@ export default {
       .m-img {
         float left
         padding-top 7px
+        por
+        .icon-video-play {
+          position absolute
+          top 50%
+          left 50%
+          transform translate(-50%, -50%)
+          width 46px
+          height 46px
+          background url('~@/assets/img/common/icon-video.png') no-repeat center
+        }
         .u-img{
           width 585px
           height 329px

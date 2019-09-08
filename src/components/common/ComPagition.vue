@@ -15,8 +15,8 @@
 <script>
 export default {
   props: {
-    pageList: {
-      type: Array,
+    totalPage: {
+      type: Number,
       default () {
         return []
       }
@@ -30,10 +30,10 @@ export default {
   computed: {
     pages () {
       let left = 1
-      let right = this.pageList.length
+      let right = this.totalPage
       const array = []
-      if (this.pageList.length >= 5) {
-        if (this.currentPage > 3 && this.currentPage < this.pageList.length - 2) {
+      if (this.totalPage >= 5) {
+        if (this.currentPage > 3 && this.currentPage < this.totalPage - 2) {
           left = this.currentPage - 2
           right = this.currentPage + 2
         } else {
@@ -41,8 +41,8 @@ export default {
             left = 1
             right = 5
           } else {
-            right = this.pageList.length
-            left = this.pageList.length - 4
+            right = this.totalPage
+            left = this.totalPage - 4
           }
         }
       }

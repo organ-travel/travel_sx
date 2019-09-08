@@ -4,10 +4,10 @@
     <com-transition v-for="(item, index) in strategyNav" :key="item.id">
       <div v-if="actIndex == index" :class="[`m-${strategyNav[actIndex].type}`, 'm-common']">
         <!-- 美食 -->
-        <com-list v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'eat'" :list-arr="eatArr"></com-list>
+        <com-list v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'eat'" :list-arr="articleObj.eat"></com-list>
         <!-- 住宿 -->
         <div v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'live'">
-          <div v-for="(item, index) in liveArr" :key="index" class="m-strategy-list">
+          <div v-for="(item, index) in articleObj.live" :key="index" class="m-strategy-list">
             <com-desc :title="item.title" :brief="item.brief" class="m-article"></com-desc>
             <div class="m-strategy-img clearfix">
               <div v-for="(item, index) in item.images" :key="index" class="m-wrap-img">
@@ -18,7 +18,7 @@
         </div>
         <!-- 路线 -->
         <div v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'xing'">
-          <com-desc v-for="(item, index) in lineArr" :key="index" :title="item.title" :brief="item.description" class="m-article m-other-article"></com-desc>
+          <com-desc v-for="(item, index) in articleObj.xing" :id="item.id" :key="index" :title="item.title" :brief="item.description" class="m-article m-other-article"></com-desc>
           <span class="u-more">查看更多 -></span>
           <div v-if="serviceArr.length" class="m-strategy-list">
             <h3 class="title">游客服务中心</h3>
@@ -31,13 +31,13 @@
         </div>
         <!-- 游记 -->
         <div v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'you'">
-          <com-list v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'you'" :list-arr="youArr"></com-list>
+          <com-list v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'you'" :list-arr="articleObj.you"></com-list>
         </div>
         <!-- 购物 -->
-        <com-list v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'buy'" :list-arr="buyArr" :has-title="false" :has-mask="true" :is-code="true"></com-list>
+        <com-list v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'buy'" :list-arr="articleObj.buy" :has-title="false" :has-mask="true" :is-code="true"></com-list>
         <!-- 娱乐 -->
         <div v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'play'">
-          <com-list v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'play'" :list-arr="playArr"></com-list>
+          <com-list v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'play'" :list-arr="articleObj.play"></com-list>
         </div>
       </div>
     </com-transition>
@@ -135,14 +135,6 @@ export default {
       this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
       const res = (await this.queryArticleList(this.queryOption[index])).data
       this.$set(this.articleObj, item.type, res.articleList || [])
-
-      console.log(item, item.id, item.type, this.queryOption[index], this.articleObj)
-      if (item.type === 'xing') this.lineArr = this.articleObj.xing
-      if (item.type === 'eat') this.eatArr = this.articleObj.eat
-      if (item.type === 'live') this.liveArr = this.articleObj.live
-      if (item.type === 'buy') this.buyArr = this.articleObj.buy
-      if (item.type === 'you') this.youArr = this.articleObj.you
-      if (item.type === 'play') this.playArr = this.articleObj.play
       if (item.type === 'xing') {
         this.queryTagOption[0] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { tag: 'service', cat_id: item.id })
         const resTag = (await this.queryArticleList(this.queryTagOption[0])).data
@@ -154,202 +146,11 @@ export default {
       }
       this.queryOption[index].total = res.articleCount || 0
       this.queryOption[index].start++
-      // if (item.type === 'yule') this.buyArr = this.articleObj.yule
     })
-    // this.getEat()
-    // this.getLive()
-    // this.getXing()
-    // this.getBuy()
   },
   methods: {
     changeNav (index) {
       this.actIndex = index
-    },
-    getEat () {
-      this.eatArr = [{
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }]
-    },
-    getLive () {
-      this.liveArr = [{
-        title: '渡口客栈',
-        brief: '古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇...',
-        images: ['https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg', 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg', 'https://c-ssl.duitang.com/uploads/item/201805/21/20180521133102_gnvii.jpg', 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605090433_snnuy.jpg', 'https://c-ssl.duitang.com/uploads/item/201805/21/20180521133102_gnvii.jpg', 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605090433_snnuy.jpg']
-      }, {
-        title: '云尚 ● 观瀑舫酒店',
-        brief: '古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇古渡口小镇...',
-        images: ['https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg', 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg', 'https://c-ssl.duitang.com/uploads/item/201805/21/20180521133102_gnvii.jpg', 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605090433_snnuy.jpg', 'https://c-ssl.duitang.com/uploads/item/201805/21/20180521133102_gnvii.jpg', 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605090433_snnuy.jpg']
-      }]
-    },
-    getXing () {
-      this.lineArr = [{
-        title: '路线一',
-        brief: '从西安出发的游客可以在西安汽车站（火车站对面）乘坐至景区的直通车，发车时间为：9:00 11:00 12:30 14:00。到达陇县汽车站后，不用出站可直接换乘景区的旅游大巴从西安出发的游客可以在西安汽车站（火车站对面）乘坐至景区的直通车，发车时间为：9:00 11:00 12:30 14:00...'
-      }, {
-        title: '路线二',
-        brief: '从西安出发的游客可以在西安汽车站（火车站对面）乘坐至景区的直通车，发车时间为：9:00 11:00 12:30 14:00。到达陇县汽车站后，不用出站可直接换乘景区的旅游大巴从西安出发的游客可以在西安汽车站（火车站对面）乘坐至景区的直通车，发车时间为：9:00 11:00 12:30 14:00...'
-      }, {
-        title: '路线三',
-        brief: '从西安出发的游客可以在西安汽车站（火车站对面）乘坐至景区的直通车，发车时间为：9:00 11:00 12:30 14:00。到达陇县汽车站后，不用出站可直接换乘景区的旅游大巴从西安出发的游客可以在西安汽车站（火车站对面）乘坐至景区的直通车，发车时间为：9:00 11:00 12:30 14:00...'
-      }]
-      this.serviceArr = [{
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '壶口斗鼓'
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '壶口斗鼓'
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '壶口斗鼓'
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '壶口斗鼓'
-      }]
-      this.carArr = [{
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '壶口斗鼓'
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '壶口斗鼓'
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '壶口斗鼓'
-      }]
-      // this.xingArr = [{
-      //   addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-      //   route: '#/',
-      //   title: '西安-延安壶口瀑布景区线路',
-      //   brief: '西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口...'
-      // }, {
-      //   addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-      //   route: '#/',
-      //   title: '西安-延安壶口瀑布景区线路',
-      //   brief: '西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口...'
-      // }, {
-      //   addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-      //   route: '#/',
-      //   title: '西安-延安壶口瀑布景区线路',
-      //   brief: '西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口...'
-      // }, {
-      //   addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-      //   route: '#/',
-      //   title: '西安-延安壶口瀑布景区线路',
-      //   brief: '西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口...'
-      // }, {
-      //   addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-      //   route: '#/',
-      //   title: '西安-延安壶口瀑布景区线路',
-      //   brief: '西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口...'
-      // }, {
-      //   addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-      //   route: '#/',
-      //   title: '西安-延安壶口瀑布景区线路',
-      //   brief: '西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口...'
-      // }, {
-      //   addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-      //   route: '#/',
-      //   title: '西安-延安壶口瀑布景区线路',
-      //   brief: '西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口...'
-      // }, {
-      //   addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-      //   route: '#/',
-      //   title: '西安-延安壶口瀑布景区线路',
-      //   brief: '西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口...'
-      // }, {
-      //   addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-      //   route: '#/',
-      //   title: '西安-延安壶口瀑布景区线路',
-      //   brief: '西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口瀑布景区线路西安-延安壶口...'
-      // }]
-    },
-    getBuy () {
-      this.buyArr = [{
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        codeUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg',
-        name: '产品名称'
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        codeUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg',
-        name: '产品名称'
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        codeUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg',
-        name: '产品名称'
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        codeUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg',
-        name: '产品名称'
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        codeUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg',
-        name: '产品名称'
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        codeUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg',
-        name: '产品名称'
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        codeUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg',
-        name: '产品名称'
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        codeUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg',
-        name: '产品名称'
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        codeUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg',
-        name: '产品名称'
-      }]
     }
   }
 }

@@ -4,8 +4,10 @@
       <div v-if="customArr && customArr.length" class="swiper-container custom-swiper">
         <div class="swiper-wrapper">
           <div v-for='(el, index) in customArr' :key="index" class="swiper-slide">
-            <img v-if="el.article && el.article.picture_url" class="img"  :src="el.article.picture_url">
-            <span v-if="el.article && el.article.title" class="text">{{ el.article.title }}</span>
+            <a :href="el.type" target="_blank">
+              <img v-if="el.article && el.article.picture_url" class="img"  :src="el.article.picture_url">
+              <span v-if="el.article && el.article.title" class="text">{{ el.article.title }}</span>
+            </a>
           </div>
         </div>
         <!-- <div class="swiper-pagination"></div> -->

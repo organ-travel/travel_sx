@@ -39,7 +39,6 @@ export default {
     if (this.articleArr.length > 0) {
       this.detailObj = await this.getArticleDetail(this.articleArr[0].id)
     }
-    console.log(res)
   },
   methods: {
   }

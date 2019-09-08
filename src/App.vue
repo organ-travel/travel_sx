@@ -12,7 +12,6 @@
 import { mapMutations } from 'vuex'
 export default {
   mounted () {
-    console.log('app页面---mounted')
     window.$alert = (tip) => {
       return this.$alert(tip, '提示')
     }
