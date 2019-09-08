@@ -9,7 +9,7 @@
           <!--<img v-for="(picture, index) in detailObj.pcitures" :key="index" :src="picture" alt=""  >-->
         <!--</div>-->
         <img :src="detailObj.picture_url" class="u-img"/>
-        <p class="u-param" v-if="detailObj.body" v-html="detailObj.body"></p>
+        <p v-if="detailObj.body" class="u-param" v-html="detailObj.body"></p>
       </div>
     </div>
   </section>
