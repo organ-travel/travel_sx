@@ -6,7 +6,7 @@
       <com-column icon-class="icon-addr" content="陕西省延安市宜川县壶口乡"></com-column>
       <com-column icon-class="icon-email" content="1067072211@qq.com"></com-column>
     </div>
-    <div class="m-contact-map m-contact-wrap"></div>
+    <div class="m-contact-map m-contact-wrap" v-html="detailObj.body"></div>
     <div class="m-contact-code m-contact-wrap">
       <com-column content="公共号二维码" img-url="aaa"></com-column>
       <com-column content="公共号二维码" img-url="aaa"></com-column>
@@ -15,15 +15,31 @@
   </section>
 </template>
 <script>
+import dataset from '@/config/dataset'
 export default {
   name: 'Contact',
   components: {
   },
   data () {
     return {
+      actIndex: 0,
+      infoPageNav: [],
+      articleArr: [],
+      queryOption: [],
+      detailObj: {}
     }
   },
   computed: {
+  },
+  async mounted () {
+    await this.setMenu()
+    this.queryOption = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: this.getCurCategory.id })
+    const res = (await this.queryArticleList(this.queryOption)).data
+    this.articleArr = res.articleList || []
+    if (this.articleArr.length > 0) {
+      this.detailObj = await this.getArticleDetail(this.articleArr[0].id)
+    }
+    console.log(res)
   },
   methods: {
   }
