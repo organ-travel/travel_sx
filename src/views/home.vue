@@ -15,8 +15,8 @@
       <!-- <tab slot="tab" :nav="infoNav" :arr="infoArr" :act-index="actIndex" @changeInfo="changeInfo"></tab> -->
     </info>
     <div class="m-merge">
-      <wonder :wonder-arr="wonderArr"></wonder>
-      <strategy :strategy-arr="strategyArr"></strategy>
+      <wonder :wonder-obj="wonderObj"></wonder>
+      <strategy :strategy-obj="strategyObj"></strategy>
     </div>
     <custom :custom-arr="customArr" :active-label="activeLabel" :custom-nav="customNav" @changeCustom="changeCustom"></custom>
     <div class="m-map m-wrap"></div>
@@ -51,10 +51,10 @@ export default {
       // surveyNav: dataset.surveyNav,
       surveyNav: [],
       infoNav: dataset.infoNav,
-      wonderArr: [],
+      wonderObj: {},
       // wonderArr: dataset.wonderArr,
       // strategyArr: dataset.strategyArr,
-      strategyArr: [],
+      strategyObj: {},
       arrItem: [],
       // 壶口资讯
       infoObj: {},
@@ -184,12 +184,12 @@ export default {
     // 壶口奇观的数据
     getWonder () {
       const menuData = [].concat(this.getMenuData) || []
-      this.wonderArr = menuData[2].children || []
+      this.wonderObj = menuData[2] || []
     },
     // 壶口攻略的数据
     getStrategy () {
       const menuData = [].concat(this.getMenuData) || []
-      this.strategyArr = menuData[3].children || []
+      this.strategyObj = menuData[3] || []
     },
     // 获取壶口风情的数据
     getCustom () {

@@ -1,7 +1,7 @@
 <template>
   <wrap class="m-strategy" title-text="壶口攻略">
     <div class="m-content">
-      <a v-for="(item, index) in strategyArr" :key="index" :href="item.type" :class="item.icon_class_new">
+      <a v-for="(item, index) in strategyObj.children" :key="index" :href="strategyObj.type + '?actIndex=' + index" :class="item.icon_class_new" target="_blank">
         <com-column :content="item.nickname"></com-column>
       </a>
     </div>
@@ -14,8 +14,8 @@ export default {
     Wrap
   },
   props: {
-    strategyArr: {
-      type: Array,
+    strategyObj: {
+      type: Object,
       default () {
         return []
       }

@@ -46,6 +46,7 @@ export default {
   },
   async mounted () {
     await this.setMenu()
+<<<<<<< Updated upstream
     this.noticeNav.forEach(async (item, index) => {
       if (item.type !== 'perchase') {
         this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
@@ -65,6 +66,11 @@ export default {
         this.perchaseList = (await this.getTicketsList(this.queryOption1)).data
       }
     })
+=======
+
+    this.queryOption = Object.assign({}, { start: 0, limit: 10 })
+    this.perchaseList = (await this.getTicketsList(this.queryOption)).data
+>>>>>>> Stashed changes
   },
   // mounted() {
   //   // getTicketsList
