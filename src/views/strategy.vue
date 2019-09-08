@@ -8,10 +8,10 @@
         <!-- 住宿 -->
         <div v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'live'">
           <div v-for="(item, index) in articleObj.live" :key="index" class="m-strategy-list">
-            <com-desc :title="item.title" :brief="item.brief" class="m-article"></com-desc>
+            <com-desc :title="item.title" :brief="item.description" class="m-article"></com-desc>
             <div class="m-strategy-img clearfix">
-              <div v-for="(item, index) in item.images" :key="index" class="m-wrap-img">
-                <img :src="item" class="img"/>
+              <div v-for="(item1, index) in item.pcitures" :key="index" class="m-wrap-img">
+                <img :src="item1" class="img"/>
               </div>
             </div>
           </div>
