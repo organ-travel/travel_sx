@@ -11,15 +11,15 @@
         </a>
       </div>
     </div>
-    <list class="m-columns" :type-arr="surveyNav" @changeShow="changeSurvey"></list>
+    <ListSurvey class="m-columns" :type-arr="surveyNav" @changeShow="changeSurvey"></ListSurvey>
   </wrap>
 </template>
 <script>
-import List from '@/components/home/List.vue'
+import ListSurvey from '@/components/home/ListSurvey.vue'
 import Wrap from '@/components/home/Wrap.vue'
 export default {
   components: {
-    List,
+    ListSurvey,
     Wrap
   },
   props: {
