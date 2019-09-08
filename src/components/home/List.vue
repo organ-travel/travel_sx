@@ -1,6 +1,7 @@
 <template>
   <div>
-    <a v-for="(item, index) in typeArr" :key="index" href="javascript:;" :class="item.class_name" @click="changeShow(item.type)">
+    <a v-for="(item, index) in typeArr" :key="index" :href="'#/' + item.type + '?actIndex=' + 0" :class="item.class_name" @click="changeShow(item.type)">
+      <!--{{item}}-->
       <com-column :icon-class="item.icon_class" :content="item.name" :text-class="text_class"></com-column>
     </a>
   </div>
@@ -17,6 +18,10 @@ export default {
     text_class: {
       type: String,
       default: ''
+    },
+    actIndex: {
+      type: Number,
+      default: 0
     }
   },
   mounted () {

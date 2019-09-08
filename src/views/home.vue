@@ -193,65 +193,65 @@ export default {
     },
     // 获取壶口风情的数据
     getCustom () {
-      const drum = [{
-        text: '斗鼓是一种民俗文化',
-        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg'
-      }, {
-        text: '斗鼓是一种民俗文化',
-        imgUrl: 'http://pic.58pic.com/58pic/13/60/16/64b58PICXEK_1024.jpg'
-      }]
-      if (drum.length) {
-        this.customDatas = Object.assign({}, this.customDatas, { drum })
-        this.customNav.push({type: 'drum', name: '斗鼓'})
-      }
-      const paperCut = [{
-        text: '剪纸',
-        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg'
-      }, {
-        text: '剪纸',
-        imgUrl: 'http://image.qmango.com/hotelimg/dl1210/109490/109.jpeg'
-      }]
-      if (paperCut.length) {
-        this.customDatas = Object.assign({}, this.customDatas, { paperCut })
-        this.customNav.push({type: 'paperCut', name: '剪纸'})
-      }
-      const shoot = [{
-        text: '摄影',
-        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201805/21/20180521133102_gnvii.jpg'
-      }, {
-        text: '摄影',
-        imgUrl: 'http://image.qmango.com/hotelimg/dl1210/125708/181.jpeg'
-      }]
-      if (shoot.length) {
-        this.customDatas = Object.assign({}, this.customDatas, { shoot })
-        this.customNav.push({type: 'shoot', name: '摄影'})
-      }
-      const picture = [{
-        text: '壶口图集',
-        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605090433_snnuy.jpg'
-      }, {
-        text: '壶口图集',
-        imgUrl: 'http://image.qmango.com/hotelimg/dl1210/119297/793.jpeg'
-      }]
-      if (picture.length) {
-        this.customDatas = Object.assign({}, this.customDatas, { picture })
-        this.customNav.push({type: 'picture', name: '壶口图集'})
-      }
-      const film = [{
-        text: '壶口影集',
-        imgUrl: 'https://c-ssl.duitang.com/uploads/item/201808/09/20180809201018_R8Xfu.jpeg'
-      }, {
-        text: '壶口影集',
-        imgUrl: 'http://image.qmango.com/hotelimg/dl1210/109490/109.jpeg'
-      }]
-      if (film.length) {
-        this.customDatas = Object.assign({}, this.customDatas, { film })
-        this.customNav.push({type: 'film', name: '壶口影集'})
-      }
-      this.activeLabel = this.customNav[0].type
-      this.customArr = this.customDatas[this.activeLabel]
-      // const menuData = [].concat(this.getMenuData) || []
-      // this.customArr = menuData[4].children || []
+      // const drum = [{
+      //   text: '斗鼓是一种民俗文化',
+      //   imgUrl: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg'
+      // }, {
+      //   text: '斗鼓是一种民俗文化',
+      //   imgUrl: 'http://pic.58pic.com/58pic/13/60/16/64b58PICXEK_1024.jpg'
+      // }]
+      // if (drum.length) {
+      //   this.customDatas = Object.assign({}, this.customDatas, { drum })
+      //   this.customNav.push({type: 'drum', name: '斗鼓'})
+      // }
+      // const paperCut = [{
+      //   text: '剪纸',
+      //   imgUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605234527_efvgj.jpg'
+      // }, {
+      //   text: '剪纸',
+      //   imgUrl: 'http://image.qmango.com/hotelimg/dl1210/109490/109.jpeg'
+      // }]
+      // if (paperCut.length) {
+      //   this.customDatas = Object.assign({}, this.customDatas, { paperCut })
+      //   this.customNav.push({type: 'paperCut', name: '剪纸'})
+      // }
+      // const shoot = [{
+      //   text: '摄影',
+      //   imgUrl: 'https://c-ssl.duitang.com/uploads/item/201805/21/20180521133102_gnvii.jpg'
+      // }, {
+      //   text: '摄影',
+      //   imgUrl: 'http://image.qmango.com/hotelimg/dl1210/125708/181.jpeg'
+      // }]
+      // if (shoot.length) {
+      //   this.customDatas = Object.assign({}, this.customDatas, { shoot })
+      //   this.customNav.push({type: 'shoot', name: '摄影'})
+      // }
+      // const picture = [{
+      //   text: '壶口图集',
+      //   imgUrl: 'https://c-ssl.duitang.com/uploads/item/201806/05/20180605090433_snnuy.jpg'
+      // }, {
+      //   text: '壶口图集',
+      //   imgUrl: 'http://image.qmango.com/hotelimg/dl1210/119297/793.jpeg'
+      // }]
+      // if (picture.length) {
+      //   this.customDatas = Object.assign({}, this.customDatas, { picture })
+      //   this.customNav.push({type: 'picture', name: '壶口图集'})
+      // }
+      // const film = [{
+      //   text: '壶口影集',
+      //   imgUrl: 'https://c-ssl.duitang.com/uploads/item/201808/09/20180809201018_R8Xfu.jpeg'
+      // }, {
+      //   text: '壶口影集',
+      //   imgUrl: 'http://image.qmango.com/hotelimg/dl1210/109490/109.jpeg'
+      // }]
+      // if (film.length) {
+      //   this.customDatas = Object.assign({}, this.customDatas, { film })
+      //   this.customNav.push({type: 'film', name: '壶口影集'})
+      // }
+      // this.activeLabel = this.customNav[0].type
+      // this.customArr = this.customDatas[this.activeLabel]
+      const menuData = [].concat(this.getMenuData) || []
+      this.customArr = menuData[4].children || []
     }
   }
 }
