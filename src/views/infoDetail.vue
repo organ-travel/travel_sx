@@ -8,12 +8,8 @@
         <!--<div v-if="detailObj.pcitures && detailObj.pcitures.length" class="picture-wrapper">-->
           <!--<img v-for="(picture, index) in detailObj.pcitures" :key="index" :src="picture" alt=""  >-->
         <!--</div>-->
-<<<<<<< Updated upstream
-        <!--<img :src="detailObj.picture_url" class="u-img"/>-->
-=======
         <img :src="detailObj.picture_url" class="u-img"/>
->>>>>>> Stashed changes
-        <p class="u-param" v-html="detailObj.body"></p>
+        <p class="u-param" v-if="detailObj.body" v-html="detailObj.body"></p>
       </div>
     </div>
   </section>

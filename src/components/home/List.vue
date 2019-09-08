@@ -1,7 +1,6 @@
 <template>
   <div>
-    <a v-for="(item, index) in typeArr" :key="index" :href="'#/' + item.type + '?actIndex=' + 0" :class="item.class_name" @click="changeShow(item.type)">
-      <!--{{item}}-->
+    <a v-for="(item, index) in typeArr" :key="index" :href="item.parent.type + '?name=' + item.type" :class="item.class_name" @click="changeShow(item.type)">
       <com-column :icon-class="item.icon_class" :content="item.name" :text-class="text_class"></com-column>
     </a>
   </div>
