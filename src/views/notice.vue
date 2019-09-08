@@ -5,13 +5,13 @@
     </div>
     <com-tab :act-index="actIndex" :nav-arr="noticeNav" @changeNav="changeNav"></com-tab>
     <com-transition>
-      <notice-item v-if="noticeNav[actIndex].name == 'notice'" :arr="noticeList"></notice-item>
+      <notice-item v-if="noticeNav[actIndex].type == 'notice'" :arr="noticeList"></notice-item>
     </com-transition>
     <com-transition>
-      <price-item v-if="noticeNav[actIndex].name == 'price'"></price-item>
+      <price-item v-if="noticeNav[actIndex].type == 'price'" :item="priceItem"></price-item>
     </com-transition>
     <com-transition>
-      <perchase-item v-if="noticeNav[actIndex].name == 'perchase'" :arr="perchaseList"></perchase-item>
+      <perchase-item v-if="noticeNav[actIndex].type == 'perchase'" :arr="perchaseList"></perchase-item>
     </com-transition>
   </com-wrap>
 </template>
@@ -38,16 +38,33 @@ export default {
       banner: imgBanner,
       noticeList: [],
       priceList: [],
+      priceItem: {},
       perchaseList: [],
-      queryOption: []
+      queryOption: [],
+      queryOption1: []
     }
   },
   async mounted () {
     await this.setMenu()
-
-    this.queryOption = Object.assign({}, { start: 0, limit: 10 })
-    this.perchaseList = (await this.getTicketsList(this.queryOption)).data
-    console.log(this.perchaseList)
+    this.noticeNav.forEach(async (item, index) => {
+      if (item.type !== 'perchase') {
+        this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
+        const res = (await this.queryArticleList(this.queryOption[index])).data
+        this.queryOption[index].total = res.articleCount || 0
+        this.queryOption[index].start++
+        if (item.type === 'notice') this.noticeList = res.articleList || []
+        if (item.type === 'price') {
+          if (res.articleList.length > 0) {
+            const itemArticle = res.articleList[0]
+            this.priceItem = await this.getArticleDetail(itemArticle.id)
+          }
+        }
+        // if (item.type === 'notice') this.noticeList = this.articleObj.notice
+      } else {
+        this.queryOption1 = Object.assign({}, { start: 0, limit: 10 })
+        this.perchaseList = (await this.getTicketsList(this.queryOption1)).data
+      }
+    })
   },
   // mounted() {
   //   // getTicketsList

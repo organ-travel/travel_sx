@@ -301,14 +301,20 @@ export default {
   }],
   //
   noticeNav: [{
-    name: 'notice',
-    text: '重要通知'
+    name: '重要通知',
+    type: 'notice',
+    text: '重要通知',
+    id: 91
   }, {
-    name: 'price',
-    text: '票价信息'
+    name: '票价信息',
+    type: 'price',
+    text: '票价信息',
+    id: 92
   }, {
-    name: 'perchase',
-    text: '在线购票'
+    name: '在线购票',
+    type: 'perchase',
+    text: '在线购票',
+    id: 93
   }],
   // 壶口风情导航
   // infoPageNav: [{
