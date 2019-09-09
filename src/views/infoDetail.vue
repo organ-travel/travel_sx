@@ -15,7 +15,6 @@
 </template>
 <script>
 export default {
-  name: 'ShowPic',
   components: {
   },
   data () {
@@ -26,31 +25,20 @@ export default {
   },
   computed: {
   },
-  beforeRouteEnter (to, from, next) {
-    console.log(to)
-    console.log(from)
-    next(vm => {
-    })
-  },
   async mounted () {
     await this.setMenu()
     const id = this.$router.history.current.query.id
     this.detailObj = await this.getArticleDetail(id)
+<<<<<<< Updated upstream
     this.breadArr = this.detailObj.categorys
     // this.getBread()
+=======
+    const breadData = window.localStorage.getItem('breadData')
+    this.breadArr = JSON.parse(breadData)
+>>>>>>> Stashed changes
   },
   methods: {
     getBread () {
-      this.breadArr = [{
-        path: '/',
-        text: '首页'
-      }, {
-        path: '/',
-        text: '魅力咨询'
-      }, {
-        path: '',
-        text: '景区活动'
-      }]
     }
   }
 }

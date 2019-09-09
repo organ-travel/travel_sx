@@ -14,6 +14,7 @@
     </div>
     <el-pagination
       layout="prev, pager, next"
+      v-if="listArr.length > 0"
       :total="listArr.length"
       @current-change="handleCurrentChange">
     </el-pagination>

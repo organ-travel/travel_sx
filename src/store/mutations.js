@@ -14,6 +14,3 @@ export const SET_MENU_RELATIONS = (state, payload) => {
 export const SET_CUR_CATEGORY = (state, payload) => {
   state.curCategory = JSON.parse(JSON.stringify(payload))
 }
-export const SET_ARTICLE_DATA = (state, payload) => {
-  state.articleData = payload
-}

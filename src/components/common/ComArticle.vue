@@ -11,8 +11,10 @@
         </div>
       </a>
       <span v-if="item.create_time && !hasDownload" class="u-date">{{ item.create_time | transformDate }}</span>
-      <a v-if="hasDetail" class="u-detail" :href="'#/infoDetail?id=' + item.id" target="_blank">查看详情</a>
-      <a v-if="hasDownload" class="u-download" :href="'#/infoDetail?id=' + item.id" target="_blank">下载</a>
+      <a v-if="hasDetail" class="u-detail" href="javascript:;" @click="handleJump(item)">查看详情</a>
+      <a v-if="hasDownload" class="u-download" href="javascript:;" @click="handleJump(item)">下载</a>
+      <!--<a v-if="hasDetail" class="u-detail" :href="'#/infoDetail?id=' + item.id" target="_blank" @click="handleJump(item)">查看详情</a>-->
+      <!--<a v-if="hasDownload" class="u-download" :href="'#/infoDetail?id=' + item.id" target="_blank">下载</a>-->
     </div>
     <el-pagination
       layout="prev, pager, next"
@@ -24,6 +26,18 @@
 <script>
 export default {
   props: {
+    curCategory: {
+      type: Object,
+      default () {
+        return {}
+      }
+    },
+    parentArr: {
+      type: Object,
+      default () {
+        return {}
+      }
+    },
     arr: {
       type: Array,
       default () {
@@ -41,9 +55,6 @@ export default {
   },
   data() {
     return {
-      pageSet: {
-        totalRow: this.pageSet
-      }
     }
   },
   mounted () {
@@ -57,6 +68,25 @@ export default {
     },
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`)
+    },
+    handleJump(item) {
+      const firstParams = {
+        id: '',
+        text: '首页',
+        path: '/'
+      }
+      const secondParams = {
+        id: this.curCategory.id,
+        text: this.curCategory.name,
+        path: this.curCategory.type.replace('#/', '')
+      }
+      const thirdParams = {
+        id: this.parentArr.id,
+        text: this.parentArr.name
+      }
+      const breadArr = [].concat(firstParams, secondParams, thirdParams)
+      window.localStorage.setItem('breadData', JSON.stringify(breadArr))
+      window.open('#/infoDetail?id=' + item.id, 'target=_blank')
     }
   }
 }

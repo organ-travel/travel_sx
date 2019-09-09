@@ -2,7 +2,7 @@
   <com-wrap class="m-info-page">
     <com-tab :act-index="actIndex" :nav-arr="infoPageNav" @changeNav="changeNav"></com-tab>
     <com-transition v-for="(item, index) in infoPageNav" :key="item.id">
-      <com-article v-if="actIndex  == index" :arr="articleArr[index]" :has-detail="!(infoPageNav[actIndex] && (infoPageNav[actIndex].name == '招贤纳士' || infoPageNav[actIndex].name == '文件下载'))" :has-download="infoPageNav[actIndex] && infoPageNav[actIndex].name == '文件下载'" :page-set="queryOption[actIndex].total"  @handleDownload="handleDownload"  @handlePageChange="handlePageChange"></com-article>
+      <com-article v-if="actIndex  == index" :cur-category="curCategoryArr" :parent-arr="infoPageNav[actIndex]" :arr="articleArr[index]" :has-detail="!(infoPageNav[actIndex] && (infoPageNav[actIndex].name == '招贤纳士' || infoPageNav[actIndex].name == '文件下载'))" :has-download="infoPageNav[actIndex] && infoPageNav[actIndex].name == '文件下载'"  @handleDownload="handleDownload"></com-article>
     </com-transition>
   </com-wrap>
 </template>
@@ -16,6 +16,7 @@ export default {
     return {
       actIndex: 0,
       infoPageNav: [],
+      curCategoryArr: {},
       articleArr: [],
       queryOption: []
     }
@@ -28,6 +29,7 @@ export default {
   async mounted () {
     await this.setMenu()
     this.actIndex = parseInt(this.$route.query.actIndex) || this.actIndex
+    this.curCategoryArr = this.getCurCategory
     this.infoPageNav = this.getCurCategory.children || []
     this.infoPageNav.forEach(async (item, index) => {
       this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
@@ -42,9 +44,6 @@ export default {
       this.actIndex = index
     },
     handleDownload () {
-    },
-    handlePageChange () {
-      console.log(1)
     }
   }
 }
