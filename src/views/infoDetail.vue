@@ -29,13 +29,7 @@ export default {
     await this.setMenu()
     const id = this.$router.history.current.query.id
     this.detailObj = await this.getArticleDetail(id)
-<<<<<<< Updated upstream
     this.breadArr = this.detailObj.categorys
-    // this.getBread()
-=======
-    const breadData = window.localStorage.getItem('breadData')
-    this.breadArr = JSON.parse(breadData)
->>>>>>> Stashed changes
   },
   methods: {
     getBread () {

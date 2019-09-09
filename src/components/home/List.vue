@@ -1,10 +1,6 @@
 <template>
   <div>
-<<<<<<< Updated upstream
     <a v-for="(item, index) in typeArr" :key="index" :href="item.parent.type + '?name=' + item.type" :class="item.class_name">
-=======
-    <a v-for="(item, index) in typeArr" :key="index" :href="item.parent.type + '?name=' + item.type" target="_blank" :class="item.class_name" @click="changeShow(item.type)">
->>>>>>> Stashed changes
       <com-column :icon-class="item.icon_class" :content="item.name" :text-class="text_class"></com-column>
     </a>
   </div>
