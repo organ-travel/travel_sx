@@ -127,6 +127,7 @@ export default {
     },
     changeSurvey (type) {
       this.surveyLabel = type || '',
+      console.log(this.surveyDatas, this.surveyDatas[this.surveyLabel])
       this.surveyArr = this.surveyDatas[type] || []
     },
     // 获取头图
@@ -138,11 +139,14 @@ export default {
       const menuData = [].concat(this.getMenuData) || []
       this.surveyNav = menuData[6].children || []
       this.surveyNav.forEach(item => {
-        this.surveyDatas[item.type] = []
-        this.surveyDatas[item.type].push(item)
+        console.log(item)
+        // this.surveyDatas[item.type] = []
+        this.$set(this.surveyDatas, item.type, [item])
+        // this.surveyDatas[item.type].push(item)
       })
       this.surveyLabel = this.surveyNav[0].type
       this.surveyArr = this.surveyDatas[this.surveyLabel]
+      console.log(this.surveyDatas)
     },
     // 壶口资讯的数据
     getInfo () {
