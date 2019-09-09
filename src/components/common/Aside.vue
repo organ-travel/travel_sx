@@ -80,9 +80,10 @@ export default {
         return false
       }
       this.addConsult(params).then(res => {
-        console.log(res)
-        // this.handleReset()
+        window.$alert('提交成功')
+        this.handleReset()
       }).catch(error => {
+        window.$alert('提交失败')
         this.handleReset()
         console.log(error)
       })
