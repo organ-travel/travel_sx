@@ -106,6 +106,10 @@ export default {
     }
     &.m-contact-map {
       height 540px
+      text-align: center
+      img {
+        max-width 100%
+      }
     }
   }
   .m-contact-code {
