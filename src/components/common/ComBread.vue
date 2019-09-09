@@ -1,7 +1,7 @@
 <template>
   <div class="m-com-bread">
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item v-for="(item, index) in listArr" :key="index" :to="{ 'path': item.path }">{{ item.text }}</el-breadcrumb-item>
+      <el-breadcrumb-item v-for="(item, index) in listArr" :key="index" :to="{ 'path':item.type }">{{ item.name }}</el-breadcrumb-item>
       <!-- <el-breadcrumb-item :to="{ path: '/' }">魅力壶口</el-breadcrumb-item>
       <el-breadcrumb-item>斗鼓</el-breadcrumb-item> -->
     </el-breadcrumb>

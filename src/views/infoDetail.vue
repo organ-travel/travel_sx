@@ -8,7 +8,6 @@
         <!--<div v-if="detailObj.pcitures && detailObj.pcitures.length" class="picture-wrapper">-->
           <!--<img v-for="(picture, index) in detailObj.pcitures" :key="index" :src="picture" alt=""  >-->
         <!--</div>-->
-        <img :src="detailObj.picture_url" class="u-img"/>
         <p v-if="detailObj.body" class="u-param" v-html="detailObj.body"></p>
       </div>
     </div>
@@ -37,8 +36,8 @@ export default {
     await this.setMenu()
     const id = this.$router.history.current.query.id
     this.detailObj = await this.getArticleDetail(id)
-
-    this.getBread()
+    this.breadArr = this.detailObj.categorys
+    // this.getBread()
   },
   methods: {
     getBread () {
