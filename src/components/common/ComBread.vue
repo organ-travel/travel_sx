@@ -23,6 +23,9 @@ export default {
   },
   methods: {
     handleBreadClick(item) {
+      if (item.type.indexOf('/') < 0) {
+        return false
+      }
       window.location.href = item.type
     }
   }
