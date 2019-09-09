@@ -58,7 +58,7 @@ export default {
       .m-img {
         float left
         padding-top 7px
-        por
+        position: relative
         .icon-video-play {
           position absolute
           top 50%

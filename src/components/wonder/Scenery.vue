@@ -3,38 +3,50 @@
     <ul>
       <li v-for="(item, index) in list" :key="index">
         <div v-if="index === 0  || index === 1" class="left">
-          <div class="img-wrapper"><a href="javascript:;"><img :src="imgvideo" alt=""></a></div>
+          <div class="img-wrapper">
+            <a href="javascript:;"><img :src="item.picture_url" alt=""></a>
+            <a v-if="item.is_video === 1" :href="'#/infoDetail?id=' + item.id" class="icon-video-play" target="_blank">播放</a>
+          </div>
           <div class="txt-wrapper">
             <h1 class="txt-title">{{ item.title }}</h1>
             <div class="txt-content">
-              <p class="txt">{{ item.content }} <a href="javascript:;" class="txt-link">【详情】</a> </p>
+              <p class="txt">{{ item.description }} <a :href="'#/infoDetail?id=' + item.id" class="txt-link" target="_blank">【详情】</a> </p>
             </div>
           </div>
         </div>
         <div v-else-if="index === 2" class="left-all">
-          <div class="img-wrapper"><a href="javascript:;"><img :src="imgvideo" alt=""></a></div>
+          <div class="img-wrapper">
+            <a href="javascript:;"><img :src="item.picture_url" alt=""></a>
+            <a v-if="item.is_video === 1" :href="'#/infoDetail?id=' + item.id" class="icon-video-play" target="_blank">播放</a>
+          </div>
           <div class="txt-wrapper">
             <h1 class="txt-title">{{ item.title }}</h1>
             <div class="txt-content">
-              <p class="txt">{{ item.content }} <a href="javascript:;" class="txt-link">【详情】</a> </p>
+              <p class="txt">{{ item.description }} <a :href="'#/infoDetail?id=' + item.id" class="txt-link" target="_blank">【详情】</a> </p>
             </div>
           </div>
         </div>
         <div v-else-if="index === 7" class="right-all">
-          <div class="img-wrapper"><a href="javascript:;"><img :src="imgvideo" alt=""></a></div>
+          <div class="img-wrapper">
+            <a href="javascript:;"><img :src="item.picture_url" alt=""></a>
+            <a v-if="item.is_video === 1" :href="'#/infoDetail?id=' + item.id" class="icon-video-play" target="_blank">播放</a>
+          </div>
           <div class="txt-wrapper">
             <h1 class="txt-title">{{ item.title }}</h1>
             <div class="txt-content">
-              <p class="txt">{{ item.content }} <a href="javascript:;" class="txt-link">【详情】</a> </p>
+              <p class="txt">{{ item.description }} <a :href="'#/infoDetail?id=' + item.id" class="txt-link" target="_blank">【详情】</a> </p>
             </div>
           </div>
         </div>
         <div v-else class="right">
-          <div class="img-wrapper"><a href="javascript:;"><img :src="imgvideo" alt=""></a></div>
+          <div class="img-wrapper">
+            <a href="javascript:;"><img :src="item.picture_url" alt=""></a>
+            <a v-if="item.is_video === 1" :href="'#/infoDetail?id=' + item.id" class="icon-video-play" target="_blank">播放</a>
+          </div>
           <div class="txt-wrapper">
             <h1 class="txt-title">{{ item.title }}</h1>
             <div class="txt-content">
-              <p class="txt">{{ item.content }} <a href="javascript:;" class="txt-link">【详情】</a> </p>
+              <p class="txt">{{ item.description }} <a :href="'#/infoDetail?id=' + item.id" class="txt-link" target="_blank">【详情】</a> </p>
             </div>
           </div>
         </div>
@@ -44,7 +56,6 @@
 </template>
 
 <script>
-import imgTownVideo from '@/assets/img/hkqg/img-video.jpg'
 export default {
   props: {
     list: {
@@ -56,7 +67,6 @@ export default {
   },
   data() {
     return {
-      'imgvideo': imgTownVideo
     }
   },
   created() {
@@ -112,6 +122,15 @@ export default {
               -o-transform: scale(1.1)
               transform: scale(1.1)
             }
+          }
+          .icon-video-play {
+            position absolute
+            top 50%
+            left 50%
+            transform translate(-50%, -50%)
+            width 46px
+            height 46px
+            background url('~@/assets/img/common/icon-video.png') no-repeat center
           }
         }
         .txt-wrapper {
