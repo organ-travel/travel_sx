@@ -11,14 +11,18 @@
       <div
         v-show=" item.children && item.children.length && getActiveIndex === index && isShow"
         class="m-drop-list">
-        <a
-          v-for="(arr, ind) in item.children"
-          :key="ind"
-          href="javascript:void(0)"
-          class="u-drop-list"
-          @click.stop="handleClick(index, ind, item.type)">
-          {{ arr.name }}
-        </a>
+        <div
+         v-for="(arr, ind) in item.children"
+         :key="ind"
+         class="ifdiv">
+          <a
+            v-if="arr.type != 'introduction'"
+            href="javascript:void(0)"
+            class="u-drop-list"
+            @click.stop="handleClick(index, ind, item.type)">
+            {{ arr.name }}
+          </a>
+        </div>
       </div>
     </a>
   </section>
@@ -95,19 +99,22 @@ export default {
       left -14px
       width 154px
       background rgba(0, 0, 0, .4)
-      .u-drop-list {
-        padding-left 34px
-        display block
-        height 45px
-        line-height 45px
-        text-align left
-        color #ffffff
-        &:hover {
-          color #ec5a02
+      .ifdiv {
+        .u-drop-list {
+          padding-left 34px
+          display block
+          height 45px
+          line-height 45px
+          text-align left
+          color #ffffff
+          border-top 1px solid #999999
+          &:hover {
+            color #ec5a02
+          }
         }
-      }
-      .u-drop-list + .u-drop-list {
-        border-top 1px solid #999999
+        .u-drop-list + .u-drop-list {
+          border-top 1px solid #999999
+        }
       }
     }
   }

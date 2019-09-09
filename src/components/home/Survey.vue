@@ -1,14 +1,14 @@
 <template>
   <wrap v-if="surveyArr && surveyArr.length" class="m-survey" title-text="壶口概况">
     <div v-for="(item, index) in surveyArr" :key="index">
-      <a :href="'#/infoDetail?id=' + item.id" class="m-img">
+      <a :href="'#/infoDetail?id=' + item.article.id" class="m-img">
         <img :src="item.article.picture_url" class="u-img"/>
         <span v-if="item.is_video === 1" class="icon-video-play"></span>
       </a>
       <div class="m-content">
         <a href="javascript:;" class="m-brief">
           <span class="text">{{ item.article.description }} </span>
-          <a :href="'#/infoDetail?id=' + item.id" class="detail" target="_blank">&nbsp;[详情]</a>
+          <a :href="'#/infoDetail?id=' + item.article.id" class="detail" target="_blank">&nbsp;[详情]</a>
         </a>
       </div>
     </div>
