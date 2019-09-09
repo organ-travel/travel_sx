@@ -13,8 +13,8 @@
       </a>
     </div>
     <el-pagination
-      layout="prev, pager, next"
       v-if="listArr.length > 0"
+      layout="prev, pager, next"
       :total="listArr.length"
       @current-change="handleCurrentChange">
     </el-pagination>

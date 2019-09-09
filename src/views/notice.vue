@@ -213,7 +213,7 @@ export default {
             font-size 18px
             color: #ec5a02
           }
-          .txt {
+          .txt, p {
             font-size 14px
             color: #333
             line-height:30px
