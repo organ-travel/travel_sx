@@ -12,30 +12,30 @@
         </div>
         <div class="qrcode-wrapper">
           <div class="qrcode-mobile" data-after="手机微官网">
-            <img src="../../assets/img/common/weiguan.jpg" alt="二维码" class="img">
+            <img src="@/assets/img/common/weiguan.jpg" alt="二维码" class="img">
           </div>
           <div class="qrcode-wechat" data-after="微信公众号">
-            <img src="../../assets/img/common/weixin.jpg" alt="二维码" class="img">
+            <img src="@/assets/img/common/weixin.jpg" alt="二维码" class="img">
           </div>
           <div class="qrcode-weibo" data-after="微博">
-            <img src="../../assets/img/common/weibo.jpg" alt="二维码" class="img">
+            <img src="@/assets/img/common/weibo.jpg" alt="二维码" class="img">
           </div>
         </div>
       </div>
       <div class="footer-bottom">
 
         <div class="link-in-wrapper">
-          <a href="javascript:;" class="txt">首页</a>
-          <a href="javascript:;" class="txt">壶口概况</a>
-          <a href="javascript:;" class="txt">壶口资讯</a>
-          <a href="javascript:;" class="txt">壶口奇观</a>
-          <a href="javascript:;" class="txt">壶口攻略</a>
-          <a href="javascript:;" class="txt">壶口风情</a>
+          <a href="#/" class="txt">首页</a>
+          <a href="#/survey" class="txt">壶口概况</a>
+          <a href="#/info" class="txt">壶口资讯</a>
+          <a href="#/wonder" class="txt">壶口奇观</a>
+          <a href="#/strategy" class="txt">壶口攻略</a>
+          <a href="#/custom" class="txt">壶口风情</a>
         </div>
         <div class="link-out-wrapper" data-before="友情链接：">
-          <a href="javascript:;" class="txt">携程网</a>
-          <a href="javascript:;" class="txt">美团网</a>
-          <a href="javascript:;" class="txt">骏途旅游网</a>
+          <a href="//www.ctrip.com/" target="_blank" class="txt">携程网</a>
+          <a href="//www.meituan.com/" target="_blank" class="txt">美团网</a>
+          <a href="//www.tuniu.com/" target="_blank" class="txt">骏途旅游网</a>
         </div>
         <div class="copyright-wrapper">
           <p class="txt">Copyright©2019 陕西黄河壶口文化旅游发展有限责任公司</p>

@@ -8,14 +8,15 @@
     </div>
     <div class="m-contact-map m-contact-wrap" v-html="detailObj.body"></div>
     <div class="m-contact-code m-contact-wrap">
-      <com-column content="公共号二维码" img-url="aaa"></com-column>
-      <com-column content="公共号二维码" img-url="aaa"></com-column>
-      <com-column content="公共号二维码" img-url="aaa"></com-column>
+      <com-column v-for="(item, index) in codeArr" :key="index" :content="item.text" :img-url="item.imgUrl"></com-column>
     </div>
   </section>
 </template>
 <script>
 import dataset from '@/config/dataset'
+import imgMobile from '@/assets/img/common/weiguan.jpg'
+import imgWechat from '@/assets/img/common/weixin.jpg'
+import imgWeibo from '@/assets/img/common/weibo.jpg'
 export default {
   name: 'Contact',
   components: {
@@ -26,7 +27,17 @@ export default {
       infoPageNav: [],
       articleArr: [],
       queryOption: [],
-      detailObj: {}
+      detailObj: {},
+      codeArr: [{
+        imgUrl: imgMobile,
+        text: '手机微官网'
+      },{
+        imgUrl: imgWechat,
+        text: '微信公众号'
+      },{
+        imgUrl: imgWeibo,
+        text: '微博'
+      }]
     }
   },
   computed: {
