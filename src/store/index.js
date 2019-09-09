@@ -7,9 +7,9 @@ import * as MetaData from './metaData'
 import modules from './modules'
 
 const debug = process.env.NODE_ENV !== 'production'
-if (debug) {
-  Vue.use(Vuex)
-}
+// if (debug) {
+Vue.use(Vuex)
+// }
 const state = {
   // header的高度
   headerHeight: 118,
