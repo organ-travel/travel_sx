@@ -32,6 +32,12 @@ export default {
   },
   methods: {
     handleSearch () {
+      const current = this.getMenuData.find(item => item.name.indexOf(this.search) > -1)
+      if (current) {
+        window.location.href = current.type
+      } else {
+        window.$alert('暂无匹配数据')
+      }
     }
   }
 }
