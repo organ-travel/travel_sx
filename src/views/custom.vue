@@ -16,7 +16,7 @@
         <com-list :list-arr="articleObj.picture"></com-list>
       </div>
       <div v-if="actIndex == index && customNav[actIndex] && customNav[actIndex].type == 'film_video'" :class="`m-${customNav[actIndex].type}`">
-        <com-list :list-arr="articleObj.film_video" :is-img="false"></com-list>
+        <com-list :list-arr="articleObj.film_video"></com-list>
         <p class="u-more">点击更多视频 >></p>
       </div>
     </com-transition>
@@ -46,7 +46,8 @@ export default {
     this.actIndex = parseInt(this.$route.query.actIndex) || this.actIndex
     this.customNav = this.getCurCategory.children || []
     this.customNav.forEach(async (item, index) => {
-      this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
+      if (item.type === 'film_video') this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { limit: 1, cat_id: item.id })
+      else this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
       const res = (await this.queryArticleList(this.queryOption[index])).data
       this.$set(this.articleObj, item.type, res.articleList || [])
       this.queryOption[index].total = res.articleCount || 0
