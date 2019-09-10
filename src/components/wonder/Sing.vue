@@ -1,17 +1,17 @@
 <template>
   <div  class="tabs-content_single">
     <com-wonder-intro :intro="intro"></com-wonder-intro>
-    <com-list :list-arr="list"></com-list>
+    <sing-list :list-arr="list"></sing-list>
   </div>
 </template>
 
 <script>
 import ComWonderIntro from '@/components/common/ComWonderIntro.vue'
-import ComList from '@/components/common/ComList.vue'
+import SingList from '@/components/wonder/SingList.vue'
 export default {
   components: {
     ComWonderIntro,
-    ComList
+    SingList
   },
   props: {
     intro: {

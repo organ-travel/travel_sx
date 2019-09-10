@@ -51,12 +51,28 @@ export default {
     }
   },
   async mounted () {
+    const singOddArr = [] // 奇数
+    const singEvenArr = [] // 偶数
     await this.setMenu()
     this.wonderNav = this.getCurCategory.children || []
     this.wonderNav.forEach(async (item, index) => {
       this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
       const res = (await this.queryArticleList(this.queryOption[index])).data
       this.$set(this.wonderObj, item.type, res.articleList || [])
+      if (item.type === 'sing') {
+        res.articleList.forEach((item, index) => {
+          index % 2 === 0 ? singEvenArr.push(item) : singOddArr.push(item)
+        })
+        // 偶数行
+        singEvenArr.forEach((item, index) => {
+          index === 0 ? item.class_name = 'item_blue' : item.class_name = 'item_yellow'
+        })
+        // 奇数行
+        singOddArr.forEach((item, index) => {
+          index === 0 ? item.class_name = 'item_yellow' : item.class_name = 'item_blue'
+        })
+        this.wonderObj.sing = [...singOddArr, ...singEvenArr]
+      }
       this.queryOption[index].total = res.articleCount || 0
       this.queryOption[index].start++
     })
@@ -188,12 +204,15 @@ export default {
           position: relative
           overflow: hidden
           margin 14px 8px
+          width 278px
+          height:208px
           .u-com-img {
             -webkit-transition: all .2s ease .1s
             -moz-transition: all .2s ease .1s
             -ms-transition: all .2s ease .1s
             -o-transition: all .2s ease .1s
             transition: all .2s ease .1s
+            max-width 100%
           }
           &:hover {
             img {
@@ -230,14 +249,16 @@ export default {
     }
     .tabs-content_platform {
       .m-com-list {
-        margin: 35px 32px
+        margin: 35px 30px
         padding-bottom: 20px
         .m-com-img {
           display: inline-block
           vertical-align: middle
           position: relative
           overflow: hidden
-          margin 14px 4px
+          margin: 14px 10px;
+          width: 369px;
+          height:284px
           .u-com-img {
             -webkit-transition: all .2s ease .1s
             -moz-transition: all .2s ease .1s
@@ -301,6 +322,94 @@ export default {
               font-size 14px
               color: #000
               line-height: 24px
+            }
+          }
+        }
+      }
+      .list-wrapper {
+        padding:0 22px
+      }
+      .m-com-list {
+        display: inline-block
+        vertical-align: top
+        width:556px
+        height:240px
+        overflow: hidden
+        &:nth-child(even) {
+          margin: 16px 18px
+        }
+        &:nth-child(odd) {
+          margin: 16px 18px
+        }
+        &.item_yellow {
+          background-color: #fff6e5
+        }
+        &.item_blue {
+          background-color: #ddf6f3
+        }
+        .list-left {
+          float: left
+          width:324px
+          overflow: hidden
+        }
+        .list-right {
+          width: 192px
+          padding: 25px 20px
+          float: left
+          .txt-title {
+            font-size 18px
+            text-align: center
+            margin-bottom:12px
+          }
+          .txt-content {
+            font-size 14px
+            line-height:28px
+            max-height 145px
+            overflow: hidden
+          }
+          .txt-link {
+            font-size 14px
+            color: #ec5a02
+          }
+        }
+        .m-com-img {
+          position: relative
+          .u-com-img {
+            -webkit-transition: all .2s ease .1s
+            -moz-transition: all .2s ease .1s
+            -ms-transition: all .2s ease .1s
+            -o-transition: all .2s ease .1s
+            transition: all .2s ease .1s
+            max-width 100%
+          }
+          &:hover {
+            img {
+              -webkit-transform: scale(1.1)
+              -moz-transform: scale(1.1)
+              -ms-transform: scale(1.1)
+              -o-transform: scale(1.1)
+              transform: scale(1.1)
+            }
+          }
+          .title {
+            position: absolute
+            left: 0
+            right: 0
+            bottom: 0
+            line-height: 30px
+            text-align: center
+            font-size 14px
+            color: #fff
+            z-index 1
+            &:after {
+              content ''
+              position: absolute
+              left: 0
+              right: 0
+              top: 0
+              bottom: 0
+              background-color: rgba(0, 0, 0, .5)
+              z-index -1
             }
           }
         }
