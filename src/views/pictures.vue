@@ -24,9 +24,8 @@ export default {
     const catId = this.$router.history.current.query.id
     this.queryOption = Object.assign({}, { cat_id: catId })
     this.imgList = (await this.queryArticleList(this.queryOption)).data.articleList
-    // console.log(this.imgList)
-    // this.queryOption.total = this.imgList.articleCount || 0
-    // this.queryOption.start++
+    this.queryOption.total = 0
+    this.queryOption.start++
   },
   methods: {
     getImg () {
