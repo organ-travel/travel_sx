@@ -173,6 +173,7 @@ export default {
     },
     // 获取壶口风情的数据
     getCustom () {
+      console.log(11111)
       const menuData = [].concat(this.getMenuData) || []
       this.customNav = menuData[4].children || []
       this.customNav.forEach(item => {
@@ -180,7 +181,8 @@ export default {
         this.customDatas[item.type].push(item)
       })
       this.activeLabel = this.customNav[0].type
-      this.customArr = this.customDatas[this.surveyLabel]
+      console.log(this.surveyLabel)
+      this.customArr = this.customNav
     }
   }
 }
