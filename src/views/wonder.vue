@@ -113,7 +113,7 @@ export default {
 
 <style lang="stylus" scoped>
 .m-custom-page {
-  background url("~@/assets/img/custom_hk/bg-custom.jpg") center -118px no-repeat
+  background url("~@/assets/img/wonder_hk/bg-wonder.jpg") center -118px no-repeat
   >>> .m-com-container {
     width 1260px
     .m-com-center {
@@ -122,7 +122,7 @@ export default {
         margin 0 auto 110px
         width 426px
         height 146px
-        background url("~@/assets/img/custom_hk/title-custom.png") no-repeat center
+        background url("~@/assets/img/wonder_hk/bg-title-wonder.png") no-repeat center
       }
       .m-com-content {
         padding 44px 16px 31px

@@ -2,7 +2,7 @@
   <section class="m-pictures-page">
     <div class="m-pictures-banner"></div>
     <div class="m-pictures-list">
-      <com-list :list-arr="imgs"></com-list>
+      <com-list :list-arr="imgList"></com-list>
     </div>
   </section>
 </template>
@@ -13,53 +13,23 @@ export default {
   },
   data () {
     return {
-      imgs: []
+      imgList: [],
+      queryOption: {}
     }
   },
   computed: {
   },
-  mounted () {
-    this.getImg()
+  async mounted () {
+    await this.setMenu()
+    const catId = this.$router.history.current.query.id
+    this.queryOption = Object.assign({}, { cat_id: catId })
+    this.imgList = (await this.queryArticleList(this.queryOption)).data.articleList
+    // console.log(this.imgList)
+    // this.queryOption.total = this.imgList.articleCount || 0
+    // this.queryOption.start++
   },
   methods: {
     getImg () {
-      this.imgs = [{
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }, {
-        addr: 'https://c-ssl.duitang.com/uploads/item/201808/16/20180816005721_otyvr.jpg',
-        route: '#/',
-        text: '西安-延安壶口瀑布景区线路',
-      }]
     }
   }
 }

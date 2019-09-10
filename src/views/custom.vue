@@ -17,7 +17,7 @@
       </div>
       <div v-if="actIndex == index && customNav[actIndex] && customNav[actIndex].type == 'film_video'" :class="`m-${customNav[actIndex].type}`">
         <com-list :list-arr="articleObj.film_video"></com-list>
-        <p class="u-more">点击更多视频 >></p>
+        <p class="u-more"><a :href="'#/pictures?id=' + customNav[actIndex].id">点击更多视频 >></a></p>
       </div>
     </com-transition>
   </com-wrap>
@@ -120,10 +120,21 @@ export default {
       }
     }
     .m-paperCut, .m-shoot, .m-picture {
+      .m-com-list {
+        .m-com-img {
+          margin 14px
+          width 381px
+          height 284px
+          .u-com-img {
+          }
+        }
+      }
+    }
+    .m-paperCut, .m-shoot, .m-picture {
       line-height 100px
       text-align center
     }
-    .m-film {
+    .m-film_video {
       .m-com-list {
         padding 25px 0 28px
         .m-com-img {
@@ -136,11 +147,14 @@ export default {
           }
         }
       }
-      .u-more {
+      .u-more, a {
         line-height 42px
         text-align center
         font-size 18px
         color #000000
+        &:hover {
+          color: #ec5a02
+        }
       }
     }
   }
