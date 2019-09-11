@@ -42,17 +42,31 @@
         </div>
       </div>
     </div>
-    <div class="manage-entry" data-before="后台管理系统入口:">
-      <a href="javascript:;" class="txt">网站后台</a>
-      <a href="javascript:;" class="txt">公众号后台</a>
-      <a href="javascript:;" class="txt">微博后台</a>
+    <div class="feature-bar">
+      <a href="javascript:;" class="icon-arrow" @click="handleToggle"><i class="el-icon-caret-left"></i></a>
+      <div :class="['manage-entry', showFlag ? 'toggle' : '']" data-before="后台管理系统入口:">
+        <a href="javascript:;" class="txt">网站后台</a>
+        <a href="javascript:;" class="txt">公众号后台</a>
+        <a href="javascript:;" class="txt">微博后台</a>
+      </div>
     </div>
   </section>
   <!--footer-section end-->
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      showFlag: true
+    }
+  },
+  methods: {
+    handleToggle() {
+      this.showFlag = !this.showFlag
+    }
+  }
+}
 </script>
 
 <style lang="stylus" scoped>
@@ -182,36 +196,55 @@ export default {}
         }
       }
     }
-    .manage-entry {
+    .feature-bar {
       position: absolute
-      background-color: #4d4d4d
-      padding:10px 24px
       right:0
       bottom 40px
-      border-radius 20px 0 0 20px
-      &:before {
-        content attr(data-before)
-        display: inline-block;
-        vertical-align: middle;
-        font-size: 14px;
-        color: #fff;
-        margin-right:10px
-      }
-      &:after {
-        content ''
+      width: 375px
+      height:40px
+      overflow: hidden
+      .icon-arrow {
         position: absolute
-        right: 0
-        border 10px solid transparent
-        border-right-color #fff
+        right -13px
+        top 4px
+        z-index 1
+        i {
+          color: #fff
+          font-size 36px
+        }
       }
-      .txt {
-        display: inline-block;
-        vertical-align: middle;
-        font-size: 14px;
-        margin-right: 10px
-        color: #fff;
-        &:hover {
-          color: #ec5a02
+      .manage-entry {
+        background-color: #4d4d4d
+        border-radius 20px 0 0 20px
+        padding:10px 10px 10px 24px
+        position: absolute
+        right:0
+        width:340px
+        -webkit-transition: all .2s ease-in .2s
+        -moz-transition: all .2s ease-in .2s
+        -ms-transition: all .2s ease-in .2s
+        -o-transition: all .2s ease-in .2s
+        transition: all .2s ease-in .2s
+        &.toggle {
+          right: -350px
+        }
+        &:before {
+          content attr(data-before)
+          display: inline-block;
+          vertical-align: middle;
+          font-size: 14px;
+          color: #fff;
+          margin-right:10px
+        }
+        .txt {
+          display: inline-block;
+          vertical-align: middle;
+          font-size: 14px;
+          margin-right: 10px
+          color: #fff;
+          &:hover {
+            color: #ec5a02
+          }
         }
       }
     }
