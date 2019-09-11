@@ -32,12 +32,24 @@ export default {
   },
   methods: {
     handleSearch () {
-      const current = this.getMenuData.find(item => item.name.indexOf(this.search) > -1)
-      if (current) {
-        window.location.href = current.type
-      } else {
-        window.$alert('暂无匹配数据')
+      const menuData = [].concat(this.getMenuData) || []
+      let isSearch = false
+      for (let i = 0; i < menuData.length; i++) {
+        if (menuData[i].name.indexOf(this.search) > -1) {
+          window.location.href = menuData[i].type
+          isSearch = true
+          break
+        } else {
+          for (let m = 0; m < menuData[i].children.length; m++) {
+            if (menuData[i].children[m].name.indexOf(this.search) > -1) {
+              window.location.href = menuData[i].type + '?name=' + menuData[i].children[m].type
+              isSearch = true
+              break
+            }
+          }
+        }
       }
+      if (isSearch === false) window.$alert('暂无匹配数据')
     }
   }
 }

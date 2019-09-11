@@ -52,7 +52,12 @@ export default {
         const res = (await this.queryArticleList(this.queryOption[index])).data
         this.queryOption[index].total = res.articleCount || 0
         this.queryOption[index].start++
-        if (item.type === 'notice') this.noticeList = res.articleList || []
+        if (item.type === 'notice') {
+          for (let m = 0; m < res.articleList.length; m++) {
+            res.articleList[m].label = '【重要通知】'
+          }
+          this.noticeList = res.articleList || []
+        }
         if (item.type === 'price') {
           if (res.articleList.length > 0) {
             const itemArticle = res.articleList[0]
