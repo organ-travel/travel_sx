@@ -90,19 +90,19 @@ export default {
         const routerName = to.query.name
         switch (routerName) {
         case 'gudukou':
-          vm.actIndex = 0
+          vm.actIndex = 2
           break
         case 'film':
           vm.actIndex = 1
           break
         case 'sing':
-          vm.actIndex = 2
-          break
-        case 'wlt':
           vm.actIndex = 3
           break
-        case 'scenery':
+        case 'wlt':
           vm.actIndex = 4
+          break
+        case 'scenery':
+          vm.actIndex = 0
           break
         }
       }

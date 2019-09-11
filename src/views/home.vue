@@ -136,7 +136,7 @@ export default {
     // 获取壶口概况的数据
     getSurvey () {
       const menuData = [].concat(this.getMenuData) || []
-      this.surveyNav = menuData[6].children || []
+      this.surveyNav = menuData[1].children || []
       this.surveyNav.forEach(item => {
         this.surveyDatas[item.type] = []
         // this.$set(this.surveyDatas, item.type, [item])
@@ -148,7 +148,7 @@ export default {
     // 壶口资讯的数据
     getInfo () {
       const menuData = [].concat(this.getMenuData) || []
-      const arr = menuData[1].children || []
+      const arr = menuData[2].children || []
       arr.forEach(async (item, index) => {
         this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
         const res = (await this.queryArticleList(this.queryOption[index])).data
@@ -164,18 +164,18 @@ export default {
     // 壶口奇观的数据
     getWonder () {
       const menuData = [].concat(this.getMenuData) || []
-      this.wonderObj = menuData[2] || []
+      this.wonderObj = menuData[3] || []
     },
     // 壶口攻略的数据
     getStrategy () {
       const menuData = [].concat(this.getMenuData) || []
-      this.strategyObj = menuData[3] || []
+      this.strategyObj = menuData[4] || []
     },
     // 获取壶口风情的数据
     getCustom () {
       console.log(11111)
       const menuData = [].concat(this.getMenuData) || []
-      this.customNav = menuData[4].children || []
+      this.customNav = menuData[5].children || []
       this.customNav.forEach(item => {
         this.customDatas[item.type] = []
         this.customDatas[item.type].push(item)

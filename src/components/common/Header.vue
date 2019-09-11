@@ -13,8 +13,8 @@
         <nav class="m-lang">
           <a href="">中文</a>
           <a href="">English</a>
-          <a href="">한국어</a>
-          <a href="">にほんご</a>
+          <!--<a href="">한국어</a>-->
+          <!--<a href="">にほんご</a>-->
         </nav>
         <span class="u-tel"></span>
       </div>
