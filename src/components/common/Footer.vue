@@ -35,7 +35,7 @@
         <div class="link-out-wrapper" data-before="友情链接：">
           <a href="//www.ctrip.com/" target="_blank" class="txt">携程网</a>
           <a href="//www.meituan.com/" target="_blank" class="txt">美团网</a>
-          <a href="//www.tuniu.com/" target="_blank" class="txt">骏途旅游网</a>
+          <a href="http://www.juntu.com/" target="_blank" class="txt">骏途旅游网</a>
         </div>
         <div class="copyright-wrapper">
           <p class="txt">Copyright©2019 陕西黄河壶口文化旅游发展有限责任公司</p>
