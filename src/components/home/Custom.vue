@@ -113,7 +113,7 @@ export default {
           transition all .5s
         }
         .u-list + .u-list {
-          margin-top 10px
+          margin-top 20px
         }
       }
     }

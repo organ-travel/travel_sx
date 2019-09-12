@@ -83,6 +83,7 @@ export default {
         color #ec5a02
         span {
           display inline-block
+          white-space nowrap
         }
         .year {
           margin-top 21px

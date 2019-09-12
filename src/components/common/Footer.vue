@@ -110,7 +110,7 @@ export default {
                 font-size:14px;
                 color:#fff;
                 display: block;
-                margin-bottom: 10px;
+                padding: 10px 0
                 position: relative
                 &:before {
                   content ''
@@ -189,6 +189,9 @@ export default {
           }
           .txt {
             padding-right: 20px
+            &:hover {
+              color: #ec5a02
+            }
           }
         }
         .copyright-wrapper {

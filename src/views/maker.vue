@@ -40,6 +40,38 @@ export default {
       }
       .m-com-content {
         padding 109px 99px 10px
+        .com-sep-lists {
+          position: relative
+          .com-sep-list {
+            overflow: hidden
+            img {
+              -webkit-transition: all .2s ease-in .2s
+              -moz-transition: all .2s ease-in .2s
+              -ms-transition: all .2s ease-in .2s
+              -o-transition: all .2s ease-in .2s
+              transition: all .2s ease-in .2s
+            }
+            &:hover {
+              img {
+                -webkit-transform: scale(1.1)
+                -moz-transform: scale(1.1)
+                -ms-transform: scale(1.1)
+                -o-transform: scale(1.1)
+                transform: scale(1.1)
+              }
+            }
+            &:last-child {
+              position: absolute;
+              left: 50%;
+              margin-left: -225px;
+              top: 50%;
+              margin-top: -225px;
+            }
+            .u-title {
+              display: none
+            }
+          }
+        }
       }
     }
   }
