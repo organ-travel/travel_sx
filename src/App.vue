@@ -16,6 +16,17 @@ export default {
       return this.$alert(tip, '提示')
     }
     this.SET_HEADER_HEIGHT((this.$refs['header'] && this.$refs['header'].$el.clientHeight) || 118)
+    function checkIE() {
+      return '-ms-scroll-limit' in document.documentElement.style && '-ms-ime-align' in document.documentElement.style
+    }
+    if (checkIE()) {
+      window.addEventListener('hashchange', () => {
+        const currentPath = window.location.hash.slice(1)
+        if (this.$route.path !== currentPath) {
+          this.$router.push(currentPath)
+        }
+      }, false)
+    }
   },
   methods: {
     ...mapMutations(['SET_HEADER_HEIGHT']),

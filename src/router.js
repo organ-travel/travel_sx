@@ -7,7 +7,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: '',
+      name: 'home',
       component: r => require(['./views/home.vue'], r)
     }, {
       path: '/wonder',

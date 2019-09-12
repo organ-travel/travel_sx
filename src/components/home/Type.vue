@@ -1,7 +1,7 @@
 <template>
   <wrap class="m-type">
     <list class="m-content" :type-arr="typeArr"></list>
-    <a href="#/" class="m-follow"></a>
+    <a href="#/pictures?id=749" class="m-follow"></a>
   </wrap>
 </template>
 <script>

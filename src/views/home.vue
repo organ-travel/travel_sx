@@ -18,7 +18,7 @@
       <wonder :wonder-obj="wonderObj"></wonder>
       <strategy :strategy-obj="strategyObj"></strategy>
     </div>
-    <custom :custom-arr="customArr" :active-label="activeLabel" :custom-nav="customNav" @changeCustom="changeCustom"></custom>
+    <custom :custom-arr="customArr"  :custom-obj="customObj" :active-label="activeLabel" :custom-nav="customNav" @changeCustom="changeCustom"></custom>
     <div class="m-map m-wrap"></div>
   </div>
 </template>
@@ -68,6 +68,7 @@ export default {
       customDatas: {},
       customArr: [],
       customNav: [],
+      customObj: [],
       activeLabel: '',
       customSwiper: null,
       // 壶口概况
@@ -178,6 +179,7 @@ export default {
       console.log(11111)
       const menuData = [].concat(this.getMenuData) || []
       this.customNav = menuData[5].children || []
+      this.customObj = menuData[5] || {}
       this.customNav.forEach(item => {
         this.customDatas[item.type] = []
         this.customDatas[item.type].push(item)
@@ -203,10 +205,10 @@ export default {
   }
   .swiper-container {
     width 100%
-    height 1015px
+    height 680px
     .img {
       width 100%
-      height 1015px
+      height 680px
     }
     >>> .swiper-pagination-bullets {
       bottom 0

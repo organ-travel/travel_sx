@@ -4,9 +4,9 @@
       <div v-if="customArr && customArr.length" class="swiper-container custom-swiper">
         <div class="swiper-wrapper">
           <div v-for='(el, index) in customArr' :key="index" class="swiper-slide">
-            <a :href="'#/infoDetail?id=' + el.id" target="_blank">
-              <img v-if="el.article && el.article.picture_url" class="img"  :src="el.article.picture_url">
-              <span v-if="el.article && el.article.title" class="text">{{ el.article.title }}</span>
+              <a :href="customObj.type + '?name=' + el.type" target="_blank">
+              <img v-if="el.picture_url" class="img"  :src="el.picture_url">
+              <span v-if="el.id && el.name" class="text">{{ el.name }}</span>
             </a>
           </div>
         </div>
@@ -40,6 +40,12 @@ export default {
     activeLabel: {
       type: String,
       default: ''
+    },
+    customObj: {
+      type: Object,
+      default() {
+        return []
+      }
     }
   },
   mounted () {

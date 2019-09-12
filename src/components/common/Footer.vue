@@ -31,6 +31,8 @@
           <a href="#/wonder" class="txt">壶口奇观</a>
           <a href="#/strategy" class="txt">壶口攻略</a>
           <a href="#/custom" class="txt">壶口风情</a>
+          <a href="#/maker" class="txt">壶口创客</a>
+          <a href="#/contact" class="txt">联系我们</a>
         </div>
         <div class="link-out-wrapper" data-before="友情链接：">
           <a href="//www.ctrip.com/" target="_blank" class="txt">携程网</a>
