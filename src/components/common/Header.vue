@@ -47,6 +47,21 @@ export default {
               break
             }
           }
+          const String = '票价信息'
+          if (String.indexOf(this.search) > -1) {
+            isSearch = true
+            window.location.href = '#/notice?name=price'
+          }
+          const String1 = '重要通知'
+          if (String1.indexOf(this.search) > -1) {
+            isSearch = true
+            window.location.href = '#/notice?name=notice'
+          }
+          const String2 = '在线购票'
+          if (String2.indexOf(this.search) > -1) {
+            isSearch = true
+            window.location.href = '#/notice?name=perchase'
+          }
         }
       }
       if (isSearch === false) window.$alert('暂无匹配数据')
