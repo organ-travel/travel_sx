@@ -31,10 +31,10 @@ export default {
       codeArr: [{
         imgUrl: imgMobile,
         text: '手机微官网'
-      },{
+      }, {
         imgUrl: imgWechat,
         text: '微信公众号'
-      },{
+      }, {
         imgUrl: imgWeibo,
         text: '微博'
       }]

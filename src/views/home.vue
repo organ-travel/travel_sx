@@ -91,12 +91,10 @@ export default {
     /* eslint-disable */
     new Swiper ('.m-swiper', {
       loop: true,
-      autoplay: true,
-      speed:1000,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable :true
-      }
+      autoplay: 2000,
+      speed:2000,
+      pagination:'.swiper-pagination',
+      paginationClickable: true
     })
     // 壶口资讯
     await this.getInfo()
