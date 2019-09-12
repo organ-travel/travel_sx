@@ -152,7 +152,34 @@ export default {
     changeNav (index) {
       this.actIndex = index
     }
-  }
+  },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      if (to.query.name) {
+        const routerName = to.query.name
+        switch (routerName) {
+        case 'eat':
+          vm.actIndex = 0
+          break
+        case 'live':
+          vm.actIndex = 1
+          break
+        case 'xing':
+          vm.actIndex = 2
+          break
+        case 'you':
+          vm.actIndex = 3
+          break
+        case 'play':
+          vm.actIndex = 4
+          break
+        case 'buy':
+          vm.actIndex = 5
+          break
+        }
+      }
+    })
+  },
 }
 </script>
 <style lang="stylus" scoped>

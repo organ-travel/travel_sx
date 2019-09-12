@@ -58,7 +58,31 @@ export default {
     changeNav (index) {
       this.actIndex = index
     }
-  }
+  },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      if (to.query.name) {
+        const routerName = to.query.name
+        switch (routerName) {
+        case 'paperCut':
+          vm.actIndex = 0
+          break
+        case 'drum':
+          vm.actIndex = 1
+          break
+        case 'shoot':
+          vm.actIndex = 2
+          break
+        case 'picture':
+          vm.actIndex = 3
+          break
+        case 'film_video':
+          vm.actIndex = 4
+          break
+        }
+      }
+    })
+  },
 }
 </script>
 <style lang="stylus" scoped>

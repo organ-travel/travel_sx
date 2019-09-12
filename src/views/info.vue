@@ -45,7 +45,31 @@ export default {
     },
     handleDownload () {
     }
-  }
+  },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      if (to.query.name) {
+        const routerName = to.query.name
+        switch (routerName) {
+        case 'dynamic':
+          vm.actIndex = 0
+          break
+        case 'news':
+          vm.actIndex = 1
+          break
+        case 'activity':
+          vm.actIndex = 2
+          break
+        case 'recuit':
+          vm.actIndex = 3
+          break
+        case 'download':
+          vm.actIndex = 4
+          break
+        }
+      }
+    })
+  },
 }
 </script>
 <style lang="stylus" scoped>
