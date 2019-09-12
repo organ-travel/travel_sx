@@ -69,12 +69,6 @@ export default {
         width 800px
         height 600px
       }
-      .u-param {
-        line-height 28px
-        text-align left
-        font-size 14px
-        text-indent 2em
-      }
     }
   }
 }
