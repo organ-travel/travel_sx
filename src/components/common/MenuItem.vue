@@ -107,7 +107,7 @@ export default {
           line-height 45px
           text-align left
           color #ffffff
-          border-top 1px solid #999999
+          border-bottom  1px solid #999999
           &:hover {
             color #ec5a02
           }

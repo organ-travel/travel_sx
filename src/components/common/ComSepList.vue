@@ -1,15 +1,15 @@
 <template>
   <ul class="com-sep-lists clearfix">
     <li v-for="(item, index) in listArr" :key="index" class="com-sep-list">
-      <a :href="'#/infeDetail?id=' + item.id" class="com-sep-pic">
+      <a v-if="index < 4 " :href="'#/infeDetail?id=' + item.id" class="com-sep-pic">
         <img :src="item.picture_url" class="u-img"/>
         <p class="u-title">{{ item.title }}</p>
       </a>
       <!-- 二维码 -->
-      <div v-if="item.codeUrl" class="m-com-mask">
-        <com-column :img-url="item.codeUrl" img-class="com-sep-code"></com-column>
-      </div>
-      <!-- <img v-if="item.codeUrl" :src="item.codeUrl" class="com-sep-code"/> -->
+      <!--<div v-if="item.picture_url && index ==4 " class="m-com-mask">-->
+        <!--<com-column :img-url="item.picture_url" img-class="com-sep-code"></com-column>-->
+      <!--</div>-->
+      <!--<img v-if="item.picture_url && index ==4 " :src="item.picture_url" class="com-sep-code"/>-->
     </li>
   </ul>
 </template>

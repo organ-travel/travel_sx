@@ -68,7 +68,7 @@ export default {
       customDatas: {},
       customArr: [],
       customNav: [],
-      customObj: [],
+      customObj: {},
       activeLabel: '',
       customSwiper: null,
       // 壶口概况
