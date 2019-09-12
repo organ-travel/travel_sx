@@ -19,7 +19,7 @@
         <!-- 路线 -->
         <div v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'xing'">
           <com-desc v-for="(item, index) in articleObj.xing" :id="item.id" :key="index" :title="item.title" :brief="item.description" class="m-article m-other-article"></com-desc>
-          <span class="u-more">查看更多 -></span>
+          <span class="u-more"></span>
           <div v-if="serviceArr.length" class="m-strategy-list">
             <h3 class="title">游客服务中心</h3>
             <com-list :list-arr="serviceArr"></com-list>
@@ -279,7 +279,7 @@ export default {
             padding 11px 23px
             margin 45px auto 30px
             display inline-block
-            border 1px solid #ec5a02
+            /*border 1px solid #ec5a02*/
             font-size 20px
             color #ec5a02
           }
