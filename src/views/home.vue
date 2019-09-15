@@ -1,25 +1,38 @@
 <template>
-  <div class="m-home-page">
-    <div v-if="arrItem && arrItem.length" class="m-swiper m-wrap swiper-container">
-      <div class="swiper-wrapper">
-        <div v-for='(el, index) in arrItem' :key="index" class="swiper-slide">
-          <img class="img" :src="el.picture_url">
+  <div>
+    <div v-if="showHome" class="m-home-page">
+      <div v-if="arrItem && arrItem.length" class="m-swiper m-wrap swiper-container">
+        <div class="swiper-wrapper">
+          <div v-for='(el, index) in arrItem' :key="index" class="swiper-slide">
+            <img class="img" :src="el.picture_url">
+          </div>
         </div>
+        <div class="swiper-pagination"></div>
       </div>
-      <div class="swiper-pagination"></div>
+      <type :type-arr="typeArr"></type>
+      <survey :survey-arr="surveyArr" :survey-nav="surveyNav" @changeSurvey="changeSurvey"></survey>
+      <info :act-index="actIndex" :info-arr="datas">
+        <com-tab slot="nav" :act-index="actIndex" :nav-arr="infoNav" fun-name="changeInfos" :is-border="true" @changeInfos="changeInfos"></com-tab>
+        <!-- <tab slot="tab" :nav="infoNav" :arr="infoArr" :act-index="actIndex" @changeInfo="changeInfo"></tab> -->
+      </info>
+      <div class="m-merge">
+        <wonder :wonder-obj="wonderObj"></wonder>
+        <strategy :strategy-obj="strategyObj"></strategy>
+      </div>
+      <custom :custom-arr="customArr"  :custom-obj="customObj" :active-label="activeLabel" :custom-nav="customNav" @changeCustom="changeCustom"></custom>
+      <div class="m-map m-wrap"></div>
     </div>
-    <type :type-arr="typeArr"></type>
-    <survey :survey-arr="surveyArr" :survey-nav="surveyNav" @changeSurvey="changeSurvey"></survey>
-    <info :act-index="actIndex" :info-arr="datas">
-      <com-tab slot="nav" :act-index="actIndex" :nav-arr="infoNav" fun-name="changeInfos" :is-border="true" @changeInfos="changeInfos"></com-tab>
-      <!-- <tab slot="tab" :nav="infoNav" :arr="infoArr" :act-index="actIndex" @changeInfo="changeInfo"></tab> -->
-    </info>
-    <div class="m-merge">
-      <wonder :wonder-obj="wonderObj"></wonder>
-      <strategy :strategy-obj="strategyObj"></strategy>
+    <div v-else>
+      <section class="videoShow-wrapper">
+        <div v-if="videoSrc !== ''" class="video-wrapper">
+          <video src="">您的浏览器不支持video标签</video>
+        </div>
+        <div v-else class="video-wrapper">
+          <img src="../assets/img/home/bg-video.jpg" alt="">
+        </div>
+        <a href="javascript:;" class="btn-enter" @click="handleEnter">点击进入官网</a>
+      </section>
     </div>
-    <custom :custom-arr="customArr"  :custom-obj="customObj" :active-label="activeLabel" :custom-nav="customNav" @changeCustom="changeCustom"></custom>
-    <div class="m-map m-wrap"></div>
   </div>
 </template>
 
@@ -47,6 +60,8 @@ export default {
   },
   data () {
     return {
+      showHome: false,
+      videoSrc: '',
       typeArr: [],
       // surveyNav: dataset.surveyNav,
       surveyNav: [],
@@ -174,7 +189,6 @@ export default {
     },
     // 获取壶口风情的数据
     getCustom () {
-      console.log(11111)
       const menuData = [].concat(this.getMenuData) || []
       this.customNav = menuData[5].children || []
       this.customObj = menuData[5] || {}
@@ -185,6 +199,9 @@ export default {
       this.activeLabel = this.customNav[0].type
       console.log(this.surveyLabel)
       this.customArr = this.customNav
+    },
+    handleEnter() {
+      this.showHome = true
     }
   }
 }
@@ -248,6 +265,40 @@ export default {
           border-bottom 1px solid rgba(236, 90, 2, 1)
         }
       }
+    }
+  }
+}
+.videoShow-wrapper {
+  position: fixed
+  width:100%
+  height: 100%
+  top:0
+  left:0
+  z-index 10000
+  .video-wrapper {
+    position: absolute
+    width:100%
+    height: 100%
+    left:0
+    top:0
+    img, video {
+      max-width 100%
+    }
+  }
+  .btn-enter {
+    position: absolute
+    left: 50%
+    margin-left: -100px
+    top: 50%
+    margin-top: -22px
+    font-size 20px
+    color: #ec5a02
+    border 2px solid #ec5a02
+    padding:11px 36px
+    border-radius 2px
+    &:hover {
+      background-color: #ec5a02
+      color: #fff
     }
   }
 }

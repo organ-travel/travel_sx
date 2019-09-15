@@ -64,10 +64,10 @@ export default {
     background url('~@/assets/img/contact_hk/banner-contact.jpg') no-repeat center
   }
   .m-contact-wrap {
-    margin 0 auto
+    margin 0 auto 50px
     width 1199px
     &.m-contact-list {
-      padding 55px 0
+      padding-top: 55px
       display flex
       justify-content center
       .m-com-column + .m-com-column {
