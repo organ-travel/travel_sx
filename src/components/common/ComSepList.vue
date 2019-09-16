@@ -1,7 +1,7 @@
 <template>
   <ul class="com-sep-lists clearfix">
     <li v-for="(item, index) in listArr" :key="index" class="com-sep-list">
-      <a :href="'#/infeDetail?id=' + item.id" class="com-sep-pic">
+      <a :href="'#/infoDetail?id=' + item.id" class="com-sep-pic">
         <img :src="item.picture_url" class="u-img"/>
         <p class="u-title">{{ item.title }}</p>
       </a>
