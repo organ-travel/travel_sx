@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="showHome" class="m-home-page">
+    <div :class="{'show':showHome}" class="m-home-page swiperhi">
       <div v-if="arrItem && arrItem.length" class="m-swiper m-wrap swiper-container">
         <div class="swiper-wrapper">
           <div v-for='(el, index) in arrItem' :key="index" class="swiper-slide">
@@ -22,7 +22,7 @@
       <custom :custom-arr="customArr"  :custom-obj="customObj" :active-label="activeLabel" :custom-nav="customNav" @changeCustom="changeCustom"></custom>
       <div class="m-map m-wrap"></div>
     </div>
-    <div v-else>
+    <div class="swiperhi" :class="{'show':!showHome}">
       <section class="videoShow-wrapper">
         <div v-if="videoSrc !== ''" class="video-wrapper">
           <video src="">您的浏览器不支持video标签</video>
@@ -109,6 +109,8 @@ export default {
       loop: true,
       autoplay: 2000,
       speed:2000,
+      observer:true,
+      observeParents:true,
       pagination:'.swiper-pagination',
       paginationClickable: true
     })
@@ -149,6 +151,7 @@ export default {
     // 获取头图
     async getSwiper () {
       this.arrItem = (await this.getBannerList())
+
     },
     // 获取壶口概况的数据
     getSurvey () {
@@ -204,11 +207,20 @@ export default {
     handleEnter() {
       Config.showHome = true
       this.showHome =  Config.showHome
+      const array =  this.arrItem
+      this.arrItem = []
+      this.arrItem = array
     }
   }
 }
 </script>
 <style lang="stylus" scoped>
+  .swiperhi{
+    display:none;
+  }
+  .swiperhi.show{
+    display:block;
+  }
 .m-home-page {
   .m-map {
     width 100%
