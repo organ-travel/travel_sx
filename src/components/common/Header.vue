@@ -62,6 +62,11 @@ export default {
             isSearch = true
             window.location.href = '#/notice?name=perchase'
           }
+          const String3 = '永远跟党走'
+          if (String3.indexOf(this.search) > -1) {
+            isSearch = true
+            window.location.href = '#/pictures?id=749'
+          }
         }
       }
       if (isSearch === false) window.$alert('暂无匹配数据')

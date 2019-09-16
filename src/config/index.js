@@ -1,4 +1,5 @@
 const host = 'http://39.100.140.37/hukouN/index.php/'
+const showHome = false
 // const debug = true
 
 // if (window.location.host == '') {
@@ -11,6 +12,7 @@ const host = 'http://39.100.140.37/hukouN/index.php/'
 // }
 
 export default {
-  host
+  host,
+  showHome
   // debug
 }

@@ -45,6 +45,7 @@ import Wonder from '@/components/home/Wonder.vue'
 import Strategy from '@/components/home/Strategy.vue'
 import Custom from '@/components/home/Custom.vue'
 import dataset from '@/config/dataset'
+import Config from '@/config'
 import Swiper from 'swiper'
 
 export default {
@@ -60,7 +61,7 @@ export default {
   },
   data () {
     return {
-      showHome: false,
+      showHome: Config.showHome,
       videoSrc: '',
       typeArr: [],
       // surveyNav: dataset.surveyNav,
@@ -201,7 +202,8 @@ export default {
       this.customArr = this.customNav
     },
     handleEnter() {
-      this.showHome = true
+      Config.showHome = true
+      this.showHome =  Config.showHome
     }
   }
 }
