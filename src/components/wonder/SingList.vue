@@ -2,7 +2,7 @@
   <div class="list-wrapper">
     <div v-for="(item, index) in listArr" :key="index" :class="['m-com-list', item.class_name]">
       <div class="list-left" >
-        <a target="_blank" href="javascript:;" class="m-com-img">
+        <a target="_blank" :href="'#/infoDetail?id=' + item.id" class="m-com-img">
           <img :src="item.picture_url" :class="['u-com-img', imgClass]" alt="" title=""/>
           <a v-if="item.is_video === 1" :href="'#/infoDetail?id=' + item.id" target="_blank" class="u-com-video"></a>
         </a>
