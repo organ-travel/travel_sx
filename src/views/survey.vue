@@ -48,7 +48,7 @@ export default {
     this.handleScroll('isFirst')
     window.addEventListener('scroll', this.handleScroll, false)
     this.surveyAnchor.forEach(async (item, index) => {
-      if( item.type != 'introduction') this.surveyContent.push({ type: item.type, article: item.article })
+      if (item.type != 'introduction') this.surveyContent.push({ type: item.type, article: item.article })
       this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
       const res = (await this.queryArticleList(this.queryOption[index])).data
       this.$set(this.articleArr, index, res.articleList)

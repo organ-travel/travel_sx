@@ -6,7 +6,7 @@
         <div class="m-wrap-content">
           <div class="m-content">
             <div class="icon"></div>
-            <div class="content" v-html="item.article.description">
+            <div class="content" v-html="item.article.description.replace('\n', '<br>')">
             </div>
           </div>
         </div>
