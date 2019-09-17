@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div v-for="(item, index) in surveyContent" :id="item.id" :key="index" :ref="item.id" :class="['m-com', 'm-list-survey', `m-${ item.id }`]">
+    <div v-for="(item, index) in surveyContent" :id="item.type" :key="index" :ref="item.type" :class="['m-com', 'm-list-survey', `m-${ item.type }`]" @click="articleClick(item.article)">
       <div class="m-wrap">
         <div v-if="index === 0" style="height: 90px;"></div>
         <div class="m-wrap-content">
           <div class="m-content">
             <div class="icon"></div>
-            <div class="content" v-html="item.content">
+            <div class="content" v-html="item.article.description">
             </div>
           </div>
         </div>
@@ -27,6 +27,9 @@ export default {
   mounted () {
   },
   methods: {
+    articleClick (item) {
+      window.location.href = '#/infoDetail?id=' + item.id
+    }
   }
 }
 </script>

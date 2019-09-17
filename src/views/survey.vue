@@ -17,7 +17,7 @@ export default {
   },
   data () {
     return {
-      surveyContent: dataset.surveyContent,
+      surveyContent: [],
       articleArr: [],
       surveyAnchor: [],
       queryOption: [],
@@ -48,12 +48,14 @@ export default {
     this.handleScroll('isFirst')
     window.addEventListener('scroll', this.handleScroll, false)
     this.surveyAnchor.forEach(async (item, index) => {
+      if( item.type != 'introduction') this.surveyContent.push({ type: item.type, article: item.article })
       this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
       const res = (await this.queryArticleList(this.queryOption[index])).data
       this.$set(this.articleArr, index, res.articleList)
       this.queryOption[index].total = res.articleCount || 0
       this.queryOption[index].start++
     })
+    console.log(this.surveyContent)
   },
   methods: {
     async changeAnchor (id) {
@@ -101,11 +103,14 @@ export default {
         return
       }
       const items = document.querySelectorAll('.m-list-survey')
-      if (isFirst === 'isFirst') {
-        const height = items[this.actIndex].offsetTop + this.getHeaderHeight || 118
-        document.body.scrollTop ? (document.body.scrollTop = height) : (document.documentElement.scrollTop = height)
-        return
+      if (items.length > items[this.actIndex]) {
+        if (isFirst === 'isFirst') {
+          const height = items[this.actIndex].offsetTop + this.getHeaderHeight || 118
+          document.body.scrollTop ? (document.body.scrollTop = height) : (document.documentElement.scrollTop = height)
+          return
+        }
       }
+
       items.forEach((item, index) => {
         const top = item.offsetTop + this.getHeaderHeight || 118
         const max = item.clientHeight + top
