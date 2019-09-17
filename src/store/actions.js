@@ -36,6 +36,13 @@ export const getBannerList = (store, payload) => {
   })
 }
 
+export const getVideoUrl = (store, payload) => {
+  return getServer({
+    data: payload,
+    action: 'articles/getVideoUrl'
+  })
+}
+
 export const getArticleDetail = (store, payload) => {
   return getServer({
     action: 'articles/getArticleDetail/' + payload

@@ -3,7 +3,7 @@
     <header class="m-wrap clearfix">
       <a href="#/" class="m-title">
         <span class="u-logo"></span>
-        <span class="u-text">xxxxxxxxxxxx</span>
+        <span class="u-text">黄河壶口瀑布</span>
       </a>
       <div class="m-search">
         <input v-model="search" placeholder="请输入搜索内容" type="text" @keyup.enter="handleSearch"/>

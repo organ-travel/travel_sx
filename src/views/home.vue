@@ -28,7 +28,8 @@
           <video src="">您的浏览器不支持video标签</video>
         </div>
         <div v-else class="video-wrapper">
-          <img src="../assets/img/home/bg-video.jpg" alt="">
+          <img v-if="! videoItem.id" src="../assets/img/home/bg-video.jpg" alt="">
+          <video v-if="videoItem.id" :id="videoItem.id +'video'" :src="videoItem.video_url"></video>
         </div>
         <a href="javascript:;" class="btn-enter" @click="handleEnter">点击进入官网</a>
       </section>
@@ -64,6 +65,7 @@ export default {
       showHome: Config.showHome,
       videoSrc: '',
       typeArr: [],
+      is_pary_video: true,
       // surveyNav: dataset.surveyNav,
       surveyNav: [],
       infoNav: dataset.infoNav,
@@ -72,6 +74,7 @@ export default {
       // strategyArr: dataset.strategyArr,
       strategyObj: {},
       arrItem: [],
+      videoItem: {},
       // 壶口资讯
       infoObj: {},
       datas: [],
@@ -127,6 +130,13 @@ export default {
     })
     // 壶口概况
     await this.getSurvey()
+
+    // 获取视频url
+    await this.getVideo()
+    if( this.is_pary_video && !this.showHome ) {
+      let vdo = document.getElementById(this.videoItem.id+'video')
+      vdo.play()
+    }
   },
   methods: {
     changeInfo (index) {
@@ -151,6 +161,12 @@ export default {
     // 获取头图
     async getSwiper () {
       this.arrItem = (await this.getBannerList())
+
+    },
+
+    //获取视频url
+    async getVideo () {
+      this.videoItem = (await this.getVideoUrl())
 
     },
     // 获取壶口概况的数据
@@ -210,6 +226,9 @@ export default {
       const array =  this.arrItem
       this.arrItem = []
       this.arrItem = array
+      let vdo = document.getElementById(this.videoItem.id+'video')
+      vdo.pause();
+      this.is_pary_video = false
     }
   }
 }

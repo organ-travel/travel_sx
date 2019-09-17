@@ -12,12 +12,12 @@
             <span class="txt-title">{{ perchase.title }}</span>
             <span class="txt-subtitle">{{ perchase.description }}</span>
           </div>
-          <p class="txt-summary">{{ perchase.summary }}</p>
+          <p class="txt-summary">{{ perchase.stars }}</p>
           <p class="txt-address" data-before="景区地址：">{{ perchase.address }}</p>
           <p class="txt-time" data-before="营业时间：">{{ perchase.business_hours }}</p>
           <div class="btn-group">
-            <a href="javascript:;" class="btn-enter">快速入园</a>
-            <a href="javascript:;" class="btn-safe">入园保障</a>
+            <a :href="perchase.url" class="btn-enter" target="_blank">立即预定</a>
+            <!--<a href="javascript:;" class="btn-safe">入园保障</a>-->
           </div>
         </div>
         <div class="buy-wrapper">
