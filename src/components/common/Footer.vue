@@ -82,7 +82,7 @@ export default {
       padding: 50px 0;
       .footer-top {
         position: relative;
-        padding-left:200px
+        padding-left:222px
         padding-bottom: 28px
         border-bottom:1px solid #fff
         &:before {
@@ -90,7 +90,7 @@ export default {
           position: absolute
           width:170px
           height:66px
-          background: url("../../assets/img/logo.png") no-repeat
+          background: url("~@/assets/img/common/logo-footer.png") no-repeat
           left:0
           top:10px
         }
@@ -103,7 +103,6 @@ export default {
         .contact-wrapper {
           float: left;
           width: 530px;
-          overflow: hidden;
           ul {
             li {
               .txt {
@@ -115,17 +114,38 @@ export default {
                 &:before {
                   content ''
                   position: absolute
-                  width:20px
-                  height:20px
+                  left:-42px
+                  top:50%
                 }
                 &.txt-company {
-
+                  &:before {
+                    width:19px
+                    height:20px
+                    margin-top: -10px
+                    background: url("~@/assets/img/common/icon-pubuliu.png") no-repeat
+                    -webkit-background-size: 100%
+                    background-size: 100%
+                  }
                 }
                 &.txt-address {
-
+                  &:before {
+                    width: 16px
+                    height: 22px
+                    margin-top: -11px
+                    background: url("~@/assets/img/common/icon-map.png") no-repeat
+                    -webkit-background-size: 100%
+                    background-size: 100%
+                  }
                 }
                 &.txt-telephone {
-
+                  &:before {
+                    width:17px
+                    height:21px
+                    margin-top: -10px
+                    background: url("~@/assets/img/common/icon-phone.png") no-repeat
+                    -webkit-background-size: 100%
+                    background-size: 100%
+                  }
                 }
               }
             }
@@ -139,7 +159,7 @@ export default {
           .qrcode-weibo {
             display: inline-block
             vertical-align: middle
-            margin:0 28px
+            margin:0 24px
             &:after {
               display: block
               text-align: center

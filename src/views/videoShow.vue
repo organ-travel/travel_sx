@@ -1,21 +1,58 @@
 <template>
   <section class="videoShow-wrapper">
-    <div class="video-wrapper">
+    <div v-if="videoSrc !== ''" class="video-wrapper">
       <video src="">您的浏览器不支持video标签</video>
     </div>
-    <a href="javascript:;" class="btn-enter">点击进入官网</a>
+    <div v-else class="video-wrapper" @click="openVideoSound()">
+      <img v-if="! videoItem.id" src="../assets/img/home/bg-video.jpg" alt="">
+      <video v-if="videoItem.id" :id="videoItem.id +'video'"  muted autoplay>
+        <source :src="videoItem.video_url" type="video/mp4">
+      </video>
+    </div>
+    <a href="javascript:;" class="btn-enter" @click="handleEnter">点击进入官网</a>
   </section>
 </template>
 
 <script>
 export default {
-  name: 'VideoShow'
+  name: 'VideoShow',
+  data() {
+    return {
+      is_pary_video: true,
+      videoSrc: '',
+      videoItem: {}
+    }
+  },
+  created() {
+    console.log(this.$router)
+  },
+  async mounted() {
+    // 获取视频url
+    await this.getVideo()
+    if (this.is_pary_video && !this.showHome) {
+      const vdo = document.getElementById(this.videoItem.id + 'video')
+      const userAgent = navigator.userAgent
+      vdo.play()
+
+      if (userAgent.indexOf('Safari') === -1) {
+        vdo.muted = false
+      }
+    }
+  },
+  methods: {
+    // 获取视频url
+    async getVideo () {
+      this.videoItem = (await this.getVideoUrl())
+    },
+    handleEnter() {
+      this.$router.push({ path: '/' })
+    }
+  }
 }
 </script>
 
 <style lang="stylus" scoped>
   .videoShow-wrapper {
-    position: relative
     min-height 700px
     .video-wrapper {
       position: absolute
