@@ -27,9 +27,9 @@
         <div v-if="videoSrc !== ''" class="video-wrapper">
           <video src="">您的浏览器不支持video标签</video>
         </div>
-        <div v-else class="video-wrapper">
+        <div v-else class="video-wrapper" @click="openVideoSound()">
           <img v-if="! videoItem.id" src="../assets/img/home/bg-video.jpg" alt="">
-          <video v-if="videoItem.id" :id="videoItem.id +'video'" :src="videoItem.video_url"></video>
+          <video v-if="videoItem.id" :id="videoItem.id +'video'" :src="videoItem.video_url" muted></video>
         </div>
         <a href="javascript:;" class="btn-enter" @click="handleEnter">点击进入官网</a>
       </section>
@@ -139,6 +139,10 @@ export default {
     }
   },
   methods: {
+    openVideoSound(){
+      let vdo = document.getElementById(this.videoItem.id+'video')
+      vdo.muted = vdo.muted ? false: true
+    },
     changeInfo (index) {
       this.actIndex = index
       this.infoArr = this.datas[index]

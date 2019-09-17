@@ -1,6 +1,12 @@
 const host = 'http://39.100.140.37/hukouN/index.php/'
-const showHome = false
-// const debug = true
+let showHome = false
+
+if (window.performance.navigation.type === 1) {
+  showHome = true
+}
+// console.log("页面被刷新");
+// }
+// const debug = truxe
 
 // if (window.location.host == '') {
 //   host = ''
