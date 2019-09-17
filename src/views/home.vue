@@ -135,7 +135,13 @@ export default {
     await this.getVideo()
     if( this.is_pary_video && !this.showHome ) {
       let vdo = document.getElementById(this.videoItem.id+'video')
+      let userAgent = navigator.userAgent;
       vdo.play()
+      console.log(userAgent.indexOf("Safari"))
+
+      if (userAgent.indexOf("Safari") === -1) {
+        vdo.muted = false
+      }
     }
   },
   methods: {
