@@ -29,7 +29,9 @@
         </div>
         <div v-else class="video-wrapper" @click="openVideoSound()">
           <img v-if="! videoItem.id" src="../assets/img/home/bg-video.jpg" alt="">
-          <video v-if="videoItem.id" :id="videoItem.id +'video'" :src="videoItem.video_url" muted></video>
+          <video v-if="videoItem.id" :id="videoItem.id +'video'"  muted autoplay>
+            <source :src="videoItem.video_url" type="video/mp4">
+          </video>
         </div>
         <a href="javascript:;" class="btn-enter" @click="handleEnter">点击进入官网</a>
       </section>
@@ -136,7 +138,7 @@ export default {
     if( this.is_pary_video && !this.showHome ) {
       let vdo = document.getElementById(this.videoItem.id+'video')
       let userAgent = navigator.userAgent;
-      vdo.play()
+       vdo.play()
       console.log(userAgent.indexOf("Safari"))
 
       if (userAgent.indexOf("Safari") === -1) {
@@ -147,6 +149,7 @@ export default {
   methods: {
     openVideoSound(){
       let vdo = document.getElementById(this.videoItem.id+'video')
+      vdo.play()
       vdo.muted = vdo.muted ? false: true
     },
     changeInfo (index) {
