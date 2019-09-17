@@ -73,6 +73,15 @@ export default {
         })
         this.wonderObj.sing = [...singOddArr, ...singEvenArr]
       }
+      if (item.type === 'scenery') {
+        res.articleList.forEach((item, index) => {
+          if (index === 2 || index === 7) {
+            item.description = item.description.length > 360 ? item.description.substr(0, 360) + '...' : item.description.substr(0, 360)
+          } else {
+            item.description = item.description.length > 160 ? item.description.substr(0, 160) + '...' : item.description.substr(0, 160)
+          }
+        })
+      }
       this.queryOption[index].total = res.articleCount || 0
       this.queryOption[index].start++
     })
