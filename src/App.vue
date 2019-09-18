@@ -1,20 +1,20 @@
 <template>
   <div id="app">
-    <div v-show="!showHome">
+    <div v-if="$route.name && !showHome && $route.name == 'home'">
       <section class="videoShow-wrapper">
-        <div v-if="videoSrc !== ''" class="video-wrapper">
-          <video src="">您的浏览器不支持video标签</video>
-        </div>
-        <div v-else class="video-wrapper" @click="openVideoSound()">
-          <img v-if="!videoItem.id" src="./assets/img/home/bg-video.jpg" alt="">
-          <video v-else :id="videoItem.id +'video'"  muted autoplay>
+        <!--<div v-if="videoSrc !== ''" class="video-wrapper">-->
+          <!--<video src="">您的浏览器不支持video标签</video>-->
+        <!--</div>-->
+        <div v-if ="videoItem.video_url" class="video-wrapper" @click="openVideoSound()">
+          <!--<img v-if="!videoItem.id" src="" alt="">-->
+          <video :id="videoItem.id +'video'"  muted autoplay>
             <source :src="videoItem.video_url" type="video/mp4">
           </video>
         </div>
         <a href="javascript:;" class="btn-enter" @click="handleEnter">点击进入官网</a>
       </section>
     </div>
-    <div v-show="showHome">
+    <div v-if="$route.name && (($route.name != 'home') || showHome ) ">
       <com-header ref="header"></com-header>
       <com-content>
         <router-view/>
