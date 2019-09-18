@@ -4,7 +4,7 @@
       <div v-if="customArr && customArr.length" class="swiper-container custom-swiper">
         <div class="swiper-wrapper">
           <div v-for='(el, index) in customArr' :key="index" class="swiper-slide">
-              <a :href="customObj.type + '?name=' + el.type" target="_blank">
+              <a :href="customObj.type + '?name=' + el.type">
               <img v-if="el.picture_url" class="img"  :src="el.picture_url">
               <span v-if="el.id && el.name" class="text">{{ el.name }}</span>
             </a>

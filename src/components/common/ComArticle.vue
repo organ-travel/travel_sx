@@ -86,7 +86,8 @@ export default {
       }
       const breadArr = [].concat(firstParams, secondParams, thirdParams)
       window.localStorage.setItem('breadData', JSON.stringify(breadArr))
-      window.open('#/infoDetail?id=' + item.id, 'target=_blank')
+      this.$router.push('infoDetail?id=' + item.id)
+      // window.open('#/infoDetail?id=' + item.id)
     }
   }
 }

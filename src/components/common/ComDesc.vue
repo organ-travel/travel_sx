@@ -3,7 +3,7 @@
     <h3 class="u-title">{{ title }}</h3>
     <div class="m-con">
       <span class="brief">{{ brief }}</span>
-      <a :href="'#/infoDetail?id='+ id" target="_blank" class="detail">【详情】 </a>
+      <a :href="'#/infoDetail?id='+ id" class="detail">【详情】 </a>
     </div>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <wrap class="m-strategy" title-text="壶口攻略">
     <div class="m-content">
-      <a v-for="(item, index) in strategyObj.children" :key="index" :href="strategyObj.type + '?actIndex=' + index" :class="item.icon_class_new" target="_blank">
+      <a v-for="(item, index) in strategyObj.children" :key="index" :href="strategyObj.type + '?actIndex=' + index" :class="item.icon_class_new">
         <com-column :content="item.nickname"></com-column>
       </a>
     </div>

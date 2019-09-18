@@ -3,7 +3,7 @@
     <div class="intro-left">
       <a :href="'#/infoDetail?id=' + intro.id" >
         <img :src=" intro.picture_url " alt="">
-        <a  :href="'#/infoDetail?id=' + intro.id" target="_blank" class="u-com-video"></a>
+        <a  :href="'#/infoDetail?id=' + intro.id"  class="u-com-video"></a>
       </a>
     </div>
     <div class="intro-right">

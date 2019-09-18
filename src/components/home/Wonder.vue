@@ -1,7 +1,7 @@
 <template>
   <wrap class="m-wonder" title-text="壶口奇观">
     <div class="m-content clearfix">
-      <a v-for="(item, index) in wonderObj.children" :key="index" :href="wonderObj.type + '?name='+item.type" target="_blank" class="pic-com">
+      <a v-for="(item, index) in wonderObj.children" :key="index" :href="wonderObj.type + '?name='+item.type"  class="pic-com">
         <span :class="item.iconClass"></span>
          <img :src="item.picture_url" :class="item.icon_class_new"/>
         <span class="title">{{ item.name }}</span>

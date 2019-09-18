@@ -8,7 +8,7 @@
       <div class="m-content">
         <a href="javascript:;" class="m-brief">
           <span class="text">{{ item.article.description }} </span>
-          <a :href="'#/infoDetail?id=' + item.article.id" class="detail" target="_blank">&nbsp;[详情]</a>
+          <a :href="'#/infoDetail?id=' + item.article.id" class="detail">&nbsp;[详情]</a>
         </a>
       </div>
     </div>
