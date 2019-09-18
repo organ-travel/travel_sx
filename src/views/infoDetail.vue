@@ -15,6 +15,7 @@
 </template>
 <script>
 export default {
+  pageName: 'InfoDetail',
   components: {
   },
   data () {

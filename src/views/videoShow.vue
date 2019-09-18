@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'VideoShow',
+  pageName: 'VideoShow',
   data() {
     return {
       is_pary_video: true,

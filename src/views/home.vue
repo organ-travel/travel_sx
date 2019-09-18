@@ -1,6 +1,25 @@
 <template>
   <div>
-    <div class="m-home-page">
+    <div class="swiperhi" :class="{'show':!showHome}">
+      <section class="videoShow-wrapper">
+        <!-- <div v-if="videoSrc !== ''" class="video-wrapper">
+          <video src="">您的浏览器不支持video标签</video>
+        </div>
+        <div v-else class="video-wrapper" @click="openVideoSound()">
+          <img v-if="!videoItem.id" src="../assets/img/home/bg-video.jpg" alt="">
+          <video v-else :id="videoItem.id +'video'"  muted autoplay @canplaythrough="oncanplaythrough">
+            <source :src="videoItem.video_url" type="video/mp4">
+          </video>
+        </div> -->
+        <div v-if="videoItem.video_url" class="video-wrapper" @click="openVideoSound()">
+          <video :id="videoItem.id +'video'"  muted autoplay @canplaythrough="oncanplaythrough">
+            <source :src="videoItem.video_url" type="video/mp4">
+          </video>
+        </div>
+        <a href="javascript:;" class="btn-enter" @click="handleEnter">点击进入官网</a>
+      </section>
+    </div>
+    <div class="m-home-page swiperhi" :class="{'show':showHome}">
       <div v-if="arrItem && arrItem.length" class="m-swiper m-wrap swiper-container">
         <div class="swiper-wrapper">
           <div v-for='(el, index) in arrItem' :key="index" class="swiper-slide">
@@ -22,20 +41,6 @@
       <custom :custom-arr="customArr"  :custom-obj="customObj" :active-label="activeLabel" :custom-nav="customNav" @changeCustom="changeCustom"></custom>
       <div class="m-map m-wrap"></div>
     </div>
-    <!-- <div class="swiperhi" :class="{'show':!showHome}">
-      <section class="videoShow-wrapper">
-        <div v-if="videoSrc !== ''" class="video-wrapper">
-          <video src="">您的浏览器不支持video标签</video>
-        </div>
-        <div v-else class="video-wrapper" @click="openVideoSound()">
-          <img v-if="! videoItem.id" src="../assets/img/home/bg-video.jpg" alt="">
-          <video v-if="videoItem.id" :id="videoItem.id +'video'"  muted autoplay>
-            <source :src="videoItem.video_url" type="video/mp4">
-          </video>
-        </div>
-        <a href="javascript:;" class="btn-enter" @click="handleEnter">点击进入官网</a>
-      </section>
-    </div> -->
   </div>
 </template>
 
@@ -48,11 +53,11 @@ import Wonder from '@/components/home/Wonder.vue'
 import Strategy from '@/components/home/Strategy.vue'
 import Custom from '@/components/home/Custom.vue'
 import dataset from '@/config/dataset'
-// import Config from '@/config'
+import Config from '@/config'
 import Swiper from 'swiper'
 
 export default {
-  name: 'Home',
+  pageName: 'Home',
   components: {
     Type,
     Survey,
@@ -64,10 +69,10 @@ export default {
   },
   data () {
     return {
-      // showHome: Config.showHome,
-      // videoSrc: '',
+      showHome: Config.showHome,
+      videoSrc: '',
       typeArr: [],
-      // is_pary_video: true,
+      is_pary_video: true,
       // surveyNav: dataset.surveyNav,
       surveyNav: [],
       infoNav: dataset.infoNav,
@@ -76,7 +81,7 @@ export default {
       // strategyArr: dataset.strategyArr,
       strategyObj: {},
       arrItem: [],
-      // videoItem: {},
+      videoItem: {},
       // 壶口资讯
       infoObj: {},
       datas: [],
@@ -103,6 +108,22 @@ export default {
   },
   async mounted () {
     console.log('home mounted------>')
+    // 获取视频url
+    if (!this.showHome) {
+      await this.getVideo()
+      if (this.is_pary_video) {
+        const vdo = document.getElementById(this.videoItem.id + 'video')
+        const userAgent = navigator.userAgent
+        vdo.play()
+        console.log(userAgent.indexOf('Safari'))
+        if (userAgent.indexOf('Safari') === -1) {
+          vdo.muted = false
+        }
+      }
+    } else {
+      this.SET_SHOW_MAIN(true)
+      this.SET_SHOW_APP(true)
+    }
     await this.setMenu()
     this.typeArr = await this.getHomeTopCategoryList()
 
@@ -132,23 +153,14 @@ export default {
     })
     // 壶口概况
     await this.getSurvey()
-
-    // // 获取视频url
-    // await this.getVideo()
-    // if( this.is_pary_video && !this.showHome ) {
-    //   let vdo = document.getElementById(this.videoItem.id+'video')
-    //   let userAgent = navigator.userAgent;
-    //    vdo.play()
-    //   console.log(userAgent.indexOf("Safari"))
-
-    //   if (userAgent.indexOf("Safari") === -1) {
-    //     vdo.muted = false
-    //   }
-    // }
   },
   methods: {
+    oncanplaythrough () {
+      console.log(111111111)
+      this.SET_SHOW_MAIN(true)
+    },
     openVideoSound(){
-      let vdo = document.getElementById(this.videoItem.id+'video')
+      let vdo = document.getElementById(this.videoItem.id + 'video')
       vdo.play()
       vdo.muted = vdo.muted ? false: true
     },
@@ -178,10 +190,10 @@ export default {
     },
 
     //获取视频url
-    // async getVideo () {
-    //   this.videoItem = (await this.getVideoUrl())
+    async getVideo () {
+      this.videoItem = (await this.getVideoUrl())
 
-    // },
+    },
     // 获取壶口概况的数据
     getSurvey () {
       const menuData = [].concat(this.getMenuData) || []
@@ -233,16 +245,18 @@ export default {
       console.log(this.surveyLabel)
       this.customArr = this.customNav
     },
-    // handleEnter() {
-    //   Config.showHome = true
-    //   this.showHome =  Config.showHome
-    //   const array =  this.arrItem
-    //   this.arrItem = []
-    //   this.arrItem = array
-    //   let vdo = document.getElementById(this.videoItem.id+'video')
-    //   vdo.pause();
-    //   this.is_pary_video = false
-    // }
+    handleEnter() {
+      Config.showHome = true
+      this.showHome =  Config.showHome
+      this.SET_SHOW_MAIN(true)
+      this.SET_SHOW_APP(true)
+      const array =  this.arrItem
+      this.arrItem = []
+      this.arrItem = array
+      const vdo = document.getElementById(this.videoItem.id + 'video')
+      vdo.pause()
+      this.is_pary_video = false
+    }
   }
 }
 </script>
@@ -311,6 +325,40 @@ export default {
           border-bottom 1px solid rgba(236, 90, 2, 1)
         }
       }
+    }
+  }
+}
+.videoShow-wrapper {
+  position: fixed
+  width:100%
+  height: 100%
+  top:0
+  left:0
+  z-index 10000
+  .video-wrapper {
+    position: absolute
+    width:100%
+    height: 100%
+    left:0
+    top:0
+    img, video {
+      max-width 100%
+    }
+  }
+  .btn-enter {
+    position: absolute
+    left: 50%
+    margin-left: -100px
+    top: 50%
+    margin-top: -22px
+    font-size 20px
+    color: #ec5a02
+    border 2px solid #ec5a02
+    padding:11px 36px
+    border-radius 2px
+    &:hover {
+      background-color: #ec5a02
+      color: #fff
     }
   }
 }

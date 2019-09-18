@@ -18,7 +18,7 @@ import imgMobile from '@/assets/img/common/weiguan.jpg'
 import imgWechat from '@/assets/img/common/weixin.jpg'
 import imgWeibo from '@/assets/img/common/weibo.jpg'
 export default {
-  name: 'Contact',
+  pageName: 'Contact',
   components: {
   },
   data () {

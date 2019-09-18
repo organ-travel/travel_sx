@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div v-show="!showHome">
+    <!-- <div v-show="!showHome">
       <section class="videoShow-wrapper">
         <div v-if="videoSrc !== ''" class="video-wrapper">
           <video src="">您的浏览器不支持video标签</video>
@@ -13,30 +13,28 @@
         </div>
         <a href="javascript:;" class="btn-enter" @click="handleEnter">点击进入官网</a>
       </section>
-    </div>
-    <div v-show="showHome">
-      <com-header ref="header"></com-header>
-      <com-content>
-        <router-view/>
-      </com-content>
-      <com-footer></com-footer>
-      <com-aside></com-aside>
-    </div>
+    </div> -->
+    <com-header v-show="getShowApp" ref="header"></com-header>
+    <com-content v-show="getShowMain">
+      <router-view/>
+    </com-content>
+    <com-footer v-show="getShowApp"></com-footer>
+    <com-aside v-show="getShowApp"></com-aside>
   </div>
 </template>
 <script>
 import { mapMutations } from 'vuex'
-import Config from '@/config'
+// import Config from '@/config'
 export default {
   data () {
     return {
-      showHome: Config.showHome,
-      videoSrc: '',
-      is_pary_video: true,
-      videoItem: {},
+      // showHome: Config.showHome,
+      // videoSrc: '',
+      // is_pary_video: true,
+      // videoItem: {},
     }
   },
-  async mounted () {
+  mounted () {
     window.$alert = (tip) => {
       return this.$alert(tip, '提示')
     }
@@ -53,44 +51,44 @@ export default {
       }, false)
     }
     // 获取视频url
-    await this.getVideo()
-    if (this.is_pary_video && !this.showHome) {
-      const vdo = document.getElementById(this.videoItem.id + 'video')
-      const userAgent = navigator.userAgent
-      vdo.play()
-      console.log(userAgent.indexOf('Safari'))
+    // await this.getVideo()
+    // if (this.is_pary_video && !this.showHome) {
+    //   const vdo = document.getElementById(this.videoItem.id + 'video')
+    //   const userAgent = navigator.userAgent
+    //   vdo.play()
+    //   console.log(userAgent.indexOf('Safari'))
 
-      if (userAgent.indexOf('Safari') === -1) {
-        vdo.muted = false
-      }
-    }
+    //   if (userAgent.indexOf('Safari') === -1) {
+    //     vdo.muted = false
+    //   }
+    // }
   },
   methods: {
     ...mapMutations(['SET_HEADER_HEIGHT']),
     // 获取视频url
-    async getVideo () {
-      this.videoItem = (await this.getVideoUrl())
-    },
-    handleEnter() {
-      Config.showHome = true
-      this.showHome = Config.showHome
-      const array = this.arrItem
-      this.arrItem = []
-      this.arrItem = array
-      const vdo = document.getElementById(this.videoItem.id + 'video')
-      vdo.pause()
-      this.is_pary_video = false
-    },
-    openVideoSound () {
-      const vdo = document.getElementById(this.videoItem.id + 'video')
-      vdo.play()
-      vdo.muted = !vdo.muted
-    },
+    // async getVideo () {
+    //   this.videoItem = (await this.getVideoUrl())
+    // },
+    // handleEnter() {
+    //   Config.showHome = true
+    //   this.showHome = Config.showHome
+    //   const array = this.arrItem
+    //   this.arrItem = []
+    //   this.arrItem = array
+    //   const vdo = document.getElementById(this.videoItem.id + 'video')
+    //   vdo.pause()
+    //   this.is_pary_video = false
+    // },
+    // openVideoSound () {
+    //   const vdo = document.getElementById(this.videoItem.id + 'video')
+    //   vdo.play()
+    //   vdo.muted = !vdo.muted
+    // },
   }
 }
 </script>
 <style lang="stylus">
-.videoShow-wrapper {
+/* .videoShow-wrapper {
   position: fixed
   width:100%
   height: 100%
@@ -123,7 +121,7 @@ export default {
       color: #fff
     }
   }
-}
+} */
 #app
   font-family 'Avenir', Helvetica, Arial, sans-serif
   -webkit-font-smoothing antialiased

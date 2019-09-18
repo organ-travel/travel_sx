@@ -12,7 +12,7 @@
 </template>
 <script>
 export default {
-  name: 'ShowPic',
+  pageName: 'ShowPic',
   components: {
   },
   data () {

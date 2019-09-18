@@ -10,7 +10,7 @@ import List from '@/components/survey/List.vue'
 import Anchor from '@/components/survey/Anchor.vue'
 import { mapGetters } from 'vuex'
 export default {
-  name: 'Survey',
+  pageName: 'Survey',
   components: {
     List,
     Anchor

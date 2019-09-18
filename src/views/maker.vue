@@ -6,7 +6,7 @@
 <script>
 import dataset from '@/config/dataset'
 export default {
-  name: 'Maker',
+  pageName: 'Maker',
   components: {
   },
   data () {

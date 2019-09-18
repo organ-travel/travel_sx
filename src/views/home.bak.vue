@@ -37,7 +37,7 @@ import dataset from '@/config/dataset'
 import Swiper from 'swiper'
 
 export default {
-  name: 'Home',
+  pageName: 'Home',
   components: {
     Type,
     Survey,

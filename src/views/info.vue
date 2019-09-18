@@ -9,7 +9,7 @@
 <script>
 import dataset from '@/config/dataset'
 export default {
-  name: 'Info',
+  pageName: 'Info',
   components: {
   },
   data () {

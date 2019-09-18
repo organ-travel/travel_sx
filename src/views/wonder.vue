@@ -38,7 +38,7 @@ import WangLongTai from '@/components/wonder/Wanglongtai.vue'
 import Scenery from '@/components/wonder/Scenery.vue'
 
 export default {
-  name: 'Wonder',
+  pageName: 'Wonder',
   components: {
     ComWrap, GuDuKou, Film, Sing, WangLongTai, Scenery
   },

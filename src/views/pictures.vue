@@ -8,7 +8,7 @@
 </template>
 <script>
 export default {
-  name: 'Pictures',
+  pageName: 'Pictures',
   components: {
   },
   data () {

@@ -103,7 +103,7 @@
 <script>
 import dataset from '@/config/dataset'
 export default {
-  name: 'Strategy',
+  pageName: 'Strategy',
   components: {
   },
   data () {

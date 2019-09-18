@@ -22,7 +22,9 @@ const state = {
   menuRelations: {},
   // 文章数据
   articleData: [],
-  MetaData
+  MetaData,
+  showApp: false,
+  showMain: false
 }
 export default new Vuex.Store({
   strict: debug,

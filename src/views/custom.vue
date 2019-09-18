@@ -25,7 +25,7 @@
 <script>
 import dataset from '@/config/dataset'
 export default {
-  name: 'Custom',
+  pageName: 'Custom',
   components: {
   },
   data () {

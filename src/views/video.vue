@@ -9,7 +9,7 @@
 </template>
 <script>
 export default {
-  name: 'Video',
+  pageName: 'Video',
   components: {
   },
   data () {

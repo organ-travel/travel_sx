@@ -14,3 +14,9 @@ export const SET_MENU_RELATIONS = (state, payload) => {
 export const SET_CUR_CATEGORY = (state, payload) => {
   state.curCategory = JSON.parse(JSON.stringify(payload))
 }
+export const SET_SHOW_APP = (state, payload) => {
+  state.showApp = payload
+}
+export const SET_SHOW_MAIN = (state, payload) => {
+  state.showMain = payload
+}

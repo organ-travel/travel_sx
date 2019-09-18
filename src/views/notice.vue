@@ -25,7 +25,7 @@ import imgBanner from '@/assets/img/notice_hk/banner.jpg'
 import imgSight from '@/assets/img/notice_hk/img-sight.jpg'
 import imgQrcode from '@/assets/img/notice_hk/img-qrcode.jpg'
 export default {
-  name: 'Notice',
+  pageName: 'Notice',
   components: {
     NoticeItem,
     PriceItem,
