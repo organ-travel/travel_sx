@@ -89,8 +89,8 @@ export default {
         height 100%
         .u-logo {
           padding-right 11px
-          width 170px
-          height 66px
+          width 146px
+          height 57px
           display inline-block
           background url('~@/assets/img/logo.png') no-repeat left center
           vertical-align bottom
