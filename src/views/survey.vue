@@ -39,14 +39,15 @@ export default {
   //   }
   // },
   async mounted () {
+    console.log('survey mounted------>')
     await this.setMenu()
     // this.setActiveIndex()
     // this.setCurCategory()
     this.actIndex = parseInt(this.$route.query.actIndex) || this.actIndex
     this.activeId = this.getCurCategory.children[this.actIndex] ? this.getCurCategory.children[this.actIndex].type : ''
     this.surveyAnchor = this.getCurCategory.children || []
-    this.handleScroll('isFirst')
-    window.addEventListener('scroll', this.handleScroll, false)
+    // this.handleScroll('isFirst')
+    // window.addEventListener('scroll', this.handleScroll, false)
     this.surveyAnchor.forEach(async (item, index) => {
       if (item.type != 'introduction') this.surveyContent.push({ type: item.type, article: item.article })
       this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
@@ -54,6 +55,10 @@ export default {
       this.$set(this.articleArr, index, res.articleList)
       this.queryOption[index].total = res.articleCount || 0
       this.queryOption[index].start++
+      if (index == this.surveyAnchor.length - 1) {
+        this.handleScroll('isFirst')
+        window.addEventListener('scroll', this.handleScroll, false)
+      }
     })
     console.log(this.surveyContent)
   },
@@ -99,13 +104,16 @@ export default {
       }
     },
     handleScroll (isFirst) {
+      console.log(111111, this.isClick, isFirst)
       if (this.isClick) {
         return
       }
       const items = document.querySelectorAll('.m-list-survey')
-      if (items.length > items[this.actIndex]) {
+      console.log(222222, this.isClick, this.$refs['lists'], this.$refs['lists'].$el.childNodes, document.querySelectorAll('.m-list-survey'))
+      console.log(items.length, items[this.actIndex], items.length > items[this.actIndex])
+      if (items.length && items[this.actIndex - 1]) {
         if (isFirst === 'isFirst') {
-          const height = items[this.actIndex].offsetTop + this.getHeaderHeight || 118
+          const height = items[this.actIndex - 1].offsetTop + this.getHeaderHeight || 118
           document.body.scrollTop ? (document.body.scrollTop = height) : (document.documentElement.scrollTop = height)
           return
         }

@@ -20,7 +20,7 @@ export default {
   },
   mounted () {
     if (this.$options.pageName) {
-      console.log('minxin mounted------>', this.$options.pageName)
+      console.log('minxin mounted------>', this.$options.pageName, this.$route.query.actIndex)
       if (this.$route.name != 'home') {
         this.SET_SHOW_APP(true)
         this.SET_SHOW_MAIN(true)
