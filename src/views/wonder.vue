@@ -169,8 +169,19 @@ export default {
           float: left
           width: 400px
           height: 300px
+          position: relative
+          overflow: hidden
           img {
-            max-width 100%
+            width 100%
+          }
+          .u-com-video {
+            position absolute
+            top 50%
+            left 50%
+            transform translate(-50%, -50%)
+            width 46px
+            height 46px
+            background url('~@/assets/img/common/icon-video.png') no-repeat center
           }
         }
         .intro-right {
@@ -179,6 +190,7 @@ export default {
           left: 430px
           top: 0
           .content {
+            overflow: hidden
             .txt {
               font-size 14px
               color: #000
@@ -190,6 +202,17 @@ export default {
     }
     .tabs-content_town {
       .intro-wrapper {
+        .intro-left {
+          .u-com-video {
+            position absolute
+            top 50%
+            left 50%
+            transform translate(-50%, -50%)
+            width 46px
+            height 46px
+            background url('~@/assets/img/common/icon-video.png') no-repeat center
+          }
+        }
         .intro-right {
           .content {
             &:before {
@@ -258,6 +281,22 @@ export default {
       }
     }
     .tabs-content_platform {
+      .intro-wrapper {
+        .intro-right {
+          .content {
+            &:before {
+              content '望龙台'
+              display: inline-block
+              height: 45px
+              line-height: 45px
+              margin-bottom: 15px
+              padding: 0 20px
+              background-color: #ec5a02
+              color: #fff
+            }
+          }
+        }
+      }
       .m-com-list {
         margin: 35px 30px
         padding-bottom: 20px
@@ -328,6 +367,17 @@ export default {
           left: 430px
           top: 0
           .content {
+            overflow: hidden
+            &:before {
+              content '黄河大河唱'
+              display: inline-block
+              height: 45px
+              line-height: 45px
+              margin-bottom: 15px
+              padding: 0 20px
+              background-color: #ec5a02
+              color: #fff
+            }
             .txt {
               font-size 14px
               color: #000
