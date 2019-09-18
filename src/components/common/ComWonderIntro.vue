@@ -1,7 +1,10 @@
 <template>
   <div class="intro-wrapper">
     <div class="intro-left">
-      <a href="javascript:;"><img :src=" intro.picture_url " alt=""></a>
+      <a :href="'#/infoDetail?id=' + intro.id" >
+        <img :src=" intro.picture_url " alt="">
+        <a  :href="'#/infoDetail?id=' + intro.id" target="_blank" class="u-com-video"></a>
+      </a>
     </div>
     <div class="intro-right">
       <div class="content">
@@ -23,7 +26,6 @@ export default {
   }
 }
 </script>
-
-<style scoped>
+<style  scoped>
 
 </style>
