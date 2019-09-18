@@ -13,12 +13,6 @@
         <a :href="'#/infoDetail?id=' + item.id" class="txt-link">...【详情】</a>
       </div>
     </div>
-    <el-pagination
-      v-if="listArr.length > 0"
-      layout="prev, pager, next"
-      :total="listArr.length"
-      @current-change="handleCurrentChange">
-    </el-pagination>
   </div>
 </template>
 <script>
@@ -29,6 +23,9 @@ export default {
       default () {
         return []
       }
+    },
+    showPage: {
+      type: String
     },
     imgClass: {
       type: String,

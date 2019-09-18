@@ -8,23 +8,23 @@
     <com-tab :act-index="actIndex" :nav-arr="wonderNav" @changeNav="changeNav"></com-tab>
     <!--古渡口小镇-->
     <com-transition>
-      <gu-du-kou v-if="wonderNav[actIndex] && wonderNav[actIndex].type === 'gudukou'" :intro="wonderNav[actIndex].article" :list="wonderObj.gudukou"></gu-du-kou>
+      <gu-du-kou v-if="wonderNav[actIndex] && wonderNav[actIndex].type === 'gudukou'" :intro="wonderNav[actIndex].article" :show-page="showPage" :list="wonderObj.gudukou"></gu-du-kou>
     </com-transition>
     <!--4D影院-->
     <com-transition>
-      <film v-if="wonderNav[actIndex] && wonderNav[actIndex].type === 'film'" :intro="wonderNav[actIndex].article" :list="wonderObj.film"></film>
+      <film v-if="wonderNav[actIndex] && wonderNav[actIndex].type === 'film'" :intro="wonderNav[actIndex].article" :show-page="showPage" :list="wonderObj.film"></film>
     </com-transition>
     <!--黄河大合唱-->
     <com-transition>
-      <sing v-if="wonderNav[actIndex] && wonderNav[actIndex].type === 'sing'" :intro="wonderNav[actIndex].article" :list="wonderObj.sing"></sing>
+      <sing v-if="wonderNav[actIndex] && wonderNav[actIndex].type === 'sing'" :intro="wonderNav[actIndex].article" :show-page="showPage" :list="wonderObj.sing"></sing>
     </com-transition>
     <!--望龙台-->
     <com-transition>
-      <wang-long-tai v-if="wonderNav[actIndex] && wonderNav[actIndex].type === 'wlt'" :intro="wonderNav[actIndex].article" :list="wonderObj.wlt"></wang-long-tai>
+      <wang-long-tai v-if="wonderNav[actIndex] && wonderNav[actIndex].type === 'wlt'" :intro="wonderNav[actIndex].article" :show-page="showPage" :list="wonderObj.wlt"></wang-long-tai>
     </com-transition>
     <!--壶口八景-->
     <com-transition>
-      <scenery v-if="wonderNav[actIndex] && wonderNav[actIndex].type === 'scenery'" :intro="wonderNav[actIndex].article" :list="wonderObj.scenery"></scenery>
+      <scenery v-if="wonderNav[actIndex] && wonderNav[actIndex].type === 'scenery'" :intro="wonderNav[actIndex].article" :show-page="showPage" :list="wonderObj.scenery"></scenery>
     </com-transition>
   </com-wrap>
 </template>
@@ -47,7 +47,14 @@ export default {
       actIndex: 0,
       queryOption: [],
       wonderNav: [],
-      wonderObj: {}
+      wonderObj: {},
+      showPage: 'show'
+    }
+  },
+  watch: {
+    $route(to, from, next) {
+      console.log(to)
+      console.log(from)
     }
   },
   async mounted () {
@@ -59,6 +66,7 @@ export default {
       this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
       const res = (await this.queryArticleList(this.queryOption[index])).data
       this.$set(this.wonderObj, item.type, res.articleList || [])
+      this.$set(this.wonderObj, 'showPage', 'show')
       if (item.type === 'sing') {
         res.articleList.forEach((item, index) => {
           index % 2 === 0 ? singEvenArr.push(item) : singOddArr.push(item)
@@ -95,6 +103,9 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     next(vm => {
+      if (to.name === 'wonder') {
+       console.log(vm)
+      }
       if (to.query.name) {
         const routerName = to.query.name
         switch (routerName) {

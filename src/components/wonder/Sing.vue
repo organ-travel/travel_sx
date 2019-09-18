@@ -1,7 +1,7 @@
 <template>
   <div  class="tabs-content_single">
     <com-wonder-intro :intro="intro"></com-wonder-intro>
-    <sing-list :list-arr="list"></sing-list>
+    <sing-list :list-arr="list" :show-page="showPage"></sing-list>
   </div>
 </template>
 
@@ -19,6 +19,9 @@ export default {
       default () {
         return []
       }
+    },
+    showPage: {
+      type: String
     },
     list: {
       type: Array,

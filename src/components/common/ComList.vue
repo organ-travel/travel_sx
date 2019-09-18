@@ -13,7 +13,8 @@
       </a>
     </div>
     <el-pagination
-      v-if="listArr.length > 0"
+      v-if="listArr.length > 0 && !showPage"
+      ref="hkPage"
       layout="prev, pager, next"
       :total="listArr.length"
       @current-change="handleCurrentChange">
@@ -28,6 +29,9 @@ export default {
       default () {
         return []
       }
+    },
+    showPage: {
+      type: String
     },
     imgClass: {
       type: String,
@@ -61,6 +65,8 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  created() {
   },
   mounted () {
   },

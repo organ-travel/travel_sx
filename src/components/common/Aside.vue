@@ -29,7 +29,6 @@
         <a href="javascript:;" class="txt"><i class="fa fa-user-o"></i></a>
         <div class="contact-wrapper" data-before="联系客服">
           <span class="txt-telephone">0911-4838030</span>
-          <span class="txt-contact">在线客服</span>
         </div>
       </div>
       <div class="alide-item backtop-wrapper">
@@ -273,6 +272,7 @@ export default {
             content attr(data-before)
             display: block
             text-align: center
+            margin-top:20px
           }
           .txt-telephone {
             display: block
@@ -281,14 +281,6 @@ export default {
             font-size 18px
             color: #ec5a02
             font-weight: bold
-            border-bottom:1px solid #ec5a02
-          }
-          .txt-contact {
-            color: #290600
-            display: block
-            font-size 16px
-            padding-top: 15px
-            text-align: center
           }
         }
         &:hover {

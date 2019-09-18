@@ -1,7 +1,7 @@
 <template>
   <div class="tabs-content_cinema">
     <com-wonder-intro :intro="intro"></com-wonder-intro>
-    <com-list :list-arr="list"></com-list>
+    <com-list :list-arr="list" :show-page="showPage"></com-list>
   </div>
 </template>
 
@@ -19,6 +19,9 @@ export default {
       default () {
         return []
       }
+    },
+    showPage: {
+      type: String
     },
     list: {
       type: Array,
