@@ -110,15 +110,19 @@ export default {
     console.log('home mounted------>')
     // 获取视频url
     if (!this.showHome) {
-      await this.getVideo()
-      if (this.is_pary_video) {
-        const vdo = document.getElementById(this.videoItem.id + 'video')
-        const userAgent = navigator.userAgent
-        vdo.play()
-        console.log(userAgent.indexOf('Safari'))
-        if (userAgent.indexOf('Safari') === -1) {
-          vdo.muted = false
+      const vdo = document.getElementById(this.videoItem.id + 'video')
+      if (vdo) {
+        await this.getVideo()
+        if (this.is_pary_video) {
+          const userAgent = navigator.userAgent
+          vdo.play()
+          console.log(userAgent.indexOf('Safari'))
+          if (userAgent.indexOf('Safari') === -1) {
+            vdo.muted = false
+          }
         }
+      } else {
+        this.SET_SHOW_MAIN(true)
       }
     } else {
       this.SET_SHOW_MAIN(true)
@@ -191,8 +195,15 @@ export default {
 
     //获取视频url
     async getVideo () {
-      this.videoItem = (await this.getVideoUrl())
-
+      // if (!document.getElementById(this.videoItem.id + 'video')) {
+      //   this.SET_SHOW_MAIN(true)
+      //   return
+      // }
+      try {
+        this.videoItem = (await this.getVideoUrl())
+      } catch (e) {
+        this.SET_SHOW_MAIN(true)
+      }
     },
     // 获取壶口概况的数据
     getSurvey () {
@@ -254,7 +265,7 @@ export default {
       this.arrItem = []
       this.arrItem = array
       const vdo = document.getElementById(this.videoItem.id + 'video')
-      vdo.pause()
+      vdo && vdo.pause()
       this.is_pary_video = false
     }
   }

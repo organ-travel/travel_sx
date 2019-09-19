@@ -51,12 +51,12 @@ export default {
       showPage: 'show'
     }
   },
-  // watch: {
-  //   $route(to, from, next) {
-  //     console.log(to)
-  //     console.log(from)
-  //   }
-  // },
+  watch: {
+    $route(to, from, next) {
+      console.log(to)
+      console.log(from)
+    }
+  },
   async mounted () {
     const singOddArr = [] // 奇数
     const singEvenArr = [] // 偶数
@@ -104,6 +104,9 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     next(vm => {
+      if (to.name === 'wonder') {
+        console.log(vm)
+      }
       if (to.query.name) {
         const routerName = to.query.name
         switch (routerName) {
