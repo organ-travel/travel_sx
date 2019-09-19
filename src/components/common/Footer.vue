@@ -82,7 +82,7 @@ export default {
       padding: 50px 0;
       .footer-top {
         position: relative;
-        padding-left:222px
+        padding-left:339px
         padding-bottom: 28px
         border-bottom:1px solid #fff
         &:before {
@@ -92,7 +92,7 @@ export default {
           height:98px
           background: url("~@/assets/img/common/logo-footer.png") no-repeat
           left:0
-          top:10px
+          top:0px
         }
         &:after {
           content ''
@@ -102,7 +102,7 @@ export default {
         }
         .contact-wrapper {
           float: left;
-          width: 530px;
+          width: 400px;
           ul {
             li {
               .txt {
