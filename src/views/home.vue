@@ -111,14 +111,18 @@ export default {
     // 获取视频url
     if (!this.showHome) {
       const vdo = document.getElementById(this.videoItem.id + 'video')
-      await this.getVideo()
-      if (this.is_pary_video && vdo) {
-        const userAgent = navigator.userAgent
-        vdo.play()
-        console.log(userAgent.indexOf('Safari'))
-        if (userAgent.indexOf('Safari') === -1) {
-          vdo.muted = false
+      if (vdo) {
+        await this.getVideo()
+        if (this.is_pary_video) {
+          const userAgent = navigator.userAgent
+          vdo.play()
+          console.log(userAgent.indexOf('Safari'))
+          if (userAgent.indexOf('Safari') === -1) {
+            vdo.muted = false
+          }
         }
+      } else {
+        this.SET_SHOW_MAIN(true)
       }
     } else {
       this.SET_SHOW_MAIN(true)
@@ -191,6 +195,10 @@ export default {
 
     //获取视频url
     async getVideo () {
+      // if (!document.getElementById(this.videoItem.id + 'video')) {
+      //   this.SET_SHOW_MAIN(true)
+      //   return
+      // }
       try {
         this.videoItem = (await this.getVideoUrl())
       } catch (e) {

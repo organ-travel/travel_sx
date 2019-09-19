@@ -17,9 +17,9 @@ const Server = data => {
           await window.$alert(response.data.errdesc || 'error')
         }
       })
-      .catch((err) => {
+      .catch(async (err) => {
         console.log('Server:res:', err)
-        // err && await window.$dialog('服务器错误')
+        err && await window.$alert(err)
         reject(err)
       }).finally(() => {})
   })
