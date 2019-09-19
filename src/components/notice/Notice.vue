@@ -7,6 +7,13 @@
         <a :href="'#/infoDetail?id=' + notice.id"  class="txt-title">{{ notice.title }} </a>
       </li>
     </ul>
+    <el-pagination
+      ref="hkPage"
+      :page-size="10"
+      layout="prev, pager, next"
+      :total="articleTotal"
+      @current-change="handleCurrentChange">
+    </el-pagination>
   </div>
 </template>
 
@@ -18,10 +25,20 @@ export default {
       default () {
         return []
       }
+    },
+    articleTotal: {
+      type: Number,
+      default: 0
     }
   },
   data() {
     return {
+    }
+  },
+  methods: {
+    handleCurrentChange(val) {
+      this.$emit('handleCurrentChange', val)
+      console.log(`当前页: ${val}`)
     }
   }
 }

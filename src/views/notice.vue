@@ -5,13 +5,13 @@
     </div>
     <com-tab :act-index="actIndex" :nav-arr="noticeNav" @changeNav="changeNav"></com-tab>
     <com-transition>
-      <notice-item v-if="noticeNav[actIndex].type == 'notice'" :arr="noticeList"></notice-item>
+      <notice-item v-if="noticeNav[actIndex].type == 'notice'" :arr="noticeList" :article-total="noticeTotal" @handleCurrentChange="handleCurrentChange"></notice-item>
     </com-transition>
     <com-transition>
       <price-item v-if="noticeNav[actIndex].type == 'price'" :item="priceItem"></price-item>
     </com-transition>
     <com-transition>
-      <perchase-item v-if="noticeNav[actIndex].type == 'perchase'" :arr="perchaseList"></perchase-item>
+      <perchase-item v-if="noticeNav[actIndex].type == 'perchase'" :arr="perchaseList" :article-total="ticketsTotal" @handleCurrentChange="handleCurrentChange"></perchase-item>
     </com-transition>
   </com-wrap>
 </template>
@@ -41,12 +41,14 @@ export default {
       priceItem: {},
       perchaseList: [],
       queryOption: [],
-      queryOption1: []
+      queryOption1: [],
+      noticeTotal: 0,
+      ticketsTotal: 0,
     }
   },
   async mounted () {
     await this.setMenu()
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
     this.noticeNav.forEach(async (item, index) => {
       if (item.type !== 'perchase') {
         this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
@@ -58,6 +60,7 @@ export default {
             res.articleList[m].label = '【重要通知】'
           }
           this.noticeList = res.articleList || []
+          this.noticeTotal = res.articleCount || 0
         }
         if (item.type === 'price') {
           if (res.articleList.length > 0) {
@@ -68,7 +71,9 @@ export default {
         // if (item.type === 'notice') this.noticeList = this.articleObj.notice
       } else {
         this.queryOption1 = Object.assign({}, { start: 0, limit: 10 })
-        this.perchaseList = (await this.getTicketsList(this.queryOption1)).data
+        const res1 = (await this.getTicketsList(this.queryOption1)).data
+        this.perchaseList = res1.articleList || []
+        this.ticketsTotal = res1.articleCount || 0
       }
     })
   },
@@ -81,6 +86,21 @@ export default {
   methods: {
     changeNav (index) {
       this.actIndex = index
+    },
+    async handleCurrentChange(page) {
+      const start = (page - 1) * dataset.queryOption.limit
+      const index = this.actIndex
+      if (index == 0) {
+        this.queryOption[index].start = start
+        const res = (await this.queryArticleList(this.queryOption[index])).data
+        this.$set(this.articleArr, index, res.articleList || [])
+        this.queryOption[index].total = res.articleCount || 0
+      } else {
+        this.queryOption1.start = start
+        const res1 = (await this.getTicketsList(this.queryOption1)).data
+        this.perchaseList = res1.articleList || []
+        this.ticketsTotal = res1.articleCount || 0
+      }
     },
     getNoticeList() {
       this.noticeList = [{
