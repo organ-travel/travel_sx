@@ -39,7 +39,7 @@
         <strategy :strategy-obj="strategyObj"></strategy>
       </div>
       <custom :custom-arr="customArr"  :custom-obj="customObj" :active-label="activeLabel" :custom-nav="customNav" @changeCustom="changeCustom"></custom>
-      <div class="m-map m-wrap">
+      <div v-if="bottomVideoItem.video_url" class="m-map m-wrap">
         <video :id="bottomVideoItem.id +'video'" controls poster="../assets/img/home/map.jpg" width="100%" height="100%">
           <source :src="bottomVideoItem.video_url" type="video/mp4">
         </video>
