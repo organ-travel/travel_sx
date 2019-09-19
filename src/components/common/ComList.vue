@@ -13,10 +13,11 @@
       </a>
     </div>
     <el-pagination
-      v-if="listArr.length > 0 && !showPage"
+      v-if="articleTotal > 0 && !showPage"
       ref="hkPage"
+      :page-size="9"
       layout="prev, pager, next"
-      :total="listArr.length"
+      :total="articleTotal"
       @current-change="handleCurrentChange">
     </el-pagination>
   </div>
@@ -64,6 +65,10 @@ export default {
     isCode: {
       type: Boolean,
       default: false
+    },
+    articleTotal: {
+      type: Number,
+      default: 0
     }
   },
   created() {
@@ -72,6 +77,7 @@ export default {
   },
   methods: {
     handleCurrentChange(val) {
+      this.$emit('handleCurrentChange', val)
       console.log(`当前页: ${val}`)
     }
   }

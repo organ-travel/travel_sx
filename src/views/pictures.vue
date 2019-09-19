@@ -2,7 +2,7 @@
   <section class="m-pictures-page">
     <div class="m-pictures-banner"></div>
     <div class="m-pictures-list">
-      <com-list :list-arr="imgList"></com-list>
+      <com-list :list-arr="imgList" :article-total="queryOption.total" @handleCurrentChange="handleCurrentChange"></com-list>
     </div>
   </section>
 </template>
@@ -14,7 +14,8 @@ export default {
   data () {
     return {
       imgList: [],
-      queryOption: {}
+      queryOption: {},
+      limit: 9
     }
   },
   computed: {
@@ -22,14 +23,24 @@ export default {
   async mounted () {
     await this.setMenu()
     const catId = this.$router.history.current.query.id
-    this.queryOption = Object.assign({}, { cat_id: catId })
-    this.imgList = (await this.queryArticleList(this.queryOption)).data.articleList
-    this.queryOption.total = 0
+    this.queryOption = Object.assign({}, { cat_id: catId, limit: this.limit })
+    const res = (await this.queryArticleList(this.queryOption)).data
+    this.imgList = res.articleList || []
+    this.queryOption.total = res.articleCount || 0
     this.queryOption.start++
   },
   methods: {
     getImg () {
-    }
+    },
+    async handleCurrentChange(page) {
+      const start = (page - 1) * this.limit
+      const index = this.actIndex
+      this.queryOption[index].start = start
+      const res = (await this.queryArticleList(this.queryOption[index])).data
+      this.imgList = res.articleList || []
+      this.queryOption.total = res.articleCount || 0
+      this.queryOption.start++
+    },
   }
 }
 </script>

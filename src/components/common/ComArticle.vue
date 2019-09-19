@@ -71,6 +71,7 @@ export default {
       this.$emit('handleDownload')
     },
     handleCurrentChange(val) {
+      this.$emit('handleCurrentChange', val)
       console.log(`当前页: ${val}`)
     },
     handleJump(item) {
