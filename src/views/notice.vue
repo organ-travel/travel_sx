@@ -46,6 +46,7 @@ export default {
   },
   async mounted () {
     await this.setMenu()
+    window.scrollTo(0,0)
     this.noticeNav.forEach(async (item, index) => {
       if (item.type !== 'perchase') {
         this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })

@@ -28,6 +28,7 @@ export default {
   // },
   async mounted () {
     await this.setMenu()
+    window.scrollTo(0,0)
     this.actIndex = parseInt(this.$route.query.actIndex) || this.actIndex
     this.curCategoryArr = this.getCurCategory
     this.infoPageNav = this.getCurCategory.children || []

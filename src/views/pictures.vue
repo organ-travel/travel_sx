@@ -22,6 +22,7 @@ export default {
   },
   async mounted () {
     await this.setMenu()
+    window.scrollTo(0,0)
     const catId = this.$router.history.current.query.id
     this.queryOption = Object.assign({}, { cat_id: catId, limit: this.limit })
     const res = (await this.queryArticleList(this.queryOption)).data

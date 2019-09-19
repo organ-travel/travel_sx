@@ -44,6 +44,7 @@ export default {
   },
   async mounted () {
     await this.setMenu()
+    window.scrollTo(0,0)
     this.queryOption = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: this.getCurCategory.id })
     const res = (await this.queryArticleList(this.queryOption)).data
     this.articleArr = res.articleList || []
