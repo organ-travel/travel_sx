@@ -25,11 +25,11 @@
           <span class="u-more"></span>
           <div v-if="serviceArr.length" class="m-strategy-list">
             <h3 class="title">游客服务中心</h3>
-            <com-list :article-total="queryOption[index].total" :list-arr="serviceArr"  @handleCurrentChange="handleCurrentChange"></com-list>
+            <com-list :article-total="queryTagOption[0].total" :list-arr="serviceArr"  @handleCurrentChange="handleCurrentChange"></com-list>
           </div>
           <div v-if="carArr.length" class="m-strategy-list">
             <h3 class="title">观光车</h3>
-            <com-list :list-arr="carArr"></com-list>
+            <com-list :list-arr="carArr" :article-total="queryTagOption[1].total" @handleCurrentChange="handleCurrentChange"></com-list>
           </div>
         </div>
         <!-- 游记 -->
