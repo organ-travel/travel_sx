@@ -203,6 +203,13 @@ export default {
         width 1200px
         margin 0 auto
         min-height 400px
+        .el-pagination {
+          li {
+            padding:0
+            text-align: center
+            justify-content: center
+          }
+        }
       }
       .notice-wrapper {
         ul {
