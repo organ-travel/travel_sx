@@ -222,7 +222,7 @@ export default {
       const menuData = [].concat(this.getMenuData) || []
       const arr = menuData[2].children || []
       arr.forEach(async (item, index) => {
-        this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
+        this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { limit:8, cat_id: item.id })
         const res = (await this.queryArticleList(this.queryOption[index])).data
         res.articleList.forEach(item1 => {
           item1.description = item1.description.length > 60 ? item1.description.substr(0, 60) + '...' : item1.description.substr(0, 60)

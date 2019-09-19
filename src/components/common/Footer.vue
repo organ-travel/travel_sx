@@ -88,8 +88,8 @@ export default {
         &:before {
           content ''
           position: absolute
-          width:146px
-          height:57px
+          width:255px
+          height:98px
           background: url("~@/assets/img/common/logo-footer.png") no-repeat
           left:0
           top:10px
