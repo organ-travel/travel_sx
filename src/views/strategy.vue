@@ -4,7 +4,7 @@
     <com-transition v-for="(item, index) in strategyNav" :key="item.id">
       <div v-if="actIndex == index" :class="[`m-${strategyNav[actIndex].type}`, 'm-common']">
         <!-- 美食 -->
-        <com-list v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'eat'" :list-arr="articleObj.eat"></com-list>
+        <com-list v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'eat'" :article-total="queryOption[index].total" :list-arr="articleObj.eat"  @handleCurrentChange="handleCurrentChange"></com-list>
         <!-- 住宿 -->
         <div v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'live'">
           <div v-for="(item, index) in articleObj.live" :key="index" class="m-strategy-list">
@@ -25,7 +25,7 @@
           <span class="u-more"></span>
           <div v-if="serviceArr.length" class="m-strategy-list">
             <h3 class="title">游客服务中心</h3>
-            <com-list :list-arr="serviceArr"></com-list>
+            <com-list :article-total="queryOption[index].total" :list-arr="serviceArr"  @handleCurrentChange="handleCurrentChange"></com-list>
           </div>
           <div v-if="carArr.length" class="m-strategy-list">
             <h3 class="title">观光车</h3>
@@ -34,13 +34,13 @@
         </div>
         <!-- 游记 -->
         <div v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'you'">
-          <com-list v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'you'" :list-arr="articleObj.you"></com-list>
+          <com-list v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'you'" :article-total="queryOption[index].total" :list-arr="articleObj.you"  @handleCurrentChange="handleCurrentChange"></com-list>
         </div>
         <!-- 购物 -->
-        <com-list v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'buy'" :list-arr="articleObj.buy" :has-title="false" :has-mask="true" :is-code="true"></com-list>
+        <com-list v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'buy'" :article-total="queryOption[index].total" :list-arr="articleObj.buy" :has-title="false" :has-mask="true" :is-code="true"  @handleCurrentChange="handleCurrentChange"></com-list>
         <!-- 娱乐 -->
         <div v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'play'">
-          <com-list v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'play'" :list-arr="articleObj.play"></com-list>
+          <com-list v-if="strategyNav[actIndex] && strategyNav[actIndex].type == 'play'" :article-total="queryOption[index].total" :list-arr="articleObj.play"  @handleCurrentChange="handleCurrentChange"></com-list>
         </div>
       </div>
     </com-transition>
@@ -120,7 +120,9 @@ export default {
       serviceArr: [],
       carArr: [],
       youArr: [],
-      playArr: []
+      playArr: [],
+      itemType: [],
+      limit: 9,
     }
   },
   // watch: {
@@ -135,15 +137,16 @@ export default {
     this.actIndex = parseInt(this.$route.query.actIndex) || this.actIndex
     this.strategyNav = this.getCurCategory.children || []
     this.strategyNav.forEach(async (item, index) => {
-      this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
+      this.itemType[index] = item
+      this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id, limit: this.limit })
       const res = (await this.queryArticleList(this.queryOption[index])).data
       this.$set(this.articleObj, item.type, res.articleList || [])
       if (item.type === 'xing') {
-        this.queryTagOption[0] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { tag: 'service', cat_id: item.id })
+        this.queryTagOption[0] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { tag: 'service', cat_id: item.id, limit: this.limit })
         const resTag = (await this.queryArticleList(this.queryTagOption[0])).data
         this.serviceArr = resTag.articleList || []
 
-        this.queryTagOption[1] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { tag: 'bus', cat_id: item.id })
+        this.queryTagOption[1] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { tag: 'bus', cat_id: item.id, limit: this.limit })
         const resTag1 = (await this.queryArticleList(this.queryTagOption[1])).data
         this.carArr = resTag1.articleList || []
       }
@@ -154,7 +157,26 @@ export default {
   methods: {
     changeNav (index) {
       this.actIndex = index
-    }
+    },
+    async handleCurrentChange(page) {
+      const start = (page - 1) * this.limit
+      const index = this.actIndex
+      const item = this.itemType[index]
+      if (item.type === 'xing') {
+        this.queryTagOption[0].start = start
+        const resTag = (await this.queryArticleList(this.queryTagOption[0])).data
+        this.serviceArr = resTag.articleList || []
+
+        this.queryTagOption[1].start = start
+        const resTag1 = (await this.queryArticleList(this.queryTagOption[1])).data
+        this.carArr = resTag1.articleList || []
+      } else {
+        this.queryOption[index].start = start
+        const res = (await this.queryArticleList(this.queryOption[index])).data
+        this.$set(this.articleObj, item.type, res.articleList || [])
+        this.queryOption[index].total = res.articleCount || 0
+      }
+    },
   },
   beforeRouteEnter(to, from, next) {
     next(vm => {

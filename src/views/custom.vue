@@ -4,19 +4,19 @@
     <com-transition v-for="(item, index) in customNav" :key="item.id">
       <div v-if="actIndex == index && customNav[actIndex] && customNav[actIndex].type == 'drum'" :class="`m-${customNav[actIndex].type}`">
         <div class="u-desc">{{ item.description }}</div>
-        <com-list :list-arr="articleObj.drum"></com-list>
+        <com-list :list-arr="articleObj.drum" :article-total="queryOption[index].total" @handleCurrentChange="handleCurrentChange"></com-list>
       </div>
       <div v-if="actIndex == index && customNav[actIndex] && customNav[actIndex].type == 'paperCut'" :class="`m-${customNav[actIndex].type}`">
-        <com-list :list-arr="articleObj.paperCut"></com-list>
+        <com-list :list-arr="articleObj.paperCut" :article-total="queryOption[index].total" @handleCurrentChange="handleCurrentChange"></com-list>
       </div>
       <div v-if="actIndex == index && customNav[actIndex] && customNav[actIndex].type == 'shoot'" :class="`m-${customNav[actIndex].type}`">
-        <com-list :list-arr="articleObj.shoot"></com-list>
+        <com-list :list-arr="articleObj.shoot" :article-total="queryOption[index].total" @handleCurrentChange="handleCurrentChange"></com-list>
       </div>
       <div v-if="actIndex == index && customNav[actIndex] && customNav[actIndex].type == 'picture'" :class="`m-${customNav[actIndex].type}`">
-        <com-list :list-arr="articleObj.picture"></com-list>
+        <com-list :list-arr="articleObj.picture" :article-total="queryOption[index].total" @handleCurrentChange="handleCurrentChange"></com-list>
       </div>
       <div v-if="actIndex == index && customNav[actIndex] && customNav[actIndex].type == 'film_video'" :class="`m-${customNav[actIndex].type}`">
-        <com-list :list-arr="articleObj.film_video"></com-list>
+        <com-list :list-arr="articleObj.film_video" :article-total="queryOption[index].total" @handleCurrentChange="handleCurrentChange"></com-list>
         <p class="u-more"><a :href="'#/pictures?id=' + customNav[actIndex].id">点击更多视频 >></a></p>
       </div>
     </com-transition>
@@ -33,7 +33,9 @@ export default {
       actIndex: 0,
       customNav: [],
       articleObj: {},
-      queryOption: []
+      queryOption: [],
+      itemType: [],
+      limit: 9,
     }
   },
   // watch: {
@@ -46,8 +48,9 @@ export default {
     this.actIndex = parseInt(this.$route.query.actIndex) || this.actIndex
     this.customNav = this.getCurCategory.children || []
     this.customNav.forEach(async (item, index) => {
+      this.itemType[index] = item
       if (item.type === 'film_video') this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { limit: 1, cat_id: item.id })
-      else this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
+      else this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { limit: this.limit, cat_id: item.id })
       const res = (await this.queryArticleList(this.queryOption[index])).data
       this.$set(this.articleObj, item.type, res.articleList || [])
       this.queryOption[index].total = res.articleCount || 0
@@ -57,7 +60,16 @@ export default {
   methods: {
     changeNav (index) {
       this.actIndex = index
-    }
+    },
+    async handleCurrentChange(page) {
+      const start = (page - 1) * this.limit
+      const index = this.actIndex
+      const item = this.itemType[index]
+      this.queryOption[index].start = start
+      const res = (await this.queryArticleList(this.queryOption[index])).data
+      this.$set(this.articleObj, item.type, res.articleList || [])
+      this.queryOption[index].total = res.articleCount || 0
+    },
   },
   beforeRouteEnter(to, from, next) {
     next(vm => {

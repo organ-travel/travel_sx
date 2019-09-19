@@ -2,7 +2,7 @@
   <com-wrap class="m-info-page">
     <com-tab :act-index="actIndex" :nav-arr="infoPageNav" @changeNav="changeNav"></com-tab>
     <com-transition v-for="(item, index) in infoPageNav" :key="item.id">
-      <com-article v-if="actIndex  == index" :article-total="queryOption[index].total" :cur-category="curCategoryArr" :parent-arr="infoPageNav[actIndex]" :arr="articleArr[index]" :has-detail="!(infoPageNav[actIndex] && (infoPageNav[actIndex].name == '招贤纳士' || infoPageNav[actIndex].name == '文件下载'))" :has-download="infoPageNav[actIndex] && infoPageNav[actIndex].name == '文件下载'"  @handleDownload="handleDownload"></com-article>
+      <com-article v-if="actIndex  == index" :article-total="queryOption[index].total" :cur-category="curCategoryArr" :parent-arr="infoPageNav[actIndex]" :arr="articleArr[index]" :has-detail="!(infoPageNav[actIndex] && (infoPageNav[actIndex].name == '招贤纳士' || infoPageNav[actIndex].name == '文件下载'))" :has-download="infoPageNav[actIndex] && infoPageNav[actIndex].name == '文件下载'"  @handleDownload="handleDownload"  @handleCurrentChange="handleCurrentChange"></com-article>
     </com-transition>
   </com-wrap>
 </template>
@@ -44,7 +44,15 @@ export default {
       this.actIndex = index
     },
     handleDownload () {
-    }
+    },
+    async handleCurrentChange(page) {
+      const start = (page - 1) * dataset.queryOption.limit
+      const index = this.actIndex
+      this.queryOption[index].start = start
+      const res = (await this.queryArticleList(this.queryOption[index])).data
+      this.$set(this.articleArr, index, res.articleList || [])
+      this.queryOption[index].total = res.articleCount || 0
+    },
   },
   beforeRouteEnter(to, from, next) {
     next(vm => {
