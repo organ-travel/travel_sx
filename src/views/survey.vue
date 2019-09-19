@@ -48,21 +48,13 @@ export default {
     this.surveyAnchor = this.getCurCategory.children || []
     // this.handleScroll('isFirst')
     // window.addEventListener('scroll', this.handleScroll, false)
-    this.surveyAnchor.forEach(async (item, index) => {
+    this.surveyAnchor.forEach((item, index) => {
       if (item.type != 'introduction') this.surveyContent.push({ type: item.type, article: item.article })
-      this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
-      const res = (await this.queryArticleList(this.queryOption[index])).data
-      this.$set(this.articleArr, index, res.articleList)
-      this.queryOption[index].total = res.articleCount || 0
-      this.queryOption[index].start++
-      if (index == this.surveyAnchor.length - 1) {
-        this.$nextTick(() => {
-          this.handleScroll('isFirst')
-          window.addEventListener('scroll', this.handleScroll, false)
-        })
-      }
     })
-    console.log(this.surveyContent)
+    this.$nextTick(() => {
+      this.handleScroll('isFirst')
+      window.addEventListener('scroll', this.handleScroll, false)
+    })
   },
   methods: {
     async changeAnchor (id) {
@@ -85,7 +77,9 @@ export default {
       function moveDown () {
         if (Math.ceil(_that.scrollTop) < top) {
           _that.scrollTop += distance
-          document.body.scrollTop ? (document.body.scrollTop = _that.scrollTop) : (document.documentElement.scrollTop = _that.scrollTop)
+          // document.body.scrollTop ? (document.body.scrollTop = _that.scrollTop) : (document.documentElement.scrollTop = _that.scrollTop)
+          document.body.scrollTop = _that.scrollTop
+          document.documentElement.scrollTop = _that.scrollTop
           _that.timer = setTimeout(moveDown, 50)
         } else {
           _that.scrollTop = top
@@ -96,7 +90,9 @@ export default {
       function moveUp () {
         if (Math.floor(_that.scrollTop) > top) {
           _that.scrollTop -= distance
-          document.body.scrollTop ? (document.body.scrollTop = _that.scrollTop) : (document.documentElement.scrollTop = _that.scrollTop)
+          // document.body.scrollTop ? (document.body.scrollTop = _that.scrollTop) : (document.documentElement.scrollTop = _that.scrollTop)
+          document.body.scrollTop = _that.scrollTop
+          document.documentElement.scrollTop = _that.scrollTop
           _that.timer = setTimeout(moveUp, 50)
         } else {
           _that.scrollTop = top
@@ -106,17 +102,20 @@ export default {
       }
     },
     handleScroll (isFirst) {
-      console.log(111111, this.isClick, isFirst)
+      // console.log(111111, this.isClick, isFirst)
       if (this.isClick) {
         return
       }
       const items = document.querySelectorAll('.m-list-survey')
       // console.log(222222, this.isClick, this.$refs['lists'], this.$refs['lists'].$el.childNodes, document.querySelectorAll('.m-list-survey'))
-      console.log(222222, items, items.length, items[this.actIndex - 1])
+      // console.log(222222, items, items.length, items[this.actIndex - 1])
       if (items.length && items[this.actIndex - 1]) {
         if (isFirst === 'isFirst') {
           const height = items[this.actIndex - 1].offsetTop + this.getHeaderHeight || 118
-          document.body.scrollTop ? (document.body.scrollTop = height) : (document.documentElement.scrollTop = height)
+          // console.log(height, document.body.scrollTop, document.documentElement.scrollTop)
+          // document.body.scrollTop ? (document.body.scrollTop = height) : (document.documentElement.scrollTop = height)
+          document.body.scrollTop = height
+          document.documentElement.scrollTop = height
           return
         }
       }
