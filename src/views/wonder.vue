@@ -61,6 +61,7 @@ export default {
     const singOddArr = [] // 奇数
     const singEvenArr = [] // 偶数
     await this.setMenu()
+    this.actIndex = parseInt(this.$route.query.actIndex) || this.actIndex
     this.wonderNav = this.getCurCategory.children || []
     this.wonderNav.forEach(async (item, index) => {
       this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
