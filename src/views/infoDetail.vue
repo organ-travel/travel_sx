@@ -28,7 +28,7 @@ export default {
   },
   async mounted () {
     await this.setMenu()
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
     const id = this.$router.history.current.query.id
     this.detailObj = await this.getArticleDetail(id)
     this.breadArr = this.detailObj.categorys

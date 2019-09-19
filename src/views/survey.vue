@@ -5,7 +5,7 @@
   </section>
 </template>
 <script>
-import dataset from '@/config/dataset'
+// import dataset from '@/config/dataset'
 import List from '@/components/survey/List.vue'
 import Anchor from '@/components/survey/Anchor.vue'
 import { mapGetters } from 'vuex'
@@ -41,7 +41,7 @@ export default {
   async mounted () {
     console.log('survey mounted------>')
     await this.setMenu()
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
     // this.setActiveIndex()
     // this.setCurCategory()
     this.actIndex = parseInt(this.$route.query.actIndex) || this.actIndex

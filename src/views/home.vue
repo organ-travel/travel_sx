@@ -135,7 +135,7 @@ export default {
       this.SET_SHOW_APP(true)
     }
     await this.setMenu()
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
     this.typeArr = await this.getHomeTopCategoryList()
 
     // 头图swiper

@@ -132,7 +132,7 @@ export default {
   // },
   async mounted () {
     await this.setMenu()
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
     // this.setActiveIndex()
     // this.setCurCategory()
     this.actIndex = parseInt(this.$route.query.actIndex) || this.actIndex

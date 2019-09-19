@@ -56,7 +56,7 @@ export default {
     const singOddArr = [] // 奇数
     const singEvenArr = [] // 偶数
     await this.setMenu()
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
     this.actIndex = parseInt(this.$route.query.actIndex) || this.actIndex
     this.wonderNav = this.getCurCategory.children || []
     this.wonderNav.forEach(async (item, index) => {
