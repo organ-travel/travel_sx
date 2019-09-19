@@ -39,7 +39,11 @@
         <strategy :strategy-obj="strategyObj"></strategy>
       </div>
       <custom :custom-arr="customArr"  :custom-obj="customObj" :active-label="activeLabel" :custom-nav="customNav" @changeCustom="changeCustom"></custom>
-      <div class="m-map m-wrap"></div>
+      <div class="m-map m-wrap">
+        <video :id="bottomVideoItem.id +'video'" controls poster="../assets/img/home/map.jpg" width="100%" height="100%">
+          <source :src="bottomVideoItem.video_url" type="video/mp4">
+        </video>
+      </div>
     </div>
   </div>
 </template>
@@ -82,6 +86,7 @@ export default {
       strategyObj: {},
       arrItem: [],
       videoItem: {},
+      bottomVideoItem: {},
       // 壶口资讯
       infoObj: {},
       datas: [],
@@ -109,10 +114,11 @@ export default {
   async mounted () {
     console.log('home mounted------>')
     // 获取视频url
+    await this.getVideo()
     if (!this.showHome) {
       const vdo = document.getElementById(this.videoItem.id + 'video')
       // if (vdo) {
-      await this.getVideo()
+
       if (this.is_pary_video && vdo) {
         const userAgent = navigator.userAgent
         vdo.play()
@@ -200,7 +206,9 @@ export default {
       //   return
       // }
       try {
-        this.videoItem = (await this.getVideoUrl())
+        const videos = (await this.getVideoUrl()) || []
+        if(videos.length > 0)  this.videoItem = videos[0]
+        if(videos.length > 1)  this.bottomVideoItem = videos[1]
       } catch (e) {
         this.SET_SHOW_MAIN(true)
       }
@@ -282,8 +290,6 @@ export default {
   .m-map {
     width 100%
     height 622px
-    background url('~@/assets/img/home/map.jpg') no-repeat center
-    background-size cover
   }
   .m-merge {
     background url('~@/assets/img/home/wonder.jpg') no-repeat center
