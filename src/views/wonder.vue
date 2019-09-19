@@ -104,7 +104,7 @@ export default {
   beforeRouteEnter(to, from, next) {
     next(vm => {
       if (to.name === 'wonder') {
-       console.log(vm)
+        console.log(vm)
       }
       if (to.query.name) {
         const routerName = to.query.name

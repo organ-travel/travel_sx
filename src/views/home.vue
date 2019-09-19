@@ -110,9 +110,9 @@ export default {
     console.log('home mounted------>')
     // 获取视频url
     if (!this.showHome) {
+      const vdo = document.getElementById(this.videoItem.id + 'video')
       await this.getVideo()
-      if (this.is_pary_video) {
-        const vdo = document.getElementById(this.videoItem.id + 'video')
+      if (this.is_pary_video && vdo) {
         const userAgent = navigator.userAgent
         vdo.play()
         console.log(userAgent.indexOf('Safari'))
@@ -191,8 +191,11 @@ export default {
 
     //获取视频url
     async getVideo () {
-      this.videoItem = (await this.getVideoUrl())
-
+      try {
+        this.videoItem = (await this.getVideoUrl())
+      } catch (e) {
+        this.SET_SHOW_MAIN(true)
+      }
     },
     // 获取壶口概况的数据
     getSurvey () {
@@ -254,7 +257,7 @@ export default {
       this.arrItem = []
       this.arrItem = array
       const vdo = document.getElementById(this.videoItem.id + 'video')
-      vdo.pause()
+      vdo && vdo.pause()
       this.is_pary_video = false
     }
   }
