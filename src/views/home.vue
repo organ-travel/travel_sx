@@ -111,19 +111,19 @@ export default {
     // 获取视频url
     if (!this.showHome) {
       const vdo = document.getElementById(this.videoItem.id + 'video')
-      if (vdo) {
-        await this.getVideo()
-        if (this.is_pary_video) {
-          const userAgent = navigator.userAgent
-          vdo.play()
-          console.log(userAgent.indexOf('Safari'))
-          if (userAgent.indexOf('Safari') === -1) {
-            vdo.muted = false
-          }
+      // if (vdo) {
+      await this.getVideo()
+      if (this.is_pary_video && vdo) {
+        const userAgent = navigator.userAgent
+        vdo.play()
+        console.log(userAgent.indexOf('Safari'))
+        if (userAgent.indexOf('Safari') === -1) {
+          vdo.muted = false
         }
-      } else {
-        this.SET_SHOW_MAIN(true)
       }
+      // } else {
+      //   this.SET_SHOW_MAIN(true)
+      // }
     } else {
       this.SET_SHOW_MAIN(true)
       this.SET_SHOW_APP(true)
@@ -160,7 +160,7 @@ export default {
   },
   methods: {
     oncanplaythrough () {
-      console.log(111111111)
+      // console.log(111111111)
       this.SET_SHOW_MAIN(true)
     },
     openVideoSound(){

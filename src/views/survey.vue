@@ -104,12 +104,12 @@ export default {
       }
     },
     handleScroll (isFirst) {
-      console.log(111111, this.isClick, isFirst)
+      // console.log(111111, this.isClick, isFirst)
       if (this.isClick) {
         return
       }
       const items = document.querySelectorAll('.m-list-survey')
-      console.log(222222, this.isClick, this.$refs['lists'], this.$refs['lists'].$el.childNodes, document.querySelectorAll('.m-list-survey'))
+      // console.log(222222, this.isClick, this.$refs['lists'], this.$refs['lists'].$el.childNodes, document.querySelectorAll('.m-list-survey'))
       console.log(items.length, items[this.actIndex], items.length > items[this.actIndex])
       if (items.length && items[this.actIndex - 1]) {
         if (isFirst === 'isFirst') {
