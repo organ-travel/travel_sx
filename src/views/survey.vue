@@ -56,8 +56,10 @@ export default {
       this.queryOption[index].total = res.articleCount || 0
       this.queryOption[index].start++
       if (index == this.surveyAnchor.length - 1) {
-        this.handleScroll('isFirst')
-        window.addEventListener('scroll', this.handleScroll, false)
+        this.$nextTick(() => {
+          this.handleScroll('isFirst')
+          window.addEventListener('scroll', this.handleScroll, false)
+        })
       }
     })
     console.log(this.surveyContent)
@@ -104,13 +106,13 @@ export default {
       }
     },
     handleScroll (isFirst) {
-      // console.log(111111, this.isClick, isFirst)
+      console.log(111111, this.isClick, isFirst)
       if (this.isClick) {
         return
       }
       const items = document.querySelectorAll('.m-list-survey')
       // console.log(222222, this.isClick, this.$refs['lists'], this.$refs['lists'].$el.childNodes, document.querySelectorAll('.m-list-survey'))
-      console.log(items.length, items[this.actIndex], items.length > items[this.actIndex])
+      console.log(222222, items, items.length, items[this.actIndex - 1])
       if (items.length && items[this.actIndex - 1]) {
         if (isFirst === 'isFirst') {
           const height = items[this.actIndex - 1].offsetTop + this.getHeaderHeight || 118
