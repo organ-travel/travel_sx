@@ -51,16 +51,17 @@ export default {
       showPage: 'show'
     }
   },
-  watch: {
-    $route(to, from, next) {
-      console.log(to)
-      console.log(from)
-    }
-  },
+  // watch: {
+  //   $route(to, from, next) {
+  //     console.log(to)
+  //     console.log(from)
+  //   }
+  // },
   async mounted () {
     const singOddArr = [] // 奇数
     const singEvenArr = [] // 偶数
     await this.setMenu()
+    this.actIndex = parseInt(this.$route.query.actIndex) || this.actIndex
     this.wonderNav = this.getCurCategory.children || []
     this.wonderNav.forEach(async (item, index) => {
       this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { cat_id: item.id })
@@ -103,9 +104,6 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     next(vm => {
-      if (to.name === 'wonder') {
-       console.log(vm)
-      }
       if (to.query.name) {
         const routerName = to.query.name
         switch (routerName) {

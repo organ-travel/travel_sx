@@ -1,5 +1,5 @@
 <template>
-  <div v-if="arr.length" class="m-com-article">
+  <div v-if="articleTotal" class="m-com-article" :ides="articleTotal">
     <div v-for="(item, index) in arr" :key="index" class="m-article-list">
       <a href="javascript:void(0)" class="clearfix">
         <img v-if="item.imgUrl" :src="item.imgUrl" class="u-img"/>
@@ -18,7 +18,7 @@
     </div>
     <el-pagination
       layout="prev, pager, next"
-      :total="arr.length"
+      :total="articleTotal"
       @current-change="handleCurrentChange">
     </el-pagination>
   </div>
@@ -51,6 +51,10 @@ export default {
     hasDownload: {
       type: Boolean,
       default: false
+    },
+    articleTotal: {
+      type: Number,
+      default: 0
     }
   },
   data() {
