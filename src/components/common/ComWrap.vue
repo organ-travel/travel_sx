@@ -3,7 +3,7 @@
     <div class="m-com-container">
       <div class="m-com-center">
         <span v-if="hasTitle" class="u-com-title"></span>
-        <div class="m-com-content">
+        <div :class="['m-com-content', hideBgColor ? 'hideBgColor' : '']">
           <slot></slot>
         </div>
       </div>
@@ -16,6 +16,10 @@ export default {
     hasTitle: {
       type: Boolean,
       default: true
+    },
+    hideBgColor: {
+      type: Boolean,
+      default: false
     }
   },
   mounted () {
@@ -38,6 +42,9 @@ export default {
         .m-com-content {
           background rgba(255, 255, 255, .8)
           border-radius 16px
+          &.hideBgColor {
+            background-color: transparent
+          }
         }
       }
     }

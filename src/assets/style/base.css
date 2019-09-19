@@ -146,8 +146,16 @@ input:focus {
   margin: 20px auto;
   text-align: center;
 }
+.el-pagination .btn-next, .el-pagination .btn-prev {
+  height: 24px;
+  line-height: 24px;
+  background-color: transparent;
+}
 .el-pager li {
-  min-width: 28px;
+  min-width: 24px;
+  height: 24px;
+  line-height: 24px;
+  margin: 0 5px;
   border-radius: 100%;
 }
 .el-pager li, .el-pagination button:disabled{

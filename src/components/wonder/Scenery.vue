@@ -63,6 +63,10 @@ export default {
       default () {
         return []
       }
+    },
+    hideBgColor: {
+      type: Boolean,
+      default: false
     }
   },
   data() {

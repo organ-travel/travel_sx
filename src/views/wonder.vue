@@ -1,5 +1,5 @@
 <template>
-  <com-wrap class="m-custom-page">
+  <com-wrap class="m-custom-page" :hide-bg-color="hideBgColor">
     <!--<com-tab :act-index="actIndex" :nav-arr="infoPageNav" @changeNav="changeNav"></com-tab>-->
     <!--<com-transition v-for="(item, index) in infoPageNav" :key="item.id">-->
       <!--<com-article v-if="actIndex  == index" :arr="articleArr[index]" :has-detail="!(infoPageNav[actIndex] && (infoPageNav[actIndex].name == '招贤纳士' || infoPageNav[actIndex].name == '文件下载'))" :has-download="infoPageNav[actIndex] && infoPageNav[actIndex].name == '文件下载'"  @handleDownload="handleDownload"></com-article>-->
@@ -48,13 +48,8 @@ export default {
       queryOption: [],
       wonderNav: [],
       wonderObj: {},
-      showPage: 'show'
-    }
-  },
-  watch: {
-    $route(to, from, next) {
-      console.log(to)
-      console.log(from)
+      showPage: 'show',
+      hideBgColor: false
     }
   },
   async mounted () {
@@ -101,12 +96,21 @@ export default {
   methods: {
     changeNav (index) {
       this.actIndex = index
+      if (index === 0) {
+        this.hideBgColor = true
+      } else {
+        this.hideBgColor = false
+      }
     }
   },
   beforeRouteEnter(to, from, next) {
     next(vm => {
       if (to.name === 'wonder') {
         console.log(vm)
+        console.log(vm.actIndex)
+        if (vm.actIndex === 0) {
+          vm.hideBgColor = true
+        }
       }
       if (to.query.name) {
         const routerName = to.query.name
@@ -125,6 +129,7 @@ export default {
           break
         case 'scenery':
           vm.actIndex = 0
+          vm.hideBgColor = true
           break
         }
       }
