@@ -12,9 +12,9 @@
       <div class="m-other">
         <nav class="m-lang">
           <a href="">中文</a>
-          <a href="">English</a>
-          <a href="">한국어</a>
-          <a href="">にほんご</a>
+          <!--<a href="">English</a>-->
+          <!--<a href="">한국어</a>-->
+          <!--<a href="">にほんご</a>-->
         </nav>
         <span class="u-tel"></span>
       </div>
@@ -89,8 +89,8 @@ export default {
         height 100%
         .u-logo {
           padding-right 11px
-          width 146px
-          height 57px
+          width 196px
+          height 75px
           display inline-block
           background url('~@/assets/img/logo.png') no-repeat left center
           vertical-align bottom
