@@ -24,7 +24,7 @@ export default {
   computed: {
   },
   mounted () {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
     this.getBread()
     this.getImg()
   },

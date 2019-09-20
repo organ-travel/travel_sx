@@ -1,7 +1,7 @@
 <template>
   <div class="m-anchor-list">
     <!-- <a v-for="item in surveyAnchor" :key="item.id" :href="`#${item.id}`" :class="['m-anchor', item.id === activeId ? 'active' : '']" @click="handleClick(item.id)"> -->
-    <a v-for="item in surveyAnchor" :key="item.id" href="javascript:void(0)" :class="['m-anchor', item.type === activeId ? 'active' : '']" @click="handleClick(item.type)">
+    <a v-for="(item, index) in surveyAnchor" :key="item.id" href="javascript:void(0)" :class="['m-anchor', item.type === activeId ? 'active' : '']" @click="handleClick(item.type, index)">
       <span class="u-anchor"></span>
       <span class="text">{{ item.name }}</span>
     </a>
@@ -24,8 +24,9 @@ export default {
   mounted () {
   },
   methods: {
-    handleClick (type) {
-      this.$emit('changeAnchor', type)
+    handleClick (type, index) {
+      console.log(type, index)
+      this.$emit('changeAnchor', type, index)
     }
   }
 }
