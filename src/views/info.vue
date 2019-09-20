@@ -42,6 +42,8 @@ export default {
   },
   methods: {
     changeNav (index) {
+      const path = this.$router.history.current.path
+      this.$router.push({ path, query: { actIndex: index } })
       this.actIndex = index
     },
     handleDownload () {

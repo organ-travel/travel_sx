@@ -158,6 +158,11 @@ export default {
   methods: {
     changeNav (index) {
       this.actIndex = index
+      this.$router.push({
+        query: {
+          actIndex: index
+        }
+      })
     },
     async handleCurrentChange(page) {
       const start = (page - 1) * this.limit

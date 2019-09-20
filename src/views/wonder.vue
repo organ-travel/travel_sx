@@ -96,6 +96,11 @@ export default {
   methods: {
     changeNav (index) {
       this.actIndex = index
+      // this.$router.push({
+      //   query: {
+      //     actIndex: index
+      //   }
+      // })
       if (index === 0) {
         this.hideBgColor = true
       } else {
