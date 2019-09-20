@@ -40,7 +40,7 @@
       </div>
       <custom :custom-arr="customArr"  :custom-obj="customObj" :active-label="activeLabel" :custom-nav="customNav" @changeCustom="changeCustom"></custom>
       <div v-if="bottomVideoItem.video_url" class="m-map m-wrap">
-        <video :id="bottomVideoItem.id +'video'" controls  width="100%" >
+        <video :id="bottomVideoItem.id +'video'" controls >
           <source :src="bottomVideoItem.video_url" type="video/mp4">
         </video>
       </div>
@@ -286,6 +286,14 @@ export default {
   .m-map {
     width 100%
     /*height 622px*/
+    background url('~@/assets/img/home/map.jpg') no-repeat center
+    background-size cover
+    video {
+      width :1199px
+      clear:both
+      display:block
+      margin:auto
+    }
   }
   .m-merge {
     background url('~@/assets/img/home/wonder.jpg') no-repeat center

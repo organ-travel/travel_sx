@@ -113,6 +113,7 @@ export default {
       if (to.name === 'wonder') {
         console.log(vm)
         console.log(vm.actIndex)
+        vm.actIndex = parseInt(vm.$route.query.actIndex) || vm.actIndex
         if (vm.actIndex === 0) {
           vm.hideBgColor = true
         }
