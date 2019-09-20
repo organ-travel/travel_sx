@@ -31,7 +31,6 @@ export default {
   },
   transformDate (value, format) {
     if (!value) return ''
-    console.log(new Date(Date.parse(value.replace(/-/g, '/'))))
     return (new Date(Date.parse(value.replace(/-/g, '/')))).Format(format || 'yyyy-MM-dd')
   },
   /**

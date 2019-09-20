@@ -10,7 +10,7 @@ export default {
       if (this.$options.pageName) {
         console.log('watch this.$route.name', this.$route.name, n, o)
         if (this.$route.name == 'survey') {
-          this.activeId = this.getCurCategory.children[n || 0] ? this.getCurCategory.children[n || 0].type : ''
+          this.activeId = this.getCurCategory.children[n || 1] ? this.getCurCategory.children[n || 1].type : ''
           this.changeAnchor(this.activeId)
         } else {
           this.changeNav(n || 0)

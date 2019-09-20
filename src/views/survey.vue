@@ -42,16 +42,14 @@ export default {
     console.log('survey mounted------>')
     await this.setMenu()
     window.scrollTo(0, 0)
-    // this.setActiveIndex()
-    // this.setCurCategory()
     this.actIndex = parseInt(this.$route.query.actIndex) || this.actIndex
     this.activeId = this.getCurCategory.children[this.actIndex] ? this.getCurCategory.children[this.actIndex].type : ''
-    this.surveyAnchor = this.getCurCategory.children || []
-    // this.handleScroll('isFirst')
-    // window.addEventListener('scroll', this.handleScroll, false)
-    this.surveyAnchor.forEach((item, index) => {
+    const surveyAnchor = this.getCurCategory.children || []
+    this.surveyAnchor = surveyAnchor.filter((item) => {
       if (item.type != 'introduction') this.surveyContent.push({ type: item.type, article: item.article })
+      return item.type != 'introduction'
     })
+    console.log(this.surveyAnchor)
     this.$nextTick(() => {
       this.handleScroll('isFirst')
       window.addEventListener('scroll', this.handleScroll, false)
@@ -59,6 +57,7 @@ export default {
   },
   methods: {
     async changeAnchor (id) {
+      console.log('changeAnchor', id)
       this.timer && await clearTimeout(this.timer)
       this.activeId = id
       this.isClick = true

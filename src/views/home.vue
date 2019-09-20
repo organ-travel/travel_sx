@@ -114,11 +114,9 @@ export default {
   async mounted () {
     console.log('home mounted------>')
     // 获取视频url
-    await this.getVideo()
     if (!this.showHome) {
+      await this.getVideo()
       const vdo = document.getElementById(this.videoItem.id + 'video')
-      // if (vdo) {
-
       if (this.is_pary_video && vdo) {
         const userAgent = navigator.userAgent
         vdo.play()
@@ -127,9 +125,6 @@ export default {
           vdo.muted = false
         }
       }
-      // } else {
-      //   this.SET_SHOW_MAIN(true)
-      // }
     } else {
       this.SET_SHOW_MAIN(true)
       this.SET_SHOW_APP(true)
