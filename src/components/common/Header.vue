@@ -11,7 +11,7 @@
       </div>
       <div class="m-other">
         <nav class="m-lang">
-          <a href="">中文</a>
+          <a href=""></a>
           <!--<a href="">English</a>-->
           <!--<a href="">한국어</a>-->
           <!--<a href="">にほんご</a>-->

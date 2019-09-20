@@ -61,9 +61,20 @@ export default {
     })
   },
   methods: {
+<<<<<<< HEAD
     // changeNav (index) {
     //   this.actIndex = index
     // },
+=======
+    changeNav (index) {
+      this.actIndex = index
+      this.$router.push({
+        query: {
+          actIndex: index
+        }
+      })
+    },
+>>>>>>> 32192b93522bc79ca616b6309b7ae050d37f78db
     async handleCurrentChange(page) {
       const start = (page - 1) * this.limit
       const index = this.actIndex
