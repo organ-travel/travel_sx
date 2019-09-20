@@ -5,7 +5,7 @@
       <!--<com-article v-if="actIndex  == index" :arr="articleArr[index]" :has-detail="!(infoPageNav[actIndex] && (infoPageNav[actIndex].name == '招贤纳士' || infoPageNav[actIndex].name == '文件下载'))" :has-download="infoPageNav[actIndex] && infoPageNav[actIndex].name == '文件下载'"  @handleDownload="handleDownload"></com-article>-->
     <!--</com-transition>-->
 
-    <com-tab :act-index="actIndex" :nav-arr="wonderNav" @changeNav="changeNav"></com-tab>
+    <com-tab :act-index="parseInt(actIndex)" :nav-arr="wonderNav" @changeNav="changeNav"></com-tab>
     <!--古渡口小镇-->
     <com-transition>
       <gu-du-kou v-if="wonderNav[actIndex] && wonderNav[actIndex].type === 'gudukou'" :intro="wonderNav[actIndex].article" :show-page="showPage" :list="wonderObj.gudukou"></gu-du-kou>
@@ -111,9 +111,6 @@ export default {
         console.log(vm)
         console.log(vm.actIndex)
         vm.actIndex = parseInt(vm.$route.query.actIndex) || vm.actIndex
-        if (vm.actIndex === 0) {
-          vm.hideBgColor = true
-        }
       }
       if (to.query.name) {
         const routerName = to.query.name
@@ -135,6 +132,9 @@ export default {
           vm.hideBgColor = true
           break
         }
+      }
+      if (vm.actIndex === 0) {
+        vm.hideBgColor = true
       }
     })
   }
