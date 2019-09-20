@@ -378,8 +378,19 @@ export default {
           float: left
           width: 400px
           height: 300px
+          position: relative
+          overflow: hidden
           img {
             max-width 100%
+          }
+          .u-com-video {
+            position absolute
+            top 50%
+            left 50%
+            transform translate(-50%, -50%)
+            width 46px
+            height 46px
+            background url('~@/assets/img/common/icon-video.png') no-repeat center
           }
         }
         .intro-right {
