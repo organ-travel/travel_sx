@@ -8,10 +8,12 @@
 </template>
 <script>
 import dataset from '@/config/dataset'
+import nav from '@/mixin/nav'
 export default {
   pageName: 'Info',
   components: {
   },
+  mixins: [nav],
   data () {
     return {
       actIndex: 0,
@@ -41,9 +43,20 @@ export default {
     })
   },
   methods: {
-    changeNav (index) {
-      this.actIndex = index
-    },
+    // changeNav (index, flag) {
+    //   if (typeof flag != 'undefined') {
+    //     if (this.$route.query.actIndex == index) {
+    //       return
+    //     }
+    //     this.$router.push({
+    //       name: this.$route.name,
+    //       query: {
+    //         actIndex: index
+    //       }
+    //     })
+    //   }
+    //   this.actIndex = index
+    // },
     handleDownload () {
     },
     async handleCurrentChange(page) {

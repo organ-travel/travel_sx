@@ -1,6 +1,6 @@
 <template>
   <nav class="m-com-tab">
-    <a v-for="(item, index) in navArr" :key="index" href="javascript:void(0)" :class="{'m-com-nav': true, 'active': actIndex === index}" @click="handleClick(index)">
+    <a v-for="(item, index) in navArr" :key="index" href="javascript:void(0)" :class="{'m-com-nav': true, 'active': actIndex === index}" @click="handleClick(index, 'click')">
       <span class="u-com-text">{{ item.name }}</span>
       <span v-if="isBorder" :class="['u-com-border', borderClass]"></span>
     </a>
@@ -35,8 +35,8 @@ export default {
   mounted () {
   },
   methods: {
-    handleClick (index) {
-      this.$emit(this.funName, index)
+    handleClick (index, flag) {
+      this.$emit(this.funName, index, flag)
     }
   }
 }

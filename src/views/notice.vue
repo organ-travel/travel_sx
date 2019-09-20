@@ -24,6 +24,7 @@ import PerchaseItem from '@/components/notice/Perchase.vue'
 import imgBanner from '@/assets/img/notice_hk/banner.jpg'
 import imgSight from '@/assets/img/notice_hk/img-sight.jpg'
 import imgQrcode from '@/assets/img/notice_hk/img-qrcode.jpg'
+import nav from '@/mixin/nav'
 export default {
   pageName: 'Notice',
   components: {
@@ -31,6 +32,7 @@ export default {
     PriceItem,
     PerchaseItem
   },
+  mixins: [nav],
   data() {
     return {
       actIndex: 0,
@@ -84,9 +86,9 @@ export default {
   //   this.getPerchaseList()
   // },
   methods: {
-    changeNav (index) {
-      this.actIndex = index
-    },
+    // changeNav (index) {
+    //   this.actIndex = index
+    // },
     async handleCurrentChange(page) {
       const start = (page - 1) * dataset.queryOption.limit
       const index = this.actIndex

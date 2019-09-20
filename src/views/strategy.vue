@@ -102,10 +102,12 @@
 </template>
 <script>
 import dataset from '@/config/dataset'
+import nav from '@/mixin/nav'
 export default {
   pageName: 'Strategy',
   components: {
   },
+  mixins: [nav],
   data () {
     return {
       actIndex: 0,
@@ -156,9 +158,9 @@ export default {
     })
   },
   methods: {
-    changeNav (index) {
-      this.actIndex = index
-    },
+    // changeNav (index) {
+    //   this.actIndex = index
+    // },
     async handleCurrentChange(page) {
       const start = (page - 1) * this.limit
       const index = this.actIndex

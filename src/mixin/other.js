@@ -10,6 +10,11 @@ export default {
       if (this.$options.pageName) {
         console.log('watch this.$route.name', this.$route.name, n, o)
         if (this.$route.name == 'survey') {
+          if (typeof n == 'undefined' && typeof o != 'undefined') {
+            window.scrollTo(0, 0)
+            this.activeId = ''
+            return
+          }
           this.activeId = this.getCurCategory.children[n || 1] ? this.getCurCategory.children[n || 1].type : ''
           this.changeAnchor(this.activeId)
         } else {

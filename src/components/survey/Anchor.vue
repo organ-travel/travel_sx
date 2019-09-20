@@ -25,8 +25,7 @@ export default {
   },
   methods: {
     handleClick (type, index) {
-      console.log(type, index)
-      this.$emit('changeAnchor', type, index)
+      this.$emit('changeAnchor', type, index + 1)
     }
   }
 }

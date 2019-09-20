@@ -56,8 +56,20 @@ export default {
     })
   },
   methods: {
-    async changeAnchor (id) {
-      console.log('changeAnchor', id)
+    async changeAnchor (id, index) {
+      // console.log('changeAnchor', id, index)
+      if (typeof index != 'undefined') {
+        // console.log(this.$route.query.actIndex, index, this.$route.query.actIndex == index)
+        if (this.$route.query.actIndex == index) {
+          return
+        }
+        this.$router.push({
+          name: 'survey',
+          query: {
+            actIndex: index
+          }
+        })
+      }
       this.timer && await clearTimeout(this.timer)
       this.activeId = id
       this.isClick = true
