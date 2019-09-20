@@ -43,7 +43,6 @@ export default {
     })
   },
   methods: {
-<<<<<<< HEAD
     // changeNav (index, flag) {
     //   if (typeof flag != 'undefined') {
     //     if (this.$route.query.actIndex == index) {
@@ -58,13 +57,6 @@ export default {
     //   }
     //   this.actIndex = index
     // },
-=======
-    changeNav (index) {
-      const path = this.$router.history.current.path
-      this.$router.push({ path, query: { actIndex: index } })
-      this.actIndex = index
-    },
->>>>>>> 32192b93522bc79ca616b6309b7ae050d37f78db
     handleDownload () {
     },
     async handleCurrentChange(page) {
