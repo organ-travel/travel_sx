@@ -36,12 +36,14 @@ import Film from '@/components/wonder/Film.vue'
 import Sing from '@/components/wonder/Sing.vue'
 import WangLongTai from '@/components/wonder/Wanglongtai.vue'
 import Scenery from '@/components/wonder/Scenery.vue'
+import nav from '@/mixin/nav'
 
 export default {
   pageName: 'Wonder',
   components: {
     ComWrap, GuDuKou, Film, Sing, WangLongTai, Scenery
   },
+  mixins: [nav],
   data() {
     return {
       actIndex: 0,
@@ -94,19 +96,14 @@ export default {
   created() {
   },
   methods: {
-    changeNav (index) {
-      this.actIndex = index
-      // this.$router.push({
-      //   query: {
-      //     actIndex: index
-      //   }
-      // })
-      if (index === 0) {
-        this.hideBgColor = true
-      } else {
-        this.hideBgColor = false
-      }
-    }
+    // changeNav (index) {
+    //   this.actIndex = index
+    //   if (index === 0) {
+    //     this.hideBgColor = true
+    //   } else {
+    //     this.hideBgColor = false
+    //   }
+    // }
   },
   beforeRouteEnter(to, from, next) {
     next(vm => {
