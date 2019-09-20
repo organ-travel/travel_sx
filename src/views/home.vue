@@ -40,7 +40,7 @@
       </div>
       <custom :custom-arr="customArr"  :custom-obj="customObj" :active-label="activeLabel" :custom-nav="customNav" @changeCustom="changeCustom"></custom>
       <div v-if="bottomVideoItem.video_url" class="m-map m-wrap">
-        <video :id="bottomVideoItem.id +'video'" controls poster="../assets/img/home/map.jpg" width="100%" height="100%">
+        <video :id="bottomVideoItem.id +'video'" controls  width="100%" >
           <source :src="bottomVideoItem.video_url" type="video/mp4">
         </video>
       </div>
@@ -114,8 +114,8 @@ export default {
   async mounted () {
     console.log('home mounted------>')
     // 获取视频url
+    await this.getVideo()
     if (!this.showHome) {
-      await this.getVideo()
       const vdo = document.getElementById(this.videoItem.id + 'video')
       if (this.is_pary_video && vdo) {
         const userAgent = navigator.userAgent
@@ -285,7 +285,7 @@ export default {
 .m-home-page {
   .m-map {
     width 100%
-    height 622px
+    /*height 622px*/
   }
   .m-merge {
     background url('~@/assets/img/home/wonder.jpg') no-repeat center
