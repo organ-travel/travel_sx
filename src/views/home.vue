@@ -355,7 +355,7 @@ export default {
     left:0
     top:0
     img, video {
-      max-width 100%
+      width 100%
     }
   }
   .btn-enter {
