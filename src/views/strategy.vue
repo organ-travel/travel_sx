@@ -11,10 +11,10 @@
             <com-desc :title="item.title" :brief="item.description" class="m-article"></com-desc>
             <div class="m-strategy-img clearfix">
               <div v-for="(item1, index) in item.pcitures" :key="index" class="m-wrap-img">
-                <a v-if="index === 0" :href="'#/infoDetail?id=' + item.id">
+                <a :href="'#/infoDetail?id=' + item.id">
                   <img :src="item1" class="img">
                 </a>
-                <img v-else :src="item1" class="img"/>
+                <!--<img v-else :src="item1" class="img"/>-->
               </div>
             </div>
           </div>

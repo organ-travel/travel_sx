@@ -1,4 +1,4 @@
-const host = 'http://39.100.140.37/hukouN/index.php/'
+const host = 'http://manage.hhhkpb.com/index.php/'
 let showHome = false
 
 if (window.performance.navigation.type === 1) {

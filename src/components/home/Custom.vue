@@ -6,7 +6,8 @@
           <div v-for='(el, index) in customArr' :key="index" class="swiper-slide">
               <a :href="customObj.type + '?name=' + el.type">
               <img v-if="el.picture_url" class="img"  :src="el.picture_url">
-              <span v-if="el.id && el.name" class="text">{{ el.name }}</span>
+              <!--<span v-if="el.id && el.name" class="text">{{ el.name }}</span>-->
+               <span class="text">更多精彩</span>
             </a>
           </div>
         </div>

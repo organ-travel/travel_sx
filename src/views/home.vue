@@ -79,7 +79,7 @@ export default {
       is_pary_video: true,
       // surveyNav: dataset.surveyNav,
       surveyNav: [],
-      infoNav: dataset.infoNav,
+      infoNav: [],
       wonderObj: {},
       // wonderArr: dataset.wonderArr,
       // strategyArr: dataset.strategyArr,
@@ -212,6 +212,10 @@ export default {
     // 获取壶口概况的数据
     getSurvey () {
       const menuData = [].concat(this.getMenuData) || []
+      const arr1= menuData[2].children || []
+      arr1.forEach(async (item, index) => {
+        if(index <= 2 ) this.infoNav.push(item)
+      })
       this.surveyNav = menuData[1].children || []
       this.surveyNav.forEach(item => {
         this.surveyDatas[item.type] = []
@@ -225,7 +229,10 @@ export default {
     getInfo () {
       const menuData = [].concat(this.getMenuData) || []
       const arr = menuData[2].children || []
+     // console.log(arr+11111);
+
       arr.forEach(async (item, index) => {
+
         this.queryOption[index] = Object.assign({}, JSON.parse(JSON.stringify(dataset.queryOption)), { limit:8, cat_id: item.id })
         const res = (await this.queryArticleList(this.queryOption[index])).data
         res.articleList.forEach(item1 => {
