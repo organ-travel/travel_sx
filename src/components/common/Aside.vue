@@ -3,7 +3,7 @@
       <div class="alide-item wechat-wrapper">
         <a href="javascript:;" class="txt"><i class="fa fa-wechat"></i></a>
         <div class="img-wrapper" data-after="请扫描微信公众号">
-          <a href="javascript:;"><img src="../../assets/img/wechat-qrcode.jpg" alt="" class="img"></a>
+          <a href="javascript:;"><img :src="articleItem.picture_url" alt="" class="img"></a>
         </div>
       </div>
       <div class="alide-item comment-wrapper">
@@ -28,7 +28,7 @@
       <div class="alide-item customer-service-wrapper">
         <a href="javascript:;" class="txt"><i class="fa fa-user-o"></i></a>
         <div class="contact-wrapper" data-before="联系客服">
-          <span class="txt-telephone">0911-4838030</span>
+          <span class="txt-telephone">{{ articleItem.mobile }}</span>
         </div>
       </div>
       <div class="alide-item backtop-wrapper">
@@ -46,8 +46,14 @@ export default {
         mobile: '',
         body: ''
       },
-      showForm: false
+      showForm: false,
+      articleItem: {},
     }
+  },
+  async mounted () {
+    console.log('footer mounted------>')
+    // 壶口概况
+    await this.getContact()
   },
   created() {
     // 空白处点击关闭弹窗
@@ -62,6 +68,10 @@ export default {
   methods: {
     handleShowForm() {
       this.showForm = !this.showForm
+    },
+    async getContact () {
+      this.articleItem = (await this.getConTactArticle())
+      console.log(this.articleItem)
     },
     handleAddConsult() {
       const params = this.form

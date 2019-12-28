@@ -5,7 +5,7 @@
       <!--<com-article v-if="actIndex  == index" :arr="articleArr[index]" :has-detail="!(infoPageNav[actIndex] && (infoPageNav[actIndex].name == '招贤纳士' || infoPageNav[actIndex].name == '文件下载'))" :has-download="infoPageNav[actIndex] && infoPageNav[actIndex].name == '文件下载'"  @handleDownload="handleDownload"></com-article>-->
     <!--</com-transition>-->
 
-    <com-tab :act-index="actIndex" :nav-arr="wonderNav" @changeNav="changeNav"></com-tab>
+    <com-tab :act-index="parseInt(actIndex)" :nav-arr="wonderNav" @changeNav="changeNav"></com-tab>
     <!--古渡口小镇-->
     <com-transition>
       <gu-du-kou v-if="wonderNav[actIndex] && wonderNav[actIndex].type === 'gudukou'" :intro="wonderNav[actIndex].article" :show-page="showPage" :list="wonderObj.gudukou"></gu-du-kou>
@@ -36,12 +36,14 @@ import Film from '@/components/wonder/Film.vue'
 import Sing from '@/components/wonder/Sing.vue'
 import WangLongTai from '@/components/wonder/Wanglongtai.vue'
 import Scenery from '@/components/wonder/Scenery.vue'
+import nav from '@/mixin/nav'
 
 export default {
   pageName: 'Wonder',
   components: {
     ComWrap, GuDuKou, Film, Sing, WangLongTai, Scenery
   },
+  mixins: [nav],
   data() {
     return {
       actIndex: 0,
@@ -94,19 +96,14 @@ export default {
   created() {
   },
   methods: {
-    changeNav (index) {
-      this.actIndex = index
-      // this.$router.push({
-      //   query: {
-      //     actIndex: index
-      //   }
-      // })
-      if (index === 0) {
-        this.hideBgColor = true
-      } else {
-        this.hideBgColor = false
-      }
-    }
+    // changeNav (index) {
+    //   this.actIndex = index
+    //   if (index === 0) {
+    //     this.hideBgColor = true
+    //   } else {
+    //     this.hideBgColor = false
+    //   }
+    // }
   },
   beforeRouteEnter(to, from, next) {
     next(vm => {
@@ -114,9 +111,6 @@ export default {
         console.log(vm)
         console.log(vm.actIndex)
         vm.actIndex = parseInt(vm.$route.query.actIndex) || vm.actIndex
-        if (vm.actIndex === 0) {
-          vm.hideBgColor = true
-        }
       }
       if (to.query.name) {
         const routerName = to.query.name
@@ -138,6 +132,9 @@ export default {
           vm.hideBgColor = true
           break
         }
+      }
+      if (vm.actIndex === 0) {
+        vm.hideBgColor = true
       }
     })
   }
@@ -381,8 +378,19 @@ export default {
           float: left
           width: 400px
           height: 300px
+          position: relative
+          overflow: hidden
           img {
             max-width 100%
+          }
+          .u-com-video {
+            position absolute
+            top 50%
+            left 50%
+            transform translate(-50%, -50%)
+            width 46px
+            height 46px
+            background url('~@/assets/img/common/icon-video.png') no-repeat center
           }
         }
         .intro-right {

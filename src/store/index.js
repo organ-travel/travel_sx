@@ -24,7 +24,7 @@ const state = {
   articleData: [],
   MetaData,
   showApp: false,
-  showMain: false
+  showMain: false,
 }
 export default new Vuex.Store({
   strict: debug,

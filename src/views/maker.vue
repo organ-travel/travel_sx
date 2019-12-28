@@ -69,7 +69,7 @@ export default {
               margin-top: -225px;
             }
             .u-title {
-              display: none
+              /*display: none*/
             }
           }
         }

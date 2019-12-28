@@ -2,9 +2,9 @@
   <section class="m-contact-page">
     <div class="m-contact-banner"></div>
     <div class="m-contact-list m-contact-wrap">
-      <com-column icon-class="icon-tel" content="0911-4838030"></com-column>
-      <com-column icon-class="icon-addr" content="陕西省延安市宜川县壶口乡"></com-column>
-      <com-column icon-class="icon-email" content="1067072211@qq.com"></com-column>
+      <com-column icon-class="icon-tel" :content="detailObj.mobile"></com-column>
+      <com-column icon-class="icon-addr" :content="detailObj.address"></com-column>
+      <com-column icon-class="icon-email" :content="detailObj.email"></com-column>
     </div>
     <div class="m-contact-map m-contact-wrap" v-html="detailObj.body"></div>
     <div class="m-contact-code m-contact-wrap">

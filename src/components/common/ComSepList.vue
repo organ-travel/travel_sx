@@ -3,7 +3,7 @@
     <li v-for="(item, index) in listArr" :key="index" class="com-sep-list">
       <a :href="'#/infoDetail?id=' + item.id" class="com-sep-pic">
         <img :src="item.picture_url" class="u-img"/>
-        <p class="u-title">{{ item.title }}</p>
+        <p v-if="index < 4" class="u-title">{{ item.title }}</p>
       </a>
       <!-- 二维码 -->
       <!--<div v-if="item.picture_url && index ==4 " class="m-com-mask">-->

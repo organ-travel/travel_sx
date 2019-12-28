@@ -62,3 +62,10 @@ export const addConsult = (store, payload) => {
     action: 'consult/addConsult'
   })
 }
+
+export const getConTactArticle = (store, payload) => {
+  return getServer({
+    data: payload || {},
+    action: 'articles/getContact'
+  })
+}

@@ -6,8 +6,8 @@
         <div class="contact-wrapper">
           <ul>
             <li><span class="txt txt-company">陕西黄河壶口文化旅游发展有限责任公司</span></li>
-            <li><span class="txt txt-address">陕西省延安市宜川县壶口乡</span></li>
-            <li><span class="txt txt-telephone">0911-4838030</span></li>
+            <li><span class="txt txt-address">{{ articleItem.address }}</span></li>
+            <li><span class="txt txt-telephone">{{ articleItem.mobile }}</span></li>
           </ul>
         </div>
         <div class="qrcode-wrapper">
@@ -47,9 +47,9 @@
     <div class="feature-bar">
       <a href="javascript:;" class="icon-arrow" @click="handleToggle"><i class="el-icon-caret-left"></i></a>
       <div :class="['manage-entry', showFlag ? 'toggle' : '']" data-before="后台管理系统入口:">
-        <a href="javascript:;" class="txt">网站后台</a>
-        <a href="javascript:;" class="txt">公众号后台</a>
-        <a href="javascript:;" class="txt">微博后台</a>
+        <a href="http://manage.hhhkpb.com/administrator/" class="txt" target="_blank">网站后台</a>
+        <a href="https://mp.weixin.qq.com/cgi-bin/loginpage" class="txt" target="_blank">公众号后台</a>
+        <a href="https://s.weibo.com/?Refer=#_loginLayer_1577082241948" class="txt" target="_blank">微博后台</a>
       </div>
     </div>
   </section>
@@ -60,12 +60,22 @@
 export default {
   data() {
     return {
-      showFlag: true
+      showFlag: true,
+      articleItem: {},
     }
+  },
+  async mounted () {
+    console.log('footer mounted------>')
+    // 壶口概况
+    await this.getContact()
   },
   methods: {
     handleToggle() {
       this.showFlag = !this.showFlag
+    },
+    async getContact () {
+      this.articleItem = (await this.getConTactArticle())
+      console.log(this.articleItem)
     }
   }
 }
