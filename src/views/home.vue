@@ -11,12 +11,14 @@
             <source :src="videoItem.video_url" type="video/mp4">
           </video>
         </div> -->
-        <div v-if="videoItem.video_url" class="video-wrapper" @click="openVideoSound()">
-          <video :id="videoItem.id +'video'"  muted autoplay @canplaythrough="oncanplaythrough">
-            <source :src="videoItem.video_url" type="video/mp4">
-          </video>
+        <div class="video-wrapper">
+          <div v-if="videoItem.video_url" class="video-inner" @click="openVideoSound()">
+            <video :id="videoItem.id +'video'"  muted autoplay @canplaythrough="oncanplaythrough">
+              <source :src="videoItem.video_url" type="video/mp4">
+            </video>
+          </div>
+          <a href="javascript:;" class="btn-enter" @click="handleEnter">点击进入官网</a>
         </div>
-        <a href="javascript:;" class="btn-enter" @click="handleEnter">点击进入官网</a>
       </section>
     </div>
     <div class="m-home-page swiperhi" :class="{'show':showHome}">
@@ -371,6 +373,7 @@ export default {
     top:0
     img, video {
       width 100%
+      height 100%
     }
   }
   .btn-enter {
