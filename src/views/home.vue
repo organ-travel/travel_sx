@@ -117,17 +117,22 @@ export default {
     console.log('home mounted------>')
     // 获取视频url
     await this.getVideo()
-    if (!this.showHome) {
-      const vdo = document.getElementById(this.videoItem.id + 'video')
-      if (this.is_pary_video && vdo) {
-        const userAgent = navigator.userAgent
-        vdo.play()
-        console.log(userAgent.indexOf('Safari'))
-        if (userAgent.indexOf('Safari') === -1) {
-          vdo.muted = false
+    try {
+      if (!this.showHome) {
+        const vdo = document.getElementById(this.videoItem.id + 'video')
+        if (this.is_pary_video && vdo) {
+          const userAgent = navigator.userAgent
+          vdo.play()
+          console.log(userAgent.indexOf('Safari'))
+          if (userAgent.indexOf('Safari') === -1) {
+            vdo.muted = false
+          }
         }
+      } else {
+        this.SET_SHOW_MAIN(true)
+        this.SET_SHOW_APP(true)
       }
-    } else {
+    } catch (e) {
       this.SET_SHOW_MAIN(true)
       this.SET_SHOW_APP(true)
     }
