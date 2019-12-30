@@ -12,7 +12,6 @@
 <script>
 import { mapMutations } from 'vuex'
 import Config from '@/config'
-// import Config from '@/config'
 export default {
   data () {
     return {
