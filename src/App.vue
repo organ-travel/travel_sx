@@ -134,6 +134,7 @@ a {
   border 2px solid #ec5a02
   padding:11px 36px
   border-radius 2px
+  z-index: 11111
   &:hover {
     background-color: #ec5a02
     color: #fff
