@@ -55,6 +55,7 @@ export default {
     ...mapMutations(['SET_HEADER_HEIGHT']),
     handleEnter() {
       this.$bus.emit('handleEnterBus')
+      this.showHome = true
     }
   }
 }
