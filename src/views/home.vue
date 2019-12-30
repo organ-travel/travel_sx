@@ -17,7 +17,6 @@
               <source :src="videoItem.video_url" type="video/mp4">
             </video>
           </div>
-          <a href="javascript:;" class="btn-enter" @click="handleEnter">点击进入官网</a>
         </div>
       </section>
     </div>
@@ -113,26 +112,24 @@ export default {
   },
   computed: {
   },
+  created() {
+    this.$bus.on('handleEnterBus', this.handleEnter)
+  },
   async mounted () {
     console.log('home mounted------>')
     // 获取视频url
     await this.getVideo()
-    try {
-      if (!this.showHome) {
-        const vdo = document.getElementById(this.videoItem.id + 'video')
-        if (this.is_pary_video && vdo) {
-          const userAgent = navigator.userAgent
-          vdo.play()
-          console.log(userAgent.indexOf('Safari'))
-          if (userAgent.indexOf('Safari') === -1) {
-            vdo.muted = false
-          }
+    if (!this.showHome) {
+      const vdo = document.getElementById(this.videoItem.id + 'video')
+      if (this.is_pary_video && vdo) {
+        const userAgent = navigator.userAgent
+        vdo.play()
+        console.log(userAgent.indexOf('Safari'))
+        if (userAgent.indexOf('Safari') === -1) {
+          vdo.muted = false
         }
-      } else {
-        this.SET_SHOW_MAIN(true)
-        this.SET_SHOW_APP(true)
       }
-    } catch (e) {
+    } else {
       this.SET_SHOW_MAIN(true)
       this.SET_SHOW_APP(true)
     }
@@ -169,7 +166,6 @@ export default {
   },
   methods: {
     oncanplaythrough () {
-      // console.log(111111111)
       this.SET_SHOW_MAIN(true)
     },
     openVideoSound(){
@@ -271,7 +267,6 @@ export default {
         this.customDatas[item.type].push(item)
       })
       this.activeLabel = this.customNav[0].type
-      console.log(this.surveyLabel)
       this.customArr = this.customNav
     },
     handleEnter() {
@@ -379,22 +374,6 @@ export default {
     img, video {
       width 100%
       height 100%
-    }
-  }
-  .btn-enter {
-    position: absolute
-    left: 50%
-    margin-left: -100px
-    top: 50%
-    margin-top: -22px
-    font-size 20px
-    color: #ec5a02
-    border 2px solid #ec5a02
-    padding:11px 36px
-    border-radius 2px
-    &:hover {
-      background-color: #ec5a02
-      color: #fff
     }
   }
 }

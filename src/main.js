@@ -4,6 +4,7 @@ import router from '@/router'
 import store from '@/store/index.js'
 import mixin from '@/mixin/index.js'
 import ElementUI from 'element-ui'
+import VueBus from 'vue-bus'
 
 import 'element-ui/lib/theme-chalk/index.css'
 import 'font-awesome/css/font-awesome.min.css'
@@ -14,6 +15,8 @@ import '@/assets/js/prototype-extend'
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.mixin(mixin)
+
+Vue.use(VueBus)
 
 export default new Vue({
   router,

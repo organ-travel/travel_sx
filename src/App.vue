@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <a v-if="!showHome" href="javascript:;" class="btn-enter" @click="handleEnter">点击进入官网</a>
     <com-header v-show="getShowApp" ref="header"></com-header>
     <com-content v-show="getShowMain">
       <router-view/>
@@ -10,11 +11,12 @@
 </template>
 <script>
 import { mapMutations } from 'vuex'
+import Config from '@/config'
 // import Config from '@/config'
 export default {
   data () {
     return {
-      // showHome: Config.showHome,
+      showHome: Config.showHome,
       // videoSrc: '',
       // is_pary_video: true,
       // videoItem: {},
@@ -51,25 +53,9 @@ export default {
   },
   methods: {
     ...mapMutations(['SET_HEADER_HEIGHT']),
-    // 获取视频url
-    // async getVideo () {
-    //   this.videoItem = (await this.getVideoUrl())
-    // },
-    // handleEnter() {
-    //   Config.showHome = true
-    //   this.showHome = Config.showHome
-    //   const array = this.arrItem
-    //   this.arrItem = []
-    //   this.arrItem = array
-    //   const vdo = document.getElementById(this.videoItem.id + 'video')
-    //   vdo.pause()
-    //   this.is_pary_video = false
-    // },
-    // openVideoSound () {
-    //   const vdo = document.getElementById(this.videoItem.id + 'video')
-    //   vdo.play()
-    //   vdo.muted = !vdo.muted
-    // },
+    handleEnter() {
+      this.$bus.emit('handleEnterBus')
+    }
   }
 }
 </script>
@@ -135,6 +121,22 @@ a {
   text-decoration: none
   &:hover {
     text-decoration: none
+  }
+}
+.btn-enter {
+  position: absolute
+  left: 50%
+  margin-left: -100px
+  top: 50%
+  margin-top: -22px
+  font-size 20px
+  color: #ec5a02
+  border 2px solid #ec5a02
+  padding:11px 36px
+  border-radius 2px
+  &:hover {
+    background-color: #ec5a02
+    color: #fff
   }
 }
 
